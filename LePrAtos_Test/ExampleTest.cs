@@ -18,7 +18,7 @@ namespace LePrAtos_Test
 			var result = unitUnderTest.Tested(2);
 
 			// Assert
-			Assert.That(result, Is.EqualTo(40000));
+			Assert.That(result, Is.EqualTo(4));
 		}
 	}
 }

@@ -1,8 +1,11 @@
 language: csharp
 solution: LePrAtos.sln
-before_install:
-  - sudo apt-get install nunit-console
+
 before_script:
   - nuget restore LePrAtos.sln
+
+before_install:
+  - sudo apt-get install nunit-console
+
 after_script:
-  - nunit-console LePrAtos_Test/bin/Debug/LePrAtos_Test.dll
+  - nunit-console LePrAtos_Test/bin/Release/LePrAtos_Test.dll
