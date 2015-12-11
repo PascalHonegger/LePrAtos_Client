@@ -1,6 +1,6 @@
-﻿namespace LePrAtos.Trade.Source
+﻿namespace LePrAtos.Trade
 {
-	class Example
+	public class Example
 	{
 		public int NotTested()
 		{

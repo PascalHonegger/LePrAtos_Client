@@ -5,4 +5,4 @@ before_install:
 before_script:
   - nuget restore LePrAtos.sln
 after_script:
-  - nunit-console LePrAtos/bin/Release/LePrAtos.dll
+  - nunit-console LePrAtos_Test/bin/Release/LePrAtos_Test.dll

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LePrAtos.Trade.Source;
+﻿using LePrAtos.Trade;
+using NUnit.Core;
 using NUnit.Framework;
 
-namespace LePrAtos.Trade.UnitTest
+namespace LePrAtos_Test
 {
 	[TestFixture]
-	[Category("UnitTest")]
+	[System.ComponentModel.Category("UnitTest")]
 	class ExampleTest
 	{
 		[Test]
