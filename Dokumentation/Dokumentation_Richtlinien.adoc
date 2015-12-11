@@ -15,7 +15,3 @@ Version 1.0, 11.12.2015
 == Architektur
     Die Architecktur wird in der Haupt-Dokumentation ausführlich erklärt.
     Es werden die UML-Diagramme eingefügt und je nach dem zusätzlich in Textform beschrieben. Dazu gehören Use-Cases, Sequenzdiagramme und das Klassandiagramm.
-    
-
-
-

@@ -12,7 +12,7 @@ Version 1.1, 11.12.2015
 == Framework
 
 === C#
-Wir werden C#6 / .net 4.5.3 verwenden.
+Wir werden C#6 / .net 4.5.2 verwenden.
 
 === Java
 Wir werden Java 1.8 benutzen.

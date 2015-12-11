@@ -19,7 +19,7 @@ Version 1.0, 11.12.2015
 ==== Interfaces
     * Beginnen mit einem I
     * Nomen: Was es ist z.B. ICar
-    * Fähigkeit: Was es kann z.B. IDrievable
+    * Fähigkeit: Was es kann z.B. IDriveable
 
 ==== Abstract Classes
     * Enden mit Base
