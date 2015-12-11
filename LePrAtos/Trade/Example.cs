@@ -9,7 +9,7 @@
 
 		public int Tested(int number)
 		{
-			return number += 4;
+			return number += 2;
 		}
 	}
 }
