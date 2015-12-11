@@ -1,0 +1,21 @@
+----
+Dokumentation
+=============
+Alain Keller, Pascal Honegger, Marc Keller 
+Version 1.0, 11.12.2015
+----
+
+== Inhaltsverzeichnis
+
+== Framework
+
+=== C#
+ Wir werden C#6 / .net 4.5.3 verwenden.
+
+=== Java
+ Wir werden Java 1.8 benutzen.
+ 
+== Datenstruktur
+
+=== Aufbau des Projektordner
+    Die Files werden in verschieden Ordnern unterteilt. Diese werden nach Überthemen des Projektes geordnet. In jedem dieser Ordnern befinden sich drei Unterordner: IntegrationTest, Source und UnitTest. 
