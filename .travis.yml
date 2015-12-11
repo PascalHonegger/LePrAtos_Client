@@ -1,11 +1,9 @@
 language: csharp
 solution: LePrAtos.sln
 
-before_script:
+install:
   - nuget restore LePrAtos.sln
-
-before_install:
-  - sudo apt-get install nunit-console
-
-after_script:
-  - nunit-console LePrAtos_Test/bin/Release/LePrAtos_Test.dll
+  - nuget install NUnit.Runners -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release LePrAtos.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./LePrAtos_Test/bin/Release/LePrAtos_Test.dll
