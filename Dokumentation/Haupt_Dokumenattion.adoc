@@ -2,20 +2,47 @@
 Dokumentation
 =============
 Alain Keller, Pascal Honegger, Marc Keller 
-Version 1.0, 11.12.2015
+Version 1.1, 11.12.2015
 ----
 
 == Inhaltsverzeichnis
 
+:toc:
+
 == Framework
 
 === C#
- Wir werden C#6 / .net 4.5.3 verwenden.
+Wir werden C#6 / .net 4.5.2 verwenden.
 
 === Java
- Wir werden Java 1.8 benutzen.
+Wir werden Java 1.8 benutzen.
  
 == Datenstruktur
 
 === Aufbau des Projektordner
-    Die Files werden in verschieden Ordnern unterteilt. Diese werden nach Überthemen des Projektes geordnet. In jedem dieser Ordnern befinden sich drei Unterordner: IntegrationTest, Source und UnitTest. 
+Die Files werden in verschieden Ordnern unterteilt. Diese werden nach Überthemen des Projektes geordnet. Die Ordner sind doppelt vorhanden, einmal im LePrAtos und einmal im LePrAtos_Test Projekt.
+    
+== Code-Analysen
+
+=== Continous Integration
+
+==== Java
+link:https://circleci.com/gh/PascalHonegger/LePrAtos_Server[CircleCI] ist eine gute CI, unterstützt jedoch kein C#. 
+
+==== C#
+link:https://ci.appveyor.com/project/PascalHonegger/lepratos-client[AppVeyor] unterstützt als einzige CI neben Travis C#, benötigt aber weniger Konfigurationen.
+
+=== Code Metriken
+
+==== Java
+link:https://coveralls.io/github/PascalHonegger[CoverAlls]
+
+==== C#
+-
+
+==== Nicht sicher
+link:https://www.codacy.com/projects[Codacy]
+
+== VCS-Server
+link:https://github.com/PascalHonegger/LePrAtos_Client[C# Client]
+link:https://github.com/PascalHonegger/LePrAtos_Server[Java Server]
