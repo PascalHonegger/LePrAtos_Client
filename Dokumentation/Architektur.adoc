@@ -1,0 +1,44 @@
+----
+Dokumentation Architektur
+=============
+Alain Keller, Pascal Honegger, Marc Keller 
+Version 1.0, 18.12.2015
+----
+
+= Architektur
+
+== Allgemeine Funktionen
+
+=== Benutzer
+    Der Benutzer meldet sich über den Client an. Die Anmeldedaetn werden auf dem Server verifiziert. Des Users Daten werden in der Datenbank gespeichert. Die Userdaten werden zentral gespeichert, damit man sich von überall verbinden kann.
+
+=== GUI
+    Das Gui wird bei jedem User lokal initialisiert. Die Daten, was, wo angezeigt wird, kommen vom Server. 
+
+
+
+
+= Komponenten
+
+    Wir haben die Komponenten nach unseren Use Cases gemacht. Wir hielten es für Sinnvoll, da sie von einander abgetrennt sind, aber trotzdem miteinander kommuniziern müssen. 
+
+== Ressourcen Verwaltung
+
+=== Spieler
+    Der Spieler 
+
+==== Server
+    Die Daten des Spielers werden serverseitig verwaltet. Dieser ist verantwortlich,  dass die Spieler ihre Daten und die des Gegners in richtiger Form bekommen.
+
+==== Client
+    Die Ressourcen werden zusätzlich auf dem Client verwaltet, um unnötig viele Serveranfragen zu vermeiden. Sonst werden hauptsächich die Daten der Spieler im GUI angezeigt.
+
+== Handeln
+
+== Bauen
+
+== Würfeln
+
+== Räuber
+
+== Spielfeld
