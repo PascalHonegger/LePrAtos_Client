@@ -1,11 +1,9 @@
 ﻿using LePrAtos.Trade;
-using NUnit.Core;
 using NUnit.Framework;
 
 namespace LePrAtos_Test
 {
-	[TestFixture]
-	[System.ComponentModel.Category("UnitTest")]
+	[TestFixture, Category("UnitTest")]
 	class ExampleTest
 	{
 		[Test]

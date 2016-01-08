@@ -1,9 +1,8 @@
-----
 C# Codekonventionen
-===========
-Alain Keller
-Version 1.0, 11.12.2015
-----
+===================
+Alain Keller, Pascal Honegger, Marc Keller 
+Version 1.1, 08.01.2016
+:toc:
 
 === Namensgebung
     * CamelCase 
