@@ -25,7 +25,7 @@ Wir werden Java 1.8 benutzen.
 |Gamemaster
 |Grafische Darstellung
 |Würfeln ; Wer ist am Zug ; Spiel starten ; Ressourcen verteilen
-|Spiel ; Teilnehmern ; Statistiken ; Startressourcen
+|Spiel ; Teilnehmern ; Statistiken Teilnehmer (Platzierung, übrige Ressourcen) ; Startressourcen
 
 |Spieler
 |Ressourcen GUI ; Handeln GUI ; Bauen GUI
@@ -59,21 +59,28 @@ Wir werden Java 1.8 benutzen.
 
 |======================
 
-=== Handel
-Sequenz_Handel
+=== Sequenz-Diagramme
+==== Handel
+image::Bilder/Sequenz_Handel_1.JPG[Sequenz_Handel_1]
 
 Handel ist wie in link:www.steam-community.com[Steam] umgesetzt. Ein Spieler präsentiert sein Handelsangebot an alle Mitspieler, insofern dieser genügend Ressourcen besitzt. Der erste Spieler, welcher auf das Angebot reagiert hat die Chance zu handeln. Danach haben beide Spieler die Möglichkeit den Handel anzunehmen, abzulehnen oder anzupassen. Sie haben für den gesamten Handel bis zu 60 Sekunden zeit.
 
-=== Bauen
-Sequenz_Bauen
+==== Bauen
+image::Bilder/Sequenz_Bauen_1.JPG[Sequenz_Bauen_1]
 
-Jeder Spieler besitzt eine Karte mit den Preisen der Gebäude. Diese bekommt er von der Datenbank. WIll ein Spieler etwas bauen wird zuerst auf dem Client überprüft, ob der Spieler genügend Ressourcen hat, und ob der Bau an einem erlaubten Ort stattfinden sollte. Ist der Clientseitige Test erfolgreich, wird eine Anfrage an den Server gesendet, welcher den Bau nochmals überprüft. Ist der Bau erlaubt, wird gebaut und das Spielfeld wird bei allen Spielern aktualisiert.
+Jeder Spieler besitzt eine Karte mit den Preisen der Gebäude. Diese bekommt er von der Datenbank. WIll ein Spieler etwas bauen wird zuerst auf dem Client überprüft, ob der Spieler genügend Ressourcen hat, und ob der Bau an einem erlaubten Ort stattfinden sollte. Ist der Clientseitige Test erfolgreich, wird eine Anfrage an den Server gesendet, welcher den Bau nochmals überprüft. Ist der Bau erlaubt, wird gebaut und das Spielfeld wird bei allen Spielern aktualisiert. Die Längste Strasse gehört zum Bauen, der Feldherr gehört zum  
 
-== Räuber
-Sequenz_Rauber
+==== Räuber
+image::Bilder/Sequenz_Räuber_1.JPG[Sequenz_Räuber_1]
+
 
 Der Server (Gamemaster) würfelt eine 7 => Der Räuber kommt. Zu Beginn werden alle Clients angesprochen und müssen Karten selektieren, welche sie abgeben müssen. Diese Auswahl geht wieder an den Server und wird dort validiert. Sobald die Karten abgegeben wurden werden die Daten der anderen Clients aktualisiert. Falls eine invalide Anzahl an Karten abgegeben wurde werden dem Client aktuelle Daten gesendet und es wird gesagt, es muss erneut ausgewählt werden. Man hat für das Wegwerfen 60 Sekunden zeit, danach wird zufällig die Hälfte der Karten weggeworfen. Nun darf der Spieler, welcher am Zug ist, den Räuber auf ein neues Feld schicken. Dieses Feld ist nacher blockiert und gibt keine Karten bei der Ressourcenverteilung. Wenn der Spieler lokal ein Ziel für den Räuber selektiert hat wird diese Auswahl an den Server gesendet. Der Server validiert die neue Platzierung des Räubers und sendet am jetzigen Spieler die Anfrage, eine Karte von einem anliegenden Spieler zu stehlen. Diese Auswahl wird auf dem Client vollzogen und auf dem Server validiert.
 
+== Entity Relationship Model
+
+image::Bilder/ERM.PNG[ERM]
+
+=== Entscheidungen
 
 == Datenstruktur
 
@@ -84,23 +91,23 @@ Die Files werden in verschieden Ordnern unterteilt. Diese werden nach Übertheme
 
 === Continous Integration
 
-==== Java
-link:https://circleci.com/gh/PascalHonegger/LePrAtos_Server[CircleCI] ist eine gute CI, unterstützt jedoch kein C#. 
-
 ==== C#
 link:https://ci.appveyor.com/project/PascalHonegger/lepratos-client[AppVeyor] unterstützt als einzige CI neben Travis C#, benötigt aber weniger Konfigurationen.
+
+==== Java
+link:https://circleci.com/gh/PascalHonegger/LePrAtos_Server[CircleCI] ist eine gute CI, unterstützt jedoch kein C#. 
 
 === Code Metriken
 
 ==== Java
-link:https://coveralls.io/github/PascalHonegger[CoverAlls]
+link:https://www.codacy.com/projects[Codacy]
 
 ==== C#
 -
 
-==== Nicht sicher
-link:https://www.codacy.com/projects[Codacy]
-
 == VCS-Server
-link:https://github.com/PascalHonegger/LePrAtos_Client[C# Client]
-link:https://github.com/PascalHonegger/LePrAtos_Server[Java Server]
+=== C# Client
+link:https://github.com/PascalHonegger/LePrAtos_Client[Github]
+
+=== Java Server
+link:https://github.com/PascalHonegger/LePrAtos_Server[Github]
