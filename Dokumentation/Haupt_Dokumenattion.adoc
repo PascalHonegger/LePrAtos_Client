@@ -81,6 +81,7 @@ Der Server (Gamemaster) würfelt eine 7 => Der Räuber kommt. Zu Beginn werden a
 image::Bilder/ERM.PNG[ERM]
 
 === Entscheidungen
+Wir haben uns entschieden die Nutzerdaten, die Spiele, Spielstatistiken und die Gebäude mit Entwiklungskarte zu speichern. Jede Gebäudeart und Karte bekommt eine ID, Anzahl im Spiel und einen Preis. Am Anfang des Spiels wird ein Kartenstapel mit den gespeicherten Karten erstellt. Die ANzahl jeder Karte im Stapel kann somit über die Datenbank ermittelt werden. Die Anzahl der Gebäude, welche zu Beginn den Spielern zugewiesen werden, wird auch aus der DB gelesen.
 
 == Datenstruktur
 
