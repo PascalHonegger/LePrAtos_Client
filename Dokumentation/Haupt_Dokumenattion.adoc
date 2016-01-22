@@ -7,7 +7,7 @@ Version 1.2, 08.01.2016
 == Framework
 
 === C#
-Wir werden C#6 / .net 4.5.2 verwenden.
+Wir werden C#6 / .net 4.6.1 verwenden.
 
 === Java
 Wir werden Java 1.8 benutzen.
@@ -87,6 +87,9 @@ Wir haben uns entschieden die Nutzerdaten, die Spiele, Spielstatistiken und die 
 
 === Aufbau des Projektordner
 Die Files werden in verschieden Ordnern unterteilt. Diese werden nach Überthemen des Projektes geordnet. Die Ordner sind doppelt vorhanden, einmal im LePrAtos und einmal im LePrAtos_Test Projekt.
+    
+== Klassendiagramm
+iamge::Bilder/klassendiagramm.png[KlassenDiagramm]
     
 == Code-Analysen
 
