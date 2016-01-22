@@ -28,8 +28,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
-      <y>45</y>
+      <x>342</x>
+      <y>225</y>
       <w>216</w>
       <h>171</h>
     </coordinates>
@@ -51,8 +51,8 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>288</y>
+      <x>333</x>
+      <y>468</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -68,8 +68,8 @@ GameMaster
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
-      <y>207</y>
+      <x>396</x>
+      <y>387</y>
       <w>27</w>
       <h>99</h>
     </coordinates>
@@ -79,20 +79,17 @@ GameMaster
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>657</x>
-      <y>45</y>
+      <x>378</x>
+      <y>0</y>
       <w>261</w>
-      <h>180</h>
+      <h>189</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IPlayer
 --
 DisplayName: string
-AmountOfBrick: int
-AmountOfLumber: int
-AmountOfWool: int
-AmountOfGrain: int
-AmountOfOre: int
+RessourceManager: IRessourceManager
+
 DevelopmentCard: List&lt;IDevelopmentCard&gt;
 --
 Responsibilities
@@ -102,8 +99,8 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>315</y>
+      <x>45</x>
+      <y>495</y>
       <w>234</w>
       <h>99</h>
     </coordinates>
@@ -119,8 +116,8 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>315</x>
-      <y>342</y>
+      <x>270</x>
+      <y>522</y>
       <w>81</w>
       <h>27</h>
     </coordinates>
@@ -130,19 +127,19 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>594</x>
-      <y>81</y>
-      <w>81</w>
-      <h>27</h>
+      <x>225</x>
+      <y>162</y>
+      <w>171</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0;170.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>657</x>
-      <y>279</y>
+      <x>1044</x>
+      <y>198</y>
       <w>252</w>
       <h>135</h>
     </coordinates>
@@ -161,10 +158,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>279</y>
+      <x>1332</x>
+      <y>198</y>
       <w>234</w>
-      <h>189</h>
+      <h>207</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IDevelopmentCard
@@ -185,8 +182,8 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>315</y>
+      <x>1287</x>
+      <y>234</y>
       <w>63</w>
       <h>27</h>
     </coordinates>
@@ -196,8 +193,8 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>666</x>
-      <y>450</y>
+      <x>1053</x>
+      <y>369</y>
       <w>252</w>
       <h>135</h>
     </coordinates>
@@ -216,8 +213,8 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>405</y>
+      <x>1161</x>
+      <y>324</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -227,10 +224,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>396</x>
-      <y>495</y>
+      <x>657</x>
+      <y>855</y>
       <w>252</w>
-      <h>135</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IRobber
@@ -240,86 +237,44 @@ CurrentLocation: Location
 DrawCard(): IDeveloptmentCard
 --
 Responsibilities
--- Manages all Development Cards
--- Is Responsible for the deck</panel_attributes>
+-- Manages the robber</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>36</x>
-      <y>495</y>
-      <w>252</w>
-      <h>135</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IRobberManager
---
-PossibleCards: List&lt;IDevelopmentCard&gt;
---
-ReplaceRobber(): Void
-CountCards(): Void
-ValidateSacrifice(): Bool
---
-Responsibilities
--- Manages the Robber
--- Placing the robber on the field</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>684</x>
-      <y>666</y>
+      <x>666</x>
+      <y>153</y>
       <w>252</w>
       <h>135</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IPlayArea
 --
-CurrentLocation: Location
+Playarea: Undefined
 --
-DrawCard(): IDeveloptmentCard
+Place(Object, where): Bool
 --
 Responsibilities
--- Manages all Development Cards
--- Is Responsible for the deck</panel_attributes>
+-- The Playarea manages the Playerea</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>279</x>
-      <y>549</y>
-      <w>135</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>261</x>
-      <y>621</y>
-      <w>432</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>460.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>45</y>
+      <x>36</x>
+      <y>0</y>
       <w>252</w>
       <h>162</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IRessourcesManager
 --
-PlayerList: List&lt;IPlayer&gt;
+AmountOfBrick: int
+AmountOfLumber: int
+AmountOfWool: int
+AmountOfGrain: int
+AmountOfOre: int
 --
 CheckRessources(Ressources): Bool
 AddRessources(Ressources): Void
@@ -334,8 +289,8 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>81</x>
-      <y>45</y>
+      <x>36</x>
+      <y>261</y>
       <w>252</w>
       <h>162</h>
     </coordinates>
@@ -355,12 +310,106 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>324</x>
-      <y>81</y>
+      <x>279</x>
+      <y>297</y>
       <w>81</w>
       <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>90</y>
+      <w>117</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>216</y>
+      <w>135</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>675</y>
+      <w>423</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+SeaTrade
+--
+Trade(player: IPlayer, givings: List&lt;Ressources&gt;, recievings: ressources): Void
+--
+Responsibilities
+-- Makes the Tradings with the Sea</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>162</x>
+      <y>828</y>
+      <w>252</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+HumanTrade
+--
+
+--
+SetOffer()
+RespondToOffer()
+MakeTrade()
+--
+Responsibilities
+-- It Is responsible for trades wih two humans</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>585</x>
+      <y>675</y>
+      <w>423</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IBuildManager
+--
+Build(that: Undefined, here: undefined): Void
+--
+Responsibilities
+-- Makes the Tradings with the Sea</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1044</x>
+      <y>72</y>
+      <w>234</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;Interface&gt;&gt;
+IDie
+--
+ThrowDie(throws: int, min: int, max: int): int
+--
+Responsibilities
+-- Gets a random number (rolls the die)</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
