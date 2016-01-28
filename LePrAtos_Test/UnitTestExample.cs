@@ -18,17 +18,5 @@ namespace LePrAtos_Test
 			// Assert
 			Assert.That(result, Is.EqualTo(4));
 		}
-		[Test]
-		public void TestExampleMethodWrong()
-		{
-			// Arrange
-			var unitUnderTest = new Example();
-
-			// Act
-			var result = unitUnderTest.Tested(123);
-
-			// Assert
-			Assert.That(result, Is.EqualTo(123123123123));
-		}
 	}
 }
