@@ -3,8 +3,8 @@ using NUnit.Framework;
 
 namespace LePrAtos_Test
 {
-	[TestFixture, Category("UnitTest")]
-	class ExampleTest
+	[TestFixture, Category("IntegrationTest")]
+	internal class IntegrationTestExample
 	{
 		[Test]
 		public void TestExampleMethod()
