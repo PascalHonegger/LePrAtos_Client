@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoCategoryTestExample.cs" />
     <Compile Include="IntegrationTestExample.cs" />
     <Compile Include="UnitTestExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

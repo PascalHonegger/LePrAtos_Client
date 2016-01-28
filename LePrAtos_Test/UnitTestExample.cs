@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace LePrAtos_Test
 {
 	[TestFixture, Category("UnitTest")]
-	internal class UnitTestExample
+	public class UnitTestExample
 	{
 		[Test]
 		public void TestExampleMethod()
