@@ -1,10 +1,12 @@
 Architektur
 ===========
 Alain Keller, Pascal Honegger, Marc Keller 
-Version 1.1, 22.01.2016
+Version 1.2, 29.01.2016
 :toc:
 
 = Allgemeine Funktionen
+
+image:Klassendiagramm.png[Klassendiagramm]
 
 == Benutzer
 Der Benutzer meldet sich über den Client an. Die Anmeldedaten werden auf dem Server verifiziert. Des Users Daten werden in der Datenbank gespeichert. Die Userdaten werden zentral gespeichert, damit man sich von überall verbinden kann.
