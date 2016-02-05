@@ -38,4 +38,7 @@ Die Ressourcen werden zusätzlich auf dem Client verwaltet, um unnötig viele Se
 
 == Spielfeld
 Da das Spielfeld aus mehreren verschiedenen Teilen besteht mussten wir uns Gedanken darüber machen wie wir diese zu einem Feld zusammenbringen. Wir haben uns dafür entschieden den Eckpunkt als zentrales Element zu nehmen, da jeder Eckpunkt seine angrenzenden Feldern und Strassen kennen muss. Dies lösen wir, indem wir in jedem Eckpunkt seien Angrenzenden Felder speichern. Somit kann man z.B. beim Bauen ermitteln, ob schon eine Strasse zum Punkt führt oder nicht. Die Gebäude und Räuber werden dann den Feldern/Punkten zugewiesen und können somit über das Spielfeld deren Daten ermitteln.
-Die Methoden PlaceHouse() und placeStreet() wurden getrennt, da die Methoden verschiedene Parameter brauchen. 
+Die Methoden PlaceHouse() und placeStreet() wurden getrennt, da die Methoden verschiedene Parameter brauchen. include::Architektur.adoc[]
+
+== WebSerices
+Um die Client-Server Kommunikation zu ermöglichen braucht es Webservices. Diese teilen wir auf die verschiedenen Kompnenten auf.
