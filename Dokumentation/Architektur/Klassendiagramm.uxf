@@ -9,14 +9,401 @@
 // Plase change the Zoom-Level to 50% before pushing!
 //////////////////////////////////////////////////////////////////////////////////////////////
 </help_text>
-  <zoom_level>5</zoom_level>
+  <zoom_level>1</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1675</x>
-      <y>285</y>
-      <w>120</w>
-      <h>95</h>
+      <x>441</x>
+      <y>299</y>
+      <w>24</w>
+      <h>19</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IGameMaster
+--
+GameStatus: IGameStatus
+--
+StartGame(): void
+EndGame(): void
+EndTurn(): void
+--
+Responsibilities
+-- Manage Gamestate (Start &amp; End)
+-- Manage whose turn it is
+-- Throws the dice</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>456</x>
+      <y>329</y>
+      <w>21</w>
+      <h>13</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+GameMaster
+--
+-Die: IDie
+-ScoreManager: IScoreManager
+--
+-ThrowTheDice(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>462</x>
+      <y>317</y>
+      <w>3</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>491</x>
+      <y>301</y>
+      <w>28</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IDevelopmentCardManager
+--
+PossibleCards: List&lt;IDevelopmentCard&gt;
+--
+DrawCard(): IDeveloptmentCard
+--
+Responsibilities
+-- Manages all Development Cards
+-- Is Responsible for the deck</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>491</x>
+      <y>320</y>
+      <w>28</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+DevelopmentCardManager
+--
+CardStack: Queue&lt;IDevelopmentCard&gt;
+--
+CreateCardStack(): Void
+--
+Responsibilities
+-- Manages all Development Cards
+-- Is Responsible for the deck</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>315</y>
+      <w>3</w>
+      <h>7</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>469</x>
+      <y>384</y>
+      <w>28</w>
+      <h>17</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IRobber
+--
+CurrentLocation: ICell
+--
+HalfHandIfMoreThanSevenCards(): void
+StealCard(): IDeveloptmentCard
+--
+Responsibilities
+-- Manages the robber
+--- Steal cards
+--- Block Field</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>439</x>
+      <y>268</y>
+      <w>28</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IPlayArea
+--
+Playarea: List&lt;string, ICorner&gt;
+--
+PlaceHouse(IHouse, string): bool
+PlaceStreet(IStreet, string, string): bool
+GiveRessources(int): void
+--
+Responsibilities
+-- The Playarea manages the Playerea
+-- Gives ressources</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>460</x>
+      <y>282</y>
+      <w>3</w>
+      <h>19</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>403</x>
+      <y>360</y>
+      <w>55</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+ISeaTrade
+--
+Trade(player: IPlayer, givings: List&lt;Ressources&gt;, recievings: List&lt;Ressources&gt;): Void
+--
+Responsibilities
+-- Makes the Tradings with the Sea</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>403</x>
+      <y>378</y>
+      <w>52</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IHumanTrade
+--
+SetOffer(givings: List&lt;Ressources&gt;): void
+RespondToOffer(givings: List&lt;Ressources&gt;, recievings: List&lt;Ressources&gt;): void
+ExecuteTrade(): void
+--
+Responsibilities
+-- It Is responsible for trades wih two humans</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>360</y>
+      <w>47</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IBuildManager
+--
+Build(that: Undefined, here: undefined): Void
+--
+Responsibilities
+-- Manages the Building</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>317</y>
+      <w>49</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>470.0;10.0;470.0;90.0;10.0;90.0;10.0;390.0;140.0;390.0;140.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>317</y>
+      <w>53</w>
+      <h>67</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>510.0;10.0;510.0;90.0;10.0;90.0;10.0;650.0;70.0;650.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>317</y>
+      <w>77</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>550.0;10.0;550.0;90.0;10.0;90.0;10.0;390.0;750.0;390.0;750.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>317</y>
+      <w>75</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>590.0;10.0;590.0;90.0;10.0;90.0;10.0;390.0;650.0;390.0;650.0;750.0;730.0;750.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>383</x>
+      <y>301</y>
+      <w>26</w>
+      <h>11</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IUpdateManager
+--
+OnStuffChangedEvent: EventHandler
+--
+Responsibilities
+-- Makes the Tradings with the Sea
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>308</y>
+      <w>35</w>
+      <h>3</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>330.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>362</x>
+      <y>256</y>
+      <w>161</w>
+      <h>151</h>
+    </coordinates>
+    <panel_attributes>Client
+--
+bg=none</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>402</x>
+      <y>355</y>
+      <w>57</w>
+      <h>41</h>
+    </coordinates>
+    <panel_attributes>Trade
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>466</x>
+      <y>357</y>
+      <w>51</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>Build
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>468</x>
+      <y>381</y>
+      <w>30</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>Robber
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>379</x>
+      <y>295</y>
+      <w>33</w>
+      <h>19</h>
+    </coordinates>
+    <panel_attributes>Trade
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>437</x>
+      <y>296</y>
+      <w>45</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Gamemaster
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>437</x>
+      <y>261</y>
+      <w>35</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>PlayArea
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>489</x>
+      <y>298</y>
+      <w>31</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>DevelopmentCards
+--
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>691</x>
+      <y>307</y>
+      <w>24</w>
+      <h>19</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IGameMaster
@@ -36,10 +423,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1790</x>
-      <y>435</y>
-      <w>105</w>
-      <h>95</h>
+      <x>685</x>
+      <y>335</y>
+      <w>24</w>
+      <h>19</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Class&gt;&gt;
 GameMaster
@@ -53,21 +440,21 @@ GameMaster
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1780</x>
-      <y>375</y>
-      <w>45</w>
-      <h>70</h>
+      <x>692</x>
+      <y>325</y>
+      <w>13</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0;70.0;60.0;70.0;120.0</additional_attributes>
+    <additional_attributes>110.0;10.0;110.0;60.0;10.0;60.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1695</x>
-      <y>180</y>
-      <w>145</w>
-      <h>80</h>
+      <x>666</x>
+      <y>264</y>
+      <w>29</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IPlayer
@@ -83,10 +470,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1615</x>
-      <y>460</y>
-      <w>130</w>
-      <h>55</h>
+      <x>653</x>
+      <y>340</y>
+      <w>26</w>
+      <h>11</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IScoreManager
@@ -100,32 +487,32 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1740</x>
-      <y>470</y>
-      <w>60</w>
-      <h>15</h>
+      <x>678</x>
+      <y>342</y>
+      <w>9</w>
+      <h>3</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1455</x>
-      <y>250</y>
-      <w>250</w>
-      <h>30</h>
+      <x>668</x>
+      <y>279</y>
+      <w>3</w>
+      <h>33</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;260.0;40.0;260.0;10.0;480.0;10.0</additional_attributes>
+    <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2065</x>
-      <y>270</y>
-      <w>140</w>
-      <h>75</h>
+      <x>761</x>
+      <y>382</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IDevelopmentCardManager
@@ -142,10 +529,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2225</x>
-      <y>270</y>
-      <w>130</w>
-      <h>105</h>
+      <x>802</x>
+      <y>382</y>
+      <w>26</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IDevelopmentCard
@@ -166,21 +553,21 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2200</x>
-      <y>290</y>
-      <w>35</w>
-      <h>15</h>
+      <x>788</x>
+      <y>386</y>
+      <w>16</w>
+      <h>3</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2065</x>
-      <y>365</y>
-      <w>140</w>
-      <h>75</h>
+      <x>761</x>
+      <y>406</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Class&gt;&gt;
 DevelopmentCardManager
@@ -197,21 +584,21 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2130</x>
-      <y>340</y>
-      <w>15</w>
-      <h>35</h>
+      <x>774</x>
+      <y>396</y>
+      <w>3</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1810</x>
-      <y>675</y>
-      <w>140</w>
-      <h>85</h>
+      <x>803</x>
+      <y>349</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IRobber
@@ -230,10 +617,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1855</x>
-      <y>265</y>
-      <w>140</w>
-      <h>75</h>
+      <x>711</x>
+      <y>238</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IPlayArea
@@ -252,10 +639,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1540</x>
-      <y>115</y>
-      <w>140</w>
-      <h>85</h>
+      <x>629</x>
+      <y>263</y>
+      <w>28</w>
+      <h>17</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IRessourcesManager
@@ -271,10 +658,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1320</x>
-      <y>215</y>
-      <w>140</w>
-      <h>90</h>
+      <x>652</x>
+      <y>310</y>
+      <w>28</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IGameStatus
@@ -292,46 +679,46 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1455</x>
-      <y>285</y>
-      <w>230</w>
-      <h>50</h>
+      <x>679</x>
+      <y>314</y>
+      <w>14</w>
+      <h>3</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>440.0;80.0;260.0;80.0;260.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1675</x>
-      <y>135</y>
-      <w>85</w>
-      <h>55</h>
+      <x>656</x>
+      <y>272</y>
+      <w>12</w>
+      <h>3</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>150.0;90.0;150.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1790</x>
-      <y>300</y>
-      <w>75</w>
-      <h>15</h>
+      <x>714</x>
+      <y>252</y>
+      <w>10</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+    <additional_attributes>10.0;580.0;80.0;580.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1485</x>
-      <y>590</y>
-      <w>275</w>
-      <h>75</h>
+      <x>679</x>
+      <y>381</y>
+      <w>55</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
-SeaTrade
+ISeaTrade
 --
 Trade(player: IPlayer, givings: List&lt;Ressources&gt;, recievings: List&lt;Ressources&gt;): Void
 --
@@ -342,13 +729,13 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1485</x>
-      <y>680</y>
-      <w>260</w>
-      <h>75</h>
+      <x>679</x>
+      <y>399</y>
+      <w>52</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
-HumanTrade
+IHumanTrade
 --
 SetOffer(givings: List&lt;Ressources&gt;): void
 RespondToOffer(givings: List&lt;Ressources&gt;, recievings: List&lt;Ressources&gt;): void
@@ -361,10 +748,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1810</x>
-      <y>590</y>
-      <w>235</w>
-      <h>80</h>
+      <x>803</x>
+      <y>309</y>
+      <w>47</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IBuildManager
@@ -378,10 +765,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>445</y>
-      <w>140</w>
-      <h>55</h>
+      <x>714</x>
+      <y>337</y>
+      <w>28</w>
+      <h>11</h>
     </coordinates>
     <panel_attributes>&lt;Interface&gt;&gt;
 IDie
@@ -395,10 +782,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1890</x>
-      <y>460</y>
-      <w>40</w>
-      <h>15</h>
+      <x>708</x>
+      <y>340</y>
+      <w>8</w>
+      <h>3</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
@@ -406,218 +793,218 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>675</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>385</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 StartNewGame</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>650</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>380</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 JoinGame</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>625</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>375</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 LeaveGame</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>580</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>366</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 GetNewData</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>530</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>356</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 StartTrade</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>510</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>352</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 RespondToTrade</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>490</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>348</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 CancleTrade</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>470</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>344</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 AcceptTrade</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>430</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>336</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 EndTurn</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>385</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>327</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 MoveRobber</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>365</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>323</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 AbandonCards</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>345</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>319</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 PickCardFromPlayer</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>305</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>311</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 Build</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>260</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>302</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 TradeWithTheSea</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>215</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>293</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 ActivateCard</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1025</x>
-      <y>180</y>
-      <w>245</w>
-      <h>25</h>
+      <x>535</x>
+      <y>286</y>
+      <w>28</w>
+      <h>5</h>
     </coordinates>
     <panel_attributes>lt=-()
 m2=provide
 Login</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1315</x>
-      <y>315</y>
-      <w>185</w>
-      <h>90</h>
+      <x>591</x>
+      <y>327</y>
+      <w>37</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IGameManager
@@ -636,34 +1023,34 @@ the the calls from the Services to the corresponding game</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1260</x>
-      <y>65</y>
-      <w>1110</w>
-      <h>705</h>
+      <x>561</x>
+      <y>181</y>
+      <w>298</w>
+      <h>254</h>
     </coordinates>
     <panel_attributes>Server
 --
-bg=orange</panel_attributes>
+bg=none</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1495</x>
-      <y>360</y>
-      <w>190</w>
-      <h>15</h>
+      <x>627</x>
+      <y>325</y>
+      <w>66</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;360.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;90.0;120.0;90.0;70.0;640.0;70.0;640.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1855</x>
-      <y>130</y>
-      <w>140</w>
-      <h>75</h>
+      <x>708</x>
+      <y>211</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 ICorner
@@ -680,10 +1067,10 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1920</x>
-      <y>200</y>
-      <w>15</w>
-      <h>75</h>
+      <x>721</x>
+      <y>225</y>
+      <w>3</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
@@ -691,10 +1078,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2025</x>
-      <y>180</y>
-      <w>140</w>
-      <h>75</h>
+      <x>744</x>
+      <y>225</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 ICell
@@ -711,10 +1098,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1320</x>
-      <y>130</y>
-      <w>140</w>
-      <h>40</h>
+      <x>593</x>
+      <y>266</y>
+      <w>28</w>
+      <h>8</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Class&gt;&gt;
 RessourcesManager
@@ -726,21 +1113,21 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1455</x>
-      <y>155</y>
-      <w>95</w>
-      <h>15</h>
+      <x>620</x>
+      <y>271</y>
+      <w>11</w>
+      <h>3</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2025</x>
-      <y>90</y>
-      <w>140</w>
-      <h>75</h>
+      <x>744</x>
+      <y>208</y>
+      <w>28</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IBorder
@@ -756,10 +1143,10 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2280</x>
-      <y>665</y>
-      <w>40</w>
-      <h>65</h>
+      <x>650</x>
+      <y>236</y>
+      <w>14</w>
+      <h>13</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Enum&gt;&gt;
 Ressource
@@ -775,76 +1162,76 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1965</x>
-      <y>200</y>
-      <w>70</w>
-      <h>30</h>
+      <x>730</x>
+      <y>225</y>
+      <w>16</w>
+      <h>10</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;120.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;140.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1990</x>
-      <y>150</y>
+      <x>735</x>
+      <y>220</y>
+      <w>11</w>
+      <h>3</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>324</y>
+      <w>37</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;350.0;10.0;350.0;660.0;200.0;660.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>321</y>
       <w>45</w>
-      <h>15</h>
+      <h>86</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;430.0;10.0;430.0;420.0;390.0;420.0;390.0;840.0;170.0;840.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1450</x>
-      <y>375</y>
-      <w>245</w>
-      <h>225</h>
+      <x>714</x>
+      <y>312</y>
+      <w>91</w>
+      <h>6</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>470.0;10.0;470.0;90.0;10.0;90.0;10.0;390.0;140.0;390.0;140.0;430.0</additional_attributes>
+    <additional_attributes>10.0;40.0;620.0;40.0;620.0;10.0;890.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1450</x>
-      <y>375</y>
-      <w>265</w>
-      <h>335</h>
+      <x>714</x>
+      <y>318</y>
+      <w>91</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>510.0;10.0;510.0;90.0;10.0;90.0;10.0;650.0;70.0;650.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1450</x>
-      <y>375</y>
-      <w>385</w>
-      <h>225</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>550.0;10.0;550.0;90.0;10.0;90.0;10.0;390.0;750.0;390.0;750.0;430.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1450</x>
-      <y>375</y>
-      <w>370</w>
-      <h>350</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>590.0;10.0;590.0;90.0;10.0;90.0;10.0;390.0;650.0;390.0;650.0;680.0;720.0;680.0</additional_attributes>
+    <additional_attributes>10.0;10.0;620.0;10.0;620.0;370.0;890.0;370.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1315</x>
-      <y>425</y>
-      <w>130</w>
-      <h>55</h>
+      <x>801</x>
+      <y>271</y>
+      <w>26</w>
+      <h>11</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 IUpdateManager
@@ -852,406 +1239,143 @@ IUpdateManager
 OnStuffChangedEvent: EventHandler
 --
 Responsibilities
--- Makes the Tradings with the Sea
+-- Makes the Updateprozess
 layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
-      <y>375</y>
-      <w>335</w>
-      <h>75</h>
+      <x>714</x>
+      <y>276</y>
+      <w>89</w>
+      <h>39</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>650.0;10.0;650.0;90.0;30.0;90.0;30.0;130.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>530</x>
-      <y>275</y>
-      <w>120</w>
-      <h>95</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IGameMaster
---
-GameStatus: IGameStatus
---
-StartGame(): void
-EndGame(): void
-EndTurn(): void
---
-Responsibilities
--- Manage Gamestate (Start &amp; End)
--- Manage whose turn it is
--- Throws the dice</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>605</x>
-      <y>425</y>
-      <w>105</w>
-      <h>65</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
-GameMaster
---
--Die: IDie
--ScoreManager: IScoreManager
---
--ThrowTheDice(): int</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>635</x>
-      <y>365</y>
-      <w>15</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>780</x>
-      <y>285</y>
-      <w>140</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IDevelopmentCardManager
---
-PossibleCards: List&lt;IDevelopmentCard&gt;
---
-DrawCard(): IDeveloptmentCard
---
-Responsibilities
--- Manages all Development Cards
--- Is Responsible for the deck</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>780</x>
-      <y>380</y>
-      <w>140</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
-DevelopmentCardManager
---
-CardStack: Queue&lt;IDevelopmentCard&gt;
---
-CreateCardStack(): Void
---
-Responsibilities
--- Manages all Development Cards
--- Is Responsible for the deck</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>845</x>
-      <y>355</y>
-      <w>15</w>
-      <h>35</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>670</x>
-      <y>700</y>
-      <w>140</w>
-      <h>85</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IRobber
---
-CurrentLocation: ICell
---
-HalfHandIfMoreThanSevenCards(): void
-StealCard(): IDeveloptmentCard
---
-Responsibilities
--- Manages the robber
---- Steal cards
---- Block Field</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>520</x>
-      <y>120</y>
-      <w>140</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IPlayArea
---
-Playarea: List&lt;string, ICorner&gt;
---
-PlaceHouse(IHouse, string): bool
-PlaceStreet(IStreet, string, string): bool
-GiveRessources(int): void
---
-Responsibilities
--- The Playarea manages the Playerea
--- Gives ressources</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>625</x>
-      <y>190</y>
-      <w>15</w>
-      <h>95</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>340</x>
-      <y>580</y>
-      <w>275</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-ISeaTrade
---
-Trade(player: IPlayer, givings: List&lt;Ressources&gt;, recievings: List&lt;Ressources&gt;): Void
---
-Responsibilities
--- Makes the Tradings with the Sea</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>340</x>
-      <y>670</y>
-      <w>260</w>
-      <h>75</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IHumanTrade
---
-SetOffer(givings: List&lt;Ressources&gt;): void
-RespondToOffer(givings: List&lt;Ressources&gt;, recievings: List&lt;Ressources&gt;): void
-ExecuteTrade(): void
---
-Responsibilities
--- It Is responsible for trades wih two humans</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>665</x>
-      <y>580</y>
-      <w>235</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IBuildManager
---
-Build(that: Undefined, here: undefined): Void
---
-Responsibilities
--- Manages the Building</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>305</x>
-      <y>365</y>
-      <w>245</w>
-      <h>225</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>470.0;10.0;470.0;90.0;10.0;90.0;10.0;390.0;140.0;390.0;140.0;430.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>305</x>
-      <y>365</y>
-      <w>265</w>
-      <h>335</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>510.0;10.0;510.0;90.0;10.0;90.0;10.0;650.0;70.0;650.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>305</x>
-      <y>365</y>
-      <w>385</w>
-      <h>225</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>550.0;10.0;550.0;90.0;10.0;90.0;10.0;390.0;750.0;390.0;750.0;430.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>305</x>
-      <y>365</y>
-      <w>375</w>
-      <h>385</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>590.0;10.0;590.0;90.0;10.0;90.0;10.0;390.0;650.0;390.0;650.0;750.0;730.0;750.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>240</x>
-      <y>285</y>
-      <w>130</w>
-      <h>55</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IUpdateManager
---
-OnStuffChangedEvent: EventHandler
---
-Responsibilities
--- Makes the Tradings with the Sea
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>365</x>
-      <y>320</y>
-      <w>175</w>
-      <h>15</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>330.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;370.0;230.0;370.0;230.0;10.0;870.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>135</x>
-      <y>60</y>
-      <w>805</w>
-      <h>755</h>
-    </coordinates>
-    <panel_attributes>Client
---
-bg=none</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>335</x>
-      <y>555</y>
-      <w>285</w>
-      <h>205</h>
+      <x>676</x>
+      <y>374</y>
+      <w>63</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>Trade
 --
-bg=pink</panel_attributes>
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>655</x>
-      <y>565</y>
-      <w>255</w>
-      <h>105</h>
+      <x>800</x>
+      <y>305</y>
+      <w>53</w>
+      <h>22</h>
     </coordinates>
     <panel_attributes>Build
 --
-bg=pink</panel_attributes>
+bg=orange
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>665</x>
-      <y>685</y>
-      <w>150</w>
-      <h>110</h>
+      <x>801</x>
+      <y>344</y>
+      <w>35</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Robber
 --
-bg=pink</panel_attributes>
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>220</x>
-      <y>255</y>
-      <w>165</w>
-      <h>95</h>
+      <x>647</x>
+      <y>303</y>
+      <w>96</w>
+      <h>52</h>
     </coordinates>
-    <panel_attributes>Trade
+    <panel_attributes>Gamemeaster
 --
-bg=pink</panel_attributes>
+bg=orange
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>510</x>
-      <y>260</y>
-      <w>225</w>
-      <h>240</h>
+      <x>707</x>
+      <y>203</y>
+      <w>73</w>
+      <h>52</h>
     </coordinates>
-    <panel_attributes>Gamemaster
+    <panel_attributes>Playarea
 --
-bg=pink</panel_attributes>
+bg=orange
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>510</x>
-      <y>85</y>
-      <w>175</w>
-      <h>135</h>
+      <x>756</x>
+      <y>377</y>
+      <w>77</w>
+      <h>47</h>
     </coordinates>
-    <panel_attributes>PlayArea
+    <panel_attributes>Developementcards
 --
-bg=pink</panel_attributes>
+bg=orange
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>770</x>
-      <y>270</y>
-      <w>155</w>
-      <h>195</h>
+      <x>798</x>
+      <y>266</y>
+      <w>33</w>
+      <h>18</h>
     </coordinates>
-    <panel_attributes>DevelopmentCards
+    <panel_attributes>Update
 --
-bg=pink</panel_attributes>
+bg=orange
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>588</x>
+      <y>323</y>
+      <w>44</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>MainGame
+--
+bg=orange
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>582</x>
+      <y>258</y>
+      <w>119</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+bg=orange
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
