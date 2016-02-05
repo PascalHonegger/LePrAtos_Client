@@ -22,5 +22,21 @@ namespace LePrAtos.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>http://tm-tomcat.ch902.my-it-solutions.net/LePrAtos/services/</string>
+  <string>http://tm-database.ch902.my-it-solutions.net/LePrAtos/services/</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection ConfiguredServers {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ConfiguredServers"]));
+            }
+            set {
+                this["ConfiguredServers"] = value;
+            }
+        }
     }
 }

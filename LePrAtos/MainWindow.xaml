@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LePrAtos"
+        xmlns:lePrAtos="clr-namespace:LePrAtos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="350" Width="525" d:DataContext="{d:DesignInstance lePrAtos:MainWindowViewModel}">
+	<Grid>
+		<TextBox Text="{Binding Username}"/>
+		<PasswordBox PasswordChar="*" MaxLength="40" Password="{Binding Password}"/>
+		<Button Content="Klick me!" Click="ButtonBase_OnClick"/>
+		<TextBlock x:Name="Output"/>
+	</Grid>
 </Window>
