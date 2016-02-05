@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿// Copyright (c) LePrAtos
+// Author: Honegger, Pascal (ext)
+using System.Windows.Controls;
 
 namespace LePrAtos
 {

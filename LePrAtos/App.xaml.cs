@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) LePrAtos
+// Author: Honegger, Pascal (ext)
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -55,6 +57,7 @@ namespace LePrAtos
 
 		private void StartApplication(string configuration)
 		{
+/*
 			var configFile = Path.Combine(_currentAssemblyFolder, "App.config");
 			var xmlConfig = new XmlDocument();
 			xmlConfig.Load(configFile);
@@ -62,6 +65,9 @@ namespace LePrAtos
 			var baseAddressAttribute = addNodes?.Item(0)?.Attributes?["baseAddress"];
 			if (baseAddressAttribute != null) baseAddressAttribute.Value = configuration;
 			xmlConfig.Save(configFile);
+*/
+
+			Session.Instance.Endpointconfiguration = configuration;
 
 			var mainWindow = new MainWindow();
 

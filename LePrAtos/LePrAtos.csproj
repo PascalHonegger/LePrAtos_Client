@@ -65,6 +65,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -99,6 +101,13 @@
       <DependentUpon>CustomDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Service References\HelloWorldService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="Trade\Example.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -128,6 +137,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\HelloWorldService\HelloWorld.wsdl" />
+    <None Include="Service References\HelloWorldService\LePrAtos.HelloWorldService.sayHelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -150,6 +163,24 @@
     <SplashScreen Include="Resources\SplashScreen.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </SplashScreen>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HelloWorldService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HelloWorldService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HelloWorldService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HelloWorldService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

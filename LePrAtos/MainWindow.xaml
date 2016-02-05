@@ -7,9 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" d:DataContext="{d:DesignInstance lePrAtos:MainWindowViewModel}">
 	<Grid>
-		<TextBox Text="{Binding Username}"/>
-		<PasswordBox PasswordChar="*" MaxLength="40" Password="{Binding Password}"/>
-		<Button Content="Klick me!" Click="ButtonBase_OnClick"/>
-		<TextBlock x:Name="Output"/>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<TextBox Grid.Row="0" Text="{Binding Username}"/>
+		<TextBox Grid.Row="1" Text="{Binding Password}"/>
+		<Button Grid.Row="2" Content="Klick me!" Click="ButtonBase_OnClick"/>
+		<TextBlock Grid.Row="3" Text="{Binding Output}"/>
 	</Grid>
 </Window>

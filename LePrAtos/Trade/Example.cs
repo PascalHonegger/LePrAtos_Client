@@ -1,4 +1,6 @@
-﻿namespace LePrAtos.Trade
+﻿// Copyright (c) LePrAtos
+// Author: Honegger, Pascal (ext)
+namespace LePrAtos.Trade
 {
 	public class Example
 	{

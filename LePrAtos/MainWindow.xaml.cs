@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) LePrAtos
+// Author: Honegger, Pascal (ext)
+
 using System.Windows;
 
 namespace LePrAtos
@@ -17,9 +19,11 @@ namespace LePrAtos
 			DataContext = new MainWindowViewModel();
 		}
 
+		MainWindowViewModel ViewModel => DataContext as MainWindowViewModel;
+
 		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+			ViewModel.SayHelloWorld();
 		}
 	}
 }
