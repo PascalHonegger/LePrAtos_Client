@@ -1,8 +1,6 @@
 ﻿// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using LePrAtos.Annotations;
+
 using LePrAtos.HelloWorldService;
 
 namespace LePrAtos
@@ -10,7 +8,7 @@ namespace LePrAtos
 	/// <summary>
 	/// ViewModel für MainWindow
 	/// </summary>
-	public sealed class MainWindowViewModel : INotifyPropertyChanged
+	public sealed class MainWindowViewModel : ViewModelBase
 	{
 		private string _output;
 
@@ -45,21 +43,6 @@ namespace LePrAtos
 				_output = value;
 				OnPropertyChanged();
 			}
-		}
-
-		/// <summary>
-		/// Event
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		/// Notify Property Changed
-		/// </summary>
-		/// <param name="propertyName"></param>
-		[NotifyPropertyChangedInvocator]
-		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
