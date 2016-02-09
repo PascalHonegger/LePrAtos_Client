@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="NoCategoryTestExample.cs" />
     <Compile Include="IntegrationTestExample.cs" />
+    <Compile Include="IntegrationTestBase.cs" />
+    <Compile Include="UnitTestBase.cs" />
     <Compile Include="UnitTestExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

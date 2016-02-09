@@ -1,8 +1,10 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
+
 using System.Windows.Controls;
 
-namespace LePrAtos
+namespace LePrAtos.Dialogs
 {
 	/// <summary>
 	/// Interaction logic for CustomDialog.xaml
@@ -15,7 +17,12 @@ namespace LePrAtos
 		public CustomDialog()
 		{
 			InitializeComponent();
-
+			var screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+			var screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+			var windowWidth = Width;
+			var windowHeight = Height;
+			Left = (screenWidth / 2) - (windowWidth / 2);
+			Top = (screenHeight / 2) - (windowHeight / 2);
 		}
 
 		/// <summary>
@@ -31,7 +38,7 @@ namespace LePrAtos
 		/// </summary>
 		public string Caption
 		{
-			set { CaptionControl.Text = value; }
+			set { Title = value; }
 		}
 
 		/// <summary>
@@ -40,7 +47,7 @@ namespace LePrAtos
 		/// <param name="configButton">UIElement to add</param>
 		public void AddControl(Button configButton)
 		{
-			ItemsControl.Items.Add(configButton);
+			Controls.Items.Add(configButton);
 		}
 	}
 }

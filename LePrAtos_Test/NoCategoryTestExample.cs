@@ -1,4 +1,7 @@
-﻿using LePrAtos.Trade;
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
+// Author: Honegger, Pascal (ext)
+using LePrAtos;
 using NUnit.Framework;
 
 namespace LePrAtos_Test

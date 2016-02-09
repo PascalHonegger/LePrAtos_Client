@@ -1,5 +1,7 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
+
 using System;
 
 #pragma warning disable 1591
@@ -10,7 +12,7 @@ using System;
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable InconsistentNaming
 
-namespace LePrAtos.Annotations
+namespace LePrAtos.Properties
 {
   /// <summary>
   /// Indicates that the value of the marked element could be <c>null</c> sometimes,

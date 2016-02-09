@@ -1,14 +1,15 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
 
-using LePrAtos.HelloWorldService;
+using LePrAtos.Service_References.HelloWorldService;
 
-namespace LePrAtos
+namespace LePrAtos.Startup.Login
 {
 	/// <summary>
-	/// ViewModel für MainWindow
+	/// ViewModel für LoginView
 	/// </summary>
-	public sealed class MainWindowViewModel : ViewModelBase
+	public sealed class LoginViewModel : ViewModelBase
 	{
 		private string _output;
 

@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
+// Author: Honegger, Pascal (ext)
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using LePrAtos.Annotations;
+using LePrAtos.Properties;
 
 namespace LePrAtos
 {

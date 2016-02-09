@@ -1,9 +1,10 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
-
 using System.Windows;
 using System.Windows.Controls;
 using LePrAtos.Properties;
+using LePrAtos.Startup.Login;
 
 namespace LePrAtos
 {
@@ -20,7 +21,7 @@ namespace LePrAtos
 		/// <summary>Suchen möglicher App.config-Dateien im Programmverzeichnis, anzeigen einer Auswahl.</summary>
 		private static void SelectEnvironment()
 		{
-			var dialog = new CustomDialog
+			var dialog = new Dialogs.CustomDialog
 			{
 				InstructionText = "Bitte Konfiguration wählen:",
 				Caption = "LePrAtos"
@@ -30,7 +31,11 @@ namespace LePrAtos
 			{
 				var configButton = new Button
 				{
-					Content = serverSetting
+					Content = serverSetting,
+					HorizontalAlignment = HorizontalAlignment.Stretch,
+					VerticalAlignment = VerticalAlignment.Stretch,
+					Margin = new Thickness(3),
+					Width = 110
 				};
 				configButton.Click += (b, args) =>
 				{
@@ -47,7 +52,7 @@ namespace LePrAtos
 		{
 			Session.Instance.Endpointconfiguration = configuration;
 
-			var mainWindow = new MainWindow();
+			var mainWindow = new LoginView();
 
 			mainWindow.Show();
 		}

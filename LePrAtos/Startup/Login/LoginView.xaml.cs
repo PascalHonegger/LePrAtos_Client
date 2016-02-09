@@ -1,25 +1,26 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
 
 using System.Windows;
 
-namespace LePrAtos
+namespace LePrAtos.Startup.Login
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for LoginView.xaml
 	/// </summary>
-	public partial class MainWindow
+	public partial class LoginView
 	{
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public MainWindow()
+		public LoginView()
 		{
 			InitializeComponent();
-			DataContext = new MainWindowViewModel();
+			DataContext = new LoginViewModel();
 		}
 
-		MainWindowViewModel ViewModel => DataContext as MainWindowViewModel;
+		LoginViewModel ViewModel => DataContext as LoginViewModel;
 
 		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
 		{

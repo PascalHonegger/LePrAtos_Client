@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LePrAtos.HelloWorldService {
+namespace LePrAtos.Service_References.HelloWorldService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -17,10 +17,10 @@ namespace LePrAtos.HelloWorldService {
         
         // CODEGEN: Generating message contract since element name name from namespace http://webservices.javapostsforlearning.arpit.org is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        LePrAtos.HelloWorldService.sayHelloWorldResponse sayHelloWorld(LePrAtos.HelloWorldService.sayHelloWorldRequest request);
+        sayHelloWorldResponse sayHelloWorld(sayHelloWorldRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        System.Threading.Tasks.Task<LePrAtos.HelloWorldService.sayHelloWorldResponse> sayHelloWorldAsync(LePrAtos.HelloWorldService.sayHelloWorldRequest request);
+        System.Threading.Tasks.Task<sayHelloWorldResponse> sayHelloWorldAsync(sayHelloWorldRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -30,12 +30,12 @@ namespace LePrAtos.HelloWorldService {
     public partial class sayHelloWorldRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="sayHelloWorld", Namespace="http://webservices.javapostsforlearning.arpit.org", Order=0)]
-        public LePrAtos.HelloWorldService.sayHelloWorldRequestBody Body;
+        public sayHelloWorldRequestBody Body;
         
         public sayHelloWorldRequest() {
         }
         
-        public sayHelloWorldRequest(LePrAtos.HelloWorldService.sayHelloWorldRequestBody Body) {
+        public sayHelloWorldRequest(sayHelloWorldRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -64,12 +64,12 @@ namespace LePrAtos.HelloWorldService {
     public partial class sayHelloWorldResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="sayHelloWorldResponse", Namespace="http://webservices.javapostsforlearning.arpit.org", Order=0)]
-        public LePrAtos.HelloWorldService.sayHelloWorldResponseBody Body;
+        public sayHelloWorldResponseBody Body;
         
         public sayHelloWorldResponse() {
         }
         
-        public sayHelloWorldResponse(LePrAtos.HelloWorldService.sayHelloWorldResponseBody Body) {
+        public sayHelloWorldResponse(sayHelloWorldResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -92,12 +92,12 @@ namespace LePrAtos.HelloWorldService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface HelloWorldChannel : LePrAtos.HelloWorldService.HelloWorld, System.ServiceModel.IClientChannel {
+    public interface HelloWorldChannel : HelloWorld, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class HelloWorldClient : System.ServiceModel.ClientBase<LePrAtos.HelloWorldService.HelloWorld>, LePrAtos.HelloWorldService.HelloWorld {
+    public partial class HelloWorldClient : System.ServiceModel.ClientBase<HelloWorld>, HelloWorld {
         
         public HelloWorldClient() {
         }
@@ -119,28 +119,28 @@ namespace LePrAtos.HelloWorldService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LePrAtos.HelloWorldService.sayHelloWorldResponse LePrAtos.HelloWorldService.HelloWorld.sayHelloWorld(LePrAtos.HelloWorldService.sayHelloWorldRequest request) {
+        sayHelloWorldResponse HelloWorld.sayHelloWorld(sayHelloWorldRequest request) {
             return base.Channel.sayHelloWorld(request);
         }
         
         public string sayHelloWorld(string name) {
-            LePrAtos.HelloWorldService.sayHelloWorldRequest inValue = new LePrAtos.HelloWorldService.sayHelloWorldRequest();
-            inValue.Body = new LePrAtos.HelloWorldService.sayHelloWorldRequestBody();
+            sayHelloWorldRequest inValue = new sayHelloWorldRequest();
+            inValue.Body = new sayHelloWorldRequestBody();
             inValue.Body.name = name;
-            LePrAtos.HelloWorldService.sayHelloWorldResponse retVal = ((LePrAtos.HelloWorldService.HelloWorld)(this)).sayHelloWorld(inValue);
+            sayHelloWorldResponse retVal = ((HelloWorld)(this)).sayHelloWorld(inValue);
             return retVal.Body.sayHelloWorldReturn;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LePrAtos.HelloWorldService.sayHelloWorldResponse> LePrAtos.HelloWorldService.HelloWorld.sayHelloWorldAsync(LePrAtos.HelloWorldService.sayHelloWorldRequest request) {
+        System.Threading.Tasks.Task<sayHelloWorldResponse> HelloWorld.sayHelloWorldAsync(sayHelloWorldRequest request) {
             return base.Channel.sayHelloWorldAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LePrAtos.HelloWorldService.sayHelloWorldResponse> sayHelloWorldAsync(string name) {
-            LePrAtos.HelloWorldService.sayHelloWorldRequest inValue = new LePrAtos.HelloWorldService.sayHelloWorldRequest();
-            inValue.Body = new LePrAtos.HelloWorldService.sayHelloWorldRequestBody();
+        public System.Threading.Tasks.Task<sayHelloWorldResponse> sayHelloWorldAsync(string name) {
+            sayHelloWorldRequest inValue = new sayHelloWorldRequest();
+            inValue.Body = new sayHelloWorldRequestBody();
             inValue.Body.name = name;
-            return ((LePrAtos.HelloWorldService.HelloWorld)(this)).sayHelloWorldAsync(inValue);
+            return ((HelloWorld)(this)).sayHelloWorldAsync(inValue);
         }
     }
 }

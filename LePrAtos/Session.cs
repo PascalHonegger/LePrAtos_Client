@@ -1,15 +1,11 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LePrAtos
 {
 	/// <summary>
-	/// TODO
+	/// Diese Klasse enthält informationen zur jetzigen Session, wie beispielsweise die <see cref="Endpointconfiguration"/>
 	/// </summary>
 	public class Session
 	{
@@ -23,6 +19,9 @@ namespace LePrAtos
 			
 		}
 
+		/// <summary>
+		/// Die gewählte Endpunktkonfiguration
+		/// </summary>
 		public string Endpointconfiguration { get; set; }
 	}
 }

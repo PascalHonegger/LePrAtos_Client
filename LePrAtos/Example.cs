@@ -1,14 +1,10 @@
-﻿// Copyright (c) LePrAtos
+﻿// Projekt: LePrAtos
+// Copyright (c) LePrAtos
 // Author: Honegger, Pascal (ext)
-namespace LePrAtos.Trade
+namespace LePrAtos
 {
 	public class Example
 	{
-		public int NotTested()
-		{
-			return 5;
-		}
-
 		public int Tested(int number)
 		{
 			return number + 2;
