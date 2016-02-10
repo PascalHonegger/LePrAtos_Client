@@ -1,6 +1,10 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos
+// Copyright (c) LePrAtos 2016
 // Author: Honegger, Pascal (ext)
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using LePrAtos.Properties;
@@ -13,18 +17,22 @@ namespace LePrAtos
 	/// </summary>
 	public partial class App
 	{
+		private CultureInfo UiCulture { get; set; } = new CultureInfo("de");
+
 		private void OnStartup(object sender, StartupEventArgs e)
 		{
 			SelectEnvironment();
 		}
 
 		/// <summary>Suchen möglicher App.config-Dateien im Programmverzeichnis, anzeigen einer Auswahl.</summary>
-		private static void SelectEnvironment()
+		private void SelectEnvironment()
 		{
 			var dialog = new Dialogs.CustomDialog
 			{
-				InstructionText = "Bitte Konfiguration wählen:",
-				Caption = "LePrAtos"
+				InstructionText = "Bitte Konfiguration wählen",
+				Caption = "Wähle Konfiguration",
+				Width = 430,
+				Height = 200
 			};
 
 			foreach (var serverSetting in Settings.Default.ConfiguredServers)
@@ -35,7 +43,7 @@ namespace LePrAtos
 					HorizontalAlignment = HorizontalAlignment.Stretch,
 					VerticalAlignment = VerticalAlignment.Stretch,
 					Margin = new Thickness(3),
-					Width = 110
+					Width = 90
 				};
 				configButton.Click += (b, args) =>
 				{
@@ -45,12 +53,45 @@ namespace LePrAtos
 				dialog.AddControl(configButton);
 			}
 
+			var cultureSelection = new ComboBox();
+
+			var supportedCultures = new List<CultureInfo>();
+
+			var rm = new ResourceManager(typeof(Strings));
+
+			var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+			foreach (var culture in cultures.Where(c => !string.IsNullOrEmpty(c.Name)))
+			{
+				try
+				{
+					var rs = rm.GetResourceSet(culture, true, false);
+					
+					if (rs != null)
+					{
+						supportedCultures.Add(culture);
+					}
+				}
+				catch (CultureNotFoundException)
+				{
+					// Culture not supported
+				}
+			}
+
+			cultureSelection.ItemsSource = supportedCultures;
+
+			cultureSelection.SelectionChanged += (sender, e) => { UiCulture = cultureSelection.SelectedItem as CultureInfo; };
+
+			dialog.AddControl(cultureSelection);
+
 			dialog.Show();
 		}
 
-		private static void StartApplication(string configuration)
+		private void StartApplication(string configuration)
 		{
 			Session.Instance.Endpointconfiguration = configuration;
+
+			Strings.Culture = UiCulture;
+			System.Threading.Thread.CurrentThread.CurrentUICulture = UiCulture;
 
 			var mainWindow = new LoginView();
 

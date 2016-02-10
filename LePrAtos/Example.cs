@@ -1,5 +1,5 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos
+// Copyright (c) LePrAtos 2016
 // Author: Honegger, Pascal (ext)
 namespace LePrAtos
 {

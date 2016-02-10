@@ -1,7 +1,6 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos
+// Copyright (c) LePrAtos 2016
 // Author: Honegger, Pascal (ext)
-
 using LePrAtos.Service_References.HelloWorldService;
 
 namespace LePrAtos.Startup.Login

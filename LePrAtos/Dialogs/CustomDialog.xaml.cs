@@ -1,8 +1,7 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos
+// Copyright (c) LePrAtos 2016
 // Author: Honegger, Pascal (ext)
-
-using System.Windows.Controls;
+using System.Windows;
 
 namespace LePrAtos.Dialogs
 {
@@ -17,8 +16,8 @@ namespace LePrAtos.Dialogs
 		public CustomDialog()
 		{
 			InitializeComponent();
-			var screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-			var screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+			var screenWidth = SystemParameters.PrimaryScreenWidth;
+			var screenHeight = SystemParameters.PrimaryScreenHeight;
 			var windowWidth = Width;
 			var windowHeight = Height;
 			Left = (screenWidth / 2) - (windowWidth / 2);
@@ -45,7 +44,7 @@ namespace LePrAtos.Dialogs
 		/// Add a Control to the Gui
 		/// </summary>
 		/// <param name="configButton">UIElement to add</param>
-		public void AddControl(Button configButton)
+		public void AddControl(UIElement configButton)
 		{
 			Controls.Items.Add(configButton);
 		}

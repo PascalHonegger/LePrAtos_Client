@@ -4,18 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
+        xmlns:localization="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
         Title="LoginView" Height="350" Width="525" d:DataContext="{d:DesignInstance login:LoginViewModel}">
 	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
 		</Grid.RowDefinitions>
-		<TextBox Grid.Row="0" Text="{Binding Username}"/>
-		<TextBox Grid.Row="1" Text="{Binding Password}"/>
-		<Button Grid.Row="2" Content="Klick me!" Click="ButtonBase_OnClick"/>
-		<TextBlock Grid.Row="3" Text="{Binding Output}"/>
+		<Label Grid.Column="0" Grid.Row="0" Target="{Binding ElementName=Username}" Content="{x:Static localization:Strings.LoginView_Username}"/>
+		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" Text="{Binding Username}"/>
+		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Password}" Content="{x:Static localization:Strings.LoginView_Password}"/>
+		<TextBox Name="Password" Grid.Column="1" Grid.Row="1" Text="{Binding Password}"/>
+		<Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static localization:Strings.LoginView_Login}" Click="ButtonBase_OnClick"/>
+		<TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Output}"/>
 	</Grid>
 </Window>
