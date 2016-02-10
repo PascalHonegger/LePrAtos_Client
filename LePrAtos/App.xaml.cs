@@ -1,5 +1,5 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos 2016
+// Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 using System.Collections.Generic;
 using System.Globalization;
@@ -100,9 +100,9 @@ namespace LePrAtos
 			Strings.Culture = UiCulture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = UiCulture;
 
-			var mainWindow = new LoginView();
+			var loginWindow = new LoginView();
 
-			mainWindow.Show();
+			loginWindow.Show();
 		}
 	}
 }

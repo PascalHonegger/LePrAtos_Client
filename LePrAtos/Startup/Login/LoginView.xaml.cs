@@ -1,9 +1,6 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos 2016
+// Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
-using System.Globalization;
-using System.Windows;
-
 namespace LePrAtos.Startup.Login
 {
 	/// <summary>

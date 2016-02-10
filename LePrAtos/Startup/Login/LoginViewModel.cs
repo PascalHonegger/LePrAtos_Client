@@ -1,9 +1,9 @@
 ﻿// Projekt: LePrAtos
-// Copyright (c) LePrAtos 2016
+// Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
-
 using System.Windows.Controls;
 using System.Windows.Input;
+using LePrAtos.Lobby;
 using LePrAtos.Service_References.HelloWorldService;
 using Microsoft.Practices.Prism.Commands;
 
@@ -14,31 +14,17 @@ namespace LePrAtos.Startup.Login
 	/// </summary>
 	public sealed class LoginViewModel : ViewModelBase
 	{
-		private string _output;
-
 		/// <summary>
 		/// Benutzername
 		/// </summary>
 		public string Username { get; set; }
 
-		private void Login(PasswordBox passwordBox)
+		private async void Login(PasswordBox passwordBox)
 		{
 			var client = new HelloWorldClient(Session.Instance.Endpointconfiguration);
-			var response = client.sayHelloWorld($"{Username} ; {passwordBox.Password}");
-			Output = response;
-		}
-
-		/// <summary>
-		/// Ouput
-		/// </summary>
-		public string Output
-		{
-			get { return _output; }
-			set
-			{
-				_output = value;
-				OnPropertyChanged();
-			}
+			var response = await client.sayHelloWorldAsync($"{Username} ; {passwordBox.Password}");
+			var lobbyBrowser = new CreateJoinLobby(response.Body.sayHelloWorldReturn);
+			lobbyBrowser.Show();
 		}
 
 		/// <summary>

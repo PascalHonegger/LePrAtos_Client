@@ -7,13 +7,12 @@
         xmlns:localization="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
         Title="LoginView" Height="350" Width="525" d:DataContext="{d:DesignInstance login:LoginViewModel}">
-	<Grid>
+	<Grid Margin="5">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
@@ -23,6 +22,5 @@
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Password}" Content="{x:Static localization:Strings.LoginView_Password}"/>
 		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="1" />
 		<Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static localization:Strings.LoginView_Login}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}"/>
-		<TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Output}"/>
 	</Grid>
 </Window>

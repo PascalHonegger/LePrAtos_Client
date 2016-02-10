@@ -2,5 +2,5 @@
 	<s:Boolean x:Key="/Default/CodeInspection/CodeAnnotations/NamespacesWithAnnotations/=LePrAtos_002EAnnotations/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/CodeCleanup/Profiles/=UpdateFileHeader/@EntryIndexedValue">&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;Profile name="UpdateFileHeader"&gt;&lt;XAMLCollapseEmptyTags&gt;False&lt;/XAMLCollapseEmptyTags&gt;&lt;CSUpdateFileHeader&gt;True&lt;/CSUpdateFileHeader&gt;&lt;/Profile&gt;</s:String>
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Projekt: LePrAtos&#xD;
-Copyright (c) LePrAtos $CURRENT_YEAR$&#xD;
+Copyright (c) $CURRENT_YEAR$&#xD;
 Author: $USER_NAME$</s:String></wpf:ResourceDictionary>
