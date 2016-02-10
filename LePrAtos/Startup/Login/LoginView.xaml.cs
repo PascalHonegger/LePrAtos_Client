@@ -19,12 +19,5 @@ namespace LePrAtos.Startup.Login
 			InitializeComponent();
 			DataContext = new LoginViewModel();
 		}
-
-		LoginViewModel ViewModel => DataContext as LoginViewModel;
-
-		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-		{
-			ViewModel.SayHelloWorld();
-		}
 	}
 }

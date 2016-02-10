@@ -21,8 +21,8 @@
 		<Label Grid.Column="0" Grid.Row="0" Target="{Binding ElementName=Username}" Content="{x:Static localization:Strings.LoginView_Username}"/>
 		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" Text="{Binding Username}"/>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Password}" Content="{x:Static localization:Strings.LoginView_Password}"/>
-		<TextBox Name="Password" Grid.Column="1" Grid.Row="1" Text="{Binding Password}"/>
-		<Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static localization:Strings.LoginView_Login}" Click="ButtonBase_OnClick"/>
+		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="1" />
+		<Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static localization:Strings.LoginView_Login}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}"/>
 		<TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Output}"/>
 	</Grid>
 </Window>

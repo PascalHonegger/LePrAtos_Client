@@ -32,7 +32,7 @@ namespace LePrAtos
 				InstructionText = "Bitte Konfiguration wählen",
 				Caption = "Wähle Konfiguration",
 				Width = 430,
-				Height = 200
+				Height = 150
 			};
 
 			foreach (var serverSetting in Settings.Default.ConfiguredServers)
@@ -53,7 +53,14 @@ namespace LePrAtos
 				dialog.AddControl(configButton);
 			}
 
-			var cultureSelection = new ComboBox();
+			var cultureSelection = new ComboBox
+			{
+				SelectedItem = UiCulture,
+				HorizontalAlignment = HorizontalAlignment.Stretch,
+				VerticalAlignment = VerticalAlignment.Stretch,
+				Margin = new Thickness(3),
+				Width = 90
+			};
 
 			var supportedCultures = new List<CultureInfo>();
 
