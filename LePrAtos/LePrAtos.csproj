@@ -90,6 +90,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -113,8 +114,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Lobby\CreateJoinLobby.xaml.cs">
-      <DependentUpon>CreateJoinLobby.xaml</DependentUpon>
+    <Compile Include="ISession.cs" />
+    <Compile Include="Lobby\CreateJoinLobbyView.xaml.cs">
+      <DependentUpon>CreateJoinLobbyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
@@ -131,12 +133,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.de.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\GameManagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Startup\Login\ILoginViewModel.cs" />
+    <Compile Include="Unity\UnityContainerProvider.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Page Include="Dialogs\CustomDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Lobby\CreateJoinLobby.xaml">
+    <Page Include="Lobby\CreateJoinLobbyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,11 +162,6 @@
     </Compile>
     <Compile Include="Startup\Login\LoginViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Service References\HelloWorldService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="Example.cs" />
     <Compile Include="Startup\Login\LoginView.xaml.cs">
@@ -201,14 +205,18 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\HelloWorldService\HelloWorld.wsdl" />
-    <None Include="Service References\HelloWorldService\LePrAtos.HelloWorldService.sayHelloWorldResponse.datasource">
+    <None Include="Service References\GameManagerService\GameManager.wsdl" />
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.logoutResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -232,21 +240,20 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\HelloWorldService\" />
+    <WCFMetadataStorage Include="Service References\GameManagerService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HelloWorldService\configuration91.svcinfo" />
+    <None Include="Service References\GameManagerService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HelloWorldService\configuration.svcinfo" />
+    <None Include="Service References\GameManagerService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\HelloWorldService\Reference.svcmap">
+    <None Include="Service References\GameManagerService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

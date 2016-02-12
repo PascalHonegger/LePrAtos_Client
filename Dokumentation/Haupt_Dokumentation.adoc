@@ -87,9 +87,9 @@ Wir haben uns entschieden die Nutzerdaten, die Spiele, Spielstatistiken und die 
 
 === Aufbau des Projektordner
 Die Files werden in verschieden Ordnern unterteilt. Diese werden nach Überthemen des Projektes geordnet. Die Ordner sind doppelt vorhanden, einmal im LePrAtos und einmal im LePrAtos_Test Projekt.
-    
+
 == Klassendiagramm
-iamge::Bilder/klassendiagramm.png[KlassenDiagramm]
+image::Bilder/Klassendiagramm.png[KlassenDiagramm]
     
 == Code-Analysen
 

@@ -39,5 +39,17 @@ namespace LePrAtos.Properties {
                 this["ConfiguredServers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("de")]
+        public string SelectedCulture {
+            get {
+                return ((string)(this["SelectedCulture"]));
+            }
+            set {
+                this["SelectedCulture"] = value;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,6 +10,8 @@ using System.Windows;
 using System.Windows.Controls;
 using LePrAtos.Properties;
 using LePrAtos.Startup.Login;
+using LePrAtos.Unity;
+using Microsoft.Practices.Unity;
 
 namespace LePrAtos
 {
@@ -17,10 +20,20 @@ namespace LePrAtos
 	/// </summary>
 	public partial class App
 	{
-		private CultureInfo UiCulture { get; set; } = new CultureInfo("de");
+		private static CultureInfo UiCulture
+		{
+			get { return new CultureInfo(Settings.Default.SelectedCulture); }
+			set
+			{
+				Settings.Default.SelectedCulture = value.Name;
+				Settings.Default.Save();
+			}
+		}
 
 		private void OnStartup(object sender, StartupEventArgs e)
 		{
+			UnityContainerProvider.InitializeContainer();
+
 			SelectEnvironment();
 		}
 
@@ -95,12 +108,12 @@ namespace LePrAtos
 
 		private void StartApplication(string configuration)
 		{
-			Session.Instance.Endpointconfiguration = configuration;
+			UnityContainerProvider.Container.Resolve<ISession>().Endpointconfiguration = configuration;
 
 			Strings.Culture = UiCulture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = UiCulture;
 
-			var loginWindow = new LoginView();
+			var loginWindow = new LoginView(UnityContainerProvider.Container.Resolve<ILoginViewModel>());
 
 			loginWindow.Show();
 		}

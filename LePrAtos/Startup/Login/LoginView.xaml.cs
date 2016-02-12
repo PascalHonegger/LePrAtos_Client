@@ -11,10 +11,10 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LoginView()
+		public LoginView(ILoginViewModel dataContext)
 		{
 			InitializeComponent();
-			DataContext = new LoginViewModel();
+			DataContext = dataContext;
 		}
 	}
 }

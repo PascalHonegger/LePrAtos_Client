@@ -26,5 +26,8 @@ namespace LePrAtos
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+		[Microsoft.Practices.Unity.Dependency]
+		public ISession CurrentSession { get; set; }
 	}
 }

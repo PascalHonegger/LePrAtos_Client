@@ -1,18 +1,21 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
+using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LePrAtos.GameManagerService;
 using LePrAtos.Lobby;
-using LePrAtos.Service_References.HelloWorldService;
 using Microsoft.Practices.Prism.Commands;
 
 namespace LePrAtos.Startup.Login
 {
 	/// <summary>
-	/// ViewModel für LoginView
+	/// ViewModel für <see cref="LoginView"/>
 	/// </summary>
-	public sealed class LoginViewModel : ViewModelBase
+	[Export(typeof(ILoginViewModel))]
+	public sealed class LoginViewModel : ViewModelBase, ILoginViewModel
 	{
 		/// <summary>
 		/// Benutzername
@@ -21,14 +24,14 @@ namespace LePrAtos.Startup.Login
 
 		private async void Login(PasswordBox passwordBox)
 		{
-			var client = new HelloWorldClient(Session.Instance.Endpointconfiguration);
-			var response = await client.sayHelloWorldAsync($"{Username} ; {passwordBox.Password}");
-			var lobbyBrowser = new CreateJoinLobby(response.Body.sayHelloWorldReturn);
+			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
+			var response = await client.loginAsync(Username);
+			var lobbyBrowser = new CreateJoinLobbyView(response.ToString());
 			lobbyBrowser.Show();
 		}
 
 		/// <summary>
-		/// Command für <see cref="Login"/>
+		/// Command für die Anmeldung
 		/// </summary>
 		public ICommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand<PasswordBox>(Login));
 

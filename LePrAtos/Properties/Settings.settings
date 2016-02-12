@@ -10,5 +10,8 @@
   &lt;string&gt;Johlserver&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="SelectedCulture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">de</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
