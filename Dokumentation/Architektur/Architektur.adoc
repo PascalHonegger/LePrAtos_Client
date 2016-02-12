@@ -15,8 +15,7 @@ Der Benutzer meldet sich über den Client an. Die Anmeldedaten werden auf dem Se
 Das Gui wird bei jedem User lokal initialisiert. Die Daten, was, wo angezeigt wird, kommen vom Server. Der im Client verwendete Text ist lokalisert (Detusch & Englisch). 
 
 = Komponenten
-Wir haben die Komponenten nach unseren Use Cases gemacht. Wir hielten es für Sinnvoll, da sie von einander abgetrennt sind, aber trotzdem miteinander kommuniziern müssen. 
-
+Wir haben die Komponenten nach unseren Use Cases gemacht. Wir hielten es für Sinnvoll, da sie von einander abgetrennt sind, aber trotzdem miteinander kommuniziern müssen.
 == Ressourcen Verwaltung
 
 === Spieler
@@ -26,7 +25,7 @@ Der Spieler
 Die Daten des Spielers werden serverseitig verwaltet. Dieser ist verantwortlich,  dass die Spieler ihre Daten und die des Gegners in richtiger Form bekommen.
 
 ==== Client
-Die Ressourcen werden zusätzlich auf dem Client verwaltet, um unnötig viele Serveranfragen zu vermeiden. Sonst werden hauptsächich die Daten der Spieler im GUI angezeigt.
+Die Ressourcen werden zusätzlich auf dem Client verwaltet, um unnötig viele Serveranfragen zu vermeiden. Sonst werden hauptsächich die Daten der Spieler im GUI angezeigt. Das meiste, was auf dem Server lauft wird auch auf dem Client implementiert. Somit können wir schon auf dem Client validierungen machen. Diese werden auf dem Server nochmals durchgefürht, da auf dem CLient die Validierungen umgegangen werden können.
 
 == Handeln
 
@@ -41,4 +40,4 @@ Da das Spielfeld aus mehreren verschiedenen Teilen besteht mussten wir uns Gedan
 Die Methoden PlaceHouse() und placeStreet() wurden getrennt, da die Methoden verschiedene Parameter brauchen. include::Architektur.adoc[]
 
 == WebSerices
-Um die Client-Server Kommunikation zu ermöglichen braucht es Webservices. Diese teilen wir auf die verschiedenen Kompnenten auf.
+Um die Client-Server Kommunikation zu ermöglichen braucht es Webservices. Diese teilen wir auf die verschiedenen Kompnenten auf, damit diese nach Komponenten geordent implementiert werden. Somit ist es in Zukunft einfacher diese zu erweitern.
