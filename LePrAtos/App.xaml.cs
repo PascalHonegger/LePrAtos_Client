@@ -2,8 +2,11 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using System.Globalization;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using LePrAtos.Dialogs;
 using LePrAtos.Infrastructure;
 using LePrAtos.Properties;
 using LePrAtos.Startup.Login;
@@ -19,19 +22,23 @@ namespace LePrAtos
 	{
 		private void OnStartup(object sender, StartupEventArgs e)
 		{
+			var culture = new CultureInfo(Settings.Default.SelectedCulture);
+			Strings.Culture = culture;
+			Thread.CurrentThread.CurrentUICulture = culture;
+
 			UnityContainerProvider.InitializeContainer();
 
 			SelectEnvironment();
 		}
 
 		/// <summary>Suchen möglicher App.config-Dateien im Programmverzeichnis, anzeigen einer Auswahl.</summary>
-		private void SelectEnvironment()
+		private static void SelectEnvironment()
 		{
-			var dialog = new Dialogs.CustomDialog
+			var dialog = new CustomDialog
 			{
 				InstructionText = "Bitte Konfiguration wählen",
-				Caption = "Wähle Konfiguration",
-				Width = 430,
+				Title = "Wähle Konfiguration",
+				Width = 335,
 				Height = 150
 			};
 

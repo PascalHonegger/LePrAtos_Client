@@ -77,11 +77,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoCategoryTestExample.cs" />
-    <Compile Include="IntegrationTestExample.cs" />
-    <Compile Include="IntegrationTestBase.cs" />
-    <Compile Include="UnitTestBase.cs" />
-    <Compile Include="UnitTestExample.cs" />
+    <Compile Include="Infrastructure\IntegrationTestBase.cs" />
+    <Compile Include="Infrastructure\UnitTestBase.cs" />
+    <Compile Include="Startup\Login\LoginViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

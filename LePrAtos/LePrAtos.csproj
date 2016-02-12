@@ -165,7 +165,6 @@
     <Compile Include="Startup\Login\LoginViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Infrastructure\Session.cs" />
-    <Compile Include="Example.cs" />
     <Compile Include="Startup\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -1,8 +1,11 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
+using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
+using Microsoft.Practices.Prism.Commands;
 
 namespace LePrAtos.Startup.Login
 {
@@ -14,7 +17,7 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		/// Command für die Anmeldung
 		/// </summary>
-		ICommand LoginCommand { get; }
+		DelegateCommand<PasswordBox> LoginCommand { get; }
 
 		/// <summary>
 		/// Benutzername

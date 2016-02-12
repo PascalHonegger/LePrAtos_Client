@@ -33,14 +33,6 @@ namespace LePrAtos.Dialogs
 		}
 
 		/// <summary>
-		/// The Caption Text
-		/// </summary>
-		public string Caption
-		{
-			set { Title = value; }
-		}
-
-		/// <summary>
 		/// Add a Control to the Gui
 		/// </summary>
 		/// <param name="configButton">UIElement to add</param>

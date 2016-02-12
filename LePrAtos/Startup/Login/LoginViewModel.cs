@@ -25,12 +25,15 @@ namespace LePrAtos.Startup.Login
 	[Export(typeof (ILoginViewModel))]
 	public sealed class LoginViewModel : ViewModelBase, ILoginViewModel
 	{
-		private ICommand _loginCommand;
+		private DelegateCommand<PasswordBox> _loginCommand;
+		private string _username = string.Empty;
+		private const int UsernameMaxLength = 30;
+		private const int UsernameMinLength = 3;
 
 		/// <summary>
 		///     Alle möglichen Sprachen
 		/// </summary>
-		public IEnumerable<string> PossibleLanguages
+		public static IEnumerable<string> PossibleLanguages
 		{
 			get
 			{
@@ -79,12 +82,25 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Benutzername
 		/// </summary>
-		public string Username { get; set; }
+		public string Username
+		{
+			get { return _username; }
+			set
+			{
+				if (_username != value && value.Length <= UsernameMaxLength)
+				{
+					_username = value;
+					OnPropertyChanged();
+				}
+
+				LoginCommand.RaiseCanExecuteChanged();
+			}
+		}
 
 		/// <summary>
 		///     Command für die Anmeldung
 		/// </summary>
-		public ICommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand<PasswordBox>(Login));
+		public DelegateCommand<PasswordBox> LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand<PasswordBox>(Login, box => Username.Length >= UsernameMinLength));
 
 		/// <summary>
 		/// Event, welcher das schliessen des Dialoges anfordert
@@ -95,7 +111,7 @@ namespace LePrAtos.Startup.Login
 		{
 			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
 			var response = await client.loginAsync(Username);
-			var lobbyBrowser = new CreateJoinLobbyView(response.ToString());
+			var lobbyBrowser = new CreateJoinLobbyView(response.Body.loginReturn);
 			lobbyBrowser.Show();
 
 			RequestDialogCloseEventHandler.Invoke(this, null);
