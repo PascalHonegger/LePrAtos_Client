@@ -3,6 +3,7 @@
 // Author: Honegger, Pascal (ext)
 
 using System.ComponentModel.Composition;
+using LePrAtos.Infrastructure;
 
 namespace LePrAtos
 {

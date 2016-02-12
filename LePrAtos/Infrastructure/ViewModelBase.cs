@@ -1,16 +1,17 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using LePrAtos.Properties;
 
-namespace LePrAtos
+namespace LePrAtos.Infrastructure
 {
 	/// <summary>
 	/// Base-Klasse für alle ViewModels
 	/// </summary>
-	public abstract class ViewModelBase : INotifyPropertyChanged
+	public abstract class ViewModelBase : INotifyPropertyChanged, IViewModel
 	{
 		/// <summary>
 		/// Tritt ein, wenn sich ein Eigenschaftswert ändert.
@@ -27,7 +28,10 @@ namespace LePrAtos
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
+		/// <summary>
+		/// Die jetzige Instanz der Session
+		/// </summary>
 		[Microsoft.Practices.Unity.Dependency]
-		public ISession CurrentSession { get; set; }
+		protected ISession CurrentSession { get; set; }
 	}
 }

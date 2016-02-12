@@ -16,11 +16,13 @@
 			<RowDefinition />
 			<RowDefinition />
 			<RowDefinition />
+			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Label Grid.Column="0" Grid.Row="0" Target="{Binding ElementName=Username}" Content="{x:Static localization:Strings.LoginView_Username}"/>
 		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" Text="{Binding Username}"/>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Password}" Content="{x:Static localization:Strings.LoginView_Password}"/>
 		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="1" />
 		<Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static localization:Strings.LoginView_Login}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}"/>
+		<ComboBox Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}"/>
 	</Grid>
 </Window>

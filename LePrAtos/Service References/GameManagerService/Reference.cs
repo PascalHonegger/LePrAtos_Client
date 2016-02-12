@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LePrAtos.GameManagerService {
+namespace LePrAtos.Service_References.GameManagerService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -17,17 +17,17 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Generating message contract since element name username from namespace http://webservices.org is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        LePrAtos.GameManagerService.loginResponse login(LePrAtos.GameManagerService.loginRequest request);
+        loginResponse login(loginRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> loginAsync(LePrAtos.GameManagerService.loginRequest request);
+        System.Threading.Tasks.Task<loginResponse> loginAsync(loginRequest request);
         
         // CODEGEN: Generating message contract since element name logoutReturn from namespace http://webservices.org is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        LePrAtos.GameManagerService.logoutResponse logout(LePrAtos.GameManagerService.logoutRequest request);
+        logoutResponse logout(logoutRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.logoutResponse> logoutAsync(LePrAtos.GameManagerService.logoutRequest request);
+        System.Threading.Tasks.Task<logoutResponse> logoutAsync(logoutRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -37,12 +37,12 @@ namespace LePrAtos.GameManagerService {
     public partial class loginRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="login", Namespace="http://webservices.org", Order=0)]
-        public LePrAtos.GameManagerService.loginRequestBody Body;
+        public loginRequestBody Body;
         
         public loginRequest() {
         }
         
-        public loginRequest(LePrAtos.GameManagerService.loginRequestBody Body) {
+        public loginRequest(loginRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -71,12 +71,12 @@ namespace LePrAtos.GameManagerService {
     public partial class loginResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="loginResponse", Namespace="http://webservices.org", Order=0)]
-        public LePrAtos.GameManagerService.loginResponseBody Body;
+        public loginResponseBody Body;
         
         public loginResponse() {
         }
         
-        public loginResponse(LePrAtos.GameManagerService.loginResponseBody Body) {
+        public loginResponse(loginResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -105,12 +105,12 @@ namespace LePrAtos.GameManagerService {
     public partial class logoutRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="logout", Namespace="http://webservices.org", Order=0)]
-        public LePrAtos.GameManagerService.logoutRequestBody Body;
+        public logoutRequestBody Body;
         
         public logoutRequest() {
         }
         
-        public logoutRequest(LePrAtos.GameManagerService.logoutRequestBody Body) {
+        public logoutRequest(logoutRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -132,12 +132,12 @@ namespace LePrAtos.GameManagerService {
     public partial class logoutResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="logoutResponse", Namespace="http://webservices.org", Order=0)]
-        public LePrAtos.GameManagerService.logoutResponseBody Body;
+        public logoutResponseBody Body;
         
         public logoutResponse() {
         }
         
-        public logoutResponse(LePrAtos.GameManagerService.logoutResponseBody Body) {
+        public logoutResponse(logoutResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -160,12 +160,12 @@ namespace LePrAtos.GameManagerService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface GameManagerChannel : LePrAtos.GameManagerService.GameManager, System.ServiceModel.IClientChannel {
+    public interface GameManagerChannel : GameManager, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameManagerClient : System.ServiceModel.ClientBase<LePrAtos.GameManagerService.GameManager>, LePrAtos.GameManagerService.GameManager {
+    public partial class GameManagerClient : System.ServiceModel.ClientBase<GameManager>, GameManager {
         
         public GameManagerClient() {
         }
@@ -187,51 +187,51 @@ namespace LePrAtos.GameManagerService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LePrAtos.GameManagerService.loginResponse LePrAtos.GameManagerService.GameManager.login(LePrAtos.GameManagerService.loginRequest request) {
+        loginResponse GameManager.login(loginRequest request) {
             return base.Channel.login(request);
         }
         
         public string login(string username) {
-            LePrAtos.GameManagerService.loginRequest inValue = new LePrAtos.GameManagerService.loginRequest();
-            inValue.Body = new LePrAtos.GameManagerService.loginRequestBody();
+            loginRequest inValue = new loginRequest();
+            inValue.Body = new loginRequestBody();
             inValue.Body.username = username;
-            LePrAtos.GameManagerService.loginResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).login(inValue);
+            loginResponse retVal = ((GameManager)(this)).login(inValue);
             return retVal.Body.loginReturn;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> LePrAtos.GameManagerService.GameManager.loginAsync(LePrAtos.GameManagerService.loginRequest request) {
+        System.Threading.Tasks.Task<loginResponse> GameManager.loginAsync(loginRequest request) {
             return base.Channel.loginAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> loginAsync(string username) {
-            LePrAtos.GameManagerService.loginRequest inValue = new LePrAtos.GameManagerService.loginRequest();
-            inValue.Body = new LePrAtos.GameManagerService.loginRequestBody();
+        public System.Threading.Tasks.Task<loginResponse> loginAsync(string username) {
+            loginRequest inValue = new loginRequest();
+            inValue.Body = new loginRequestBody();
             inValue.Body.username = username;
-            return ((LePrAtos.GameManagerService.GameManager)(this)).loginAsync(inValue);
+            return ((GameManager)(this)).loginAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LePrAtos.GameManagerService.logoutResponse LePrAtos.GameManagerService.GameManager.logout(LePrAtos.GameManagerService.logoutRequest request) {
+        logoutResponse GameManager.logout(logoutRequest request) {
             return base.Channel.logout(request);
         }
         
         public string logout() {
-            LePrAtos.GameManagerService.logoutRequest inValue = new LePrAtos.GameManagerService.logoutRequest();
-            inValue.Body = new LePrAtos.GameManagerService.logoutRequestBody();
-            LePrAtos.GameManagerService.logoutResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).logout(inValue);
+            logoutRequest inValue = new logoutRequest();
+            inValue.Body = new logoutRequestBody();
+            logoutResponse retVal = ((GameManager)(this)).logout(inValue);
             return retVal.Body.logoutReturn;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.logoutResponse> LePrAtos.GameManagerService.GameManager.logoutAsync(LePrAtos.GameManagerService.logoutRequest request) {
+        System.Threading.Tasks.Task<logoutResponse> GameManager.logoutAsync(logoutRequest request) {
             return base.Channel.logoutAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.logoutResponse> logoutAsync() {
-            LePrAtos.GameManagerService.logoutRequest inValue = new LePrAtos.GameManagerService.logoutRequest();
-            inValue.Body = new LePrAtos.GameManagerService.logoutRequestBody();
-            return ((LePrAtos.GameManagerService.GameManager)(this)).logoutAsync(inValue);
+        public System.Threading.Tasks.Task<logoutResponse> logoutAsync() {
+            logoutRequest inValue = new logoutRequest();
+            inValue.Body = new logoutRequestBody();
+            return ((GameManager)(this)).logoutAsync(inValue);
         }
     }
 }

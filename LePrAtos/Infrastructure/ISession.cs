@@ -2,7 +2,7 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
-namespace LePrAtos
+namespace LePrAtos.Infrastructure
 {
 	/// <summary>
 	/// Diese Klasse enthält informationen zur jetzigen Session, wie beispielsweise die <see cref="Endpointconfiguration"/>

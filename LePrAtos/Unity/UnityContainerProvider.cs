@@ -1,4 +1,8 @@
-﻿using LePrAtos.Startup.Login;
+﻿// Projekt: LePrAtos
+// Copyright (c) 2016
+// Author: Honegger, Pascal (ext)
+using LePrAtos.Infrastructure;
+using LePrAtos.Startup.Login;
 using Microsoft.Practices.Unity;
 
 namespace LePrAtos.Unity

@@ -1,11 +1,15 @@
-﻿using System.Windows.Input;
+﻿// Projekt: LePrAtos
+// Copyright (c) 2016
+// Author: Honegger, Pascal (ext)
+using System.Windows.Input;
+using LePrAtos.Infrastructure;
 
 namespace LePrAtos.Startup.Login
 {
 	/// <summary>
 	/// Interface für <see cref="LoginViewModel"/>
 	/// </summary>
-	public interface ILoginViewModel
+	public interface ILoginViewModel : IRequestDialogCloseViewModel
 	{
 		/// <summary>
 		/// Command für die Anmeldung

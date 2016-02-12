@@ -1,6 +1,9 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
+using LePrAtos.Infrastructure;
+
 namespace LePrAtos.Startup.Login
 {
 	/// <summary>
@@ -11,10 +14,11 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LoginView(ILoginViewModel dataContext)
+		public LoginView(IRequestDialogCloseViewModel dataContext)
 		{
 			InitializeComponent();
 			DataContext = dataContext;
+			dataContext.RequestDialogCloseEventHandler += (sender, e) => Close();
 		}
 	}
 }

@@ -114,7 +114,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ISession.cs" />
+    <Compile Include="Infrastructure\ISession.cs" />
+    <Compile Include="Infrastructure\IViewModel.cs" />
     <Compile Include="Lobby\CreateJoinLobbyView.xaml.cs">
       <DependentUpon>CreateJoinLobbyView.xaml</DependentUpon>
     </Compile>
@@ -139,8 +140,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Startup\Login\ILoginViewModel.cs" />
+    <Compile Include="Infrastructure\IRequestDialogCloseViewModel.cs" />
     <Compile Include="Unity\UnityContainerProvider.cs" />
-    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="Infrastructure\ViewModelBase.cs" />
     <Page Include="Dialogs\CustomDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,7 +164,7 @@
     </Compile>
     <Compile Include="Startup\Login\LoginViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Session.cs" />
+    <Compile Include="Infrastructure\Session.cs" />
     <Compile Include="Example.cs" />
     <Compile Include="Startup\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
