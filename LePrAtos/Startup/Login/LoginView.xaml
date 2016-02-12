@@ -6,7 +6,7 @@
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
         xmlns:localization="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="LoginView" Height="350" Width="525" d:DataContext="{d:DesignInstance login:LoginViewModel}">
+        Title="Login" Height="350" Width="525" d:DataContext="{d:DesignInstance login:LoginViewModel}">
 
 	<Grid Margin="5" DockPanel.Dock="Bottom">
 		<Grid.ColumnDefinitions>
@@ -32,6 +32,6 @@
 		       Content="{x:Static localization:Strings.LoginView_Password}" />
 		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="2" />
 		<Button Grid.Column="1" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_Login}"
-		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" />
+		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" IsDefault="True"/>
 	</Grid>
 </Window>

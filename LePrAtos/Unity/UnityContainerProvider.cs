@@ -26,7 +26,6 @@ namespace LePrAtos.Unity
 		{
 			//TODO Fancy
 			Container.RegisterType<ISession, Session>(new ExternallyControlledLifetimeManager());
-			Container.RegisterType<ILoginViewModel, LoginViewModel>();
 		}
 	}
 }
