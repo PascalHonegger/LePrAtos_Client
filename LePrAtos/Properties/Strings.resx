@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LoginView_Login" xml:space="preserve">
+    <value>LoginView_Login</value>
+  </data>
+  <data name="LoginView_Password" xml:space="preserve">
+    <value>LoginView_Password</value>
+  </data>
+  <data name="LoginView_Username" xml:space="preserve">
+    <value>LoginView_Username</value>
+  </data>
 </root>

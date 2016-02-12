@@ -1,0 +1,26 @@
+﻿<Window x:Class="LePrAtos.Startup.Login.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:login="clr-namespace:LePrAtos.Startup.Login"
+        xmlns:localization="clr-namespace:LePrAtos.Properties"
+        mc:Ignorable="d"
+        Title="LoginView" Height="350" Width="525" d:DataContext="{d:DesignInstance login:LoginViewModel}">
+	<Grid Margin="5">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Label Grid.Column="0" Grid.Row="0" Target="{Binding ElementName=Username}" Content="{x:Static localization:Strings.LoginView_Username}"/>
+		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" Text="{Binding Username}"/>
+		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Password}" Content="{x:Static localization:Strings.LoginView_Password}"/>
+		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="1" />
+		<Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static localization:Strings.LoginView_Login}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}"/>
+	</Grid>
+</Window>

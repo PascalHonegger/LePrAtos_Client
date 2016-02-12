@@ -1,19 +1,33 @@
-﻿using LePrAtos.Trade;
+﻿// Projekt: LePrAtos
+// Copyright (c) 2016
+// Author: Honegger, Pascal (ext)
+using LePrAtos;
 using NUnit.Framework;
 
 namespace LePrAtos_Test
 {
-	[TestFixture, Category("UnitTest")]
-	public class UnitTestExample
+	public class UnitTestExample : UnitTestBase
 	{
+		private Example _unitUnderTest;
+
+		protected override void DoSetup()
+		{
+			_unitUnderTest = new Example();
+		}
+
+		protected override void DoTearDown()
+		{
+			_unitUnderTest = null;
+		}
+
 		[Test]
 		public void TestExampleMethod()
 		{
 			// Arrange
-			var unitUnderTest = new Example();
+
 
 			// Act
-			var result = unitUnderTest.Tested(2);
+			var result = _unitUnderTest.Tested(2);
 
 			// Assert
 			Assert.That(result, Is.EqualTo(4));
