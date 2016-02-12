@@ -119,6 +119,7 @@
     <Compile Include="Lobby\LobbyBrowserView.xaml.cs">
       <DependentUpon>LobbyBrowserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Lobby\LobbyBrowserViewModel.cs" />
     <Compile Include="Lobby\LobbyView.xaml.cs">
       <DependentUpon>LobbyView.xaml</DependentUpon>
     </Compile>

@@ -16,7 +16,12 @@ namespace LePrAtos.Lobby
 		private void CreateLobby()
 		{
 			//TODO: get Lobby From Server
-			//TODO: open Lobby in Lobbyview
+			var lobby = "TODO";
+
+			var lobbyViewModel = new LobbyViewModel();
+
+			new LobbyView(lobbyViewModel).Show();
+
 			RequestDialogCloseEventHandler.Invoke(this, null);
 		}
 

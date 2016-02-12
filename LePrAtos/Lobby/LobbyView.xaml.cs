@@ -12,10 +12,10 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LobbyView()
+		public LobbyView(LobbyViewModel viewModel)
 		{
 			InitializeComponent();
-			DataContext = new LobbyViewModel();
+			DataContext = viewModel;
 		}
 	}
 }
