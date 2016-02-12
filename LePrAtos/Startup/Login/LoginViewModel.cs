@@ -111,7 +111,7 @@ namespace LePrAtos.Startup.Login
 		{
 			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
 			var response = await client.loginAsync(Username);
-			var lobbyBrowser = new CreateJoinLobbyView(response.Body.loginReturn);
+			var lobbyBrowser = new LobbyBrowserView(response.Body.loginReturn);
 			lobbyBrowser.Show();
 
 			RequestDialogCloseEventHandler.Invoke(this, null);

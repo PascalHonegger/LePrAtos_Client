@@ -61,6 +61,42 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_CreateLobby.
+        /// </summary>
+        public static string LobbyBrowser_CreateLobby {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_CreateLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_GameName.
+        /// </summary>
+        public static string LobbyBrowser_GameName {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_GameName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_JoinLobby.
+        /// </summary>
+        public static string LobbyBrowser_JoinLobby {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_JoinLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_Password.
+        /// </summary>
+        public static string LobbyBrowser_Password {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Login.
         /// </summary>
         public static string LoginView_Login {
