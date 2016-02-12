@@ -106,6 +106,24 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyView_Remove.
+        /// </summary>
+        public static string LobbyView_Remove {
+            get {
+                return ResourceManager.GetString("LobbyView_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_StartGame.
+        /// </summary>
+        public static string LobbyView_StartGame {
+            get {
+                return ResourceManager.GetString("LobbyView_StartGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Login.
         /// </summary>
         public static string LoginView_Login {

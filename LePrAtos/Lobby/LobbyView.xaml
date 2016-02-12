@@ -1,0 +1,30 @@
+﻿<Window x:Class="LePrAtos.Lobby.LobbyView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LePrAtos.Lobby"
+        xmlns:properties="clr-namespace:LePrAtos.Properties"
+        mc:Ignorable="d"
+        Title="Lobby" d:DataContext="{d:DesignInstance local:LobbyViewModel}">
+    <Grid>
+	    <Grid.RowDefinitions>
+		    <RowDefinition Height="6*"/>
+		    <RowDefinition Height="*"/>
+	    </Grid.RowDefinitions>
+	    <Grid.ColumnDefinitions>
+		    <ColumnDefinition Width="4*"/>
+		    <ColumnDefinition Width="*"/>
+	    </Grid.ColumnDefinitions>
+	    <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Players}" >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding }"/>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<TextBlock Text="Hier könnte ein Chat leben"  Grid.Column="0" Grid.Row="1"/>
+		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}"/>
+    </Grid>
+</Window>

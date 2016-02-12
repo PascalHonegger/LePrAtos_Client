@@ -132,6 +132,12 @@
   <data name="LobbyBrowser_Password" xml:space="preserve">
     <value>Passwort</value>
   </data>
+  <data name="LobbyView_Remove" xml:space="preserve">
+    <value>Aus Lobby entfernen</value>
+  </data>
+  <data name="LobbyView_StartGame" xml:space="preserve">
+    <value>Spiel starten</value>
+  </data>
   <data name="LoginView_Login" xml:space="preserve">
     <value>Anmelden</value>
   </data>

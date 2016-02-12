@@ -119,7 +119,10 @@
     <Compile Include="Lobby\LobbyBrowserView.xaml.cs">
       <DependentUpon>LobbyBrowserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lobby\LobbyBrowserViewModel.cs" />
+    <Compile Include="Lobby\LobbyView.xaml.cs">
+      <DependentUpon>LobbyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lobby\LobbyViewModel.cs" />
     <Compile Include="Properties\Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -140,7 +143,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Startup\Login\ILoginViewModel.cs" />
     <Compile Include="Infrastructure\IRequestDialogCloseViewModel.cs" />
     <Compile Include="Unity\UnityContainerProvider.cs" />
     <Compile Include="Infrastructure\ViewModelBase.cs" />
@@ -149,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Lobby\LobbyBrowserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lobby\LobbyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

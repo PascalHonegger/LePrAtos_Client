@@ -4,13 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Threading;
 using System.Windows.Controls;
-using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
@@ -22,8 +20,7 @@ namespace LePrAtos.Startup.Login
 	/// <summary>
 	///     ViewModel für <see cref="LoginView" />
 	/// </summary>
-	[Export(typeof (ILoginViewModel))]
-	public sealed class LoginViewModel : ViewModelBase, ILoginViewModel
+	public sealed class LoginViewModel : ViewModelBase, IRequestDialogCloseViewModel
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private string _username = string.Empty;

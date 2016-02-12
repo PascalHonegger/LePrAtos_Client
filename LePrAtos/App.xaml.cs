@@ -68,7 +68,7 @@ namespace LePrAtos
 		{
 			UnityContainerProvider.Container.Resolve<ISession>().Endpointconfiguration = configuration;
 
-			var loginWindow = new LoginView(UnityContainerProvider.Container.Resolve<ILoginViewModel>());
+			var loginWindow = new LoginView(UnityContainerProvider.Container.Resolve<LoginViewModel>());
 
 			loginWindow.Show();
 		}
