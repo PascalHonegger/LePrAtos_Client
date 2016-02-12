@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Projekt: LePrAtos
+// Copyright (c) 2016
+// Author: Keller, Alain
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +22,17 @@ namespace LePrAtos.Lobby
 	/// </summary>
 	public partial class LobbyBrowserView : Window
 	{
+
 		public LobbyBrowserView(string result)
 		{
 			InitializeComponent();
 			Box.Text = result;
+
+			var viewModel = new LobbyBrowserViewModel();
+
+			viewModel.RequestDialogCloseEventHandler += (sender, e) => Close();
+
+			DataContext = viewModel;
 		}
 	}
 }

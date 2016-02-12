@@ -88,6 +88,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_NumberPlayers.
+        /// </summary>
+        public static string LobbyBrowser_NumberPlayers {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_NumberPlayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyBrowser_Password.
         /// </summary>
         public static string LobbyBrowser_Password {

@@ -3,18 +3,23 @@
 // Author: Keller, Alain
 using System;
 using System.Windows.Input;
+using LePrAtos.Infrastructure;
 using Microsoft.Practices.Prism.Commands;
 
 namespace LePrAtos.Lobby
 {
-	internal class LobbyBrowserViewModel
+	internal class LobbyBrowserViewModel : IRequestDialogCloseViewModel
 	{
 		private ICommand _createLobbyCommand;
 		public ICommand CreateLobbyCommand => _createLobbyCommand ?? (_createLobbyCommand = new DelegateCommand(CreateLobby));
 
 		private void CreateLobby()
 		{
-			throw new NotImplementedException();
+			//TODO: get Lobby From Server
+			//TODO: open Lobby in Lobbyview
+			RequestDialogCloseEventHandler.Invoke(this, null);
 		}
+
+		public EventHandler RequestDialogCloseEventHandler { get; set; }
 	}
 }

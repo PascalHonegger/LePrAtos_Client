@@ -126,6 +126,9 @@
   <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
     <value>LobbyBrowser_JoinLobby</value>
   </data>
+  <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
+    <value>LobbyBrowser_NumberPlayers</value>
+  </data>
   <data name="LobbyBrowser_Password" xml:space="preserve">
     <value>LobbyBrowser_Password</value>
   </data>

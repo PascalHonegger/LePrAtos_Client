@@ -16,18 +16,18 @@
 			<ColumnDefinition Width="3*"/>
 			<ColumnDefinition Width="1*"/>
 		</Grid.ColumnDefinitions>
-		<TextBox x:Name="Box" Grid.Column="1" Grid.Row="0" />
+		<TextBlock x:Name="Box" Grid.Column="1" Grid.Row="0" />
 
-		<Border Grid.Column="1" Grid.Row="1" BorderBrush="Blue" BorderThickness="5" Margin="10,10,10,10" >
+		<Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkSlateGray" BorderThickness="3" Margin="1,0,1,0">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
-				<Button Height="50" Grid.Row="0" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}" Command="{Binding CreateLobbyCommand}"/>
-				<Button Height="50" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"/>
-				<Button Height="50" Grid.Row="2" Content="{x:Static properties:Strings.LobbyBrowser_Password}"/>
+				<Button Margin="10,0" Height="50" Grid.Row="0" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}" Command="{Binding CreateLobbyCommand}"/>
+				<Button Margin="10,0" Height="50" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"/>
+				<Button Margin="10,0" Height="50" Grid.Row="2" Content="{x:Static properties:Strings.LobbyBrowser_Password}"/>
 			</Grid>
 		</Border>
 
@@ -36,6 +36,7 @@
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}"/>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}" />
 				</GridView>
 			</ListView.View>
 
