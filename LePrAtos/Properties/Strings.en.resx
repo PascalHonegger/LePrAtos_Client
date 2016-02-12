@@ -123,6 +123,18 @@
   <data name="LobbyView_StartGame" xml:space="preserve">
     <value>Start game</value>
   </data>
+  <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
+    <value>Create a new Lobby</value>
+  </data>
+  <data name="LobbyBrowser_GameName" xml:space="preserve">
+    <value>Player Name</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
+    <value>Join Lobby</value>
+  </data>
+  <data name="LobbyBrowser_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="LoginView_Login" xml:space="preserve">
     <value>Login</value>
   </data>

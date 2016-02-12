@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace LePrAtos.Lobby
 {
 	/// <summary>
-	/// Interaction logic for CreateJoinLobbyView.xaml
+	/// Interaction logic for LobbyBrowserView.xaml
 	/// </summary>
-	public partial class CreateJoinLobbyView : Window
+	public partial class LobbyBrowserView : Window
 	{
-		public CreateJoinLobbyView(string result)
+		public LobbyBrowserView(string result)
 		{
 			InitializeComponent();
 			Box.Text = result;

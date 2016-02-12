@@ -116,8 +116,8 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\ISession.cs" />
     <Compile Include="Infrastructure\IViewModel.cs" />
-    <Compile Include="Lobby\CreateJoinLobbyView.xaml.cs">
-      <DependentUpon>CreateJoinLobbyView.xaml</DependentUpon>
+    <Compile Include="Lobby\LobbyBrowserView.xaml.cs">
+      <DependentUpon>LobbyBrowserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lobby\LobbyView.xaml.cs">
       <DependentUpon>LobbyView.xaml</DependentUpon>
@@ -150,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Lobby\CreateJoinLobbyView.xaml">
+    <Page Include="Lobby\LobbyBrowserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
