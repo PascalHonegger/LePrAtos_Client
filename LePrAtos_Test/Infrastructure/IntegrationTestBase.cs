@@ -1,9 +1,10 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
 using NUnit.Framework;
 
-namespace LePrAtos_Test
+namespace LePrAtos_Test.Infrastructure
 {
 	[TestFixture, Category("IntegrationTest")]
 	public abstract class IntegrationTestBase

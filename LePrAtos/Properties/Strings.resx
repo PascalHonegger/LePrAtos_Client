@@ -135,9 +135,6 @@
   <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
     <value>LobbyBrowser_NumberPlayers</value>
   </data>
-  <data name="LobbyBrowser_Password" xml:space="preserve">
-    <value>LobbyBrowser_Password</value>
-  </data>
   <data name="LoginView_Login" xml:space="preserve">
     <value>LoginView_Login</value>
   </data>

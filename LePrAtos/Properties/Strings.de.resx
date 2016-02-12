@@ -129,9 +129,6 @@
   <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
     <value>Mirglieder</value>
   </data>
-  <data name="LobbyBrowser_Password" xml:space="preserve">
-    <value>Passwort</value>
-  </data>
   <data name="LobbyView_Remove" xml:space="preserve">
     <value>Aus Lobby entfernen</value>
   </data>

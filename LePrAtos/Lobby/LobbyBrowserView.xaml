@@ -16,7 +16,7 @@
 			<ColumnDefinition Width="3*"/>
 			<ColumnDefinition Width="1*"/>
 		</Grid.ColumnDefinitions>
-		<TextBlock x:Name="Box" Grid.Column="1" Grid.Row="0" />
+		<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Username}" />
 
 		<Border Grid.Column="1" Grid.Row="1" BorderBrush="DarkSlateGray" BorderThickness="3" Margin="1,0,1,0">
 			<Grid>
@@ -27,19 +27,17 @@
 				</Grid.RowDefinitions>
 				<Button Margin="10,0" Height="50" Grid.Row="0" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}" Command="{Binding CreateLobbyCommand}"/>
 				<Button Margin="10,0" Height="50" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"/>
-				<Button Margin="10,0" Height="50" Grid.Row="2" Content="{x:Static properties:Strings.LobbyBrowser_Password}"/>
+				<TextBox Margin="10,0" Height="50" Grid.Row="2" Text="{Binding LobbyPassword}"/>
 			</Grid>
 		</Border>
 
-
-		<ListView Grid.Column="0" Grid.Row="1">
+		<ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding AwailableLobbies}">
 			<ListView.View>
 				<GridView>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}"/>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}" />
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}" DisplayMemberBinding="{Binding LobbyName}"/>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}" DisplayMemberBinding="{Binding MemberCount}"/>
 				</GridView>
 			</ListView.View>
-
 		</ListView>
 	</Grid>
 </Window>

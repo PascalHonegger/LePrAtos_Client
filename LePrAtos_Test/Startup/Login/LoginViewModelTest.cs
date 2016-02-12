@@ -3,6 +3,7 @@
 // Author: Honegger, Pascal (ext)
 
 using LePrAtos.Startup.Login;
+using LePrAtos_Test.Infrastructure;
 using NUnit.Framework;
 
 namespace LePrAtos_Test.Startup.Login

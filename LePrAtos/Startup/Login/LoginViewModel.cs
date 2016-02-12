@@ -12,15 +12,17 @@ using System.Windows.Controls;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
+using LePrAtos.Service_References;
 using LePrAtos.Service_References.GameManagerService;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Unity;
 
 namespace LePrAtos.Startup.Login
 {
 	/// <summary>
 	///     ViewModel für <see cref="LoginView" />
 	/// </summary>
-	public sealed class LoginViewModel : ViewModelBase, IRequestDialogCloseViewModel
+	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private string _username = string.Empty;
@@ -102,16 +104,24 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		/// Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
-		public EventHandler RequestDialogCloseEventHandler { get; set; }
+		public EventHandler RequestWindowCloseEvent { get; set; }
 
 		private async void Login(PasswordBox passwordBox)
 		{
 			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
+			
+			//TODO Use
 			var response = await client.loginAsync(Username);
-			var lobbyBrowser = new LobbyBrowserView(response.Body.loginReturn);
+
+			CurrentSession.Player = new PlayerViewModel();
+
+			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
+
+			var lobbyBrowser = new LobbyBrowserView(lobbyBrowserViewModel);
+
 			lobbyBrowser.Show();
 
-			RequestDialogCloseEventHandler.Invoke(this, null);
+			RequestWindowCloseEvent.Invoke(this, null);
 		}
 	}
 }

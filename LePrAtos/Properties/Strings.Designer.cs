@@ -97,15 +97,6 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LobbyBrowser_Password.
-        /// </summary>
-        public static string LobbyBrowser_Password {
-            get {
-                return ResourceManager.GetString("LobbyBrowser_Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to LobbyView_Remove.
         /// </summary>
         public static string LobbyView_Remove {

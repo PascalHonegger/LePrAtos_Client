@@ -3,19 +3,37 @@
 // Author: Honegger, Pascal (ext)
 
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
+using LePrAtos.Infrastructure;
+using LePrAtos.Service_References;
 
 namespace LePrAtos.Lobby
 {
 	/// <summary>
 	/// ViewModel für <see cref="LobbyView"/>
 	/// </summary>
-	public class LobbyViewModel
+	[Export(typeof(LobbyViewModel))]
+	public class LobbyViewModel : ViewModelBase
 	{
 		/// <summary>
 		/// Die Spieler in der jetzigen Lobby
 		/// </summary>
-		public ObservableCollection<string> Players { get; } = new ObservableCollection<string>();
-
+		public ObservableCollection<PlayerViewModel> Players { get; } = new ObservableCollection<PlayerViewModel>
+		{
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel(),
+			new PlayerViewModel()
+		};
 
 		//TODO RemoveFromLobby implementieren
 		/*

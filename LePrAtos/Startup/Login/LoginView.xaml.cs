@@ -14,11 +14,11 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LoginView(IRequestDialogCloseViewModel dataContext)
+		public LoginView(IRequestWindowClose dataContext)
 		{
 			InitializeComponent();
 			DataContext = dataContext;
-			dataContext.RequestDialogCloseEventHandler += (sender, e) => Close();
+			dataContext.RequestWindowCloseEvent += (sender, e) => Close();
 		}
 	}
 }

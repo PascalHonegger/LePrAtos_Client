@@ -19,7 +19,10 @@
 	    <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Players}" >
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Text="{Binding }"/>
+					<DockPanel LastChildFill="True">
+						<Button Content="X" DockPanel.Dock="Left"/>
+						<TextBlock Text="{Binding Username}" DockPanel.Dock="Left"/>
+					</DockPanel>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>

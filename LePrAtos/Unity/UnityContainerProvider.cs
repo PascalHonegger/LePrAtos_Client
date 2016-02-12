@@ -2,6 +2,7 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 using LePrAtos.Infrastructure;
+using LePrAtos.Lobby;
 using LePrAtos.Startup.Login;
 using Microsoft.Practices.Unity;
 
@@ -26,6 +27,8 @@ namespace LePrAtos.Unity
 		{
 			//TODO Fancy
 			Container.RegisterType<ISession, Session>(new ExternallyControlledLifetimeManager());
+			Container.RegisterType<LobbyBrowserViewModel, LobbyBrowserViewModel>();
+			Container.RegisterType<LobbyViewModel, LobbyViewModel>();
 		}
 	}
 }

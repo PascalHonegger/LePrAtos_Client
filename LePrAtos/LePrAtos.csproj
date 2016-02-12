@@ -144,7 +144,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\IRequestDialogCloseViewModel.cs" />
+    <Compile Include="Infrastructure\IRequestWindowClose.cs" />
+    <Compile Include="Service References\GameViewModel.cs" />
+    <Compile Include="Service References\PlayerViewModel.cs" />
     <Compile Include="Unity\UnityContainerProvider.cs" />
     <Compile Include="Infrastructure\ViewModelBase.cs" />
     <Page Include="Dialogs\CustomDialog.xaml">
@@ -199,6 +201,7 @@
     <EmbeddedResource Include="Properties\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
