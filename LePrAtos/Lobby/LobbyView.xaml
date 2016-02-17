@@ -7,27 +7,47 @@
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
         Title="Lobby" d:DataContext="{d:DesignInstance local:LobbyViewModel}">
-    <Grid>
-	    <Grid.RowDefinitions>
-		    <RowDefinition Height="6*"/>
-		    <RowDefinition Height="*"/>
-	    </Grid.RowDefinitions>
-	    <Grid.ColumnDefinitions>
-		    <ColumnDefinition Width="4*"/>
-		    <ColumnDefinition Width="*"/>
-	    </Grid.ColumnDefinitions>
-	    <ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Players}" >
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<DockPanel LastChildFill="True">
-						<Button Content="X" DockPanel.Dock="Left"/>
-						<TextBlock Text="{Binding Username}" DockPanel.Dock="Left"/>
-					</DockPanel>
-				</DataTemplate>
-			</ListView.ItemTemplate>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="6*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="5*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Players}" HorizontalAlignment="Stretch">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Owner}">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="*" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Username}" DisplayMemberBinding="{Binding Username}"/>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Remove}">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<Button Content="X" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Ready}">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="✓" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
+				</GridView>
+			</ListView.View>
 		</ListView>
 
-		<TextBlock Text="Hier könnte ein Chat leben"  Grid.Column="0" Grid.Row="1"/>
-		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}"/>
-    </Grid>
+		<TextBlock Text="Hier könnte ein Chat leben" Grid.Column="0" Grid.Row="1" />
+		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" />
+		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" />
+	</Grid>
 </Window>

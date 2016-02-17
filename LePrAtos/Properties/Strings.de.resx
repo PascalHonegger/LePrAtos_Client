@@ -127,13 +127,25 @@
     <value>Lobby beitreten</value>
   </data>
   <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
-    <value>Mirglieder</value>
+    <value>Mitglieder</value>
+  </data>
+  <data name="LobbyView_LeaveLobby" xml:space="preserve">
+    <value>Lobby verlassen</value>
+  </data>
+  <data name="LobbyView_Owner" xml:space="preserve">
+    <value>Besitzer</value>
+  </data>
+  <data name="LobbyView_Ready" xml:space="preserve">
+    <value>Ist bereit</value>
   </data>
   <data name="LobbyView_Remove" xml:space="preserve">
     <value>Aus Lobby entfernen</value>
   </data>
   <data name="LobbyView_StartGame" xml:space="preserve">
     <value>Spiel starten</value>
+  </data>
+  <data name="LobbyView_Username" xml:space="preserve">
+    <value>Benutzername</value>
   </data>
   <data name="LoginView_Login" xml:space="preserve">
     <value>Anmelden</value>

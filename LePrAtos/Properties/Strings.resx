@@ -144,4 +144,16 @@
   <data name="LoginView_Username" xml:space="preserve">
     <value>LoginView_Username</value>
   </data>
+  <data name="LobbyView_LeaveLobby" xml:space="preserve">
+    <value>LobbyView_LeaveLobby</value>
+  </data>
+  <data name="LobbyView_Owner" xml:space="preserve">
+    <value>LobbyView_Owner</value>
+  </data>
+  <data name="LobbyView_Ready" xml:space="preserve">
+    <value>LobbyView_Ready</value>
+  </data>
+  <data name="LobbyView_Username" xml:space="preserve">
+    <value>LobbyView_Username</value>
+  </data>
 </root>

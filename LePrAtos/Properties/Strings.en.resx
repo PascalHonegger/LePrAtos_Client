@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LobbyView_Remove" xml:space="preserve">
-    <value>Remove from Lobby</value>
+    <value>Remove from lobby</value>
   </data>
   <data name="LobbyView_StartGame" xml:space="preserve">
     <value>Start game</value>
   </data>
   <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
-    <value>Create a new Lobby</value>
+    <value>Create a new lobby</value>
   </data>
   <data name="LobbyBrowser_GameName" xml:space="preserve">
-    <value>Player Name</value>
+    <value>Lobby name</value>
   </data>
   <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
-    <value>Join Lobby</value>
+    <value>Join lobby</value>
   </data>
   <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
     <value>Members</value>
@@ -142,6 +142,18 @@
     <value>Password</value>
   </data>
   <data name="LoginView_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="LobbyView_LeaveLobby" xml:space="preserve">
+    <value>Leave lobby</value>
+  </data>
+  <data name="LobbyView_Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="LobbyView_Ready" xml:space="preserve">
+    <value>Is Ready</value>
+  </data>
+  <data name="LobbyView_Username" xml:space="preserve">
     <value>Username</value>
   </data>
 </root>

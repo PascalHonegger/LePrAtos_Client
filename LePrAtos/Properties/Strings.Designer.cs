@@ -97,6 +97,33 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyView_LeaveLobby.
+        /// </summary>
+        public static string LobbyView_LeaveLobby {
+            get {
+                return ResourceManager.GetString("LobbyView_LeaveLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_Owner.
+        /// </summary>
+        public static string LobbyView_Owner {
+            get {
+                return ResourceManager.GetString("LobbyView_Owner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_Ready.
+        /// </summary>
+        public static string LobbyView_Ready {
+            get {
+                return ResourceManager.GetString("LobbyView_Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyView_Remove.
         /// </summary>
         public static string LobbyView_Remove {
@@ -111,6 +138,15 @@ namespace LePrAtos.Properties {
         public static string LobbyView_StartGame {
             get {
                 return ResourceManager.GetString("LobbyView_StartGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_Username.
+        /// </summary>
+        public static string LobbyView_Username {
+            get {
+                return ResourceManager.GetString("LobbyView_Username", resourceCulture);
             }
         }
         

@@ -31,7 +31,7 @@
 			</Grid>
 		</Border>
 
-		<ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding AwailableLobbies}">
+		<ListView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding AwailableLobbies}">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}" DisplayMemberBinding="{Binding LobbyName}"/>
