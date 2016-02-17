@@ -3,6 +3,7 @@
 // Author: Honegger, Pascal (ext)
 
 using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 using LePrAtos.Infrastructure;
 
@@ -11,6 +12,7 @@ namespace LePrAtos.Service_References
 	/// <summary>
 	/// ViewModel für einen Spieler
 	/// </summary>
+	[Export(typeof(PlayerViewModel))]
 	public class PlayerViewModel : ViewModelBase
 	{
 		/// <summary>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Controls;
 using LePrAtos.Infrastructure;
@@ -65,7 +66,7 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Ausgewählte Sprache
 		/// </summary>
-		public static string SelectedLanguage
+		public string SelectedLanguage
 		{
 			get { return Settings.Default.SelectedCulture; }
 			set
@@ -75,6 +76,8 @@ namespace LePrAtos.Startup.Login
 
 				Strings.Culture = new CultureInfo(value);
 				Thread.CurrentThread.CurrentUICulture = new CultureInfo(value);
+
+				RequestWindowCloseEvent.Invoke(new LoginView(this), null);
 			}
 		}
 

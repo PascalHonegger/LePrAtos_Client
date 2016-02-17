@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using LePrAtos.Infrastructure;
 
@@ -12,12 +13,13 @@ namespace LePrAtos.Service_References
 	/// <summary>
 	/// ViewModel für einen Spieler
 	/// </summary>
+	[Export(typeof(GameViewModel))]
 	public class GameViewModel : ViewModelBase
 	{
 		/// <summary>
 		/// Alle Mitglieder dieser Lobby
 		/// </summary>
-		public ObservableCollection<PlayerViewModel> Members => new ObservableCollection<PlayerViewModel>
+		private ObservableCollection<PlayerViewModel> Members => new ObservableCollection<PlayerViewModel>
 		{
 			new PlayerViewModel(),
 			new PlayerViewModel(),
@@ -26,10 +28,12 @@ namespace LePrAtos.Service_References
 		};
 
 		/// <summary>
-		/// Anzahl teilnehmer
-		/// TODO: Format anzahl/max => 3/10
+		/// Anzahl <see cref="Members"/> / maximum <see cref="MaxMemberCount"/> 
 		/// </summary>
-		public int MemberCount => Members.Count;
+		public string MemberCount => $"{Members.Count} / {MaxMemberCount}";
+
+		//TODO: Implementierung Server & Client
+		private int MaxMemberCount => 13;
 
 		/// <summary>
 		/// Lobby ID
