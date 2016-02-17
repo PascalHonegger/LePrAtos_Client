@@ -5,8 +5,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using LePrAtos.Properties;
-using LePrAtos.Unity;
 using Microsoft.Practices.Unity;
+using UnityContainer;
 
 namespace LePrAtos.Infrastructure
 {
@@ -22,10 +22,9 @@ namespace LePrAtos.Infrastructure
 		protected ISession CurrentSession { get; set; }
 
 		/// <summary>
-		///     Die jetzige Instanz der Session
+		///     Der UnityContainer
 		/// </summary>
-		[Microsoft.Practices.Unity.Dependency]
-		protected IUnityContainer Container => UnityContainerProvider.Container;
+		protected static IUnityContainer Container => ContainerProvider.Container;
 
 		/// <summary>
 		///     Tritt ein, wenn sich ein Eigenschaftswert ändert.

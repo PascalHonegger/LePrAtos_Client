@@ -10,8 +10,8 @@ using LePrAtos.Dialogs;
 using LePrAtos.Infrastructure;
 using LePrAtos.Properties;
 using LePrAtos.Startup.Login;
-using LePrAtos.Unity;
 using Microsoft.Practices.Unity;
+using UnityContainer;
 
 namespace LePrAtos
 {
@@ -26,7 +26,7 @@ namespace LePrAtos
 			Strings.Culture = culture;
 			Thread.CurrentThread.CurrentUICulture = culture;
 
-			UnityContainerProvider.InitializeContainer();
+			new ScannerModule().Initialize();
 
 			SelectEnvironment();
 		}
@@ -66,9 +66,9 @@ namespace LePrAtos
 
 		private static void StartApplication(string configuration)
 		{
-			UnityContainerProvider.Container.Resolve<ISession>().Endpointconfiguration = configuration;
+			ContainerProvider.Container.Resolve<ISession>().Endpointconfiguration = configuration;
 
-			var loginWindow = new LoginView(UnityContainerProvider.Container.Resolve<LoginViewModel>());
+			var loginWindow = new LoginView(ContainerProvider.Container.Resolve<LoginViewModel>());
 
 			loginWindow.Show();
 		}

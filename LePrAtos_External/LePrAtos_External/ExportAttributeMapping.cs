@@ -81,7 +81,7 @@ namespace UnityContainer
 	{
 		private static Assembly GetAssembliesInBasePath()
 		{
-			return Assembly.GetExecutingAssembly();
+			return Assembly.GetEntryAssembly();
 		}
 
 		public override IEnumerable<Type> GetTypes()
@@ -136,7 +136,4 @@ namespace UnityContainer
 			}*/
 		}
 	}
-
-
-	//TODO HowToStart: new ScannerModule().Initialize();
 }

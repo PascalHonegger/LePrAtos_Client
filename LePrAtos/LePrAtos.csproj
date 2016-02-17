@@ -105,6 +105,10 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UnityContainer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\UnityContainer.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -147,7 +151,6 @@
     <Compile Include="Infrastructure\IRequestWindowClose.cs" />
     <Compile Include="Service References\GameViewModel.cs" />
     <Compile Include="Service References\PlayerViewModel.cs" />
-    <Compile Include="Unity\UnityContainerProvider.cs" />
     <Compile Include="Infrastructure\ViewModelBase.cs" />
     <Page Include="Dialogs\CustomDialog.xaml">
       <SubType>Designer</SubType>
