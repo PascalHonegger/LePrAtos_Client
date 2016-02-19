@@ -162,4 +162,10 @@
   <data name="LoginView_SaveLogin" xml:space="preserve">
     <value>LoginView_SaveLogin</value>
   </data>
+  <data name="LobbyBrowser_HasPassword" xml:space="preserve">
+    <value>LobbyBrowser_HasPassword</value>
+  </data>
+  <data name="LobbyBrowser_Logout" xml:space="preserve">
+    <value>LobbyBrowser_Logout</value>
+  </data>
 </root>

@@ -6,7 +6,7 @@
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
         xmlns:localization="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="{x:Static localization:Strings.LoginView_Login}" MinHeight="300" MinWidth="500" Height="300" Width="500" d:DataContext="{d:DesignInstance login:LoginViewModel}">
+        Title="{x:Static localization:Strings.LoginView_Login}" MinHeight="300" MinWidth="500" Height="300" Width="500" d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
 
 	<Grid Margin="5" DockPanel.Dock="Bottom">
 		<Grid.ColumnDefinitions>

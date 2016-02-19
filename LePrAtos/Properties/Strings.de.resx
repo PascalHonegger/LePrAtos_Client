@@ -123,8 +123,14 @@
   <data name="LobbyBrowser_GameName" xml:space="preserve">
     <value>Spieler Name</value>
   </data>
+  <data name="LobbyBrowser_HasPassword" xml:space="preserve">
+    <value>Lobby verfügt über ein Passwort</value>
+  </data>
   <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
     <value>Lobby beitreten</value>
+  </data>
+  <data name="LobbyBrowser_Logout" xml:space="preserve">
+    <value>Abmelden</value>
   </data>
   <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
     <value>Mitglieder</value>

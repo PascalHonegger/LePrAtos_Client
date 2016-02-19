@@ -26,10 +26,10 @@ namespace LePrAtos.Lobby
 		public string MemberCount => $"{Members.Count} / {MaxMemberCount}";
 
 		//TODO: Implementierung Server & Client
-		private int MaxMemberCount => 13;
+		private static int MaxMemberCount => 13;
 
 		/// <summary>
-		///     Lobby ID
+		///     Lobby Name
 		/// </summary>
 		public string LobbyName { get; set; }
 
@@ -37,5 +37,10 @@ namespace LePrAtos.Lobby
 		///     Lobby ID
 		/// </summary>
 		public string LobbyId { get; set; }
+
+		/// <summary>
+		///     Lobby verfügt über ein Passwort
+		/// </summary>
+		public bool HasLobbyPassword { get; set; }
 	}
 }

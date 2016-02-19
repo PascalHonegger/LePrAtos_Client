@@ -79,11 +79,29 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_HasPassword.
+        /// </summary>
+        public static string LobbyBrowser_HasPassword {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_HasPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyBrowser_JoinLobby.
         /// </summary>
         public static string LobbyBrowser_JoinLobby {
             get {
                 return ResourceManager.GetString("LobbyBrowser_JoinLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_Logout.
+        /// </summary>
+        public static string LobbyBrowser_Logout {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_Logout", resourceCulture);
             }
         }
         

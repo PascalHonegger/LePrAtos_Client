@@ -19,7 +19,7 @@ namespace LePrAtos.Infrastructure
 		///     Die jetzige Instanz der Session
 		/// </summary>
 		[Microsoft.Practices.Unity.Dependency]
-		protected ISession CurrentSession { get; set; }
+		public ISession CurrentSession { get; set; }
 
 		/// <summary>
 		///     Der UnityContainer

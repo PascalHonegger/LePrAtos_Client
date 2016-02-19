@@ -6,7 +6,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
+using LePrAtos.Properties;
 using LePrAtos.Service_References;
+using LePrAtos.Startup.Login;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 
@@ -59,6 +61,8 @@ namespace LePrAtos.Lobby
 
 			lobby2.LobbyName = "Example 2";
 
+			lobby2.HasLobbyPassword = true;
+
 			lobby2.Members.Add(player1);
 			lobby2.Members.Add(player2);
 			lobby2.Members.Add(player3);
@@ -68,7 +72,9 @@ namespace LePrAtos.Lobby
 
 		private ICommand _createLobbyCommand;
 		private DelegateCommand _joinLobbyCommand;
+		private ICommand _logoutCommand;
 		private LobbyViewModel _seletedLobby;
+		private string _lobbyPassword;
 
 		/// <summary>
 		/// Command zum erstellen einer Lobby
@@ -80,9 +86,33 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public DelegateCommand JoinLobbyCommand => _joinLobbyCommand ?? (_joinLobbyCommand = new DelegateCommand(JoinLobby, CanJoinLobby));
 
+		/// <summary>
+		/// Command zum Abmelden des angemeldeten Spielers
+		/// </summary>
+		public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new DelegateCommand(Logout));
+
+		private void Logout()
+		{
+			var preSelectedUsername = CurrentSession.Player.Username;
+
+			CurrentSession.Player = null;
+
+			Settings.Default.SavedUser = null;
+
+			var loginViewModel = Container.Resolve<LoginViewModel>();
+
+			loginViewModel.Username = preSelectedUsername;
+
+			var loginView = new LoginView(loginViewModel);
+
+			loginView.Show();
+
+			RequestWindowCloseEvent(this, null);
+		}
+
 		private bool CanJoinLobby()
 		{
-			return SeletedLobby != null;
+			return SeletedLobby != null && (SeletedLobby.HasLobbyPassword && !string.IsNullOrEmpty(LobbyPassword) || !SeletedLobby.HasLobbyPassword);
 		}
 
 		private void JoinLobby()
@@ -118,7 +148,19 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		/// Passwort, welches für das beitreten in die Lobby verwendet wird
 		/// </summary>
-		public string LobbyPassword { get; set; }
+		public string LobbyPassword
+		{
+			get { return _lobbyPassword; }
+			set
+			{
+				if (Equals(_lobbyPassword, value))
+				{
+					return;
+				}
+				_lobbyPassword = value;
+				JoinLobbyCommand.RaiseCanExecuteChanged();
+			}
+		}
 
 		/// <summary>
 		/// Die ausgewählte Lobby
