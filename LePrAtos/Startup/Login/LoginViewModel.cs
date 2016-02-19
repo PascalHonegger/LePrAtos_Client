@@ -10,11 +10,11 @@ using System.Linq;
 using System.Resources;
 using System.Threading;
 using System.Windows.Controls;
+using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
 using LePrAtos.Service_References;
-using LePrAtos.Service_References.GameManagerService;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 
@@ -122,14 +122,11 @@ namespace LePrAtos.Startup.Login
 		{
 			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
 
-			//TODO Use
-			//var response = await client.loginAsync(Username);
+			var response = await client.loginAsync(Username);
 
 			var player = Container.Resolve<PlayerViewModel>();
 
-			player.PlayerId = "Example xy";
-
-			player.Username = "Exmaple xy";
+			player.Player = response.@return;
 
 			CurrentSession.Player = player;
 

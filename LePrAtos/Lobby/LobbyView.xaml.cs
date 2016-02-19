@@ -2,6 +2,8 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using LePrAtos.Infrastructure;
+
 namespace LePrAtos.Lobby
 {
 	/// <summary>
@@ -12,10 +14,12 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public LobbyView(LobbyViewModel viewModel)
+		public LobbyView(IRequestWindowClose viewModel)
 		{
 			InitializeComponent();
 			DataContext = viewModel;
+
+			viewModel.RequestWindowCloseEvent += (sender, e) => Close();
 		}
 	}
 }

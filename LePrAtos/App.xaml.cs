@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using LePrAtos.Dialogs;
+using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
@@ -81,9 +82,11 @@ namespace LePrAtos
 
 				var playerViewModel = ContainerProvider.Container.Resolve<PlayerViewModel>();
 
-				playerViewModel.PlayerId = Settings.Default.SavedUser;
-
-				playerViewModel.Username = Settings.Default.SavedUser;
+				playerViewModel.Player = new player
+				{
+					username = Settings.Default.SavedUser,
+					uuid = Settings.Default.SavedUser
+				};
 
 				session.Player = playerViewModel;
 

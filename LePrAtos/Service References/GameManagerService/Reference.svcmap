@@ -19,10 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://tm-tomcat.ch902.my-it-solutions.net/LePrAtos/services/GameManager?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/LePrAtos/GameManager?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GameManager.wsdl" MetadataType="Wsdl" ID="208c5c94-5712-4bf9-9de6-25358d578418" SourceId="1" SourceUrl="http://tm-tomcat.ch902.my-it-solutions.net/LePrAtos/services/GameManager?wsdl" />
+    <MetadataFile FileName="GameManagerImplService.wsdl" MetadataType="Wsdl" ID="4f364fe0-fb9c-46d7-8024-e046841b3b23" SourceId="1" SourceUrl="http://localhost:8080/LePrAtos/GameManager?wsdl" />
+    <MetadataFile FileName="GameManager.xsd" MetadataType="Schema" ID="f169930d-da64-44d1-8fe6-d18693be03ac" SourceId="1" SourceUrl="http://localhost:8080/LePrAtos/GameManager?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

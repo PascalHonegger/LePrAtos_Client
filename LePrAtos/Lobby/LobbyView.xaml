@@ -20,7 +20,7 @@
 		<ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Members}" HorizontalAlignment="Stretch">
 			<ListView.View>
 				<GridView>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Owner}">
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Owner}" >
 						<GridViewColumn.CellTemplate>
 							<DataTemplate>
 								<TextBlock Text="*" />
@@ -48,6 +48,6 @@
 
 		<TextBlock Text="Hier könnte ein Chat leben" Grid.Column="0" Grid.Row="1" />
 		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" />
-		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" />
+		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" Command="{Binding LeaveLobbyCommand}"/>
 	</Grid>
 </Window>

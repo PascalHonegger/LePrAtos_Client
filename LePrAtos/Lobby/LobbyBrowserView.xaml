@@ -7,11 +7,6 @@
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
         Title="LobbyBrowserView" Height="400" Width="700" d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
-	<Window.Resources>
-		<DataTemplate x:Key="HasLobbyPassword" DataType="local:LobbyViewModel">
-			<Image Source="../Resources/lock.png" Visibility="{Binding HasLobbyPassword, Converter={StaticResource BoolToVis}}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" />
-		</DataTemplate>
-	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="1*"/>
@@ -32,11 +27,18 @@
 			</Grid.RowDefinitions>
 			<Button Margin="10" Grid.Row="0" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}" Command="{Binding CreateLobbyCommand}"/>
 			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}" Command="{Binding JoinLobbyCommand}"/>
-			<TextBox Margin="10" Grid.Row="2" >
-				<TextBox.Text>
-					<Binding Path="LobbyPassword" UpdateSourceTrigger="PropertyChanged" />
-				</TextBox.Text>
-			</TextBox>
+			<Grid Margin="10" Grid.Row="2">
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Label Target="{Binding ElementName=LobbyPassword}" Content="{x:Static properties:Strings.LobbyView_LobbyPassword}" VerticalAlignment="Center"/>
+				<TextBox Name="LobbyPassword" Grid.Row="1" >
+					<TextBox.Text>
+						<Binding Path="LobbyPassword" UpdateSourceTrigger="PropertyChanged" />
+					</TextBox.Text>
+				</TextBox>
+			</Grid>
 
 
 			<Button Margin="10" Grid.Row="3" Content="{x:Static properties:Strings.LobbyBrowser_Logout}" Command="{Binding LogoutCommand}"/>
@@ -47,7 +49,13 @@
 				<GridView>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}" DisplayMemberBinding="{Binding LobbyName}"/>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}" DisplayMemberBinding="{Binding MemberCount}"/>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_HasPassword}" CellTemplate="{StaticResource HasLobbyPassword}"/>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_HasPassword}">
+						<GridViewColumn.CellTemplate>
+							<DataTemplate DataType="local:LobbyViewModel">
+								<Image Source="../Resources/lock.png" Visibility="{Binding HasLobbyPassword, Converter={StaticResource BoolToVis}}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" />
+							</DataTemplate>
+						</GridViewColumn.CellTemplate>
+					</GridViewColumn>
 				</GridView>
 			</ListView.View>
 		</ListView>

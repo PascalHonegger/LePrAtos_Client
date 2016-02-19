@@ -8,164 +8,112 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LePrAtos.Service_References.GameManagerService {
+namespace LePrAtos.GameManagerService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://webservices.org", ConfigurationName="GameManagerService.GameManager")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://webservices.org/", ConfigurationName="GameManagerService.GameManager")]
     public interface GameManager {
         
-        // CODEGEN: Generating message contract since element name username from namespace http://webservices.org is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        loginResponse login(loginRequest request);
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/loginRequest", ReplyAction="http://webservices.org/GameManager/loginResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.loginResponse login(LePrAtos.GameManagerService.loginRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        System.Threading.Tasks.Task<loginResponse> loginAsync(loginRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/loginRequest", ReplyAction="http://webservices.org/GameManager/loginResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> loginAsync(LePrAtos.GameManagerService.loginRequest request);
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservices.org/")]
+    public partial class player : object, System.ComponentModel.INotifyPropertyChanged {
         
-        // CODEGEN: Generating message contract since element name logoutReturn from namespace http://webservices.org is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        logoutResponse logout(logoutRequest request);
+        private string usernameField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
-        System.Threading.Tasks.Task<logoutResponse> logoutAsync(logoutRequest request);
+        private string uuidField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        public string username {
+            get {
+                return this.usernameField;
+            }
+            set {
+                this.usernameField = value;
+                this.RaisePropertyChanged("username");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string uuid {
+            get {
+                return this.uuidField;
+            }
+            set {
+                this.uuidField = value;
+                this.RaisePropertyChanged("uuid");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="login", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
     public partial class loginRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="login", Namespace="http://webservices.org", Order=0)]
-        public loginRequestBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string arg0;
         
         public loginRequest() {
         }
         
-        public loginRequest(loginRequestBody Body) {
-            this.Body = Body;
+        public loginRequest(string arg0) {
+            this.arg0 = arg0;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.org")]
-    public partial class loginRequestBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string username;
-        
-        public loginRequestBody() {
-        }
-        
-        public loginRequestBody(string username) {
-            this.username = username;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="loginResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
     public partial class loginResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="loginResponse", Namespace="http://webservices.org", Order=0)]
-        public loginResponseBody Body;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public LePrAtos.GameManagerService.player @return;
         
         public loginResponse() {
         }
         
-        public loginResponse(loginResponseBody Body) {
-            this.Body = Body;
+        public loginResponse(LePrAtos.GameManagerService.player @return) {
+            this.@return = @return;
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface GameManagerChannel : LePrAtos.GameManagerService.GameManager, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.org")]
-    public partial class loginResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string loginReturn;
-        
-        public loginResponseBody() {
-        }
-        
-        public loginResponseBody(string loginReturn) {
-            this.loginReturn = loginReturn;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class logoutRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="logout", Namespace="http://webservices.org", Order=0)]
-        public logoutRequestBody Body;
-        
-        public logoutRequest() {
-        }
-        
-        public logoutRequest(logoutRequestBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
-    public partial class logoutRequestBody {
-        
-        public logoutRequestBody() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class logoutResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="logoutResponse", Namespace="http://webservices.org", Order=0)]
-        public logoutResponseBody Body;
-        
-        public logoutResponse() {
-        }
-        
-        public logoutResponse(logoutResponseBody Body) {
-            this.Body = Body;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://webservices.org")]
-    public partial class logoutResponseBody {
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string logoutReturn;
-        
-        public logoutResponseBody() {
-        }
-        
-        public logoutResponseBody(string logoutReturn) {
-            this.logoutReturn = logoutReturn;
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface GameManagerChannel : GameManager, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameManagerClient : System.ServiceModel.ClientBase<GameManager>, GameManager {
+    public partial class GameManagerClient : System.ServiceModel.ClientBase<LePrAtos.GameManagerService.GameManager>, LePrAtos.GameManagerService.GameManager {
         
         public GameManagerClient() {
         }
@@ -187,51 +135,26 @@ namespace LePrAtos.Service_References.GameManagerService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        loginResponse GameManager.login(loginRequest request) {
+        LePrAtos.GameManagerService.loginResponse LePrAtos.GameManagerService.GameManager.login(LePrAtos.GameManagerService.loginRequest request) {
             return base.Channel.login(request);
         }
         
-        public string login(string username) {
-            loginRequest inValue = new loginRequest();
-            inValue.Body = new loginRequestBody();
-            inValue.Body.username = username;
-            loginResponse retVal = ((GameManager)(this)).login(inValue);
-            return retVal.Body.loginReturn;
+        public LePrAtos.GameManagerService.player login(string arg0) {
+            LePrAtos.GameManagerService.loginRequest inValue = new LePrAtos.GameManagerService.loginRequest();
+            inValue.arg0 = arg0;
+            LePrAtos.GameManagerService.loginResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).login(inValue);
+            return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<loginResponse> GameManager.loginAsync(loginRequest request) {
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> LePrAtos.GameManagerService.GameManager.loginAsync(LePrAtos.GameManagerService.loginRequest request) {
             return base.Channel.loginAsync(request);
         }
         
-        public System.Threading.Tasks.Task<loginResponse> loginAsync(string username) {
-            loginRequest inValue = new loginRequest();
-            inValue.Body = new loginRequestBody();
-            inValue.Body.username = username;
-            return ((GameManager)(this)).loginAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        logoutResponse GameManager.logout(logoutRequest request) {
-            return base.Channel.logout(request);
-        }
-        
-        public string logout() {
-            logoutRequest inValue = new logoutRequest();
-            inValue.Body = new logoutRequestBody();
-            logoutResponse retVal = ((GameManager)(this)).logout(inValue);
-            return retVal.Body.logoutReturn;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<logoutResponse> GameManager.logoutAsync(logoutRequest request) {
-            return base.Channel.logoutAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<logoutResponse> logoutAsync() {
-            logoutRequest inValue = new logoutRequest();
-            inValue.Body = new logoutRequestBody();
-            return ((GameManager)(this)).logoutAsync(inValue);
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> loginAsync(string arg0) {
+            LePrAtos.GameManagerService.loginRequest inValue = new LePrAtos.GameManagerService.loginRequest();
+            inValue.arg0 = arg0;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).loginAsync(inValue);
         }
     }
 }

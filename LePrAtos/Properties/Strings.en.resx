@@ -168,4 +168,7 @@
   <data name="LobbyBrowser_Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="LobbyView_LobbyPassword" xml:space="preserve">
+    <value>Lobby password</value>
+  </data>
 </root>

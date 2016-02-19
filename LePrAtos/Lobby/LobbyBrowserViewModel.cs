@@ -1,10 +1,12 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Keller, Alain
+
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
+using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Properties;
 using LePrAtos.Service_References;
@@ -15,34 +17,47 @@ using Microsoft.Practices.Unity;
 namespace LePrAtos.Lobby
 {
 	/// <summary>
-	/// ViewModel für für die Auswahl einer Lobby
+	///     ViewModel für für die Auswahl einer Lobby
 	/// </summary>
-	[Export(typeof(LobbyBrowserViewModel))]
+	[Export(typeof (LobbyBrowserViewModel))]
 	public class LobbyBrowserViewModel : ViewModelBase, IRequestWindowClose
 	{
+		private ICommand _createLobbyCommand;
+		private DelegateCommand _joinLobbyCommand;
+		private string _lobbyPassword;
+		private ICommand _logoutCommand;
+		private LobbyViewModel _seletedLobby;
+
 		/// <summary>
-		/// Constructor
+		///     Constructor
 		/// </summary>
 		public LobbyBrowserViewModel()
 		{
 			//TODO get Lobbies from Server
 
+			var playerViewModel1 = Container.Resolve<PlayerViewModel>();
+			var player1 = new player
+			{
+				uuid = "Example 1",
+				username = "ExmaplePlayer 1"
+			};
+			playerViewModel1.Player = player1;
 
-			var player1 = Container.Resolve<PlayerViewModel>();
+			var playerViewModel2 = Container.Resolve<PlayerViewModel>();
+			var player2 = new player
+			{
+				uuid = "Example 2",
+				username = "ExmaplePlayer 2"
+			};
+			playerViewModel2.Player = player2;
 
-			player1.PlayerId = "Example 1";
-			player1.Username = "ExmaplePlayer 1";
-
-			var player2 = Container.Resolve<PlayerViewModel>();
-
-			player2.PlayerId = "Example 2";
-			player2.Username = "ExmaplePlayer 2";
-
-			var player3 = Container.Resolve<PlayerViewModel>();
-
-			player3.PlayerId = "Example 3";
-			player3.Username = "ExmaplePlayer 3";
-
+			var playerViewModel3 = Container.Resolve<PlayerViewModel>();
+			var player3 = new player
+			{
+				uuid = "Example 3",
+				username = "ExmaplePlayer 3"
+			};
+			playerViewModel3.Player = player3;
 
 			var lobby1 = Container.Resolve<LobbyViewModel>();
 
@@ -50,8 +65,8 @@ namespace LePrAtos.Lobby
 
 			lobby1.LobbyName = "Example 1";
 
-			lobby1.Members.Add(player1);
-			lobby1.Members.Add(player2);
+			lobby1.Members.Add(playerViewModel1);
+			lobby1.Members.Add(playerViewModel1);
 
 			AvailableLobbies.Add(lobby1);
 
@@ -63,33 +78,73 @@ namespace LePrAtos.Lobby
 
 			lobby2.HasLobbyPassword = true;
 
-			lobby2.Members.Add(player1);
-			lobby2.Members.Add(player2);
-			lobby2.Members.Add(player3);
+			lobby2.Members.Add(playerViewModel1);
+			lobby2.Members.Add(playerViewModel2);
+			lobby2.Members.Add(playerViewModel3);
 
 			AvailableLobbies.Add(lobby2);
 		}
 
-		private ICommand _createLobbyCommand;
-		private DelegateCommand _joinLobbyCommand;
-		private ICommand _logoutCommand;
-		private LobbyViewModel _seletedLobby;
-		private string _lobbyPassword;
-
 		/// <summary>
-		/// Command zum erstellen einer Lobby
+		///     Command zum erstellen einer Lobby
 		/// </summary>
 		public ICommand CreateLobbyCommand => _createLobbyCommand ?? (_createLobbyCommand = new DelegateCommand(CreateLobby));
-		
-		/// <summary>
-		/// Command zum beitreten der ausgewählten Lobby
-		/// </summary>
-		public DelegateCommand JoinLobbyCommand => _joinLobbyCommand ?? (_joinLobbyCommand = new DelegateCommand(JoinLobby, CanJoinLobby));
 
 		/// <summary>
-		/// Command zum Abmelden des angemeldeten Spielers
+		///     Command zum beitreten der ausgewählten Lobby
+		/// </summary>
+		public DelegateCommand JoinLobbyCommand
+			=> _joinLobbyCommand ?? (_joinLobbyCommand = new DelegateCommand(JoinLobby, CanJoinLobby));
+
+		/// <summary>
+		///     Command zum Abmelden des angemeldeten Spielers
 		/// </summary>
 		public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new DelegateCommand(Logout));
+
+		/// <summary>
+		///     Alle verfügbaren Lobbies
+		/// </summary>
+		public ObservableCollection<LobbyViewModel> AvailableLobbies { get; } = new ObservableCollection<LobbyViewModel>();
+
+		/// <summary>
+		///     Passwort, welches für das beitreten in die Lobby verwendet wird
+		/// </summary>
+		public string LobbyPassword
+		{
+			get { return _lobbyPassword; }
+			set
+			{
+				if (Equals(_lobbyPassword, value))
+				{
+					return;
+				}
+				_lobbyPassword = value;
+				JoinLobbyCommand.RaiseCanExecuteChanged();
+			}
+		}
+
+		/// <summary>
+		///     Die ausgewählte Lobby
+		/// </summary>
+		public LobbyViewModel SeletedLobby
+		{
+			get { return _seletedLobby; }
+			set
+			{
+				if (Equals(value, _seletedLobby))
+				{
+					return;
+				}
+
+				_seletedLobby = value;
+				JoinLobbyCommand.RaiseCanExecuteChanged();
+			}
+		}
+
+		/// <summary>
+		///     Event, welcher das schliessen des Dialoges anfordert
+		/// </summary>
+		public EventHandler RequestWindowCloseEvent { get; set; }
 
 		private void Logout()
 		{
@@ -112,7 +167,8 @@ namespace LePrAtos.Lobby
 
 		private bool CanJoinLobby()
 		{
-			return SeletedLobby != null && (SeletedLobby.HasLobbyPassword && !string.IsNullOrEmpty(LobbyPassword) || !SeletedLobby.HasLobbyPassword);
+			return SeletedLobby != null &&
+			       (SeletedLobby.HasLobbyPassword && !string.IsNullOrEmpty(LobbyPassword) || !SeletedLobby.HasLobbyPassword);
 		}
 
 		private void JoinLobby()
@@ -133,51 +189,6 @@ namespace LePrAtos.Lobby
 			new LobbyView(lobbyViewModel).Show();
 
 			RequestWindowCloseEvent.Invoke(this, null);
-		}
-
-		/// <summary>
-		///     Event, welcher das schliessen des Dialoges anfordert
-		/// </summary>
-		public EventHandler RequestWindowCloseEvent { get; set; }
-
-		/// <summary>
-		/// Alle verfügbaren Lobbies
-		/// </summary>
-		public ObservableCollection<LobbyViewModel> AvailableLobbies { get; } = new ObservableCollection<LobbyViewModel>();
-
-		/// <summary>
-		/// Passwort, welches für das beitreten in die Lobby verwendet wird
-		/// </summary>
-		public string LobbyPassword
-		{
-			get { return _lobbyPassword; }
-			set
-			{
-				if (Equals(_lobbyPassword, value))
-				{
-					return;
-				}
-				_lobbyPassword = value;
-				JoinLobbyCommand.RaiseCanExecuteChanged();
-			}
-		}
-
-		/// <summary>
-		/// Die ausgewählte Lobby
-		/// </summary>
-		public LobbyViewModel SeletedLobby
-		{
-			get { return _seletedLobby; }
-			set
-			{
-				if (Equals(value, _seletedLobby))
-				{
-					return;
-				}
-
-				_seletedLobby = value;
-				JoinLobbyCommand.RaiseCanExecuteChanged();
-			}
 		}
 	}
 }

@@ -138,6 +138,9 @@
   <data name="LobbyView_LeaveLobby" xml:space="preserve">
     <value>Lobby verlassen</value>
   </data>
+  <data name="LobbyView_LobbyPassword" xml:space="preserve">
+    <value>Lobby Passwort</value>
+  </data>
   <data name="LobbyView_Owner" xml:space="preserve">
     <value>Besitzer</value>
   </data>
