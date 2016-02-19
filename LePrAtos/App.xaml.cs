@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using LePrAtos.Dialogs;
 using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
@@ -112,6 +113,9 @@ namespace LePrAtos
 
 		private void App_OnExit(object sender, ExitEventArgs e)
 		{
+			string session = null;
+			var swag = session.Length;
+
 			try
 			{
 				//Session?.PollingTimer?.Dispose();
@@ -121,6 +125,13 @@ namespace LePrAtos
 			{
 				// ignored
 			}
+		}
+
+		private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+		{
+#if DEBUG
+			MessageBox.Show($"Ein Fehler mit der Meldung {e.Exception.Message} ist aufgetreten. Der Stacktrace für weitere Hilfe: {e.Exception.StackTrace}", "Error Report");
+#endif
 		}
 	}
 }
