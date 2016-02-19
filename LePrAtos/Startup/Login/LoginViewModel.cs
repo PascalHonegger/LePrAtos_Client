@@ -4,10 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Controls;
 using LePrAtos.Infrastructure;
@@ -23,12 +23,13 @@ namespace LePrAtos.Startup.Login
 	/// <summary>
 	///     ViewModel für <see cref="LoginView" />
 	/// </summary>
+	[Export(typeof(LoginViewModel))]
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
-		private DelegateCommand<PasswordBox> _loginCommand;
-		private string _username = string.Empty;
 		private const int UsernameMaxLength = 30;
 		private const int UsernameMinLength = 3;
+		private DelegateCommand<PasswordBox> _loginCommand;
+		private string _username = string.Empty;
 
 		/// <summary>
 		///     Alle möglichen Sprachen
@@ -102,21 +103,41 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Command für die Anmeldung
 		/// </summary>
-		public DelegateCommand<PasswordBox> LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand<PasswordBox>(Login, box => Username.Length >= UsernameMinLength));
+		public DelegateCommand<PasswordBox> LoginCommand
+			=>
+				_loginCommand ??
+				(_loginCommand = new DelegateCommand<PasswordBox>(Login, box => Username.Length >= UsernameMinLength));
 
 		/// <summary>
-		/// Event, welcher das schliessen des Dialoges anfordert
+		///     Bestimmt, ob der user beim nächsten Starten der Application angemeldet bleibt
+		/// </summary>
+		public bool SaveLogin { get; set; }
+
+		/// <summary>
+		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
 
 		private async void Login(PasswordBox passwordBox)
 		{
 			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
-			
-			//TODO Use
-			var response = await client.loginAsync(Username);
 
-			CurrentSession.Player = new PlayerViewModel();
+			//TODO Use
+			//var response = await client.loginAsync(Username);
+
+			var player = Container.Resolve<PlayerViewModel>();
+
+			player.PlayerId = "Example xy";
+
+			player.Username = "Exmaple xy";
+
+			CurrentSession.Player = player;
+
+			if (SaveLogin)
+			{
+				Settings.Default.SavedUser = CurrentSession.Player.PlayerId;
+				Settings.Default.Save();
+			}
 
 			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
 

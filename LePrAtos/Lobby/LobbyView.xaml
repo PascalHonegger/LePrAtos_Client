@@ -17,7 +17,7 @@
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
-		<ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Players}" HorizontalAlignment="Stretch">
+		<ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Members}" HorizontalAlignment="Stretch">
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Owner}">

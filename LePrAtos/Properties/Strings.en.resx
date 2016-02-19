@@ -156,4 +156,10 @@
   <data name="LobbyView_Username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="LoginView_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LoginView_SaveLogin" xml:space="preserve">
+    <value>Keep Me logged in</value>
+  </data>
 </root>

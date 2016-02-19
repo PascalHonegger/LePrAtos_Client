@@ -10,77 +10,32 @@ using LePrAtos.Service_References;
 namespace LePrAtos.Lobby
 {
 	/// <summary>
-	/// ViewModel für <see cref="LobbyView"/>
+	///     ViewModel für <see cref="LobbyView" />
 	/// </summary>
-	[Export(typeof(LobbyViewModel))]
+	[Export(typeof (LobbyViewModel))]
 	public class LobbyViewModel : ViewModelBase
 	{
 		/// <summary>
-		/// Die Spieler in der jetzigen Lobby
+		///     Alle Mitglieder dieser Lobby
 		/// </summary>
-		public ObservableCollection<PlayerViewModel> Players { get; } = new ObservableCollection<PlayerViewModel>
-		{
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel(),
-			new PlayerViewModel()
-		};
+		public ObservableCollection<PlayerViewModel> Members { get; } = new ObservableCollection<PlayerViewModel>();
 
-		//TODO RemoveFromLobby implementieren
-		/*
-		private DelegateCommand<string> _kickFromLobbyCommand;
-		public DelegateCommand<string> KickFromLobbyCommand => _kickFromLobbyCommand ?? (_kickFromLobbyCommand = new DelegateCommand<string>(RemoveFromLobby));
+		/// <summary>
+		///     Anzahl <see cref="Members" /> / maximum <see cref="MaxMemberCount" />
+		/// </summary>
+		public string MemberCount => $"{Members.Count} / {MaxMemberCount}";
 
-		private void RemoveFromLobby(string user)
-		{
-			
-		}*/
+		//TODO: Implementierung Server & Client
+		private int MaxMemberCount => 13;
+
+		/// <summary>
+		///     Lobby ID
+		/// </summary>
+		public string LobbyName { get; set; }
+
+		/// <summary>
+		///     Lobby ID
+		/// </summary>
+		public string LobbyId { get; set; }
 	}
 }

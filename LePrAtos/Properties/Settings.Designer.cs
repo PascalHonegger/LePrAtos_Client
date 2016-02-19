@@ -25,23 +25,6 @@ namespace LePrAtos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>Tomcat</string>
-  <string>Database</string>
-  <string>Johlserver</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection ConfiguredServers {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["ConfiguredServers"]));
-            }
-            set {
-                this["ConfiguredServers"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("de")]
         public string SelectedCulture {
             get {
@@ -49,6 +32,32 @@ namespace LePrAtos.Properties {
             }
             set {
                 this["SelectedCulture"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Tomcat</string>
+  <string>Database</string>
+  <string>Localhost</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection ConfiguredServers {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ConfiguredServers"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SavedUser {
+            get {
+                return ((string)(this["SavedUser"]));
+            }
+            set {
+                this["SavedUser"] = value;
             }
         }
     }

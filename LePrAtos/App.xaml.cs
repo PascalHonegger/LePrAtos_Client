@@ -8,7 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 using LePrAtos.Dialogs;
 using LePrAtos.Infrastructure;
+using LePrAtos.Lobby;
 using LePrAtos.Properties;
+using LePrAtos.Service_References;
 using LePrAtos.Startup.Login;
 using Microsoft.Practices.Unity;
 using UnityContainer;
@@ -28,10 +30,14 @@ namespace LePrAtos
 
 			new ScannerModule().Initialize();
 
+#if DEBUG
 			SelectEnvironment();
+#else
+			StartApplication(Settings.Default.ConfiguredServers[0]);
+#endif
 		}
 
-		/// <summary>Suchen möglicher App.config-Dateien im Programmverzeichnis, anzeigen einer Auswahl.</summary>
+		/// <summary>Durchsucht alle konfigurierten Server und zeigt eine Auswahl dieser an.</summary>
 		private static void SelectEnvironment()
 		{
 			var dialog = new CustomDialog
@@ -66,11 +72,31 @@ namespace LePrAtos
 
 		private static void StartApplication(string configuration)
 		{
-			ContainerProvider.Container.Resolve<ISession>().Endpointconfiguration = configuration;
+			var session = ContainerProvider.Container.Resolve<ISession>();
+			session.Endpointconfiguration = configuration;
 
-			var loginWindow = new LoginView(ContainerProvider.Container.Resolve<LoginViewModel>());
+			if (!string.IsNullOrEmpty(Settings.Default.SavedUser))
+			{
+				//TODO var player = session.Client.getUserFromId(Settings.Default.SavedUser);
 
-			loginWindow.Show();
+				var playerViewModel = ContainerProvider.Container.Resolve<PlayerViewModel>();
+
+				playerViewModel.PlayerId = Settings.Default.SavedUser;
+
+				playerViewModel.Username = Settings.Default.SavedUser;
+
+				session.Player = playerViewModel;
+
+				var lobbyBrowser = new LobbyBrowserView(ContainerProvider.Container.Resolve<LobbyBrowserViewModel>());
+
+				lobbyBrowser.Show();
+			}
+			else
+			{
+				var loginWindow = new LoginView(ContainerProvider.Container.Resolve<LoginViewModel>());
+
+				loginWindow.Show();
+			}
 		}
 	}
 }

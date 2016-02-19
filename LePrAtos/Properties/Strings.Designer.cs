@@ -151,6 +151,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_Language.
+        /// </summary>
+        public static string LoginView_Language {
+            get {
+                return ResourceManager.GetString("LoginView_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Login.
         /// </summary>
         public static string LoginView_Login {
@@ -165,6 +174,15 @@ namespace LePrAtos.Properties {
         public static string LoginView_Password {
             get {
                 return ResourceManager.GetString("LoginView_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LoginView_SaveLogin.
+        /// </summary>
+        public static string LoginView_SaveLogin {
+            get {
+                return ResourceManager.GetString("LoginView_SaveLogin", resourceCulture);
             }
         }
         

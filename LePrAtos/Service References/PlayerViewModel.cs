@@ -18,29 +18,11 @@ namespace LePrAtos.Service_References
 		/// <summary>
 		/// Gewählter Benutzername
 		/// </summary>
-		public string Username
-		{
-			get
-			{
-				const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-				var random = new Random();
-				return new string(Enumerable.Repeat(chars, 20)
-					.Select(s => s[random.Next(s.Length)]).ToArray());
-			}
-		}
+		public string Username { get; set; }
 
 		/// <summary>
 		/// Die Spieler ID
 		/// </summary>
-		public string PlayerId
-		{
-			get
-			{
-				const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-				var random = new Random();
-				return new string(Enumerable.Repeat(chars, 20)
-					.Select(s => s[random.Next(s.Length)]).ToArray());
-			}
-		}
+		public string PlayerId { get; set; }
 	}
 }

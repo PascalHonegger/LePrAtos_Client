@@ -147,11 +147,17 @@
   <data name="LobbyView_Username" xml:space="preserve">
     <value>Benutzername</value>
   </data>
+  <data name="LoginView_Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
   <data name="LoginView_Login" xml:space="preserve">
     <value>Anmelden</value>
   </data>
   <data name="LoginView_Password" xml:space="preserve">
     <value>Passwort</value>
+  </data>
+  <data name="LoginView_SaveLogin" xml:space="preserve">
+    <value>Angemeldet bleiben</value>
   </data>
   <data name="LoginView_Username" xml:space="preserve">
     <value>Benutzername</value>
