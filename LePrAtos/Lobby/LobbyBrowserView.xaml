@@ -6,53 +6,65 @@
         xmlns:local="clr-namespace:LePrAtos.Lobby"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="LobbyBrowserView" Height="400" Width="700" d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
+        Title="LobbyBrowserView" Height="400" Width="700"
+        d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
 	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="1*"/>
-			<RowDefinition Height="7*"/>
-		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*"/>
-			<ColumnDefinition Width="1*"/>
+			<ColumnDefinition Width="3*" />
+			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
-		<TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-
-		<Grid Grid.Row="1" Grid.Column="1">
+		<Grid Grid.Row="0" Grid.Column="1">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="*"/>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
-			<Button Margin="10" Grid.Row="0" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}" Command="{Binding CreateLobbyCommand}"/>
-			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}" Command="{Binding JoinLobbyCommand}"/>
-			<Grid Margin="10" Grid.Row="2">
+			<TextBlock Margin="10" Grid.Row="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center"
+			           HorizontalAlignment="Center" />
+
+			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}"
+			        Command="{Binding CreateLobbyCommand}" />
+			<Button Margin="10" Grid.Row="2" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"
+			        Command="{Binding JoinLobbyCommand}" />
+			<Grid Margin="10" Grid.Row="3">
 				<Grid.RowDefinitions>
 					<RowDefinition />
 					<RowDefinition />
 				</Grid.RowDefinitions>
-				<Label Target="{Binding ElementName=LobbyPassword}" Content="{x:Static properties:Strings.LobbyView_LobbyPassword}" VerticalAlignment="Center"/>
-				<TextBox Name="LobbyPassword" Grid.Row="1" >
+				<Label Target="{Binding ElementName=LobbyPassword}" Content="{x:Static properties:Strings.LobbyView_LobbyPassword}"
+				       VerticalAlignment="Center" />
+				<TextBox Name="LobbyPassword" Grid.Row="1">
 					<TextBox.Text>
 						<Binding Path="LobbyPassword" UpdateSourceTrigger="PropertyChanged" />
 					</TextBox.Text>
 				</TextBox>
 			</Grid>
 
-
-			<Button Margin="10" Grid.Row="3" Content="{x:Static properties:Strings.LobbyBrowser_Logout}" Command="{Binding LogoutCommand}"/>
+			<Button Margin="10" Grid.Row="4" Content="{x:Static properties:Strings.LobbyBrowser_Logout}"
+			        Command="{Binding LogoutCommand}" />
 		</Grid>
-		
-		<ListView Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding AvailableLobbies}" SelectedItem="{Binding SeletedLobby}">
+
+		<ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding AvailableLobbies}"
+		          SelectedItem="{Binding SeletedLobby}" >
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListViewItem">
+					<Setter Property="Height" Value="50" />
+				</Style>
+			</ListView.ItemContainerStyle>
 			<ListView.View>
 				<GridView>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}" DisplayMemberBinding="{Binding LobbyName}"/>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}" DisplayMemberBinding="{Binding MemberCount}"/>
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}"
+					                DisplayMemberBinding="{Binding LobbyName}" />
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}"
+					                DisplayMemberBinding="{Binding MemberCount}" />
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_HasPassword}">
 						<GridViewColumn.CellTemplate>
 							<DataTemplate DataType="local:LobbyViewModel">
-								<Image Source="../Resources/lock.png" Visibility="{Binding HasLobbyPassword, Converter={StaticResource BoolToVis}}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" />
+								<Image Source="../Resources/lock.png"
+								       Visibility="{Binding HasLobbyPassword, Converter={StaticResource BoolToVis}}" Stretch="None"
+								       HorizontalAlignment="Center" VerticalAlignment="Center" />
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>

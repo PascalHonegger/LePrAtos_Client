@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LePrAtos.Lobby"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
+        xmlns:serviceReferences="clr-namespace:LePrAtos.Service_References"
         mc:Ignorable="d"
         Title="Lobby" d:DataContext="{d:DesignInstance local:LobbyViewModel}">
 	<Grid>
@@ -18,27 +19,34 @@
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 		<ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Members}" HorizontalAlignment="Stretch">
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListViewItem">
+					<Setter Property="Height" Value="75" />
+				</Style>
+			</ListView.ItemContainerStyle>
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Owner}" >
 						<GridViewColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="*" />
+							<DataTemplate DataType="serviceReferences:PlayerViewModel">
+								<Image Source="../Resources/Crown.png" Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}"/>
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Username}" DisplayMemberBinding="{Binding Username}"/>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Remove}">
 						<GridViewColumn.CellTemplate>
-							<DataTemplate>
-								<Button Content="X" />
+							<DataTemplate DataType="serviceReferences:PlayerViewModel">
+								<Button>
+									<Image Source="../Resources/DeleteRed.png" />
+								</Button>
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Ready}">
+					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Ready}" >
 						<GridViewColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="✓" />
+							<DataTemplate DataType="serviceReferences:PlayerViewModel">
+								<TextBlock Text="✓" Visibility="{Binding IsReady, Converter={StaticResource BoolToVis}}"/>
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>
@@ -47,7 +55,8 @@
 		</ListView>
 
 		<TextBlock Text="Hier könnte ein Chat leben" Grid.Column="0" Grid.Row="1" />
-		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" />
+		<CheckBox Grid.Column="1" Grid.Row="1" Content="Bereit" IsEnabled="{Binding IsLobbyLeader, Converter={StaticResource InvertBool}}" VerticalAlignment="Center" IsChecked="{Binding CurrentSession.Player.IsReady}"/>
+		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" Command="{Binding StartGameCommand}" Visibility="{Binding IsLobbyLeader, Converter={StaticResource BoolToVis}}" />
 		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" Command="{Binding LeaveLobbyCommand}"/>
 	</Grid>
 </Window>

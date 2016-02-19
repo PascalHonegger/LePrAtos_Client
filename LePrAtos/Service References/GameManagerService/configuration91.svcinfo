@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="UXai8/5EjY9iq+NZ25wS0ShHids=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7RXjcHz4zbgTsLYc+EKKvOT8V4w=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="GameManagerImplPortBinding">
+    <bindingConfiguration bindingType="basicHttpBinding" name="GameManagerImplPortBinding1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>GameManagerImplPortBinding</serializedValue>
+          <serializedValue>GameManagerImplPortBinding1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="GameManagerImplPort" contract="GameManagerService.GameManager" bindingType="basicHttpBinding" address="http://localhost:8080/LePrAtos/GameManager" bindingConfiguration="GameManagerImplPortBinding">
+    <endpoint name="GameManagerImplPort" contract="GameManagerService.GameManager" bindingType="basicHttpBinding" address="http://84.74.201.41:8080/LePrAtos/GameManager" bindingConfiguration="GameManagerImplPortBinding1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8080/LePrAtos/GameManager</serializedValue>
+          <serializedValue>http://84.74.201.41:8080/LePrAtos/GameManager</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,7 +124,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>GameManagerImplPortBinding</serializedValue>
+          <serializedValue>GameManagerImplPortBinding1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>GameManagerService.GameManager</serializedValue>

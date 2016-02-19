@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8080/LePrAtos/GameManager?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://84.74.201.41:8080/LePrAtos/GameManager?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GameManagerImplService.wsdl" MetadataType="Wsdl" ID="4f364fe0-fb9c-46d7-8024-e046841b3b23" SourceId="1" SourceUrl="http://localhost:8080/LePrAtos/GameManager?wsdl" />
-    <MetadataFile FileName="GameManager.xsd" MetadataType="Schema" ID="f169930d-da64-44d1-8fe6-d18693be03ac" SourceId="1" SourceUrl="http://localhost:8080/LePrAtos/GameManager?xsd=1" />
+    <MetadataFile FileName="GameManagerImplService1.wsdl" MetadataType="Wsdl" ID="2fe02395-2001-4f61-bb59-30bb94e26219" SourceId="1" SourceUrl="http://84.74.201.41:8080/LePrAtos/GameManager?wsdl" />
+    <MetadataFile FileName="GameManager1.xsd" MetadataType="Schema" ID="ddd07f26-f57f-4485-92a9-941c5cf46743" SourceId="1" SourceUrl="http://84.74.201.41:8080/LePrAtos/GameManager?xsd=1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

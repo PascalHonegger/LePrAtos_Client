@@ -33,8 +33,7 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public LobbyBrowserViewModel()
 		{
-			//TODO get Lobbies from Server
-
+			//TODO Load Data from Server
 			var playerViewModel1 = Container.Resolve<PlayerViewModel>();
 			var player1 = new player
 			{
@@ -65,10 +64,11 @@ namespace LePrAtos.Lobby
 
 			lobby1.LobbyName = "Example 1";
 
-			lobby1.Members.Add(playerViewModel1);
-			lobby1.Members.Add(playerViewModel1);
+			lobby1.LobbyLeaderId = "Example 1";
 
-			AvailableLobbies.Add(lobby1);
+			playerViewModel1.IsLeader = true;
+
+			lobby1.Members.Add(playerViewModel1);
 
 			var lobby2 = Container.Resolve<LobbyViewModel>();
 
@@ -76,13 +76,21 @@ namespace LePrAtos.Lobby
 
 			lobby2.LobbyName = "Example 2";
 
+			lobby2.LobbyLeaderId = "Example 2";
+
+			playerViewModel2.IsLeader = true;
+
 			lobby2.HasLobbyPassword = true;
 
-			lobby2.Members.Add(playerViewModel1);
 			lobby2.Members.Add(playerViewModel2);
 			lobby2.Members.Add(playerViewModel3);
 
+
+			AvailableLobbies.Add(lobby1);
 			AvailableLobbies.Add(lobby2);
+
+
+
 		}
 
 		/// <summary>
@@ -173,6 +181,10 @@ namespace LePrAtos.Lobby
 
 		private void JoinLobby()
 		{
+			//TODO Tell Server to add me to the lobby
+
+			SeletedLobby.Members.Add(CurrentSession.Player);
+
 			new LobbyView(SeletedLobby).Show();
 
 			RequestWindowCloseEvent.Invoke(this, null);
@@ -185,6 +197,11 @@ namespace LePrAtos.Lobby
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 
 			lobbyViewModel.Members.Add(CurrentSession.Player);
+
+			lobbyViewModel.LobbyLeaderId = CurrentSession.Player.PlayerId;
+
+			CurrentSession.Player.IsReady = true;
+			CurrentSession.Player.IsLeader = true;
 
 			new LobbyView(lobbyViewModel).Show();
 

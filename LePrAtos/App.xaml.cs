@@ -2,6 +2,7 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -30,6 +31,8 @@ namespace LePrAtos
 			Thread.CurrentThread.CurrentUICulture = culture;
 
 			new ScannerModule().Initialize();
+
+			_session = ContainerProvider.Container.Resolve<ISession>();
 
 #if DEBUG
 			SelectEnvironment();
@@ -60,6 +63,8 @@ namespace LePrAtos
 					Width = 90
 				};
 
+				configButton.Focus();
+
 				configButton.Click += (b, args) =>
 				{
 					StartApplication(serverSetting);
@@ -71,10 +76,13 @@ namespace LePrAtos
 			dialog.Show();
 		}
 
+		private static ISession _session;
+
 		private static void StartApplication(string configuration)
 		{
-			var session = ContainerProvider.Container.Resolve<ISession>();
-			session.Endpointconfiguration = configuration;
+			_session.Endpointconfiguration = configuration;
+
+			_session.PollingTimer.Start();
 
 			if (!string.IsNullOrEmpty(Settings.Default.SavedUser))
 			{
@@ -84,11 +92,11 @@ namespace LePrAtos
 
 				playerViewModel.Player = new player
 				{
-					username = Settings.Default.SavedUser,
+					username = "Get from Server!",
 					uuid = Settings.Default.SavedUser
 				};
 
-				session.Player = playerViewModel;
+				_session.Player = playerViewModel;
 
 				var lobbyBrowser = new LobbyBrowserView(ContainerProvider.Container.Resolve<LobbyBrowserViewModel>());
 
@@ -99,6 +107,19 @@ namespace LePrAtos
 				var loginWindow = new LoginView(ContainerProvider.Container.Resolve<LoginViewModel>());
 
 				loginWindow.Show();
+			}
+		}
+
+		private void App_OnExit(object sender, ExitEventArgs e)
+		{
+			try
+			{
+				//Session?.PollingTimer?.Dispose();
+				//Session?.Client?.Logout();
+			}
+			catch (Exception)
+			{
+				// ignored
 			}
 		}
 	}

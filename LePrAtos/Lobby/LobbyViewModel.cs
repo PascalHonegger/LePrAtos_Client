@@ -5,6 +5,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Service_References;
@@ -20,12 +21,14 @@ namespace LePrAtos.Lobby
 	public class LobbyViewModel : ViewModelBase, IRequestWindowClose
 	{
 		private ICommand _joinLobbyCommand;
+		private DelegateCommand _startGameCommand;
 
 		/// <summary>
 		///     Constructor
 		/// </summary>
 		public LobbyViewModel()
 		{
+			// ReSharper disable once ExplicitCallerInfoArgument
 			Members.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(MemberCount));
 		}
 
@@ -60,15 +63,44 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Der Leiter der Lobby, darf beispielsweise leute aus der Lobby entfernen
 		/// </summary>
-		public PlayerViewModel LobbyLeader { get; set; }
+		public string LobbyLeaderId { get; set; }
 
 		/// <summary>
 		/// Command zum beitreten der ausgewählten Lobby
 		/// </summary>
 		public ICommand LeaveLobbyCommand => _joinLobbyCommand ?? (_joinLobbyCommand = new DelegateCommand(LeaveLobby));
+		
+		/// <summary>
+		/// Command zum beitreten der ausgewählten Lobby
+		/// </summary>
+		public DelegateCommand StartGameCommand => _startGameCommand ?? (_startGameCommand = new DelegateCommand(StartGame, CanStartGame));
+
+		private bool CanStartGame()
+		{
+			return Members.Where(p => !Equals(p.PlayerId, LobbyLeaderId)).All(p => p.IsReady);
+		}
+
+		private void StartGame()
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		///     True, wenn der angemeldete Spieler der Lobby-Lieter ist
+		/// </summary>
+		public bool IsLobbyLeader => Equals(CurrentSession.Player.PlayerId, LobbyLeaderId);
 
 		private void LeaveLobby()
 		{
+			//TODO Tell Server to check LobbyLeaderId
+
+			//TODO Tell Server to remove me from Members
+
+			Members.Remove(CurrentSession.Player);
+
+			CurrentSession.Player.IsLeader = false;
+			CurrentSession.Player.IsReady = false;
+
 			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
 			
 			var lobbyBrowserView = new LobbyBrowserView(lobbyBrowserViewModel);

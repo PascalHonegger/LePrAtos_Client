@@ -15,11 +15,12 @@ namespace LePrAtos.Infrastructure
 	/// </summary>
 	public abstract class ViewModelBase : INotifyPropertyChanged, IViewModel
 	{
+		private ISession _currentSession;
+
 		/// <summary>
 		///     Die jetzige Instanz der Session
 		/// </summary>
-		[Microsoft.Practices.Unity.Dependency]
-		public ISession CurrentSession { get; set; }
+		public ISession CurrentSession => _currentSession ?? (_currentSession = Container.Resolve<ISession>());
 
 		/// <summary>
 		///     Der UnityContainer

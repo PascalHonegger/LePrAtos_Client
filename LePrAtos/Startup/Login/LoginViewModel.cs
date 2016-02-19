@@ -10,7 +10,6 @@ using System.Linq;
 using System.Resources;
 using System.Threading;
 using System.Windows.Controls;
-using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
@@ -90,12 +89,11 @@ namespace LePrAtos.Startup.Login
 			get { return _username; }
 			set
 			{
-				if (_username != value && value.Length <= UsernameMaxLength)
-				{
-					_username = value;
-					OnPropertyChanged();
-				}
+				if (_username == value || value.Length > UsernameMaxLength) return;
 
+
+				_username = value;
+				OnPropertyChanged();
 				LoginCommand.RaiseCanExecuteChanged();
 			}
 		}
@@ -120,9 +118,7 @@ namespace LePrAtos.Startup.Login
 
 		private async void Login(PasswordBox passwordBox)
 		{
-			var client = new GameManagerClient(CurrentSession.Endpointconfiguration);
-
-			var response = await client.loginAsync(Username);
+			var response = await CurrentSession.Client.loginAsync(Username);
 
 			var player = Container.Resolve<PlayerViewModel>();
 
