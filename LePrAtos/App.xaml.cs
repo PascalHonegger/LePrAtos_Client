@@ -93,7 +93,8 @@ namespace LePrAtos
 
 				playerViewModel.Player = new player
 				{
-					username = "Get from Server!"
+					username = "Get from Server!",
+					playerID = Settings.Default.SavedUser
 				};
 
 				_session.Player = playerViewModel;

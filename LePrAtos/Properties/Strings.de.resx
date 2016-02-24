@@ -121,8 +121,10 @@
     <value>Fehler Reporting</value>
   </data>
   <data name="ExceptionHandling_Message" xml:space="preserve">
-    <value>Ein Fehler ist aufgetreten\n{0}\n Bitte senden Sie folgende Informationen an den Support
-\n{1}"</value>
+    <value>Ein Fehler ist aufgetreten
+{0}
+Bitte senden Sie folgende Informationen an den Support
+{1}</value>
   </data>
   <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
     <value>Neue Lobby erstellen</value>

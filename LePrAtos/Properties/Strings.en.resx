@@ -175,6 +175,9 @@
     <value>Error Reporting</value>
   </data>
   <data name="ExceptionHandling_Message" xml:space="preserve">
-    <value>"An error occured\n{0}\n Please send the following info to the support!\n{1}"</value>
+    <value>An error has occured
+{0}
+Please send the following info to the support!
+{1}</value>
   </data>
 </root>
