@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservices.org/" targetNamespace="http://webservices.org/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Exception" type="tns:Exception" />
+  <xs:element name="createGameLobby" type="tns:createGameLobby" />
+  <xs:element name="createGameLobbyResponse" type="tns:createGameLobbyResponse" />
+  <xs:element name="getGameLobby" type="tns:getGameLobby" />
+  <xs:element name="getGameLobbyResponse" type="tns:getGameLobbyResponse" />
+  <xs:element name="joinGameLobby" type="tns:joinGameLobby" />
+  <xs:element name="joinGameLobbyResponse" type="tns:joinGameLobbyResponse" />
+  <xs:element name="login" type="tns:login" />
+  <xs:element name="loginResponse" type="tns:loginResponse" />
+  <xs:element name="logout" type="tns:logout" />
+  <xs:element name="logoutResponse" type="tns:logoutResponse" />
+  <xs:complexType name="login">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:player" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="player">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:playerIdentification">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="playerID" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="playerIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="joinGameLobby">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:player" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="joinGameLobbyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:gameLobby" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="gameLobby">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gameLobbyID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGameLobby">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGameLobbyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:gameLobby" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="logout">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="logoutResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createGameLobby">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createGameLobbyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:gameLobby" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
+using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Service_References;
 using Microsoft.Practices.Prism.Commands;
@@ -22,6 +23,7 @@ namespace LePrAtos.Lobby
 	{
 		private ICommand _joinLobbyCommand;
 		private DelegateCommand _startGameCommand;
+		private gameLobby _lobby;
 
 		/// <summary>
 		///     Constructor
@@ -114,5 +116,24 @@ namespace LePrAtos.Lobby
 		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		/// <summary>
+		///     Die vom Server stammende Lobby
+		/// </summary>
+		public gameLobby Lobby
+		{
+			set
+			{
+				if (Equals(_lobby, value))
+				{
+					return;
+				}
+				_lobby = value;
+				LobbyId = _lobby.gameLobbyID;
+				LobbyName = "TODO SERVER";
+				LobbyLeaderId = "TODO SERVER";
+				HasLobbyPassword = false;
+			}
+		}
 	}
 }

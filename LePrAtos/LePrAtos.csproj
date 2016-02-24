@@ -16,21 +16,22 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Pascal\Desktop\TempExport\</PublishUrl>
+    <PublishUrl>\\tm-tomcat.ch902.my-it-solutions.net\LePrAtos_Client_Published\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>\\tm-tomcat.ch902.my-it-solutions.net\LePrAtos_Client_Published\</InstallUrl>
     <ProductName>Siedler von Catan</ProductName>
     <PublisherName>LePrAtos</PublisherName>
     <SuiteName>LePrAtos</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -67,13 +68,13 @@
     <ApplicationIcon>Resources\Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1A1C1E1A2D12744510ACA29F1867D2745EECB2B4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DDDE9363D50775B9DA804155BA32E2DB6B66F9F5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LePrAtos_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>LePrAtos_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -237,16 +238,32 @@
       <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="Service References\GameManagerService\GameManager.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GameManagerService\GameManagerImplService.wsdl" />
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.createGameLobbyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.gameLobby.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.getGameLobbyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.joinGameLobbyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GameManagerService\GameManager1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GameManagerService\GameManagerImplService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

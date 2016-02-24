@@ -39,7 +39,7 @@ namespace LePrAtos.Service_References
 					return;
 				}
 				_player = value;
-				PlayerId = _player.uuid;
+				PlayerId = _player.playerID;
 				Username = _player.username;
 				IsReady = false;
 				IsLeader = false;

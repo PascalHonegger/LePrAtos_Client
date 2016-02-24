@@ -37,7 +37,6 @@ namespace LePrAtos.Lobby
 			var playerViewModel1 = Container.Resolve<PlayerViewModel>();
 			var player1 = new player
 			{
-				uuid = "Example 1",
 				username = "ExmaplePlayer 1"
 			};
 			playerViewModel1.Player = player1;
@@ -45,7 +44,6 @@ namespace LePrAtos.Lobby
 			var playerViewModel2 = Container.Resolve<PlayerViewModel>();
 			var player2 = new player
 			{
-				uuid = "Example 2",
 				username = "ExmaplePlayer 2"
 			};
 			playerViewModel2.Player = player2;
@@ -53,7 +51,6 @@ namespace LePrAtos.Lobby
 			var playerViewModel3 = Container.Resolve<PlayerViewModel>();
 			var player3 = new player
 			{
-				uuid = "Example 3",
 				username = "ExmaplePlayer 3"
 			};
 			playerViewModel3.Player = player3;
@@ -190,11 +187,13 @@ namespace LePrAtos.Lobby
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private void CreateLobby()
+		private async void CreateLobby()
 		{
-			//TODO: get Lobby From Server
+			var result = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId)).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
+
+			lobbyViewModel.Lobby = result;
 
 			lobbyViewModel.Members.Add(CurrentSession.Player);
 

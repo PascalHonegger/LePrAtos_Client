@@ -87,14 +87,13 @@ namespace LePrAtos
 
 			if (!string.IsNullOrEmpty(Settings.Default.SavedUser))
 			{
-				//TODO var player = session.Client.getUserFromId(Settings.Default.SavedUser);
+				// var player = CurrentSession.Client.getUserFromId(Settings.Default.SavedUser);
 
 				var playerViewModel = ContainerProvider.Container.Resolve<PlayerViewModel>();
 
 				playerViewModel.Player = new player
 				{
-					username = "Get from Server!",
-					uuid = Settings.Default.SavedUser
+					username = "Get from Server!"
 				};
 
 				_session.Player = playerViewModel;
@@ -111,17 +110,16 @@ namespace LePrAtos
 			}
 		}
 
+		private static ISession CurrentSession => ContainerProvider.Container.Resolve<ISession>();
+
 		private void App_OnExit(object sender, ExitEventArgs e)
 		{
-			string session = null;
-			var swag = session.Length;
-
 			try
 			{
-				//Session?.PollingTimer?.Dispose();
-				//Session?.Client?.Logout();
+				CurrentSession?.PollingTimer?.Dispose();
+				//CurrentSession?.Client?.Logout();
 			}
-			catch (Exception)
+			catch (System.Exception)
 			{
 				// ignored
 			}
@@ -129,9 +127,8 @@ namespace LePrAtos
 
 		private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
 		{
-#if DEBUG
-			MessageBox.Show($"Ein Fehler mit der Meldung {e.Exception.Message} ist aufgetreten. Der Stacktrace für weitere Hilfe: {e.Exception.StackTrace}", "Error Report");
-#endif
+			MessageBox.Show(string.Format(Strings.ExceptionHandling_Message, e.Exception.Message, e.Exception.StackTrace), Strings.ExceptionHandling_Caption);
+			Environment.Exit(1);
 		}
 	}
 }

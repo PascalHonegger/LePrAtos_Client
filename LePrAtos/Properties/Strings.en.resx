@@ -171,4 +171,10 @@
   <data name="LobbyView_LobbyPassword" xml:space="preserve">
     <value>Lobby password</value>
   </data>
+  <data name="ExceptionHandling_Caption" xml:space="preserve">
+    <value>Error Reporting</value>
+  </data>
+  <data name="ExceptionHandling_Message" xml:space="preserve">
+    <value>"An error occured\n{0}\n Please send the following info to the support!\n{1}"</value>
+  </data>
 </root>

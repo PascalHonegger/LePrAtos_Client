@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://webservices.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="GameManagerImplService" targetNamespace="http://webservices.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://tm-tomcat.ch902.my-it-solutions.net:80/LePrAtos/GameManager?xsd=1" namespace="http://webservices.org/" />
+    </xsd:schema>
+  </types>
+  <message name="login">
+    <part name="parameters" element="tns:login" />
+  </message>
+  <message name="loginResponse">
+    <part name="parameters" element="tns:loginResponse" />
+  </message>
+  <message name="logout">
+    <part name="parameters" element="tns:logout" />
+  </message>
+  <message name="logoutResponse">
+    <part name="parameters" element="tns:logoutResponse" />
+  </message>
+  <message name="createGameLobby">
+    <part name="parameters" element="tns:createGameLobby" />
+  </message>
+  <message name="createGameLobbyResponse">
+    <part name="parameters" element="tns:createGameLobbyResponse" />
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="joinGameLobby">
+    <part name="parameters" element="tns:joinGameLobby" />
+  </message>
+  <message name="joinGameLobbyResponse">
+    <part name="parameters" element="tns:joinGameLobbyResponse" />
+  </message>
+  <message name="getGameLobby">
+    <part name="parameters" element="tns:getGameLobby" />
+  </message>
+  <message name="getGameLobbyResponse">
+    <part name="parameters" element="tns:getGameLobbyResponse" />
+  </message>
+  <portType name="GameManager">
+    <operation name="login">
+      <input wsam:Action="http://webservices.org/GameManager/loginRequest" message="tns:login" />
+      <output wsam:Action="http://webservices.org/GameManager/loginResponse" message="tns:loginResponse" />
+    </operation>
+    <operation name="logout">
+      <input wsam:Action="http://webservices.org/GameManager/logoutRequest" message="tns:logout" />
+      <output wsam:Action="http://webservices.org/GameManager/logoutResponse" message="tns:logoutResponse" />
+    </operation>
+    <operation name="createGameLobby">
+      <input wsam:Action="http://webservices.org/GameManager/createGameLobbyRequest" message="tns:createGameLobby" />
+      <output wsam:Action="http://webservices.org/GameManager/createGameLobbyResponse" message="tns:createGameLobbyResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/createGameLobby/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="joinGameLobby">
+      <input wsam:Action="http://webservices.org/GameManager/joinGameLobbyRequest" message="tns:joinGameLobby" />
+      <output wsam:Action="http://webservices.org/GameManager/joinGameLobbyResponse" message="tns:joinGameLobbyResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/joinGameLobby/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="getGameLobby">
+      <input wsam:Action="http://webservices.org/GameManager/getGameLobbyRequest" message="tns:getGameLobby" />
+      <output wsam:Action="http://webservices.org/GameManager/getGameLobbyResponse" message="tns:getGameLobbyResponse" />
+    </operation>
+  </portType>
+  <binding name="GameManagerImplPortBinding" type="tns:GameManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="login">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="logout">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="createGameLobby">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="joinGameLobby">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getGameLobby">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="GameManagerImplService">
+    <port name="GameManagerImplPort" binding="tns:GameManagerImplPortBinding">
+      <soap:address location="http://tm-tomcat.ch902.my-it-solutions.net:80/LePrAtos/GameManager" />
+    </port>
+  </service>
+</definitions>

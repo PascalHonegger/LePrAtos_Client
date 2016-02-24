@@ -61,6 +61,24 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ExceptionHandling_Caption.
+        /// </summary>
+        public static string ExceptionHandling_Caption {
+            get {
+                return ResourceManager.GetString("ExceptionHandling_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ExceptionHandling_Message.
+        /// </summary>
+        public static string ExceptionHandling_Message {
+            get {
+                return ResourceManager.GetString("ExceptionHandling_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyBrowser_CreateLobby.
         /// </summary>
         public static string LobbyBrowser_CreateLobby {

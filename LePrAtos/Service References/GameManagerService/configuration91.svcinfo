@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7RXjcHz4zbgTsLYc+EKKvOT8V4w=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="vqB2cRmxmVk3cIErFi5xM67XXq0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="GameManagerImplPortBinding1">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="GameManagerImplPort" contract="GameManagerService.GameManager" bindingType="basicHttpBinding" address="http://84.74.201.41:8080/LePrAtos/GameManager" bindingConfiguration="GameManagerImplPortBinding1">
+    <endpoint name="GameManagerImplPort" contract="GameManagerService.GameManager" bindingType="basicHttpBinding" address="http://tm-tomcat.ch902.my-it-solutions.net/LePrAtos/GameManager" bindingConfiguration="GameManagerImplPortBinding1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://84.74.201.41:8080/LePrAtos/GameManager</serializedValue>
+          <serializedValue>http://tm-tomcat.ch902.my-it-solutions.net:80/LePrAtos/GameManager</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
