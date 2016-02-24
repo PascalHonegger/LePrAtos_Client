@@ -68,7 +68,7 @@
     <ApplicationIcon>Resources\Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>E606855FBEB60545BB44B04F8B833723C65C1233</ManifestCertificateThumbprint>
@@ -80,14 +80,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup />
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Test_Zertifikat.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -243,7 +242,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.manifest" />
     <None Include="Service References\GameManagerService\GameManager.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -269,7 +267,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Test_Zertifikat.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
