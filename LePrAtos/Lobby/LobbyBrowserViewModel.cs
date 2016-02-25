@@ -158,6 +158,7 @@ namespace LePrAtos.Lobby
 			CurrentSession.Player = null;
 
 			Settings.Default.SavedUser = null;
+			Settings.Default.Save();
 
 			var loginViewModel = Container.Resolve<LoginViewModel>();
 

@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace LePrAtos_Test.Startup.Login
 {
-	public class LoginViewModelTest : IntegrationTestBase
+	public class LoginViewModelTest : UnitTestBase
 	{
 		private LoginViewModel _unitUnderTest;
 
