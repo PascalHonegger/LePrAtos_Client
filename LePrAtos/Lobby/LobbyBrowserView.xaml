@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         Title="LobbyBrowserView" Height="400" Width="700" MinHeight="350" MinWidth="600"
         d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
+	<Window.InputBindings>
+		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5"/>
+	</Window.InputBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="3*" />
@@ -27,10 +30,10 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-				<Button Grid.Column="1" ><Image Source="../Resources/Reload.png"/></Button>
+				<Button Grid.Column="1" Command="{Binding RefreshViewCommand}">
+					<Image Source="../Resources/Reload.png"/>
+				</Button>
 			</Grid>
-			
-
 			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}"
 			        Command="{Binding CreateLobbyCommand}" />
 			<Button Margin="10" Grid.Row="2" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"

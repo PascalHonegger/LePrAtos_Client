@@ -3,13 +3,12 @@
 // Author: Honegger, Pascal (ext)
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Service_References;
@@ -37,7 +36,7 @@ namespace LePrAtos.Lobby
 			Members.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(MemberCount));
 			CurrentSession.PollingTimer.Elapsed += (sender, e) =>
 			{
-				App.Current.Dispatcher.InvokeAsync(Reload);
+				Application.Current.Dispatcher.InvokeAsync(Reload);
 			};
 		}
 

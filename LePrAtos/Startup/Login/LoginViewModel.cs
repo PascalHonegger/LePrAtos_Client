@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -26,7 +25,14 @@ namespace LePrAtos.Startup.Login
 	/// </summary>
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
+		/// <summary>
+		///     Die Maximallänge des <see cref="Username"/>
+		/// </summary>
 		public const int UsernameMaxLength = 30;
+
+		/// <summary>
+		///     Die Minimallänge des <see cref="Username"/>
+		/// </summary>
 		public const int UsernameMinLength = 3;
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private string _username = string.Empty;

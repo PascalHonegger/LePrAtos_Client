@@ -5,9 +5,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Windows.Input;
-using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Properties;
 using LePrAtos.Startup.Login;
@@ -25,6 +23,7 @@ namespace LePrAtos.Lobby
 	{
 		private ICommand _createLobbyCommand;
 		private DelegateCommand _joinLobbyCommand;
+		private ICommand _refreshViewCommand;
 		private string _lobbyPassword;
 		private ICommand _logoutCommand;
 		private LobbyViewModel _seletedLobby;
@@ -87,6 +86,12 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public DelegateCommand JoinLobbyCommand
 			=> _joinLobbyCommand ?? (_joinLobbyCommand = new DelegateCommand(JoinLobby, CanJoinLobby));
+		
+		/// <summary>
+		///     Command zum beitreten der ausgewählten Lobby
+		/// </summary>
+		public ICommand RefreshViewCommand
+			=> _refreshViewCommand ?? (_refreshViewCommand = new DelegateCommand(Refresh));
 
 		/// <summary>
 		///     Command zum Abmelden des angemeldeten Spielers
