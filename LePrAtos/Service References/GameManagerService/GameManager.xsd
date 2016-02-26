@@ -11,6 +11,8 @@
   <xs:element name="getPlayerByIDResponse" type="tns:getPlayerByIDResponse" />
   <xs:element name="joinGameLobby" type="tns:joinGameLobby" />
   <xs:element name="joinGameLobbyResponse" type="tns:joinGameLobbyResponse" />
+  <xs:element name="leaveGameLobby" type="tns:leaveGameLobby" />
+  <xs:element name="leaveGameLobbyResponse" type="tns:leaveGameLobbyResponse" />
   <xs:element name="login" type="tns:login" />
   <xs:element name="loginResponse" type="tns:loginResponse" />
   <xs:element name="logout" type="tns:logout" />
@@ -49,6 +51,15 @@
       <xs:element minOccurs="0" name="return" type="tns:player" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="leaveGameLobby">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+      <xs:element minOccurs="0" name="GameLobbyID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="leaveGameLobbyResponse">
+    <xs:sequence />
+  </xs:complexType>
   <xs:complexType name="joinGameLobby">
     <xs:sequence>
       <xs:element minOccurs="0" name="playerID" type="xs:string" />
@@ -64,6 +75,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="gameLobbyAdmin" type="xs:string" />
       <xs:element minOccurs="0" name="gameLobbyID" type="xs:string" />
+      <xs:element minOccurs="0" name="gameLobbyName" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="unbounded" name="gamePlayerListPublic" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -95,6 +107,7 @@
   <xs:complexType name="createGameLobby">
     <xs:sequence>
       <xs:element minOccurs="0" name="playerID" type="xs:string" />
+      <xs:element minOccurs="0" name="gameLobbyName" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="createGameLobbyResponse">
@@ -107,7 +120,7 @@
   </xs:complexType>
   <xs:complexType name="getGameLobbiesResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:anyType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:gameLobby" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

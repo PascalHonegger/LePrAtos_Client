@@ -55,8 +55,8 @@
 		</ListView>
 
 		<TextBlock Text="Hier könnte ein Chat leben" Grid.Column="0" Grid.Row="1" />
-		<CheckBox Grid.Column="1" Grid.Row="1" Content="Bereit" IsEnabled="{Binding IsLobbyLeader, Converter={StaticResource InvertBool}}" VerticalAlignment="Center" IsChecked="{Binding CurrentSession.Player.IsReady}"/>
-		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" Command="{Binding StartGameCommand}" Visibility="{Binding IsLobbyLeader, Converter={StaticResource BoolToVis}}" />
+		<CheckBox Grid.Column="1" Grid.Row="1" Content="Bereit" IsEnabled="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource InvertBool}}" VerticalAlignment="Center" IsChecked="{Binding CurrentSession.Player.IsReady}"/>
+		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" Command="{Binding StartGameCommand}" Visibility="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource BoolToVis}}" />
 		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" Command="{Binding LeaveLobbyCommand}"/>
 	</Grid>
 </Window>

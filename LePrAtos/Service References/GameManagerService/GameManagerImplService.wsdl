@@ -32,6 +32,12 @@
   <message name="joinGameLobbyResponse">
     <part name="parameters" element="tns:joinGameLobbyResponse" />
   </message>
+  <message name="leaveGameLobby">
+    <part name="parameters" element="tns:leaveGameLobby" />
+  </message>
+  <message name="leaveGameLobbyResponse">
+    <part name="parameters" element="tns:leaveGameLobbyResponse" />
+  </message>
   <message name="getGameLobby">
     <part name="parameters" element="tns:getGameLobby" />
   </message>
@@ -68,6 +74,10 @@
       <input wsam:Action="http://webservices.org/GameManager/joinGameLobbyRequest" message="tns:joinGameLobby" />
       <output wsam:Action="http://webservices.org/GameManager/joinGameLobbyResponse" message="tns:joinGameLobbyResponse" />
       <fault wsam:Action="http://webservices.org/GameManager/joinGameLobby/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="leaveGameLobby">
+      <input wsam:Action="http://webservices.org/GameManager/leaveGameLobbyRequest" message="tns:leaveGameLobby" />
+      <output wsam:Action="http://webservices.org/GameManager/leaveGameLobbyResponse" message="tns:leaveGameLobbyResponse" />
     </operation>
     <operation name="getGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/getGameLobbyRequest" message="tns:getGameLobby" />
@@ -125,6 +135,15 @@
       <fault name="Exception">
         <soap:fault use="literal" name="Exception" namespace="" />
       </fault>
+    </operation>
+    <operation name="leaveGameLobby">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
     </operation>
     <operation name="getGameLobby">
       <soap:operation soapAction="" />

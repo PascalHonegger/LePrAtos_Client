@@ -20,6 +20,7 @@ namespace LePrAtos.Lobby
 	///     ViewModel für für die Auswahl einer Lobby
 	/// </summary>
 	[Export(typeof (LobbyBrowserViewModel))]
+	[PartCreationPolicy(CreationPolicy.Shared)]
 	public class LobbyBrowserViewModel : ViewModelBase, IRequestWindowClose
 	{
 		private ICommand _createLobbyCommand;
@@ -29,14 +30,33 @@ namespace LePrAtos.Lobby
 		private LobbyViewModel _seletedLobby;
 
 		/// <summary>
+		///     Entschieded, ob die Lobbies sich automatisch aktualisieren
+		/// </summary>
+		public bool IsRefreshing
+		{
+			set
+			{
+				foreach (var lobby in AvailableLobbies)
+				{
+					lobby.IsRefreshing = value;
+				}
+			}
+		}
+
+		/// <summary>
 		///     Visitor-Pattern, maybe? Updates the <see cref="AvailableLobbies"/>
 		/// </summary>
-		private void Refresh()
+		public void Refresh()
 		{
 			var gameLobbies = CurrentSession.Client.getGameLobbies();
 
+			if (gameLobbies == null)
+			{
+				return;
+			}
+
 			AvailableLobbies.Clear();
-			foreach (var lobby in gameLobbies.Cast<gameLobby>())
+			foreach (var lobby in gameLobbies)
 			{
 				var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 
@@ -44,7 +64,9 @@ namespace LePrAtos.Lobby
 
 				AvailableLobbies.Add(lobbyViewModel);
 			}
+
 		}
+
 
 		/// <summary>
 		///     Constructor
@@ -52,6 +74,7 @@ namespace LePrAtos.Lobby
 		public LobbyBrowserViewModel()
 		{
 			Refresh();
+			//TODO Command: CurrentSession.PollingTimer.Elapsed += (sender, e) => Refresh();
 		}
 
 		/// <summary>
@@ -141,7 +164,16 @@ namespace LePrAtos.Lobby
 
 		private void JoinLobby()
 		{
+			if (SeletedLobby == null)
+			{
+				return;
+			}
+
+			IsRefreshing = false;
+
 			SeletedLobby.Lobby = CurrentSession.Client.joinGameLobby(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId);
+
+			SeletedLobby.IsRefreshing = true;
 
 			new LobbyView(SeletedLobby).Show();
 
@@ -150,7 +182,7 @@ namespace LePrAtos.Lobby
 
 		private async void CreateLobby()
 		{
-			var createdLobby = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId)).@return;
+			var createdLobby = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, "TODO CLIENT")).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 
