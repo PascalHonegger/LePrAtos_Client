@@ -10,6 +10,7 @@
         d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
 	<Window.InputBindings>
 		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5"/>
+		<KeyBinding Command="{Binding JoinLobbyCommand}" Key="Enter"/>
 	</Window.InputBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -30,7 +31,7 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-				<Button Grid.Column="1" Command="{Binding RefreshViewCommand}">
+				<Button Grid.Column="1" Command="{Binding RefreshViewCommand}" HorizontalAlignment="Right" Margin="10, 10, 0, 10">
 					<Image Source="../Resources/Reload.png"/>
 				</Button>
 			</Grid>

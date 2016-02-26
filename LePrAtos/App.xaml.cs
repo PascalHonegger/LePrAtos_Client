@@ -4,6 +4,7 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,17 +64,17 @@ namespace LePrAtos
 					Width = 90
 				};
 
-				configButton.Focus();
-
 				configButton.Click += (b, args) =>
 				{
 					StartApplication(serverSetting);
 					dialog.Close();
 				};
-				dialog.AddControl(configButton);
+				dialog.ItemSource.Add(configButton);
 			}
 
 			dialog.Show();
+
+			dialog.ItemSource.First().Focus();
 		}
 
 		private static ISession _session;

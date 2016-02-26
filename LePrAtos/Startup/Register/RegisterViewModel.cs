@@ -21,22 +21,11 @@ namespace LePrAtos.Startup.Register
 	{
 		private ICommand _cancelCommand;
 		private DelegateCommand<PasswordBox> _registerCommand;
-
-		private int _sallary;
-
+		
 		/// <summary>
 		///     Typed in Username
 		/// </summary>
 		public string Username { get; set; }
-
-		/// <summary>
-		///     Typed in Sallary
-		/// </summary>
-		public string Sallary
-		{
-			get { return _sallary.ToString(); }
-			set { int.TryParse(value, out _sallary); }
-		}
 
 		/// <summary>
 		///     Comand for cancelling registration
@@ -72,13 +61,6 @@ namespace LePrAtos.Startup.Register
 
 		private async void Register(PasswordBox passwordBox)
 		{
-/*			Password = passwordBox.Password;
-			var personId = CurrentSession.Client.login(Username);
-			CurrentSession.Player = new PlayerViewModel {Player = personId};
-			var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
-			lobbyBrowser.Show();
-			RequestWindowCloseEvent.Invoke(this, null); */
-
 			var response = await CurrentSession.Client.loginAsync(Username);
 
 			var player = Container.Resolve<PlayerViewModel>();

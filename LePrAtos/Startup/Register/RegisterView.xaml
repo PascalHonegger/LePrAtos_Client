@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:LePrAtos.Startup.Register"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="RegisterView" Height="300" Width="300" d:DataContext="{d:DesignInstance local:RegisterViewModel}">
+        Title="{x:Static properties:Strings.RegisterView_Register}" Height="300" Width="300" d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
@@ -26,23 +25,19 @@
 		       Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
 		<TextBox Name="Username" Text="{Binding Username}"
 		         Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextChanged="TextChanged" />
-		<Label Target="{Binding ElementName=Sallary}" Content="{x:Static properties:Strings.RegisterView_Sallary}"
-		       Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
-		<TextBox Name="Sallary" Text="{Binding Sallary}"
-		         Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" />
 		<Label Target="{Binding ElementName=Password}" Content="{x:Static properties:Strings.Password}"
-		       Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
+		       Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
 		<PasswordBox Name="Password"
-		             Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" PasswordChanged="TextChanged" />
+		             Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" PasswordChanged="TextChanged" />
 		<Label Target="{Binding ElementName=RepPassword}" Content="{x:Static properties:Strings.RegisterView_RepeatPassword}"
-		       Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" />
+		       Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
 		<PasswordBox Name="RepPassword"
-		             Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" PasswordChanged="TextChanged" />
+		             Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" PasswordChanged="TextChanged" />
 		<Button Content="{x:Static properties:Strings.Abort}"
-		        Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center"
+		        Grid.Column="0" Grid.Row="4" Margin="10"
 		        IsCancel="True" Command="{Binding CancelCommand}" />
 		<Button Content="{x:Static properties:Strings.RegisterView_Register}" Name="RegisterButton"
-		        Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="False"
+		        Grid.Column="1" Grid.Row="4" Margin="10" IsEnabled="False"
 		        IsDefault="True" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=Password}" />
 	</Grid>
 </Window>

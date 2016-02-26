@@ -1,6 +1,8 @@
 ﻿// Projekt: LePrAtos
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
+
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace LePrAtos.Dialogs
@@ -16,6 +18,7 @@ namespace LePrAtos.Dialogs
 		public CustomDialog()
 		{
 			InitializeComponent();
+			Controls.ItemsSource = ItemSource;
 		}
 
 		/// <summary>
@@ -27,12 +30,8 @@ namespace LePrAtos.Dialogs
 		}
 
 		/// <summary>
-		/// Add a Control to the Gui
+		///     Die Quelle der Controls
 		/// </summary>
-		/// <param name="configButton">UIElement to add</param>
-		public void AddControl(UIElement configButton)
-		{
-			Controls.Items.Add(configButton);
-		}
+		public ObservableCollection<UIElement> ItemSource { get; } = new ObservableCollection<UIElement>();
 	}
 }
