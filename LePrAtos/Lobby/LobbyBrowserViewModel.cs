@@ -23,10 +23,19 @@ namespace LePrAtos.Lobby
 	{
 		private ICommand _createLobbyCommand;
 		private DelegateCommand _joinLobbyCommand;
-		private ICommand _refreshViewCommand;
 		private string _lobbyPassword;
 		private ICommand _logoutCommand;
+		private ICommand _refreshViewCommand;
 		private LobbyViewModel _seletedLobby;
+
+
+		/// <summary>
+		///     Constructor
+		/// </summary>
+		public LobbyBrowserViewModel()
+		{
+			Refresh();
+		}
 
 		/// <summary>
 		///     Entschieded, ob die Lobbies sich automatisch aktualisieren
@@ -43,40 +52,6 @@ namespace LePrAtos.Lobby
 		}
 
 		/// <summary>
-		///     Visitor-Pattern, maybe? Updates the <see cref="AvailableLobbies"/>
-		/// </summary>
-		public void Refresh()
-		{
-			var gameLobbies = CurrentSession.Client.getGameLobbies();
-
-			if (gameLobbies == null)
-			{
-				return;
-			}
-
-			AvailableLobbies.Clear();
-			foreach (var lobby in gameLobbies)
-			{
-				var lobbyViewModel = Container.Resolve<LobbyViewModel>();
-
-				lobbyViewModel.Lobby = lobby;
-
-				AvailableLobbies.Add(lobbyViewModel);
-			}
-
-		}
-
-
-		/// <summary>
-		///     Constructor
-		/// </summary>
-		public LobbyBrowserViewModel()
-		{
-			Refresh();
-			//TODO Command: CurrentSession.PollingTimer.Elapsed += (sender, e) => Refresh();
-		}
-
-		/// <summary>
 		///     Command zum erstellen einer Lobby
 		/// </summary>
 		public ICommand CreateLobbyCommand => _createLobbyCommand ?? (_createLobbyCommand = new DelegateCommand(CreateLobby));
@@ -86,7 +61,7 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public DelegateCommand JoinLobbyCommand
 			=> _joinLobbyCommand ?? (_joinLobbyCommand = new DelegateCommand(JoinLobby, CanJoinLobby));
-		
+
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
 		/// </summary>
@@ -143,6 +118,29 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
 
+		/// <summary>
+		///     Visitor-Pattern, maybe? Updates the <see cref="AvailableLobbies" />
+		/// </summary>
+		public async void Refresh()
+		{
+			var gameLobbies = (await CurrentSession.Client.getGameLobbiesAsync()).@return;
+
+			if (gameLobbies == null)
+			{
+				return;
+			}
+
+			AvailableLobbies.Clear();
+			foreach (var lobby in gameLobbies)
+			{
+				var lobbyViewModel = Container.Resolve<LobbyViewModel>();
+
+				lobbyViewModel.Lobby = lobby;
+
+				AvailableLobbies.Add(lobbyViewModel);
+			}
+		}
+
 		private void Logout()
 		{
 			var preSelectedUsername = CurrentSession.Player.Username;
@@ -189,7 +187,8 @@ namespace LePrAtos.Lobby
 		{
 			IsRefreshing = false;
 
-			var createdLobby = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, "TODO CLIENT")).@return;
+			var createdLobby =
+				(await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, "TODO CLIENT")).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 

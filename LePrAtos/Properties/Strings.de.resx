@@ -130,7 +130,7 @@ Bitte senden Sie folgende Informationen an den Support
     <value>Neue Lobby erstellen</value>
   </data>
   <data name="LobbyBrowser_GameName" xml:space="preserve">
-    <value>Spieler Name</value>
+    <value>Lobby Name</value>
   </data>
   <data name="LobbyBrowser_HasPassword" xml:space="preserve">
     <value>Lobby verfügt über ein Passwort</value>

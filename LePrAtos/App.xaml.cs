@@ -114,7 +114,10 @@ namespace LePrAtos
 			try
 			{
 				CurrentSession?.PollingTimer?.Dispose();
-				CurrentSession?.Client?.logout(CurrentSession.Player.PlayerId);
+				if (!string.IsNullOrEmpty(CurrentSession?.Player?.PlayerId))
+				{
+					CurrentSession.Client.logout(CurrentSession.Player.PlayerId);
+				}
 			}
 			catch (Exception)
 			{

@@ -196,15 +196,6 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LobbyView_Username.
-        /// </summary>
-        public static string LobbyView_Username {
-            get {
-                return ResourceManager.GetString("LobbyView_Username", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to LoginView_Language.
         /// </summary>
         public static string LoginView_Language {

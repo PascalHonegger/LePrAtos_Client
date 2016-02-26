@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:LePrAtos.Startup.Register"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="{x:Static properties:Strings.RegisterView_Register}" Height="300" Width="300" d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize">
-	<Grid>
+        Title="{x:Static properties:Strings.RegisterView_Register}" Height="300" Width="300"
+        d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize">
+	<Grid FocusManager.FocusedElement="{Binding ElementName=Username}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />

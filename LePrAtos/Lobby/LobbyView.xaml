@@ -7,7 +7,7 @@
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         xmlns:serviceReferences="clr-namespace:LePrAtos.Service_References"
         mc:Ignorable="d"
-        Title="Lobby" d:DataContext="{d:DesignInstance local:LobbyViewModel}">
+        Title="{Binding LobbyName}" d:DataContext="{d:DesignInstance local:LobbyViewModel}" WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="6*" />
@@ -33,11 +33,11 @@
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>
 					</GridViewColumn>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Username}" DisplayMemberBinding="{Binding Username}"/>
+					<GridViewColumn Header="{x:Static properties:Strings.Username}" DisplayMemberBinding="{Binding Username}"/>
 					<GridViewColumn Header="{x:Static properties:Strings.LobbyView_Remove}">
 						<GridViewColumn.CellTemplate>
 							<DataTemplate DataType="serviceReferences:PlayerViewModel">
-								<Button>
+								<Button Width="30">
 									<Image Source="../Resources/DeleteRed.png" />
 								</Button>
 							</DataTemplate>
@@ -55,7 +55,7 @@
 		</ListView>
 
 		<TextBlock Text="Hier könnte ein Chat leben" Grid.Column="0" Grid.Row="1" />
-		<CheckBox Grid.Column="1" Grid.Row="1" Content="Bereit" IsEnabled="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource InvertBool}}" VerticalAlignment="Center" IsChecked="{Binding CurrentSession.Player.IsReady}"/>
+		<CheckBox Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_Ready}" IsEnabled="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource InvertBool}}" VerticalAlignment="Center" IsChecked="{Binding CurrentSession.Player.IsReady}"/>
 		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" Command="{Binding StartGameCommand}" Visibility="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource BoolToVis}}" />
 		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" Command="{Binding LeaveLobbyCommand}"/>
 	</Grid>

@@ -8,7 +8,7 @@
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="{x:Static localization:Strings.LoginView_Login}" MinHeight="300" MinWidth="500" Height="300" Width="500" d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
 
-	<Grid Margin="5" DockPanel.Dock="Bottom">
+	<Grid Margin="5" DockPanel.Dock="Bottom" FocusManager.FocusedElement="{Binding ElementName=Username}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
 			<ColumnDefinition />
@@ -32,7 +32,7 @@
 		        Command="{Binding RegisterCommand}"/>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
 		       Content="{x:Static localization:Strings.Username}" VerticalAlignment="Center"/>
-		<TextBox Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+		<TextBox x:Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" >
 			<TextBox.Text>
 				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
 			</TextBox.Text>

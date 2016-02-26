@@ -110,13 +110,25 @@ namespace LePrAtos.Lobby
 				{
 					foreach (var playerName in _lobby.gamePlayerListPublic)
 					{
-						var playerViewModel = Container.Resolve<PlayerViewModel>();
-						playerViewModel.Player = new player { username = playerName };
-						if (Equals(LobbyLeaderName, playerViewModel.Username))
+						if (Equals(playerName, CurrentSession.Player.Username))
 						{
-							playerViewModel.IsLeader = true;
+							if (Equals(LobbyLeaderName, CurrentSession.Player.Username))
+							{
+								//TODO Should be set true by server
+								CurrentSession.Player.IsLeader = true;
+							}
+							Members.Add(CurrentSession.Player);
 						}
-						Members.Add(playerViewModel);
+						else
+						{
+							var playerViewModel = Container.Resolve<PlayerViewModel>();
+							playerViewModel.Player = new player { username = playerName };
+							if (Equals(LobbyLeaderName, playerViewModel.Username))
+							{
+								playerViewModel.IsLeader = true;
+							}
+							Members.Add(playerViewModel);
+						}
 					}
 				}
 

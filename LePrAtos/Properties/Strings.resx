@@ -153,9 +153,6 @@
   <data name="LobbyView_Ready" xml:space="preserve">
     <value>LobbyView_Ready</value>
   </data>
-  <data name="LobbyView_Username" xml:space="preserve">
-    <value>LobbyView_Username</value>
-  </data>
   <data name="LoginView_Language" xml:space="preserve">
     <value>LoginView_Language</value>
   </data>

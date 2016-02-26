@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:LePrAtos.Lobby"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="LobbyBrowserView" Height="400" Width="700" MinHeight="350" MinWidth="600"
-        d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
+        Title="Lobby Browser" MinHeight="350" MinWidth="600"
+        d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowState="Maximized">
 	<Window.InputBindings>
 		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5"/>
 		<KeyBinding Command="{Binding JoinLobbyCommand}" Key="Enter"/>
