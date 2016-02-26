@@ -3,17 +3,17 @@
 // Author: Keller, Alain
 
 using System.Windows;
-using System.Windows.Input;
 using LePrAtos.Startup.Login;
 
 namespace LePrAtos.Startup.Register
 {
 	/// <summary>
-	/// Interaction logic for RegisterView.xaml
+	///     Interaction logic for RegisterView.xaml
 	/// </summary>
 	public partial class RegisterView : Window
 	{
 		private const int PasswordMinLength = 5;
+
 		public RegisterView()
 		{
 			InitializeComponent();
@@ -22,13 +22,13 @@ namespace LePrAtos.Startup.Register
 			registerViewModel.RequestWindowCloseEvent += (sender, e) => Close();
 		}
 
-		private void OnKeyDown(object sender, KeyEventArgs e)
+		private void TextChanged(object sender, object jigger)
 		{
 			RegisterButton.IsEnabled = false;
 			if (Username.Text.Length < LoginViewModel.UsernameMaxLength &&
-			    Username.Text.Length > LoginViewModel.UsernameMinLength && 
-				Password.Password.Length > PasswordMinLength &&
-				RepPassword.Password == Password.Password)
+			    Username.Text.Length > LoginViewModel.UsernameMinLength &&
+			    Password.Password.Length > PasswordMinLength &&
+			    Equals(RepPassword.Password, Password.Password))
 			{
 				RegisterButton.IsEnabled = true;
 			}
