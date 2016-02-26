@@ -182,6 +182,8 @@ namespace LePrAtos.Lobby
 
 		private async void CreateLobby()
 		{
+			IsRefreshing = false;
+
 			var createdLobby = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, "TODO CLIENT")).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();

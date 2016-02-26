@@ -19,7 +19,7 @@ namespace LePrAtos.Startup.Register
 		private ICommand _cancelCommand;
 		private DelegateCommand<PasswordBox> _registerCommand;
 
-		public string Username;
+		public string Username { get; set; }
 
 		public string Sallary
 		{
@@ -27,7 +27,6 @@ namespace LePrAtos.Startup.Register
 			set { int.TryParse(value, out _sallary); }
 		}
 
-		public string Password;
 		private int _sallary;
 
 		public ICommand CancelCommand

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LePrAtos.Lobby"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="LobbyBrowserView" Height="400" Width="700"
+        Title="LobbyBrowserView" Height="400" Width="700" MinHeight="350" MinWidth="600"
         d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -21,8 +21,15 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
-			<TextBlock Margin="10" Grid.Row="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center"
-			           HorizontalAlignment="Center" />
+			<Grid Margin="10" Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+				<Button Grid.Column="1" ><Image Source="../Resources/Reload.png"/></Button>
+			</Grid>
+			
 
 			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}"
 			        Command="{Binding CreateLobbyCommand}" />

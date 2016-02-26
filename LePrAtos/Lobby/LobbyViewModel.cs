@@ -37,7 +37,7 @@ namespace LePrAtos.Lobby
 			Members.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(MemberCount));
 			CurrentSession.PollingTimer.Elapsed += (sender, e) =>
 			{
-				Dispatcher.CurrentDispatcher.InvokeAsync(Reload);
+				App.Current.Dispatcher.InvokeAsync(Reload);
 			};
 		}
 
