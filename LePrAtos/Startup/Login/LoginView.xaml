@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
         xmlns:localization="clr-namespace:LePrAtos.Properties"
-        mc:Ignorable="d"
+        mc:Ignorable="d" ResizeMode="NoResize"
         Title="{x:Static localization:Strings.LoginView_Login}" MinHeight="300" MinWidth="500" Height="300" Width="500" d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
 
 	<Grid Margin="5" DockPanel.Dock="Bottom">
@@ -24,18 +24,21 @@
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
+			
 			<Label Grid.Row="0" Grid.Column="0" Content="{x:Static localization:Strings.LoginView_Language}" />
 			<ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}" />
 		</Grid>
+		<Button Grid.Column="0" Grid.Row="0" Content="{x:Static localization:Strings.LoginView_Register}"
+		        Command="{Binding RegisterCommand}" IsDefault="True"/>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
-		       Content="{x:Static localization:Strings.LoginView_Username}" VerticalAlignment="Center"/>
+		       Content="{x:Static localization:Strings.Username}" VerticalAlignment="Center"/>
 		<TextBox Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
 			<TextBox.Text>
 				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
 			</TextBox.Text>
 		</TextBox>
 		<Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}"
-		       Content="{x:Static localization:Strings.LoginView_Password}" VerticalAlignment="Center"/>
+		       Content="{x:Static localization:Strings.Password}" VerticalAlignment="Center"/>
 		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" />
 		<CheckBox Grid.Column="0" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_SaveLogin}" IsChecked="{Binding SaveLogin}"/>
 		<Button Grid.Column="1" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_Login}"

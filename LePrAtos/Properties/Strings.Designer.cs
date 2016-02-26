@@ -61,6 +61,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abort.
+        /// </summary>
+        public static string Abort {
+            get {
+                return ResourceManager.GetString("Abort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ExceptionHandling_Caption.
         /// </summary>
         public static string ExceptionHandling_Caption {
@@ -214,11 +223,11 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LoginView_Password.
+        ///   Looks up a localized string similar to LoginView_Register.
         /// </summary>
-        public static string LoginView_Password {
+        public static string LoginView_Register {
             get {
-                return ResourceManager.GetString("LoginView_Password", resourceCulture);
+                return ResourceManager.GetString("LoginView_Register", resourceCulture);
             }
         }
         
@@ -232,11 +241,56 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegisterView_Register.
+        /// </summary>
+        public static string RegisterView_Register {
+            get {
+                return ResourceManager.GetString("RegisterView_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegisterView_RepeatPassword.
+        /// </summary>
+        public static string RegisterView_RepeatPassword {
+            get {
+                return ResourceManager.GetString("RegisterView_RepeatPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegisterView_Sallary.
+        /// </summary>
+        public static string RegisterView_Sallary {
+            get {
+                return ResourceManager.GetString("RegisterView_Sallary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegisterView_Title.
+        /// </summary>
+        public static string RegisterView_Title {
+            get {
+                return ResourceManager.GetString("RegisterView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Username.
         /// </summary>
-        public static string LoginView_Username {
+        public static string Username {
             get {
-                return ResourceManager.GetString("LoginView_Username", resourceCulture);
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
     }
