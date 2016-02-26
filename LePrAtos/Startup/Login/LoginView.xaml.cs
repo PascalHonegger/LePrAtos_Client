@@ -2,7 +2,6 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
-using System.Windows;
 using LePrAtos.Infrastructure;
 
 namespace LePrAtos.Startup.Login
@@ -13,7 +12,7 @@ namespace LePrAtos.Startup.Login
 	public partial class LoginView
 	{
 		/// <summary>
-		/// Constructor
+		///    Constructor
 		/// </summary>
 		public LoginView(IRequestWindowClose dataContext)
 		{

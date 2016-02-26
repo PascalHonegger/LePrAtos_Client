@@ -42,7 +42,6 @@ namespace LePrAtos.Service_References
 				PlayerId = _player.playerID;
 				Username = _player.username;
 				IsReady = false;
-				IsLeader = false;
 			}
 		}
 
