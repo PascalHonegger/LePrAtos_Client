@@ -3,8 +3,12 @@
   <xs:element name="Exception" type="tns:Exception" />
   <xs:element name="createGameLobby" type="tns:createGameLobby" />
   <xs:element name="createGameLobbyResponse" type="tns:createGameLobbyResponse" />
+  <xs:element name="getGameLobbies" type="tns:getGameLobbies" />
+  <xs:element name="getGameLobbiesResponse" type="tns:getGameLobbiesResponse" />
   <xs:element name="getGameLobby" type="tns:getGameLobby" />
   <xs:element name="getGameLobbyResponse" type="tns:getGameLobbyResponse" />
+  <xs:element name="getPlayerByID" type="tns:getPlayerByID" />
+  <xs:element name="getPlayerByIDResponse" type="tns:getPlayerByIDResponse" />
   <xs:element name="joinGameLobby" type="tns:joinGameLobby" />
   <xs:element name="joinGameLobbyResponse" type="tns:joinGameLobbyResponse" />
   <xs:element name="login" type="tns:login" />
@@ -13,7 +17,7 @@
   <xs:element name="logoutResponse" type="tns:logoutResponse" />
   <xs:complexType name="login">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="username" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="loginResponse">
@@ -35,10 +39,20 @@
       <xs:element minOccurs="0" name="username" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="getPlayerByID">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPlayerByIDResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:player" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="joinGameLobby">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:player" />
-      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+      <xs:element minOccurs="0" name="GameLobbyID" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="joinGameLobbyResponse">
@@ -48,7 +62,9 @@
   </xs:complexType>
   <xs:complexType name="gameLobby">
     <xs:sequence>
+      <xs:element minOccurs="0" name="gameLobbyAdmin" type="xs:string" />
       <xs:element minOccurs="0" name="gameLobbyID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="gamePlayerListPublic" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Exception">
@@ -58,7 +74,7 @@
   </xs:complexType>
   <xs:complexType name="getGameLobby">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="GameLobbyID" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getGameLobbyResponse">
@@ -67,7 +83,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="logout">
-    <xs:sequence />
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="logoutResponse">
     <xs:sequence>
@@ -82,6 +100,14 @@
   <xs:complexType name="createGameLobbyResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:gameLobby" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getGameLobbies">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getGameLobbiesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:anyType" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

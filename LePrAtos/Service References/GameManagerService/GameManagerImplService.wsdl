@@ -38,6 +38,18 @@
   <message name="getGameLobbyResponse">
     <part name="parameters" element="tns:getGameLobbyResponse" />
   </message>
+  <message name="getGameLobbies">
+    <part name="parameters" element="tns:getGameLobbies" />
+  </message>
+  <message name="getGameLobbiesResponse">
+    <part name="parameters" element="tns:getGameLobbiesResponse" />
+  </message>
+  <message name="getPlayerByID">
+    <part name="parameters" element="tns:getPlayerByID" />
+  </message>
+  <message name="getPlayerByIDResponse">
+    <part name="parameters" element="tns:getPlayerByIDResponse" />
+  </message>
   <portType name="GameManager">
     <operation name="login">
       <input wsam:Action="http://webservices.org/GameManager/loginRequest" message="tns:login" />
@@ -60,6 +72,14 @@
     <operation name="getGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/getGameLobbyRequest" message="tns:getGameLobby" />
       <output wsam:Action="http://webservices.org/GameManager/getGameLobbyResponse" message="tns:getGameLobbyResponse" />
+    </operation>
+    <operation name="getGameLobbies">
+      <input wsam:Action="http://webservices.org/GameManager/getGameLobbiesRequest" message="tns:getGameLobbies" />
+      <output wsam:Action="http://webservices.org/GameManager/getGameLobbiesResponse" message="tns:getGameLobbiesResponse" />
+    </operation>
+    <operation name="getPlayerByID">
+      <input wsam:Action="http://webservices.org/GameManager/getPlayerByIDRequest" message="tns:getPlayerByID" />
+      <output wsam:Action="http://webservices.org/GameManager/getPlayerByIDResponse" message="tns:getPlayerByIDResponse" />
     </operation>
   </portType>
   <binding name="GameManagerImplPortBinding" type="tns:GameManager">
@@ -107,6 +127,24 @@
       </fault>
     </operation>
     <operation name="getGameLobby">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getGameLobbies">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getPlayerByID">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
