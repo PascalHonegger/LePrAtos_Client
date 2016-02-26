@@ -129,7 +129,8 @@ namespace LePrAtos.Startup.Login
 		private void Register()
 		{
 			var registerView = new RegisterView();
-			registerView.ShowDialog();
+			registerView.Show();
+			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
 		private async void Login(PasswordBox passwordBox)

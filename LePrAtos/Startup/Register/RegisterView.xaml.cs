@@ -17,14 +17,18 @@ namespace LePrAtos.Startup.Register
 		public RegisterView()
 		{
 			InitializeComponent();
-			DataContext = new RegisterViewModel();
+			var registerViewModel = new RegisterViewModel();
+			DataContext = registerViewModel;
+			registerViewModel.RequestWindowCloseEvent += (sender, e) => Close();
 		}
 
 		private void OnKeyDown(object sender, KeyEventArgs e)
 		{
 			RegisterButton.IsEnabled = false;
 			if (Username.Text.Length < LoginViewModel.UsernameMaxLength &&
-			    Username.Text.Length > LoginViewModel.UsernameMinLength && Password.Password.Length > PasswordMinLength)
+			    Username.Text.Length > LoginViewModel.UsernameMinLength && 
+				Password.Password.Length > PasswordMinLength &&
+				RepPassword.Password == Password.Password)
 			{
 				RegisterButton.IsEnabled = true;
 			}
