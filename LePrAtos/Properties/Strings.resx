@@ -138,10 +138,10 @@
   <data name="LoginView_Login" xml:space="preserve">
     <value>LoginView_Login</value>
   </data>
-  <data name="LoginView_Password" xml:space="preserve">
+  <data name="Password" xml:space="preserve">
     <value>LoginView_Password</value>
   </data>
-  <data name="LoginView_Username" xml:space="preserve">
+  <data name="Username" xml:space="preserve">
     <value>LoginView_Username</value>
   </data>
   <data name="LobbyView_LeaveLobby" xml:space="preserve">
@@ -170,5 +170,29 @@
   </data>
   <data name="LobbyView_LobbyPassword" xml:space="preserve">
     <value>LobbyView_LobbyPassword</value>
+  </data>
+  <data name="ExceptionHandling_Caption" xml:space="preserve">
+    <value>ExceptionHandling_Caption</value>
+  </data>
+  <data name="ExceptionHandling_Message" xml:space="preserve">
+    <value>ExceptionHandling_Message</value>
+  </data>
+  <data name="LoginView_Register" xml:space="preserve">
+    <value>LoginView_Register</value>
+  </data>
+  <data name="RegisterView_Title" xml:space="preserve">
+    <value>RegisterView_Title</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="RegisterView_Register" xml:space="preserve">
+    <value>RegisterView_Register</value>
+  </data>
+  <data name="RegisterView_RepeatPassword" xml:space="preserve">
+    <value>RegisterView_RepeatPassword</value>
+  </data>
+  <data name="RegisterView_Sallary" xml:space="preserve">
+    <value>RegisterView_Sallary</value>
   </data>
 </root>

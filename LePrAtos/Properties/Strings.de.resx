@@ -162,22 +162,37 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LobbyView_StartGame" xml:space="preserve">
     <value>Spiel starten</value>
   </data>
-  <data name="LobbyView_Username" xml:space="preserve">
-    <value>Benutzername</value>
-  </data>
   <data name="LoginView_Language" xml:space="preserve">
     <value>Sprache</value>
   </data>
   <data name="LoginView_Login" xml:space="preserve">
     <value>Anmelden</value>
   </data>
-  <data name="LoginView_Password" xml:space="preserve">
+  <data name="Password" xml:space="preserve">
     <value>Passwort</value>
+  </data>
+  <data name="LoginView_Register" xml:space="preserve">
+    <value>Neuer Account</value>
   </data>
   <data name="LoginView_SaveLogin" xml:space="preserve">
     <value>Angemeldet bleiben</value>
   </data>
-  <data name="LoginView_Username" xml:space="preserve">
+  <data name="Username" xml:space="preserve">
     <value>Benutzername</value>
+  </data>
+  <data name="RegisterView_Title" xml:space="preserve">
+    <value>Registreiren</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RegisterView_Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="RegisterView_RepeatPassword" xml:space="preserve">
+    <value>Passwort wiederholen</value>
+  </data>
+  <data name="RegisterView_Sallary" xml:space="preserve">
+    <value>Ihr Lohn</value>
   </data>
 </root>

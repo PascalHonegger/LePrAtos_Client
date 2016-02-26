@@ -10,10 +10,12 @@ using System.Linq;
 using System.Resources;
 using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
 using LePrAtos.Service_References;
+using LePrAtos.Startup.Register;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 
@@ -24,10 +26,11 @@ namespace LePrAtos.Startup.Login
 	/// </summary>
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
-		private const int UsernameMaxLength = 30;
-		private const int UsernameMinLength = 3;
+		public const int UsernameMaxLength = 30;
+		public const int UsernameMinLength = 3;
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private string _username = string.Empty;
+		private ICommand _registerCommand;
 
 		/// <summary>
 		///     Alle möglichen Sprachen
@@ -114,6 +117,21 @@ namespace LePrAtos.Startup.Login
 		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		/// <summary>
+		///     Command für die Registrierung
+		/// </summary>
+		public ICommand RegisterCommand
+			=>
+				_registerCommand ??
+				(_registerCommand = new DelegateCommand(Register));
+
+		private void Register()
+		{
+			var registerView = new RegisterView();
+			registerView.Show();
+			RequestWindowCloseEvent.Invoke(this, null);
+		}
 
 		private async void Login(PasswordBox passwordBox)
 		{

@@ -138,10 +138,10 @@
   <data name="LoginView_Login" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="LoginView_Password" xml:space="preserve">
+  <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="LoginView_Username" xml:space="preserve">
+  <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="LobbyView_LeaveLobby" xml:space="preserve">
@@ -152,9 +152,6 @@
   </data>
   <data name="LobbyView_Ready" xml:space="preserve">
     <value>Is Ready</value>
-  </data>
-  <data name="LobbyView_Username" xml:space="preserve">
-    <value>Username</value>
   </data>
   <data name="LoginView_Language" xml:space="preserve">
     <value>Language</value>
@@ -179,5 +176,23 @@
 {0}
 Please send the following info to the support!
 {1}</value>
+  </data>
+  <data name="LoginView_Register" xml:space="preserve">
+    <value>Create new Account</value>
+  </data>
+  <data name="RegisterView_Title" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RegisterView_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterView_RepeatPassword" xml:space="preserve">
+    <value>Repeat Password</value>
+  </data>
+  <data name="RegisterView_Sallary" xml:space="preserve">
+    <value>Your Sallary</value>
   </data>
 </root>

@@ -180,6 +180,10 @@
     <Compile Include="Infrastructure\IRequestWindowClose.cs" />
     <Compile Include="Service References\PlayerViewModel.cs" />
     <Compile Include="Infrastructure\ViewModelBase.cs" />
+    <Compile Include="Startup\Register\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Startup\Register\RegisterViewModel.cs" />
     <Page Include="Dialogs\CustomDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +214,10 @@
       <DependentUpon>LoginView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Startup\Register\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
