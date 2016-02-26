@@ -65,7 +65,7 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Der Leiter der Lobby, darf beispielsweise leute aus der Lobby entfernen
 		/// </summary>
-		public string LobbyLeaderId { get; set; }
+		public string LobbyLeaderName { private get; set; }
 
 		/// <summary>
 		/// Command zum beitreten der ausgewählten Lobby
@@ -79,7 +79,7 @@ namespace LePrAtos.Lobby
 
 		private bool CanStartGame()
 		{
-			return Members.Where(p => !Equals(p.PlayerId, LobbyLeaderId)).All(p => p.IsReady);
+			return Members.Where(p => !Equals(p.PlayerId, LobbyLeaderName)).All(p => p.IsReady);
 		}
 
 		private void StartGame()
@@ -87,25 +87,17 @@ namespace LePrAtos.Lobby
 			throw new NotImplementedException();
 		}
 
-		/// <summary>
-		///     True, wenn der angemeldete Spieler der Lobby-Lieter ist
-		/// </summary>
-		public bool IsLobbyLeader => Equals(CurrentSession.Player.PlayerId, LobbyLeaderId);
-
 		private void LeaveLobby()
 		{
-			//TODO Tell Server to check LobbyLeaderId
+			//TODO Tell Server to check LobbyLeaderName
 
 			//TODO Tell Server to remove me from Members
 
 			Members.Remove(CurrentSession.Player);
-
-			CurrentSession.Player.IsLeader = false;
-			CurrentSession.Player.IsReady = false;
-
-			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
 			
-			var lobbyBrowserView = new LobbyBrowserView(lobbyBrowserViewModel);
+			CurrentSession.Player.IsReady = false;
+			
+			var lobbyBrowserView = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 
 			lobbyBrowserView.Show();
 
@@ -130,8 +122,20 @@ namespace LePrAtos.Lobby
 				}
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
+				LobbyLeaderName = _lobby.gameLobbyAdmin;
+				Members.Clear();
+				foreach (var playerName in _lobby.gamePlayerListPublic)
+				{
+					var playerViewModel = Container.Resolve<PlayerViewModel>();
+					playerViewModel.Player = new player {username = playerName};
+					if (Equals(LobbyLeaderName, playerViewModel.Username))
+					{
+						playerViewModel.IsLeader = true;
+					}
+					Members.Add(playerViewModel);
+				}
+
 				LobbyName = "TODO SERVER";
-				LobbyLeaderId = "TODO SERVER";
 				HasLobbyPassword = false;
 			}
 		}

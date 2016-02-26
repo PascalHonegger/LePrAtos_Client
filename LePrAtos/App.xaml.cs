@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using LePrAtos.Dialogs;
-using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
 using LePrAtos.Properties;
@@ -87,15 +86,11 @@ namespace LePrAtos
 
 			if (!string.IsNullOrEmpty(Settings.Default.SavedUser))
 			{
-				// var player = CurrentSession.Client.getUserFromId(Settings.Default.SavedUser);
+				var player = CurrentSession.Client.getPlayerByID(Settings.Default.SavedUser);
 
 				var playerViewModel = ContainerProvider.Container.Resolve<PlayerViewModel>();
 
-				playerViewModel.Player = new player
-				{
-					username = "Get from Server!",
-					playerID = Settings.Default.SavedUser
-				};
+				playerViewModel.Player = player;
 
 				_session.Player = playerViewModel;
 
@@ -105,7 +100,7 @@ namespace LePrAtos
 			}
 			else
 			{
-				var loginWindow = new LoginView(ContainerProvider.Container.Resolve<LoginViewModel>());
+				var loginWindow = new LoginView(new LoginViewModel());
 
 				loginWindow.Show();
 			}
@@ -120,7 +115,7 @@ namespace LePrAtos
 				CurrentSession?.PollingTimer?.Dispose();
 				//CurrentSession?.Client?.Logout();
 			}
-			catch (System.Exception)
+			catch (Exception)
 			{
 				// ignored
 			}

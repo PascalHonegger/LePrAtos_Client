@@ -24,7 +24,6 @@ namespace LePrAtos.Startup.Login
 	/// <summary>
 	///     ViewModel für <see cref="LoginView" />
 	/// </summary>
-	[Export(typeof(LoginViewModel))]
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
 		public const int UsernameMaxLength = 30;
@@ -149,9 +148,7 @@ namespace LePrAtos.Startup.Login
 				Settings.Default.Save();
 			}
 
-			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
-
-			var lobbyBrowser = new LobbyBrowserView(lobbyBrowserViewModel);
+			var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 
 			lobbyBrowser.Show();
 

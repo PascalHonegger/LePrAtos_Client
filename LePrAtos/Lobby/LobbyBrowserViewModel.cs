@@ -5,11 +5,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Windows.Input;
 using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Properties;
-using LePrAtos.Service_References;
 using LePrAtos.Startup.Login;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
@@ -29,65 +29,29 @@ namespace LePrAtos.Lobby
 		private LobbyViewModel _seletedLobby;
 
 		/// <summary>
+		///     Visitor-Pattern, maybe? Updates the <see cref="AvailableLobbies"/>
+		/// </summary>
+		private void Refresh()
+		{
+			var gameLobbies = CurrentSession.Client.getGameLobbies();
+
+			AvailableLobbies.Clear();
+			foreach (var lobby in gameLobbies.Cast<gameLobby>())
+			{
+				var lobbyViewModel = Container.Resolve<LobbyViewModel>();
+
+				lobbyViewModel.Lobby = lobby;
+
+				AvailableLobbies.Add(lobbyViewModel);
+			}
+		}
+
+		/// <summary>
 		///     Constructor
 		/// </summary>
 		public LobbyBrowserViewModel()
 		{
-			//TODO Load Data from Server
-			var playerViewModel1 = Container.Resolve<PlayerViewModel>();
-			var player1 = new player
-			{
-				username = "ExmaplePlayer 1"
-			};
-			playerViewModel1.Player = player1;
-
-			var playerViewModel2 = Container.Resolve<PlayerViewModel>();
-			var player2 = new player
-			{
-				username = "ExmaplePlayer 2"
-			};
-			playerViewModel2.Player = player2;
-
-			var playerViewModel3 = Container.Resolve<PlayerViewModel>();
-			var player3 = new player
-			{
-				username = "ExmaplePlayer 3"
-			};
-			playerViewModel3.Player = player3;
-
-			var lobby1 = Container.Resolve<LobbyViewModel>();
-
-			lobby1.LobbyId = "Example 1";
-
-			lobby1.LobbyName = "Example 1";
-
-			lobby1.LobbyLeaderId = "Example 1";
-
-			playerViewModel1.IsLeader = true;
-
-			lobby1.Members.Add(playerViewModel1);
-
-			var lobby2 = Container.Resolve<LobbyViewModel>();
-
-			lobby2.LobbyId = "Example 2";
-
-			lobby2.LobbyName = "Example 2";
-
-			lobby2.LobbyLeaderId = "Example 2";
-
-			playerViewModel2.IsLeader = true;
-
-			lobby2.HasLobbyPassword = true;
-
-			lobby2.Members.Add(playerViewModel2);
-			lobby2.Members.Add(playerViewModel3);
-
-
-			AvailableLobbies.Add(lobby1);
-			AvailableLobbies.Add(lobby2);
-
-
-
+			Refresh();
 		}
 
 		/// <summary>
@@ -160,9 +124,7 @@ namespace LePrAtos.Lobby
 			Settings.Default.SavedUser = null;
 			Settings.Default.Save();
 
-			var loginViewModel = Container.Resolve<LoginViewModel>();
-
-			loginViewModel.Username = preSelectedUsername;
+			var loginViewModel = new LoginViewModel {Username = preSelectedUsername};
 
 			var loginView = new LoginView(loginViewModel);
 
@@ -179,9 +141,7 @@ namespace LePrAtos.Lobby
 
 		private void JoinLobby()
 		{
-			//TODO Tell Server to add me to the lobby
-
-			SeletedLobby.Members.Add(CurrentSession.Player);
+			SeletedLobby.Lobby = CurrentSession.Client.joinGameLobby(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId);
 
 			new LobbyView(SeletedLobby).Show();
 
@@ -190,18 +150,11 @@ namespace LePrAtos.Lobby
 
 		private async void CreateLobby()
 		{
-			var result = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId)).@return;
+			var createdLobby = (await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId)).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 
-			lobbyViewModel.Lobby = result;
-
-			lobbyViewModel.Members.Add(CurrentSession.Player);
-
-			lobbyViewModel.LobbyLeaderId = CurrentSession.Player.PlayerId;
-
-			CurrentSession.Player.IsReady = true;
-			CurrentSession.Player.IsLeader = true;
+			lobbyViewModel.Lobby = createdLobby;
 
 			new LobbyView(lobbyViewModel).Show();
 
