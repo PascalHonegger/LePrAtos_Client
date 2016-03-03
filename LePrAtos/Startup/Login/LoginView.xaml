@@ -18,18 +18,30 @@
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0" Grid.Column="1">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
-			
+
 			<Label Grid.Row="0" Grid.Column="0" Content="{x:Static localization:Strings.LoginView_Language}" />
-			<ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}" />
+			<ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<Grid Height="20" HorizontalAlignment="Stretch">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Image Grid.Column="0" Source="{Binding PathToFlag}" Margin="0,0,5,0"/>
+							<TextBlock Grid.Column="1" Text="{Binding DisplayText}"/>
+						</Grid>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
 		</Grid>
-		<Button Grid.Column="0" Grid.Row="0" Content="{x:Static localization:Strings.LoginView_Register}"
-		        Command="{Binding RegisterCommand}"/>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
 		       Content="{x:Static localization:Strings.Username}" VerticalAlignment="Center"/>
 		<TextBox x:Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" >
@@ -40,8 +52,11 @@
 		<Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}"
 		       Content="{x:Static localization:Strings.Password}" VerticalAlignment="Center"/>
 		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" />
-		<CheckBox Grid.Column="0" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_SaveLogin}" IsChecked="{Binding SaveLogin}"/>
-		<Button Grid.Column="1" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_Login}"
-		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" IsDefault="True"/>
+		<TextBlock Grid.Column="0" Grid.Row="4" TextAlignment="Center">
+			<Hyperlink Command="{Binding RegisterCommand}"><TextBlock Text="{x:Static localization:Strings.LoginView_Register}"/></Hyperlink>
+		</TextBlock>
+		<CheckBox Grid.Column="1" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_SaveLogin}" IsChecked="{Binding SaveLogin}"/>
+		<Button Grid.Column="1" Grid.Row="4" Content="{x:Static localization:Strings.LoginView_Login}"
+		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password, Path=Password}" IsDefault="True"/>
 	</Grid>
 </Window>

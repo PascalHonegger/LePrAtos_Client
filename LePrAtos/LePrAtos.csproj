@@ -180,6 +180,7 @@
     <Compile Include="Infrastructure\IRequestWindowClose.cs" />
     <Compile Include="Service References\PlayerViewModel.cs" />
     <Compile Include="Infrastructure\ViewModelBase.cs" />
+    <Compile Include="Startup\Login\LanguageViewModel.cs" />
     <Compile Include="Startup\Register\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
@@ -300,7 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Resources\SplashScreen.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
   </ItemGroup>
   <ItemGroup>
@@ -348,7 +349,17 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Reload.png" />
+    <Resource Include="Resources\Reload.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\FlagDE.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\FlagEN.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

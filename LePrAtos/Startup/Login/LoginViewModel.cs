@@ -8,7 +8,6 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Threading;
-using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
@@ -34,18 +33,18 @@ namespace LePrAtos.Startup.Login
 		///     Die Minimallänge des <see cref="Username"/>
 		/// </summary>
 		public const int UsernameMinLength = 3;
-		private DelegateCommand<PasswordBox> _loginCommand;
+		private DelegateCommand<string> _loginCommand;
 		private string _username = string.Empty;
 		private ICommand _registerCommand;
 
 		/// <summary>
 		///     Alle möglichen Sprachen
 		/// </summary>
-		public static IEnumerable<string> PossibleLanguages
+		public static IEnumerable<LanguageViewModel> PossibleLanguages
 		{
 			get
 			{
-				var supportedCultures = new List<string>();
+				var supportedCultures = new List<LanguageViewModel>();
 
 				var rm = new ResourceManager(typeof (Strings));
 
@@ -58,7 +57,7 @@ namespace LePrAtos.Startup.Login
 
 						if (rs != null)
 						{
-							supportedCultures.Add(culture.Name);
+							supportedCultures.Add(new LanguageViewModel(culture));
 						}
 					}
 					catch (CultureNotFoundException)
@@ -74,17 +73,23 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Ausgewählte Sprache
 		/// </summary>
-		public string SelectedLanguage
+		public LanguageViewModel SelectedLanguage
 		{
-			get { return Settings.Default.SelectedCulture; }
+			get
+			{
+				return PossibleLanguages.FirstOrDefault(l => Equals(l.Culture.Name, Settings.Default.SelectedCulture));
+			}
 			set
 			{
-				Settings.Default.SelectedCulture = value;
+				if (value == null) return;
+
+				Settings.Default.SelectedCulture = value.Culture.Name;
 				Settings.Default.Save();
 
-				Strings.Culture = new CultureInfo(value);
-				Thread.CurrentThread.CurrentUICulture = new CultureInfo(value);
+				Strings.Culture = value.Culture;
+				Thread.CurrentThread.CurrentUICulture = value.Culture;
 
+				//Reload Language
 				RequestWindowCloseEvent.Invoke(new LoginView(this), null);
 			}
 		}
@@ -97,8 +102,7 @@ namespace LePrAtos.Startup.Login
 			get { return _username; }
 			set
 			{
-				if (_username == value || value.Length > UsernameMaxLength) return;
-
+				if (value!= null && (_username == value || value.Length > UsernameMaxLength)) return;
 
 				_username = value;
 				OnPropertyChanged();
@@ -109,10 +113,10 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Command für die Anmeldung
 		/// </summary>
-		public DelegateCommand<PasswordBox> LoginCommand
+		public DelegateCommand<string> LoginCommand
 			=>
 				_loginCommand ??
-				(_loginCommand = new DelegateCommand<PasswordBox>(Login, box => Username.Length >= UsernameMinLength));
+				(_loginCommand = new DelegateCommand<string>(Login, box => Username.Length >= UsernameMinLength));
 
 		/// <summary>
 		///     Bestimmt, ob der user beim nächsten Starten der Application angemeldet bleibt
@@ -139,7 +143,7 @@ namespace LePrAtos.Startup.Login
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private async void Login(PasswordBox passwordBox)
+		private async void Login(string passwordBox)
 		{
 			var response = await CurrentSession.Client.loginAsync(Username);
 
