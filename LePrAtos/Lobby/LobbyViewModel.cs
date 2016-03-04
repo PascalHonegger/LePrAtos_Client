@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
+using LePrAtos.Properties;
 using LePrAtos.Service_References;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
@@ -42,11 +43,10 @@ namespace LePrAtos.Lobby
 
 		private async Task Reload()
 		{
-			if (!IsRefreshing)
+			if (IsRefreshing)
 			{
-				return;
+				Lobby = (await CurrentSession.Client.getGameLobbyAsync(LobbyId)).@return;
 			}
-			Lobby = (await CurrentSession.Client.getGameLobbyAsync(LobbyId)).@return;
 		}
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Lobby verfügt über ein Passwort
 		/// </summary>
-		public bool HasLobbyPassword { get; set; }
+		public bool LobbyHasPassword { get; set; }
 
 		/// <summary>
 		///     Der Leiter der Lobby, darf beispielsweise leute aus der Lobby entfernen
@@ -85,7 +85,7 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
 		/// </summary>
-		public ICommand LeaveLobbyCommand => _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(LeaveLobby));
+		public ICommand LeaveLobbyCommand => _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => LeaveLobby()));
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -110,6 +110,8 @@ namespace LePrAtos.Lobby
 				{
 					foreach (var playerName in _lobby.gamePlayerListPublic)
 					{
+						PlayerViewModel playerViewModel;
+
 						if (Equals(playerName, CurrentSession.Player.Username))
 						{
 							if (Equals(LobbyLeaderName, CurrentSession.Player.Username))
@@ -117,22 +119,25 @@ namespace LePrAtos.Lobby
 								//TODO Should be set true by server
 								CurrentSession.Player.IsLeader = true;
 							}
-							Members.Add(CurrentSession.Player);
+							playerViewModel = CurrentSession.Player;
 						}
 						else
 						{
-							var playerViewModel = Container.Resolve<PlayerViewModel>();
+							playerViewModel = Container.Resolve<PlayerViewModel>();
+							//TODO Player from Server
 							playerViewModel.Player = new player { username = playerName };
 							if (Equals(LobbyLeaderName, playerViewModel.Username))
 							{
 								playerViewModel.IsLeader = true;
 							}
-							Members.Add(playerViewModel);
+							
 						}
+
+						Members.Add(playerViewModel);
 					}
 				}
 
-				HasLobbyPassword = false;
+				LobbyHasPassword = false;
 			}
 		}
 
@@ -156,8 +161,15 @@ namespace LePrAtos.Lobby
 			throw new NotImplementedException();
 		}
 
-		private void LeaveLobby()
+		/// <summary>
+		///     Verlässt die Lobby, nachdem der User darüber benachrichtigt wurde
+		/// </summary>
+		/// <returns><c>True</c> bei Success</returns>
+		public bool LeaveLobby()
 		{
+			var result = MessageBox.Show(Strings.LobbyView_ReallyQuit, "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			if (result == MessageBoxResult.No) return false;
+
 			CurrentSession.Client.leaveGameLobby(CurrentSession.Player.PlayerId, LobbyId);
 
 			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
@@ -170,7 +182,7 @@ namespace LePrAtos.Lobby
 
 			lobbyBrowserView.Show();
 
-			RequestWindowCloseEvent.Invoke(this, null);
+			return true;
 		}
 
 

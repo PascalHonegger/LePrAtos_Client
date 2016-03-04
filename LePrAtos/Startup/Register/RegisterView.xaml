@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LePrAtos.Startup.Register"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
+        xmlns:validationRules="clr-namespace:LePrAtos.ValidationRules"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="{x:Static properties:Strings.RegisterView_Register}" Height="250" Width="400"
         d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-	<Grid FocusManager.FocusedElement="{Binding ElementName=Username}">
+	
+	<Window.Resources>
+		<x:Array Type="{x:Type system:String}" x:Key="ForbiddenUsernameCharacters">
+			<system:String>@</system:String>
+		</x:Array>
+	</Window.Resources>
+	<Grid FocusManager.FocusedElement="{Binding ElementName=Username}" Margin="5">
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
@@ -22,23 +29,32 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
+
 		<Label Target="{Binding ElementName=Username}" Content="{x:Static properties:Strings.Username}"
 		       Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
 		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" TextChanged="TextChanged">
 			<TextBox.Text>
-				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" />
+				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+					<Binding.ValidationRules>
+						<validationRules:TextValidationRule x:Name="UsernameValidationRule" ForbiddenChars="{StaticResource ForbiddenUsernameCharacters}"/>
+					</Binding.ValidationRules>
+				</Binding>
 			</TextBox.Text>
 		</TextBox>
-		<Label Target="{Binding ElementName=Mail}" Content="TODO MAIL"
+		<Label Target="{Binding ElementName=Mail}" Content="{x:Static properties:Strings.Mail}"
 		       Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
 		<TextBox Name="Mail" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextChanged="TextChanged">
 			<TextBox.Text>
-				<Binding Path="MailAddress" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" />
+				<Binding Path="MailAddress" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+					<Binding.ValidationRules>
+						<validationRules:TextValidationRule IsMailAddress="True"/>
+					</Binding.ValidationRules>
+				</Binding>
 			</TextBox.Text>
 		</TextBox>
 		<Label Target="{Binding ElementName=Password}" Content="{x:Static properties:Strings.Password}"
 		       Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
-		<PasswordBox Name="Password"
+		<PasswordBox x:Name="Password"
 		             Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" PasswordChanged="TextChanged" />
 		<Label Target="{Binding ElementName=RepPassword}" Content="{x:Static properties:Strings.RegisterView_RepeatPassword}"
 		       Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
@@ -49,6 +65,6 @@
 		        IsCancel="True" Command="{Binding CancelCommand}" />
 		<Button Content="{x:Static properties:Strings.RegisterView_Register}" Name="RegisterButton"
 		        Grid.Column="1" Grid.Row="4" Margin="10" IsEnabled="False"
-		        IsDefault="True" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=Password}" />
+		        IsDefault="True" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=Password, Path=Password}" />
 	</Grid>
 </Window>

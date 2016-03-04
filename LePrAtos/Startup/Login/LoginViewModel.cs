@@ -26,20 +26,6 @@ namespace LePrAtos.Startup.Login
 	/// </summary>
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
-		/// <summary>
-		///     Die Maximallänge des <see cref="Username"/>
-		/// </summary>
-		public const int UsernameMaxLength = 30;
-
-		/// <summary>
-		///     Die Minimallänge des <see cref="Username"/>
-		/// </summary>
-		public const int UsernameMinLength = 3;
-
-		/// <summary>
-		///     Die Minimallänge des Passworts
-		/// </summary>
-		public const int PasswordMinLength = 5;
 		private DelegateCommand<string> _loginCommand;
 		private string _username = string.Empty;
 		private ICommand _registerCommand;
@@ -109,7 +95,7 @@ namespace LePrAtos.Startup.Login
 			get { return _username; }
 			set
 			{
-				if (value != null && (_username == value || value.Length > UsernameMaxLength)) return;
+				if (value != null && (_username == value || value.Length > RegisterViewModel.UsernameMaxLength)) return;
 
 				_username = value;
 				OnPropertyChanged();
@@ -131,7 +117,7 @@ namespace LePrAtos.Startup.Login
 		/// <returns></returns>
 		public bool CanLogin(string password)
 		{
-			return Username.Length >= UsernameMinLength && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(password);
+			return Username.Length >= RegisterViewModel.UsernameMinLength && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(password);
 		}
 
 		/// <summary>

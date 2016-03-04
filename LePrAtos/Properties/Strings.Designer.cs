@@ -178,6 +178,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_ReallyQuit.
+        /// </summary>
+        public static string LobbyView_ReallyQuit {
+            get {
+                return ResourceManager.GetString("LobbyView_ReallyQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyView_Remove.
         /// </summary>
         public static string LobbyView_Remove {
@@ -241,6 +250,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mail.
+        /// </summary>
+        public static string Mail {
+            get {
+                return ResourceManager.GetString("Mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Password.
         /// </summary>
         public static string Password {
@@ -282,6 +300,42 @@ namespace LePrAtos.Properties {
         public static string RegisterView_Title {
             get {
                 return ResourceManager.GetString("RegisterView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TextValidationRule_ForbiddenChar.
+        /// </summary>
+        public static string TextValidationRule_ForbiddenChar {
+            get {
+                return ResourceManager.GetString("TextValidationRule_ForbiddenChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TextValidationRule_Lenght.
+        /// </summary>
+        public static string TextValidationRule_Lenght {
+            get {
+                return ResourceManager.GetString("TextValidationRule_Lenght", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TextValidationRule_MailValid.
+        /// </summary>
+        public static string TextValidationRule_MailValid {
+            get {
+                return ResourceManager.GetString("TextValidationRule_MailValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TextValidationRule_MandatoryChar.
+        /// </summary>
+        public static string TextValidationRule_MandatoryChar {
+            get {
+                return ResourceManager.GetString("TextValidationRule_MandatoryChar", resourceCulture);
             }
         }
         

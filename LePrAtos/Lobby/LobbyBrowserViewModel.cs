@@ -35,10 +35,11 @@ namespace LePrAtos.Lobby
 		public LobbyBrowserViewModel()
 		{
 			Refresh();
+			CurrentSession.PollingTimer.Start();
 		}
 
 		/// <summary>
-		///     Entschieded, ob die Lobbies sich automatisch aktualisieren
+		///     Entscheidet, ob die Lobbies neue Daten vom Server laden
 		/// </summary>
 		public bool IsRefreshing
 		{
@@ -143,6 +144,10 @@ namespace LePrAtos.Lobby
 
 		private void Logout()
 		{
+			CurrentSession.PollingTimer.Stop();
+
+			IsRefreshing = false;
+
 			var preSelectedUsername = CurrentSession.Player.Username;
 
 			CurrentSession.Player = null;
@@ -162,19 +167,16 @@ namespace LePrAtos.Lobby
 		private bool CanJoinLobby()
 		{
 			return SeletedLobby != null &&
-			       (SeletedLobby.HasLobbyPassword && !string.IsNullOrEmpty(LobbyPassword) || !SeletedLobby.HasLobbyPassword);
+			       (SeletedLobby.LobbyHasPassword && !string.IsNullOrEmpty(LobbyPassword) || !SeletedLobby.LobbyHasPassword);
 		}
 
-		private void JoinLobby()
+		private async void JoinLobby()
 		{
-			if (SeletedLobby == null)
-			{
-				return;
-			}
+			if (SeletedLobby == null) return;
 
 			IsRefreshing = false;
 
-			SeletedLobby.Lobby = CurrentSession.Client.joinGameLobby(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId);
+			SeletedLobby.Lobby = (await CurrentSession.Client.joinGameLobbyAsync(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId)).@return;
 
 			SeletedLobby.IsRefreshing = true;
 

@@ -20,6 +20,9 @@ namespace LePrAtos.Startup.Register
 			InitializeComponent();
 			DataContext = viewModel;
 			viewModel.RequestWindowCloseEvent += (sender, e) => Close();
+			
+			UsernameValidationRule.MinLength = RegisterViewModel.UsernameMinLength;
+			UsernameValidationRule.MaxLength = RegisterViewModel.UsernameMaxLength;
 		}
 
 		private RegisterViewModel ViewModel => DataContext as RegisterViewModel;

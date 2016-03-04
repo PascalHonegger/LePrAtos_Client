@@ -9,8 +9,8 @@
         Title="Lobby Browser" MinHeight="350" MinWidth="600"
         d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowState="Maximized">
 	<Window.InputBindings>
-		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5"/>
-		<KeyBinding Command="{Binding JoinLobbyCommand}" Key="Enter"/>
+		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5" />
+		<KeyBinding Command="{Binding JoinLobbyCommand}" Key="Enter" />
 	</Window.InputBindings>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -27,12 +27,13 @@
 			</Grid.RowDefinitions>
 			<Grid Margin="10" Grid.Row="0">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+				<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center"
+				           HorizontalAlignment="Center" />
 				<Button Grid.Column="1" Command="{Binding RefreshViewCommand}" HorizontalAlignment="Right" Margin="10, 10, 0, 10">
-					<Image Source="../Resources/Reload.png"/>
+					<Image Source="../Resources/Reload.png" />
 				</Button>
 			</Grid>
 			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}"
@@ -58,10 +59,11 @@
 		</Grid>
 
 		<ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding AvailableLobbies}"
-		          SelectedItem="{Binding SeletedLobby}" >
+		          SelectedItem="{Binding SeletedLobby}">
 			<ListView.ItemContainerStyle>
 				<Style TargetType="ListViewItem">
 					<Setter Property="Height" Value="50" />
+					<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
 				</Style>
 			</ListView.ItemContainerStyle>
 			<ListView.View>
@@ -74,7 +76,7 @@
 						<GridViewColumn.CellTemplate>
 							<DataTemplate DataType="local:LobbyViewModel">
 								<Image Source="../Resources/lock.png"
-								       Visibility="{Binding HasLobbyPassword, Converter={StaticResource BoolToVis}}" Stretch="None"
+								       Visibility="{Binding LobbyHasPassword, Converter={StaticResource BoolToVis}}" Stretch="None"
 								       HorizontalAlignment="Center" VerticalAlignment="Center" />
 							</DataTemplate>
 						</GridViewColumn.CellTemplate>

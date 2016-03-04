@@ -17,6 +17,7 @@ namespace LePrAtos.Service_References
 		private bool _isReady;
 		private player _player;
 
+
 		/// <summary>
 		///     Gewählter Benutzername
 		/// </summary>

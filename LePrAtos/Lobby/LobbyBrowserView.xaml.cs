@@ -2,8 +2,12 @@
 // Copyright (c) 2016
 // Author: Keller, Alain
 
+using System;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 using LePrAtos.Infrastructure;
+using LePrAtos.Properties;
 
 namespace LePrAtos.Lobby
 {
@@ -24,6 +28,16 @@ namespace LePrAtos.Lobby
 			viewModel.RequestWindowCloseEvent += (sender, e) => Close();
 
 			DataContext = viewModel;
+		}
+
+		private LobbyBrowserViewModel ViewModel => DataContext as LobbyBrowserViewModel;
+
+		private async void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (ViewModel.JoinLobbyCommand.CanExecute())
+			{
+				await ViewModel.JoinLobbyCommand.Execute();
+			}
 		}
 	}
 }

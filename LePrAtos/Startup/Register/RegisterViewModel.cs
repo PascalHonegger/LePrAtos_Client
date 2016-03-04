@@ -3,8 +3,9 @@
 // Author: Keller, Alain
 
 using System;
+using System.ServiceModel;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
@@ -16,13 +17,39 @@ using Microsoft.Practices.Unity;
 namespace LePrAtos.Startup.Register
 {
 	/// <summary>
-	/// Viewmodel for the registration
+	///     Viewmodel for the registration
 	/// </summary>
 	public class RegisterViewModel : ViewModelBase, IRequestWindowClose
 	{
+		/// <summary>
+		///     Die Maximallänge des <see cref="Username" />
+		/// </summary>
+		public const int UsernameMaxLength = 30;
+
+		/// <summary>
+		///     Die Minimallänge des <see cref="Username" />
+		/// </summary>
+		public const int UsernameMinLength = 3;
+
+		/// <summary>
+		///     Die Minimallänge des Passworts
+		/// </summary>
+		public const int PasswordMinLength = 5;
+
+		/// <summary>
+		///     Die Maximallänge des Passworts
+		/// </summary>
+		public const int PasswordMaxLength = 30;
+
+		private const string MailPattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+
+		/// <summary>
+		///     Regex für die Überprüfung von E-Mail-Adressen
+		/// </summary>
+		public static readonly Regex MailRegex = new Regex(MailPattern);
 		private ICommand _cancelCommand;
-		private DelegateCommand<PasswordBox> _registerCommand;
-		
+		private DelegateCommand<string> _registerCommand;
+
 		/// <summary>
 		///     Der Benutzername für das Login und die Anzeige
 		/// </summary>
@@ -39,20 +66,20 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Comand for registration
 		/// </summary>
-		public DelegateCommand<PasswordBox> RegisterCommand
+		public DelegateCommand<string> RegisterCommand
 			=>
 				_registerCommand ??
-				(_registerCommand = new DelegateCommand<PasswordBox>(Register));
-
-		/// <summary>
-		///     Event, welcher das schliessen des Dialoges anfordert
-		/// </summary>
-		public EventHandler RequestWindowCloseEvent { get; set; }
+				(_registerCommand = new DelegateCommand<string>(Register));
 
 		/// <summary>
 		///     Die Mailadresse des Users
 		/// </summary>
 		public string MailAddress { get; set; } = string.Empty;
+
+		/// <summary>
+		///     Event, welcher das schliessen des Dialoges anfordert
+		/// </summary>
+		public EventHandler RequestWindowCloseEvent { get; set; }
 
 		/// <summary>
 		///     Cancel the Registration
@@ -65,21 +92,28 @@ namespace LePrAtos.Startup.Register
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private async void Register(PasswordBox passwordBox)
+		private async void Register(string password)
 		{
-			var response = await CurrentSession.Client.loginAsync(Username);
+			try
+			{
+				var response = await CurrentSession.Client.loginAsync(Username);
 
-			var player = Container.Resolve<PlayerViewModel>();
+				var player = Container.Resolve<PlayerViewModel>();
 
-			player.Player = response.@return;
+				player.Player = response.@return;
 
-			CurrentSession.Player = player;
+				CurrentSession.Player = player;
 
-			var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
+				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 
-			lobbyBrowser.Show();
+				lobbyBrowser.Show();
 
-			RequestWindowCloseEvent.Invoke(this, null);
+				RequestWindowCloseEvent.Invoke(this, null);
+			}
+			catch (FaultException e)
+			{
+				MessageBox.Show(e.Message);
+			}
 		}
 
 		/// <summary>
@@ -91,16 +125,13 @@ namespace LePrAtos.Startup.Register
 		public bool CanRegister(string password, string repeatPassword)
 		{
 			return
-			Username.Length < LoginViewModel.UsernameMaxLength &&
-			Username.Length > LoginViewModel.UsernameMinLength &&
-			!Username.Contains("@") &&
-			MailRegex.IsMatch(MailAddress) &&
-			Equals(password, repeatPassword) &&
-			password.Length > LoginViewModel.PasswordMinLength;
+				Username.Length <= UsernameMaxLength &&
+				Username.Length >= UsernameMinLength &&
+				!Username.Contains("@") &&
+				MailRegex.IsMatch(MailAddress) &&
+				Equals(password, repeatPassword) &&
+				password.Length <= PasswordMaxLength &&
+				password.Length >= PasswordMinLength;
 		}
-
-		private const string MailPattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
-
-		private static readonly Regex MailRegex = new Regex(MailPattern);
 	}
 }

@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converter="clr-namespace:LePrAtos.Converter"
              Startup="OnStartup"
-			 Exit="App_OnExit" DispatcherUnhandledException="App_OnDispatcherUnhandledException">
+             Exit="App_OnExit" DispatcherUnhandledException="App_OnDispatcherUnhandledException">
 	<Application.Resources>
 		<BooleanToVisibilityConverter x:Key="BoolToVis" />
 		<converter:InvertBooleanConverter x:Key="InvertBool" />
+
+		<Style TargetType="{x:Type TextBox}">
+			<Style.Triggers>
+				<Trigger Property="Validation.HasError" Value="true">
+					<Setter Property="ToolTip"
+					        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 	</Application.Resources>
 </Application>

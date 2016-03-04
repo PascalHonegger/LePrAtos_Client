@@ -7,7 +7,7 @@
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         xmlns:serviceReferences="clr-namespace:LePrAtos.Service_References"
         mc:Ignorable="d"
-        Title="{Binding LobbyName}" d:DataContext="{d:DesignInstance local:LobbyViewModel}" WindowStartupLocation="CenterScreen">
+        Title="{Binding LobbyName}" d:DataContext="{d:DesignInstance local:LobbyViewModel}" WindowStartupLocation="CenterScreen" Closing="LobbyView_OnClosing">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="6*" />
