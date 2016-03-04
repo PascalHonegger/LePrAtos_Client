@@ -232,6 +232,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_UsernameOrMail.
+        /// </summary>
+        public static string LoginView_UsernameOrMail {
+            get {
+                return ResourceManager.GetString("LoginView_UsernameOrMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Password.
         /// </summary>
         public static string Password {
@@ -277,7 +286,7 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LoginView_Username.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Username {
             get {

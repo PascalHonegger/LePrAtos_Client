@@ -31,7 +31,7 @@
 		<Button Grid.Column="0" Grid.Row="0" Content="{x:Static localization:Strings.LoginView_Register}"
 		        Command="{Binding RegisterCommand}"/>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
-		       Content="{x:Static localization:Strings.Username}" VerticalAlignment="Center"/>
+		       Content="{x:Static localization:Strings.LoginView_UsernameOrMail}" VerticalAlignment="Center"/>
 		<TextBox x:Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" >
 			<TextBox.Text>
 				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>

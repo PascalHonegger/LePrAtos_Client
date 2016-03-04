@@ -172,7 +172,7 @@ Bitte senden Sie folgende Informationen an den Support
     <value>Passwort</value>
   </data>
   <data name="LoginView_Register" xml:space="preserve">
-    <value>Neuer Account</value>
+    <value>Neuen Account erstellen</value>
   </data>
   <data name="LoginView_SaveLogin" xml:space="preserve">
     <value>Angemeldet bleiben</value>
@@ -194,5 +194,8 @@ Bitte senden Sie folgende Informationen an den Support
   </data>
   <data name="RegisterView_Sallary" xml:space="preserve">
     <value>Ihr Lohn</value>
+  </data>
+  <data name="LoginView_UsernameOrMail" xml:space="preserve">
+    <value>Benutzername / Mail</value>
   </data>
 </root>

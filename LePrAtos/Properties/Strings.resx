@@ -142,7 +142,7 @@
     <value>LoginView_Password</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>LoginView_Username</value>
+    <value>Username</value>
   </data>
   <data name="LobbyView_LeaveLobby" xml:space="preserve">
     <value>LobbyView_LeaveLobby</value>
@@ -191,5 +191,8 @@
   </data>
   <data name="RegisterView_Sallary" xml:space="preserve">
     <value>RegisterView_Sallary</value>
+  </data>
+  <data name="LoginView_UsernameOrMail" xml:space="preserve">
+    <value>LoginView_UsernameOrMail</value>
   </data>
 </root>
