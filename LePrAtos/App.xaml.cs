@@ -27,7 +27,16 @@ namespace LePrAtos
 	{
 		private void OnStartup(object sender, StartupEventArgs e)
 		{
-			var culture = new CultureInfo(Settings.Default.SelectedCulture);
+			CultureInfo culture;
+			try
+			{
+				culture = new CultureInfo(Settings.Default.SelectedCulture);
+			}
+			catch (Exception)
+			{
+				Settings.Default.SelectedCulture = CultureInfo.CurrentCulture.Name;
+				culture = CultureInfo.CurrentCulture;
+			}
 			Strings.Culture = culture;
 			Thread.CurrentThread.CurrentUICulture = culture;
 
@@ -83,8 +92,12 @@ namespace LePrAtos
 		{
 			_session.Endpointconfiguration = configuration;
 
-			_session.PollingTimer.Start();
+			//_session.PollingTimer.Start();
 
+			_session.Player = new PlayerViewModel();
+
+			new LoginView(new LoginViewModel()).Show();
+			return;
 			if (!string.IsNullOrEmpty(Settings.Default.SavedUser))
 			{
 				var player = CurrentSession.Client.getPlayerByID(Settings.Default.SavedUser);
