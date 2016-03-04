@@ -3,6 +3,7 @@
 // Author: Keller, Alain
 
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
@@ -23,7 +24,7 @@ namespace LePrAtos.Startup.Register
 		private DelegateCommand<PasswordBox> _registerCommand;
 		
 		/// <summary>
-		///     Typed in Username
+		///     Der Benutzername für das Login und die Anzeige
 		/// </summary>
 		public string Username { get; set; }
 
@@ -47,6 +48,11 @@ namespace LePrAtos.Startup.Register
 		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		/// <summary>
+		///     Die Mailadresse des Users
+		/// </summary>
+		public string MailAddress { get; set; } = string.Empty;
 
 		/// <summary>
 		///     Cancel the Registration
@@ -75,5 +81,26 @@ namespace LePrAtos.Startup.Register
 
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
+
+		/// <summary>
+		///     Entscheided, ob die Registrierung möglich ist
+		/// </summary>
+		/// <param name="password">Passwort</param>
+		/// <param name="repeatPassword">Wiederholtes Passwort</param>
+		/// <returns></returns>
+		public bool CanRegister(string password, string repeatPassword)
+		{
+			return
+			Username.Length < LoginViewModel.UsernameMaxLength &&
+			Username.Length > LoginViewModel.UsernameMinLength &&
+			!Username.Contains("@") &&
+			MailRegex.IsMatch(MailAddress) &&
+			Equals(password, repeatPassword) &&
+			password.Length > LoginViewModel.PasswordMinLength;
+		}
+
+		private const string MailPattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+
+		private static readonly Regex MailRegex = new Regex(MailPattern);
 	}
 }

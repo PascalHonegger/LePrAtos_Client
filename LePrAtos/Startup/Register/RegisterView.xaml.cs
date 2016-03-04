@@ -2,36 +2,31 @@
 // Copyright (c) 2016
 // Author: Keller, Alain
 
-using System.Windows;
-using LePrAtos.Startup.Login;
+using LePrAtos.Infrastructure;
 
 namespace LePrAtos.Startup.Register
 {
 	/// <summary>
 	///     Interaction logic for RegisterView.xaml
 	/// </summary>
-	public partial class RegisterView : Window
+	public partial class RegisterView
 	{
-		private const int PasswordMinLength = 5;
-
-		public RegisterView()
+		/// <summary>
+		///     Abonniert auf den <see cref="IRequestWindowClose.RequestWindowCloseEvent"/> und setzt den Datacontext
+		/// </summary>
+		/// <param name="viewModel"></param>
+		public RegisterView(IRequestWindowClose viewModel)
 		{
 			InitializeComponent();
-			var registerViewModel = new RegisterViewModel();
-			DataContext = registerViewModel;
-			registerViewModel.RequestWindowCloseEvent += (sender, e) => Close();
+			DataContext = viewModel;
+			viewModel.RequestWindowCloseEvent += (sender, e) => Close();
 		}
 
-		private void TextChanged(object sender, object jigger)
+		private RegisterViewModel ViewModel => DataContext as RegisterViewModel;
+
+		private void TextChanged(object sender, object parameter)
 		{
-			RegisterButton.IsEnabled = false;
-			if (Username.Text.Length < LoginViewModel.UsernameMaxLength &&
-			    Username.Text.Length > LoginViewModel.UsernameMinLength &&
-			    Password.Password.Length > PasswordMinLength &&
-			    Equals(RepPassword.Password, Password.Password))
-			{
-				RegisterButton.IsEnabled = true;
-			}
+			RegisterButton.IsEnabled = ViewModel.CanRegister(Password.Password, RepPassword.Password);
 		}
 	}
 }

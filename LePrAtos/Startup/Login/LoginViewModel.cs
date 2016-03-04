@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using System.ServiceModel;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
@@ -33,6 +35,11 @@ namespace LePrAtos.Startup.Login
 		///     Die Minimallänge des <see cref="Username"/>
 		/// </summary>
 		public const int UsernameMinLength = 3;
+
+		/// <summary>
+		///     Die Minimallänge des Passworts
+		/// </summary>
+		public const int PasswordMinLength = 5;
 		private DelegateCommand<string> _loginCommand;
 		private string _username = string.Empty;
 		private ICommand _registerCommand;
@@ -46,7 +53,7 @@ namespace LePrAtos.Startup.Login
 			{
 				var supportedCultures = new List<LanguageViewModel>();
 
-				var rm = new ResourceManager(typeof (Strings));
+				var rm = new ResourceManager(typeof(Strings));
 
 				var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
 				foreach (var culture in cultures.Where(c => !string.IsNullOrEmpty(c.Name)))
@@ -102,11 +109,10 @@ namespace LePrAtos.Startup.Login
 			get { return _username; }
 			set
 			{
-				if (value!= null && (_username == value || value.Length > UsernameMaxLength)) return;
+				if (value != null && (_username == value || value.Length > UsernameMaxLength)) return;
 
 				_username = value;
 				OnPropertyChanged();
-				LoginCommand.RaiseCanExecuteChanged();
 			}
 		}
 
@@ -116,7 +122,17 @@ namespace LePrAtos.Startup.Login
 		public DelegateCommand<string> LoginCommand
 			=>
 				_loginCommand ??
-				(_loginCommand = new DelegateCommand<string>(Login, box => Username.Length >= UsernameMinLength));
+				(_loginCommand = new DelegateCommand<string>(Login));
+
+		/// <summary>
+		///     Entscheided, ob das Login ausgeführt werden kann
+		/// </summary>
+		/// <param name="password"></param>
+		/// <returns></returns>
+		public bool CanLogin(string password)
+		{
+			return Username.Length >= UsernameMinLength && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(password);
+		}
 
 		/// <summary>
 		///     Bestimmt, ob der user beim nächsten Starten der Application angemeldet bleibt
@@ -138,32 +154,39 @@ namespace LePrAtos.Startup.Login
 
 		private void Register()
 		{
-			var registerView = new RegisterView();
+			var registerView = new RegisterView(new RegisterViewModel { Username = Username});
 			registerView.Show();
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
 		private async void Login(string passwordBox)
 		{
-			var response = await CurrentSession.Client.loginAsync(Username);
-
-			var player = Container.Resolve<PlayerViewModel>();
-
-			player.Player = response.@return;
-
-			CurrentSession.Player = player;
-
-			if (SaveLogin)
+			try
 			{
-				Settings.Default.SavedUser = CurrentSession.Player.PlayerId;
-				Settings.Default.Save();
+				var response = await CurrentSession.Client.loginAsync(Username);
+
+				var player = Container.Resolve<PlayerViewModel>();
+
+				player.Player = response.@return;
+
+				CurrentSession.Player = player;
+
+				if (SaveLogin)
+				{
+					Settings.Default.SavedUser = CurrentSession.Player.PlayerId;
+					Settings.Default.Save();
+				}
+
+				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
+
+				lobbyBrowser.Show();
+
+				RequestWindowCloseEvent.Invoke(this, null);
 			}
-
-			var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
-
-			lobbyBrowser.Show();
-
-			RequestWindowCloseEvent.Invoke(this, null);
+			catch (FaultException e)
+			{
+				MessageBox.Show(e.Message);
+			}
 		}
 	}
 }

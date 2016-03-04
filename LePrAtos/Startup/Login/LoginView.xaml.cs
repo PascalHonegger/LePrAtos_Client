@@ -24,6 +24,15 @@ namespace LePrAtos.Startup.Login
 				(sender as LoginView)?.Show();
 				Close();
 			};
+
+			TextChanged(this, null);
 		}
+
+		private void TextChanged(object sender, object parameter)
+		{
+			Login.IsEnabled = ViewModel.CanLogin(Password.Password);
+		}
+
+		private LoginViewModel ViewModel => DataContext as LoginViewModel;
 	}
 }

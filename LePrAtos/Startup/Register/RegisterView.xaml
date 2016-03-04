@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:LePrAtos.Startup.Register"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d"
-        Title="{x:Static properties:Strings.RegisterView_Register}" Height="300" Width="300"
-        d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize">
+        Title="{x:Static properties:Strings.RegisterView_Register}" Height="250" Width="400"
+        d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
 	<Grid FocusManager.FocusedElement="{Binding ElementName=Username}">
 		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
@@ -20,12 +22,20 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<TextBlock Text="{x:Static properties:Strings.RegisterView_Title}"
-		           Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="32" FontWeight="Bold" />
 		<Label Target="{Binding ElementName=Username}" Content="{x:Static properties:Strings.Username}"
+		       Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" TextChanged="TextChanged">
+			<TextBox.Text>
+				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" />
+			</TextBox.Text>
+		</TextBox>
+		<Label Target="{Binding ElementName=Mail}" Content="TODO MAIL"
 		       Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
-		<TextBox Name="Username" Text="{Binding Username}"
-		         Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextChanged="TextChanged" />
+		<TextBox Name="Mail" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextChanged="TextChanged">
+			<TextBox.Text>
+				<Binding Path="MailAddress" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" />
+			</TextBox.Text>
+		</TextBox>
 		<Label Target="{Binding ElementName=Password}" Content="{x:Static properties:Strings.Password}"
 		       Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
 		<PasswordBox Name="Password"

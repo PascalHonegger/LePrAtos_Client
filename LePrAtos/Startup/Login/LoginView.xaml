@@ -6,7 +6,7 @@
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
         xmlns:localization="clr-namespace:LePrAtos.Properties"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="{x:Static localization:Strings.LoginView_Login}" MinHeight="300" MinWidth="500" Height="300" Width="500" d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
+        Title="{x:Static localization:Strings.LoginView_Login}" Height="200" Width="400" d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
 
 	<Grid Margin="5" DockPanel.Dock="Bottom" FocusManager.FocusedElement="{Binding ElementName=Username}">
 		<Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="*"/>
 							</Grid.ColumnDefinitions>
-							<Image Grid.Column="0" Source="{Binding PathToFlag}" Margin="0,0,5,0"/>
+							<Image Grid.Column="0" Source="{Binding PathToFlag}" Margin="3" />
 							<TextBlock Grid.Column="1" Text="{Binding DisplayText}"/>
 						</Grid>
 					</DataTemplate>
@@ -44,19 +44,19 @@
 		</Grid>
 		<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
 		       Content="{x:Static localization:Strings.LoginView_UsernameOrMail}" VerticalAlignment="Center"/>
-		<TextBox x:Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" >
+		<TextBox x:Name="Username" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" TextChanged="TextChanged">
 			<TextBox.Text>
 				<Binding Path="Username" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay"/>
 			</TextBox.Text>
 		</TextBox>
 		<Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}"
 		       Content="{x:Static localization:Strings.Password}" VerticalAlignment="Center"/>
-		<PasswordBox Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" />
+		<PasswordBox x:Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" PasswordChanged="TextChanged"/>
 		<TextBlock Grid.Column="0" Grid.Row="4" TextAlignment="Center">
 			<Hyperlink Command="{Binding RegisterCommand}"><TextBlock Text="{x:Static localization:Strings.LoginView_Register}"/></Hyperlink>
 		</TextBlock>
 		<CheckBox Grid.Column="1" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_SaveLogin}" IsChecked="{Binding SaveLogin}"/>
-		<Button Grid.Column="1" Grid.Row="4" Content="{x:Static localization:Strings.LoginView_Login}"
+		<Button x:Name="Login" Grid.Column="1" Grid.Row="4" Content="{x:Static localization:Strings.LoginView_Login}"
 		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password, Path=Password}" IsDefault="True"/>
 	</Grid>
 </Window>

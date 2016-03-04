@@ -92,12 +92,8 @@ namespace LePrAtos
 		{
 			_session.Endpointconfiguration = configuration;
 
-			//_session.PollingTimer.Start();
-
-			_session.Player = new PlayerViewModel();
-
-			new LoginView(new LoginViewModel()).Show();
-			return;
+			_session.PollingTimer.Start();
+			
 			if (!string.IsNullOrEmpty(Settings.Default.SavedUser))
 			{
 				var player = CurrentSession.Client.getPlayerByID(Settings.Default.SavedUser);
