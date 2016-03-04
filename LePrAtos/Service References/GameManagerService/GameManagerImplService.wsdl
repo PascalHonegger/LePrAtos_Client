@@ -5,11 +5,32 @@
       <xsd:import schemaLocation="http://tm-tomcat.ch902.my-it-solutions.net:80/LePrAtos/GameManager?xsd=1" namespace="http://webservices.org/" />
     </xsd:schema>
   </types>
+  <message name="username_availability">
+    <part name="parameters" element="tns:username_availability" />
+  </message>
+  <message name="username_availabilityResponse">
+    <part name="parameters" element="tns:username_availabilityResponse" />
+  </message>
+  <message name="email_verification">
+    <part name="parameters" element="tns:email_verification" />
+  </message>
+  <message name="email_verificationResponse">
+    <part name="parameters" element="tns:email_verificationResponse" />
+  </message>
+  <message name="registration">
+    <part name="parameters" element="tns:registration" />
+  </message>
+  <message name="registrationResponse">
+    <part name="parameters" element="tns:registrationResponse" />
+  </message>
   <message name="login">
     <part name="parameters" element="tns:login" />
   </message>
   <message name="loginResponse">
     <part name="parameters" element="tns:loginResponse" />
+  </message>
+  <message name="MyExceptions">
+    <part name="fault" element="tns:MyExceptions" />
   </message>
   <message name="logout">
     <part name="parameters" element="tns:logout" />
@@ -56,10 +77,29 @@
   <message name="getPlayerByIDResponse">
     <part name="parameters" element="tns:getPlayerByIDResponse" />
   </message>
+  <message name="setPlayerStatus">
+    <part name="parameters" element="tns:setPlayerStatus" />
+  </message>
+  <message name="setPlayerStatusResponse">
+    <part name="parameters" element="tns:setPlayerStatusResponse" />
+  </message>
   <portType name="GameManager">
+    <operation name="username_availability">
+      <input wsam:Action="http://webservices.org/GameManager/username_availabilityRequest" message="tns:username_availability" />
+      <output wsam:Action="http://webservices.org/GameManager/username_availabilityResponse" message="tns:username_availabilityResponse" />
+    </operation>
+    <operation name="email_verification">
+      <input wsam:Action="http://webservices.org/GameManager/email_verificationRequest" message="tns:email_verification" />
+      <output wsam:Action="http://webservices.org/GameManager/email_verificationResponse" message="tns:email_verificationResponse" />
+    </operation>
+    <operation name="registration">
+      <input wsam:Action="http://webservices.org/GameManager/registrationRequest" message="tns:registration" />
+      <output wsam:Action="http://webservices.org/GameManager/registrationResponse" message="tns:registrationResponse" />
+    </operation>
     <operation name="login">
       <input wsam:Action="http://webservices.org/GameManager/loginRequest" message="tns:login" />
       <output wsam:Action="http://webservices.org/GameManager/loginResponse" message="tns:loginResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/login/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="logout">
       <input wsam:Action="http://webservices.org/GameManager/logoutRequest" message="tns:logout" />
@@ -91,9 +131,40 @@
       <input wsam:Action="http://webservices.org/GameManager/getPlayerByIDRequest" message="tns:getPlayerByID" />
       <output wsam:Action="http://webservices.org/GameManager/getPlayerByIDResponse" message="tns:getPlayerByIDResponse" />
     </operation>
+    <operation name="setPlayerStatus">
+      <input wsam:Action="http://webservices.org/GameManager/setPlayerStatusRequest" message="tns:setPlayerStatus" />
+      <output wsam:Action="http://webservices.org/GameManager/setPlayerStatusResponse" message="tns:setPlayerStatusResponse" />
+    </operation>
   </portType>
   <binding name="GameManagerImplPortBinding" type="tns:GameManager">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="username_availability">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="email_verification">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="registration">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
     <operation name="login">
       <soap:operation soapAction="" />
       <input>
@@ -102,6 +173,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="logout">
       <soap:operation soapAction="" />
@@ -164,6 +238,15 @@
       </output>
     </operation>
     <operation name="getPlayerByID">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="setPlayerStatus">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

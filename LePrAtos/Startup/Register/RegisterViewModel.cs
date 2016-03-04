@@ -6,6 +6,7 @@ using System;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
@@ -48,7 +49,7 @@ namespace LePrAtos.Startup.Register
 		/// </summary>
 		public static readonly Regex MailRegex = new Regex(MailPattern);
 		private ICommand _cancelCommand;
-		private DelegateCommand<string> _registerCommand;
+		private DelegateCommand<PasswordBox> _registerCommand;
 
 		/// <summary>
 		///     Der Benutzername für das Login und die Anzeige
@@ -66,10 +67,10 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Comand for registration
 		/// </summary>
-		public DelegateCommand<string> RegisterCommand
+		public DelegateCommand<PasswordBox> RegisterCommand
 			=>
 				_registerCommand ??
-				(_registerCommand = new DelegateCommand<string>(Register));
+				(_registerCommand = new DelegateCommand<PasswordBox>(Register));
 
 		/// <summary>
 		///     Die Mailadresse des Users
@@ -92,11 +93,11 @@ namespace LePrAtos.Startup.Register
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private async void Register(string password)
+		private async void Register(PasswordBox passwordBox)
 		{
 			try
 			{
-				var response = await CurrentSession.Client.loginAsync(Username);
+				var response = await CurrentSession.Client.registrationAsync(MailAddress, Username, passwordBox.Password);
 
 				var player = Container.Resolve<PlayerViewModel>();
 
@@ -110,9 +111,9 @@ namespace LePrAtos.Startup.Register
 
 				RequestWindowCloseEvent.Invoke(this, null);
 			}
-			catch (FaultException e)
+			catch (Exception e)
 			{
-				MessageBox.Show(e.Message);
+				MessageBox.Show(e.Message, "Fehlurr");
 			}
 		}
 

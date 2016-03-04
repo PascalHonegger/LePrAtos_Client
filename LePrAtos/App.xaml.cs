@@ -96,22 +96,24 @@ namespace LePrAtos
 			{
 				var player = CurrentSession.Client.getPlayerByID(Settings.Default.SavedUser);
 
-				var playerViewModel = ContainerProvider.Container.Resolve<PlayerViewModel>();
+				if (player != null)
+				{
+					var playerViewModel = ContainerProvider.Container.Resolve<PlayerViewModel>();
 
-				playerViewModel.Player = player;
+					playerViewModel.Player = player;
 
-				_session.Player = playerViewModel;
+					_session.Player = playerViewModel;
 
-				var lobbyBrowser = new LobbyBrowserView(ContainerProvider.Container.Resolve<LobbyBrowserViewModel>());
+					var lobbyBrowser = new LobbyBrowserView(ContainerProvider.Container.Resolve<LobbyBrowserViewModel>());
 
-				lobbyBrowser.Show();
+					lobbyBrowser.Show();
+
+					return;
+				}
 			}
-			else
-			{
-				var loginWindow = new LoginView(new LoginViewModel());
 
-				loginWindow.Show();
-			}
+			var loginWindow = new LoginView(new LoginViewModel());
+			loginWindow.Show();
 		}
 
 		private static ISession CurrentSession => ContainerProvider.Container.Resolve<ISession>();

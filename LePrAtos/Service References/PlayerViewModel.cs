@@ -15,7 +15,7 @@ namespace LePrAtos.Service_References
 	public class PlayerViewModel : ViewModelBase
 	{
 		private bool _isReady;
-		private player _player;
+		private playerIdentification _identification;
 
 
 		/// <summary>
@@ -31,18 +31,30 @@ namespace LePrAtos.Service_References
 		/// <summary>
 		///     Der vom Server stammende Player
 		/// </summary>
+		public playerIdentification Identification
+		{
+			get { return _identification; }
+			set
+			{
+				if (Equals(_identification, value))
+				{
+					return;
+				}
+				_identification = value;
+				Username = _identification.username;
+				IsReady = _identification.status;
+			}
+		}
+
+		/// <summary>
+		///     Der vom Server stammende Player
+		/// </summary>
 		public player Player
 		{
 			set
 			{
-				if (Equals(_player, value))
-				{
-					return;
-				}
-				_player = value;
-				PlayerId = _player.playerID;
-				Username = _player.username;
-				IsReady = false;
+				Identification = value;
+				PlayerId = value.playerID;
 			}
 		}
 
@@ -58,7 +70,9 @@ namespace LePrAtos.Service_References
 				{
 					return;
 				}
-				//TODO Say Server I'm ready
+				
+				CurrentSession.Client.setPlayerStatus(PlayerId, value);
+
 				_isReady = value;
 				OnPropertyChanged();
 			}

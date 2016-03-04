@@ -65,6 +65,6 @@
 		        IsCancel="True" Command="{Binding CancelCommand}" />
 		<Button Content="{x:Static properties:Strings.RegisterView_Register}" Name="RegisterButton"
 		        Grid.Column="1" Grid.Row="4" Margin="10" IsEnabled="False"
-		        IsDefault="True" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=Password, Path=Password}" />
+		        IsDefault="True" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=Password}" />
 	</Grid>
 </Window>

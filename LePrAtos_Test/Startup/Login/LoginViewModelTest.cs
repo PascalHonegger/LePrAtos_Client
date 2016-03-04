@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace LePrAtos_Test.Startup.Login
 {
-	public class LoginViewModelTest : UnitTestBase
+	public class LoginViewModelTest : IntegrationTestBase
 	{
 		private LoginViewModel _unitUnderTest;
 
@@ -17,18 +17,17 @@ namespace LePrAtos_Test.Startup.Login
 			_unitUnderTest = new LoginViewModel();
 		}
 
-		[TestCase("SuperFancyUsername", true)]
-		[TestCase("WayTooLongUsernameThatWouldDisturbEveryoneBecauseItIsTooDamnLong", false)]
-		public void TestExampleMethod(string username, bool expectedResult)
+		//TODO Pascal
+		public void TestLogin(string username, bool expectedResult)
 		{
 			// Arrange
-
+			
 
 			// Act
-			_unitUnderTest.Username = username;
+			
 
 			// Assert
-			Assert.That(Equals(_unitUnderTest.Username, username), Is.EqualTo(expectedResult));
+			Assert.That(true,Is.True);
 		}
 	}
 }

@@ -10,6 +10,7 @@ using System.Resources;
 using System.ServiceModel;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
@@ -26,7 +27,7 @@ namespace LePrAtos.Startup.Login
 	/// </summary>
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
-		private DelegateCommand<string> _loginCommand;
+		private DelegateCommand<PasswordBox> _loginCommand;
 		private string _username = string.Empty;
 		private ICommand _registerCommand;
 
@@ -105,10 +106,10 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Command für die Anmeldung
 		/// </summary>
-		public DelegateCommand<string> LoginCommand
+		public DelegateCommand<PasswordBox> LoginCommand
 			=>
 				_loginCommand ??
-				(_loginCommand = new DelegateCommand<string>(Login));
+				(_loginCommand = new DelegateCommand<PasswordBox>(Login));
 
 		/// <summary>
 		///     Entscheided, ob das Login ausgeführt werden kann
@@ -145,11 +146,11 @@ namespace LePrAtos.Startup.Login
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private async void Login(string passwordBox)
+		private async void Login(PasswordBox passwordBox)
 		{
 			try
 			{
-				var response = await CurrentSession.Client.loginAsync(Username);
+				var response = await CurrentSession.Client.loginAsync(Username, passwordBox.Password);
 
 				var player = Container.Resolve<PlayerViewModel>();
 
@@ -169,9 +170,9 @@ namespace LePrAtos.Startup.Login
 
 				RequestWindowCloseEvent.Invoke(this, null);
 			}
-			catch (FaultException e)
+			catch (Exception e)
 			{
-				MessageBox.Show(e.Message);
+				MessageBox.Show(e.Message, "Fehlurr");
 			}
 		}
 	}

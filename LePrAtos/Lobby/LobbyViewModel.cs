@@ -37,11 +37,11 @@ namespace LePrAtos.Lobby
 			Members.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(MemberCount));
 			CurrentSession.PollingTimer.Elapsed += (sender, e) =>
 			{
-				Application.Current.Dispatcher.InvokeAsync(Reload);
+				Application.Current.Dispatcher.InvokeAsync(Refresh);
 			};
 		}
 
-		private async Task Reload()
+		private async Task Refresh()
 		{
 			if (IsRefreshing)
 			{
@@ -80,7 +80,7 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Der Leiter der Lobby, darf beispielsweise leute aus der Lobby entfernen
 		/// </summary>
-		private string LobbyLeaderName { get; set; }
+		private playerIdentification LobbyLeader { get; set; }
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -102,35 +102,40 @@ namespace LePrAtos.Lobby
 			{
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
-				LobbyLeaderName = _lobby.gameLobbyAdmin;
+				LobbyLeader = _lobby.gameLobbyAdmin;
 				LobbyName = _lobby.gameLobbyName;
 
 				Members.Clear();
-				if (_lobby.gamePlayerListPublic != null)
+
+				PlayerViewModel admin;
+				if (Equals(_lobby.gameLobbyAdmin.username, CurrentSession.Player.Identification.username))
 				{
-					foreach (var playerName in _lobby.gamePlayerListPublic)
+					CurrentSession.Player.Identification = _lobby.gameLobbyAdmin;
+					admin = CurrentSession.Player;
+				}
+				else
+				{
+					admin = Container.Resolve<PlayerViewModel>();
+					admin.Identification = _lobby.gameLobbyAdmin;
+				}
+				
+				Members.Add(admin);
+
+				if (_lobby.gamePlayerList != null)
+				{
+					foreach (var playerIdentification in _lobby.gamePlayerList)
 					{
 						PlayerViewModel playerViewModel;
 
-						if (Equals(playerName, CurrentSession.Player.Username))
+						if (Equals(playerIdentification, CurrentSession.Player.Identification))
 						{
-							if (Equals(LobbyLeaderName, CurrentSession.Player.Username))
-							{
-								//TODO Should be set true by server
-								CurrentSession.Player.IsLeader = true;
-							}
+							CurrentSession.Player.Identification = playerIdentification;
 							playerViewModel = CurrentSession.Player;
 						}
 						else
 						{
 							playerViewModel = Container.Resolve<PlayerViewModel>();
-							//TODO Player from Server
-							playerViewModel.Player = new player { username = playerName };
-							if (Equals(LobbyLeaderName, playerViewModel.Username))
-							{
-								playerViewModel.IsLeader = true;
-							}
-							
+							playerViewModel.Identification = playerIdentification;
 						}
 
 						Members.Add(playerViewModel);
@@ -153,7 +158,7 @@ namespace LePrAtos.Lobby
 
 		private bool CanStartGame()
 		{
-			return Members.Where(p => !Equals(p.PlayerId, LobbyLeaderName)).All(p => p.IsReady);
+			return Members.All(p => p.IsReady);
 		}
 
 		private void StartGame()

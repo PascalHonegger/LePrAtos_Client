@@ -190,7 +190,7 @@ namespace LePrAtos.Lobby
 			IsRefreshing = false;
 
 			var createdLobby =
-				(await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, "TODO CLIENT")).@return;
+				(await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, "Random Name")).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 

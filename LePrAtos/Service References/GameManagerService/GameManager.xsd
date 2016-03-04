@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://webservices.org/" targetNamespace="http://webservices.org/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="Exception" type="tns:Exception" />
+  <xs:element name="MyExceptions" type="tns:MyExceptions" />
   <xs:element name="createGameLobby" type="tns:createGameLobby" />
   <xs:element name="createGameLobbyResponse" type="tns:createGameLobbyResponse" />
+  <xs:element name="email_verification" type="tns:email_verification" />
+  <xs:element name="email_verificationResponse" type="tns:email_verificationResponse" />
   <xs:element name="getGameLobbies" type="tns:getGameLobbies" />
   <xs:element name="getGameLobbiesResponse" type="tns:getGameLobbiesResponse" />
   <xs:element name="getGameLobby" type="tns:getGameLobby" />
   <xs:element name="getGameLobbyResponse" type="tns:getGameLobbyResponse" />
-  <xs:element name="getPlayerByID" type="tns:getPlayerByID" />
-  <xs:element name="getPlayerByIDResponse" type="tns:getPlayerByIDResponse" />
+  <xs:element name="getPlayerByID" type="tns:getIdentificationByID" />
+  <xs:element name="getPlayerByIDResponse" type="tns:getIdentificationByIDResponse" />
   <xs:element name="joinGameLobby" type="tns:joinGameLobby" />
   <xs:element name="joinGameLobbyResponse" type="tns:joinGameLobbyResponse" />
   <xs:element name="leaveGameLobby" type="tns:leaveGameLobby" />
@@ -17,9 +20,25 @@
   <xs:element name="loginResponse" type="tns:loginResponse" />
   <xs:element name="logout" type="tns:logout" />
   <xs:element name="logoutResponse" type="tns:logoutResponse" />
+  <xs:element name="registration" type="tns:registration" />
+  <xs:element name="registrationResponse" type="tns:registrationResponse" />
+  <xs:element name="setPlayerStatus" type="tns:setIdentificationStatus" />
+  <xs:element name="setPlayerStatusResponse" type="tns:setIdentificationStatusResponse" />
+  <xs:element name="username_availability" type="tns:username_availability" />
+  <xs:element name="username_availabilityResponse" type="tns:username_availabilityResponse" />
+  <xs:complexType name="setPlayerStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+      <xs:element name="status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="setPlayerStatusResponse">
+    <xs:sequence />
+  </xs:complexType>
   <xs:complexType name="login">
     <xs:sequence>
-      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" name="username_email" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="loginResponse">
@@ -31,6 +50,8 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:playerIdentification">
         <xs:sequence>
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
           <xs:element minOccurs="0" name="playerID" type="xs:string" />
         </xs:sequence>
       </xs:extension>
@@ -38,7 +59,23 @@
   </xs:complexType>
   <xs:complexType name="playerIdentification">
     <xs:sequence>
+      <xs:element name="status" type="xs:boolean" />
       <xs:element minOccurs="0" name="username" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MyExceptions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="username_availability">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="username_availabilityResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getPlayerByID">
@@ -47,6 +84,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getPlayerByIDResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:player" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:player" />
     </xs:sequence>
@@ -73,15 +122,25 @@
   </xs:complexType>
   <xs:complexType name="gameLobby">
     <xs:sequence>
-      <xs:element minOccurs="0" name="gameLobbyAdmin" type="xs:string" />
+      <xs:element minOccurs="0" name="gameLobbyAdmin" type="tns:playerIdentification" />
       <xs:element minOccurs="0" name="gameLobbyID" type="xs:string" />
       <xs:element minOccurs="0" name="gameLobbyName" type="xs:string" />
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="gamePlayerListPublic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="gamePlayerList" nillable="true" type="tns:playerIdentification" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Exception">
     <xs:sequence>
       <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="email_verification">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="email_verificationResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getGameLobby">
@@ -100,9 +159,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="logoutResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string" />
-    </xs:sequence>
+    <xs:sequence />
   </xs:complexType>
   <xs:complexType name="createGameLobby">
     <xs:sequence>
