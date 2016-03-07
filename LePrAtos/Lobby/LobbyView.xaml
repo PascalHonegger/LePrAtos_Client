@@ -18,7 +18,7 @@
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
-		<ListView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Members}" HorizontalAlignment="Stretch">
+		<ListView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Members}" HorizontalAlignment="Stretch" Grid.RowSpan="2">
 			<ListView.ItemContainerStyle>
 				<Style TargetType="ListViewItem">
 					<Setter Property="Height" Value="75" />
@@ -53,10 +53,34 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-
-		<TextBlock Text="Hier könnte ein Chat leben" Grid.Column="0" Grid.Row="1" />
 		<CheckBox Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_Ready}" IsEnabled="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource InvertBool}}" VerticalAlignment="Center" IsChecked="{Binding CurrentSession.Player.IsReady}"/>
 		<Button Grid.Column="1" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_StartGame}" Command="{Binding StartGameCommand}" Visibility="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource BoolToVis}}" />
 		<Button Grid.Column="2" Grid.Row="1" Content="{x:Static properties:Strings.LobbyView_LeaveLobby}" Command="{Binding LeaveLobbyCommand}"/>
+		<Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.Resources>
+				<Style TargetType="TextBox">
+					<Setter Property="IsReadOnly" Value="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource InvertBool}}"/>
+				</Style>
+				<Style TargetType="Button">
+					<Setter Property="IsEnabled" Value="{Binding CurrentSession.Player.IsLeader, Converter={StaticResource InvertBool}}"/>
+				</Style>
+			</Grid.Resources>
+			<TextBlock Text="Lobby Einstellungen" />
+			<Label Grid.Row="1" Content="Neues Lobby Passwort" Target="{Binding ElementName=LobbyPassword}"/>
+			<TextBox Grid.Row="2" Name="LobbyPassword" Text="{Binding NewLobbyPassword}"/>
+			<Button Grid.Row="3" Content="Passwort setzen" Command="{Binding SetLobbyPasswordCommand}"/>
+			<Label Grid.Row="4" Content="Neuer Lobby Name" Target="{Binding ElementName=LobbyName}"/>
+			<TextBox Grid.Row="5" Name="LobbyName" Text="{Binding NewLobbyName}"/>
+			<Button Grid.Row="6" Content="Lobby Name setzen" Command="{Binding SetLobbyNameCommand}"/>
+		</Grid>
 	</Grid>
 </Window>

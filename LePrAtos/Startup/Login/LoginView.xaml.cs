@@ -2,6 +2,7 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using System.Windows;
 using LePrAtos.Infrastructure;
 
 namespace LePrAtos.Startup.Login
@@ -28,7 +29,7 @@ namespace LePrAtos.Startup.Login
 			TextChanged(this, null);
 		}
 
-		private void TextChanged(object sender, object parameter)
+		private void TextChanged(object sender, RoutedEventArgs e)
 		{
 			Login.IsEnabled = ViewModel.CanLogin(Password.Password);
 		}

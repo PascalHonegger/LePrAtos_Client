@@ -2,6 +2,7 @@
 // Copyright (c) 2016
 // Author: Keller, Alain
 
+using System.Windows;
 using LePrAtos.Infrastructure;
 
 namespace LePrAtos.Startup.Register
@@ -20,14 +21,11 @@ namespace LePrAtos.Startup.Register
 			InitializeComponent();
 			DataContext = viewModel;
 			viewModel.RequestWindowCloseEvent += (sender, e) => Close();
-			
-			UsernameValidationRule.MinLength = RegisterViewModel.UsernameMinLength;
-			UsernameValidationRule.MaxLength = RegisterViewModel.UsernameMaxLength;
 		}
 
 		private RegisterViewModel ViewModel => DataContext as RegisterViewModel;
 
-		private void TextChanged(object sender, object parameter)
+		private void TextChanged(object sender, RoutedEventArgs e)
 		{
 			RegisterButton.IsEnabled = ViewModel.CanRegister(Password.Password, RepPassword.Password);
 		}

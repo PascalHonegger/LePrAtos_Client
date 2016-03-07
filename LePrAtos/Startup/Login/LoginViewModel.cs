@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.ServiceModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,8 +27,16 @@ namespace LePrAtos.Startup.Login
 	public sealed class LoginViewModel : ViewModelBase, IRequestWindowClose
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
-		private string _username = string.Empty;
 		private ICommand _registerCommand;
+		private string _username;
+
+		/// <summary>
+		///     Setzt die Standardwerte der Properties und führt somit die Validierung aus.
+		/// </summary>
+		public LoginViewModel()
+		{
+			Username = string.Empty;
+		}
 
 		/// <summary>
 		///     Alle möglichen Sprachen
@@ -40,7 +47,7 @@ namespace LePrAtos.Startup.Login
 			{
 				var supportedCultures = new List<LanguageViewModel>();
 
-				var rm = new ResourceManager(typeof(Strings));
+				var rm = new ResourceManager(typeof (Strings));
 
 				var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
 				foreach (var culture in cultures.Where(c => !string.IsNullOrEmpty(c.Name)))
@@ -69,10 +76,7 @@ namespace LePrAtos.Startup.Login
 		/// </summary>
 		public LanguageViewModel SelectedLanguage
 		{
-			get
-			{
-				return PossibleLanguages.FirstOrDefault(l => Equals(l.Culture.Name, Settings.Default.SelectedCulture));
-			}
+			get { return PossibleLanguages.FirstOrDefault(l => Equals(l.Culture.Name, Settings.Default.SelectedCulture)); }
 			set
 			{
 				if (value == null) return;
@@ -83,7 +87,7 @@ namespace LePrAtos.Startup.Login
 				Strings.Culture = value.Culture;
 				Thread.CurrentThread.CurrentUICulture = value.Culture;
 
-				//Reload Language
+				//Reload Language / Window
 				RequestWindowCloseEvent.Invoke(new LoginView(this), null);
 			}
 		}
@@ -96,9 +100,22 @@ namespace LePrAtos.Startup.Login
 			get { return _username; }
 			set
 			{
-				if (value != null && (_username == value || value.Length > RegisterViewModel.UsernameMaxLength)) return;
+				if (Equals(value, _username)) return;
 
 				_username = value;
+
+				var errors = new List<string>();
+
+				if (string.IsNullOrEmpty(_username) ||
+					_username.Length > RegisterViewModel.UsernameMaxLength ||
+				    _username.Length < RegisterViewModel.UsernameMinLength)
+				{
+					errors.Add(string.Format(Strings.TextValidationRule_Lenght, RegisterViewModel.UsernameMinLength,
+						RegisterViewModel.UsernameMaxLength));
+				}
+
+				SetErrorForProperty(errors);
+
 				OnPropertyChanged();
 			}
 		}
@@ -112,24 +129,9 @@ namespace LePrAtos.Startup.Login
 				(_loginCommand = new DelegateCommand<PasswordBox>(Login));
 
 		/// <summary>
-		///     Entscheided, ob das Login ausgeführt werden kann
-		/// </summary>
-		/// <param name="password"></param>
-		/// <returns></returns>
-		public bool CanLogin(string password)
-		{
-			return Username.Length >= RegisterViewModel.UsernameMinLength && !string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(password);
-		}
-
-		/// <summary>
 		///     Bestimmt, ob der user beim nächsten Starten der Application angemeldet bleibt
 		/// </summary>
 		public bool SaveLogin { get; set; }
-
-		/// <summary>
-		///     Event, welcher das schliessen des Dialoges anfordert
-		/// </summary>
-		public EventHandler RequestWindowCloseEvent { get; set; }
 
 		/// <summary>
 		///     Command für die Registrierung
@@ -139,9 +141,24 @@ namespace LePrAtos.Startup.Login
 				_registerCommand ??
 				(_registerCommand = new DelegateCommand(Register));
 
+		/// <summary>
+		///     Event, welcher das schliessen des Dialoges anfordert
+		/// </summary>
+		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		/// <summary>
+		///     Entscheided, ob das Login ausgeführt werden kann
+		/// </summary>
+		/// <param name="password"></param>
+		/// <returns></returns>
+		public bool CanLogin(string password)
+		{
+			return !string.IsNullOrEmpty(password) && !HasErrors;
+		}
+
 		private void Register()
 		{
-			var registerView = new RegisterView(new RegisterViewModel { Username = Username});
+			var registerView = new RegisterView(new RegisterViewModel {Username = Username});
 			registerView.Show();
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
