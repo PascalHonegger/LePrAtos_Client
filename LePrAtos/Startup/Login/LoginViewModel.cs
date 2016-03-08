@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -87,8 +88,17 @@ namespace LePrAtos.Startup.Login
 				Strings.Culture = value.Culture;
 				Thread.CurrentThread.CurrentUICulture = value.Culture;
 
-				//Reload Language / Window
-				RequestWindowCloseEvent.Invoke(new LoginView(this), null);
+				//New LoginViewModel and new View to completely reload language
+
+				var loginViewModel = new LoginViewModel
+				{
+					Username = Username,
+					SaveLogin = SaveLogin
+				};
+
+				new LoginView(loginViewModel).Show();
+
+				RequestWindowCloseEvent.Invoke(this, null);
 			}
 		}
 
@@ -110,7 +120,7 @@ namespace LePrAtos.Startup.Login
 					_username.Length > RegisterViewModel.UsernameMaxLength ||
 				    _username.Length < RegisterViewModel.UsernameMinLength)
 				{
-					errors.Add(string.Format(Strings.TextValidationRule_Lenght, RegisterViewModel.UsernameMinLength,
+					errors.Add(string.Format(Strings.TextValidationRule_Length, RegisterViewModel.UsernameMinLength,
 						RegisterViewModel.UsernameMaxLength));
 				}
 

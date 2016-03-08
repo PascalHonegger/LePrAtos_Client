@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LePrAtos.Startup.Register"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="{x:Static properties:Strings.RegisterView_Register}" Height="250" Width="400"
         d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize"
@@ -25,7 +24,7 @@
 
 		<Label Target="{Binding ElementName=Username}" Content="{x:Static properties:Strings.Username}"
 		       Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
-		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" TextChanged="TextChanged" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+		<TextBox Name="Username" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" TextChanged="TextChanged" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 		
 		<Label Target="{Binding ElementName=Mail}" Content="{x:Static properties:Strings.Mail}"
 		       Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
