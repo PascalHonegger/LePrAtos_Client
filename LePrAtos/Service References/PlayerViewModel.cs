@@ -43,7 +43,7 @@ namespace LePrAtos.Service_References
 				}
 				_identification = value;
 				Username = _identification.username;
-				IsReady = _identification.status;
+				_isReady = _identification.status;
 			}
 		}
 
@@ -71,8 +71,11 @@ namespace LePrAtos.Service_References
 				{
 					return;
 				}
-				
-				CurrentSession.Client.setPlayerStatus(PlayerId, value);
+
+				if (Equals(this, CurrentSession.Player))
+				{
+					CurrentSession.Client.setPlayerStatus(PlayerId, value);
+				}
 
 				_isReady = value;
 				OnPropertyChanged();

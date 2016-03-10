@@ -28,7 +28,7 @@ namespace LePrAtos.Startup.Login
 		public string DisplayText { get; }
 
 		/// <summary>
-		///     Der Pfad zu der Datai der dazugehörigen Flagge
+		///     Der Pfad zu der Datai der dazugehörigen Flagge. Die Flagge muss jeweils Flag + Kürzel + .jpg heissten. Bsp: FlagDE.jpg
 		/// </summary>
 		public string PathToFlag { get; }
 

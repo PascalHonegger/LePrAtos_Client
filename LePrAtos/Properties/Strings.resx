@@ -213,4 +213,19 @@
   <data name="TextValidationRule_MailValid" xml:space="preserve">
     <value>TextValidationRule_MailValid</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="LoginView_BadLogin" xml:space="preserve">
+    <value>LoginView_BadLogin</value>
+  </data>
+  <data name="RegisterView_BadRegister" xml:space="preserve">
+    <value>RegisterView_BadRegister</value>
+  </data>
+  <data name="TextValidationRule_MailaddressAlreadyTaken" xml:space="preserve">
+    <value>TextValidationRule_MailaddressAlreadyTaken</value>
+  </data>
+  <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
+    <value>TextValidationRule_UsernameAlreadyTaken</value>
+  </data>
 </root>

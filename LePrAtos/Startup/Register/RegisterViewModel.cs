@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -89,6 +90,11 @@ namespace LePrAtos.Startup.Register
 					errors.Add(string.Format(Strings.TextValidationRule_ForbiddenChar, "@"));
 				}
 
+				if (!errors.Any() && !CurrentSession.Client.username_availability(_username))
+				{
+					errors.Add(Strings.TextValidationRule_UsernameAlreadyTaken);
+				}
+
 				SetErrorForProperty(errors);
 
 				OnPropertyChanged();
@@ -129,6 +135,10 @@ namespace LePrAtos.Startup.Register
 				{
 					errors.Add(Strings.TextValidationRule_MailValid);
 				}
+				else if(!CurrentSession.Client.email_verification(_mailAddress))
+				{
+					errors.Add(Strings.TextValidationRule_MailaddressAlreadyTaken);
+				}
 
 				SetErrorForProperty(errors);
 
@@ -157,7 +167,7 @@ namespace LePrAtos.Startup.Register
 		{
 			try
 			{
-				var response = await CurrentSession.Client.registrationAsync(MailAddress, Username, passwordBox.Password);
+				var response = await CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwordBox.Password));
 
 				var player = Container.Resolve<PlayerViewModel>();
 
@@ -171,9 +181,9 @@ namespace LePrAtos.Startup.Register
 
 				RequestWindowCloseEvent.Invoke(this, null);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				MessageBox.Show(e.Message, "Error");
+				MessageBox.Show(Strings.RegisterView_BadRegister, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 		}
 

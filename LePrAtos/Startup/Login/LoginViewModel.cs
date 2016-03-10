@@ -177,7 +177,7 @@ namespace LePrAtos.Startup.Login
 		{
 			try
 			{
-				var response = await CurrentSession.Client.loginAsync(Username, passwordBox.Password);
+				var response = await CurrentSession.Client.loginAsync(Username, PasswordHasher.HashPasswort(passwordBox.Password));
 
 				var player = Container.Resolve<PlayerViewModel>();
 
@@ -197,9 +197,9 @@ namespace LePrAtos.Startup.Login
 
 				RequestWindowCloseEvent.Invoke(this, null);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				MessageBox.Show(e.Message, "Fehlurr");
+				MessageBox.Show(Strings.LoginView_BadLogin, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}

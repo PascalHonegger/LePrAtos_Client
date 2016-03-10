@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://webservices.org/" targetNamespace="http://webservices.org/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="Exception" type="tns:Exception" />
   <xs:element name="MyExceptions" type="tns:MyExceptions" />
@@ -10,8 +10,8 @@
   <xs:element name="getGameLobbiesResponse" type="tns:getGameLobbiesResponse" />
   <xs:element name="getGameLobby" type="tns:getGameLobby" />
   <xs:element name="getGameLobbyResponse" type="tns:getGameLobbyResponse" />
-  <xs:element name="getPlayerByID" type="tns:getIdentificationByID" />
-  <xs:element name="getPlayerByIDResponse" type="tns:getIdentificationByIDResponse" />
+  <xs:element name="getPlayerByID" type="tns:getPlayerByID" />
+  <xs:element name="getPlayerByIDResponse" type="tns:getPlayerByIDResponse" />
   <xs:element name="joinGameLobby" type="tns:joinGameLobby" />
   <xs:element name="joinGameLobbyResponse" type="tns:joinGameLobbyResponse" />
   <xs:element name="leaveGameLobby" type="tns:leaveGameLobby" />
@@ -22,8 +22,8 @@
   <xs:element name="logoutResponse" type="tns:logoutResponse" />
   <xs:element name="registration" type="tns:registration" />
   <xs:element name="registrationResponse" type="tns:registrationResponse" />
-  <xs:element name="setPlayerStatus" type="tns:setIdentificationStatus" />
-  <xs:element name="setPlayerStatusResponse" type="tns:setIdentificationStatusResponse" />
+  <xs:element name="setPlayerStatus" type="tns:setPlayerStatus" />
+  <xs:element name="setPlayerStatusResponse" type="tns:setPlayerStatusResponse" />
   <xs:element name="username_availability" type="tns:username_availability" />
   <xs:element name="username_availabilityResponse" type="tns:username_availabilityResponse" />
   <xs:complexType name="setPlayerStatus">
