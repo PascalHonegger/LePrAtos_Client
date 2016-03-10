@@ -91,7 +91,7 @@ namespace LePrAtos.Startup.Register
 
 				if (!errors.Any() && !CurrentSession.Client.username_availability(_username))
 				{
-					errors.Add("Username already taken!");
+					errors.Add(Strings.TextValidationRule_UsernameAlreadyTaken);
 				}
 
 				SetErrorForProperty(errors);
@@ -136,7 +136,7 @@ namespace LePrAtos.Startup.Register
 				}
 				else if(!CurrentSession.Client.email_verification(_mailAddress))
 				{
-					errors.Add("Username already taken!");
+					errors.Add(Strings.TextValidationRule_MailaddressAlreadyTaken);
 				}
 
 				SetErrorForProperty(errors);

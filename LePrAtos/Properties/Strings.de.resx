@@ -214,7 +214,7 @@ Bitte senden Sie folgende Informationen an den Support
     <value>Darf kein {0} beinhalten</value>
   </data>
   <data name="TextValidationRule_MailValid" xml:space="preserve">
-    <value>E-Mail-Adress ist nicht gültig</value>
+    <value>E-Mail-Adresse ist nicht gültig</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Fehler</value>
@@ -224,5 +224,11 @@ Bitte senden Sie folgende Informationen an den Support
   </data>
   <data name="RegisterView_BadRegister" xml:space="preserve">
     <value>Registrierung fehlgeschlagen. Bütte überprüfen Sie Ihre Angaben und versuchen Sie es später erneut.</value>
+  </data>
+  <data name="TextValidationRule_MailaddressAlreadyTaken" xml:space="preserve">
+    <value>Account mit dieser E-Mail-Addresse existiert bereits</value>
+  </data>
+  <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
+    <value>Benutzername bereits vergeben</value>
   </data>
 </root>

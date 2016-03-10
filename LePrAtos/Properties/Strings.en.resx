@@ -225,4 +225,10 @@ Please send the following info to the support!
   <data name="RegisterView_BadRegister" xml:space="preserve">
     <value>Register failed. Please check your data and try again later.</value>
   </data>
+  <data name="TextValidationRule_MailaddressAlreadyTaken" xml:space="preserve">
+    <value>Account with same email address already exists</value>
+  </data>
+  <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
+    <value>Username already taken</value>
+  </data>
 </root>

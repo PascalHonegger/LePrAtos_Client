@@ -349,6 +349,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TextValidationRule_MailaddressAlreadyTaken.
+        /// </summary>
+        public static string TextValidationRule_MailaddressAlreadyTaken {
+            get {
+                return ResourceManager.GetString("TextValidationRule_MailaddressAlreadyTaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TextValidationRule_MailValid.
         /// </summary>
         public static string TextValidationRule_MailValid {
@@ -363,6 +372,15 @@ namespace LePrAtos.Properties {
         public static string TextValidationRule_MandatoryChar {
             get {
                 return ResourceManager.GetString("TextValidationRule_MandatoryChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TextValidationRule_UsernameAlreadyTaken.
+        /// </summary>
+        public static string TextValidationRule_UsernameAlreadyTaken {
+            get {
+                return ResourceManager.GetString("TextValidationRule_UsernameAlreadyTaken", resourceCulture);
             }
         }
         

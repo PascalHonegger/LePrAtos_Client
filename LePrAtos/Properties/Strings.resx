@@ -222,4 +222,10 @@
   <data name="RegisterView_BadRegister" xml:space="preserve">
     <value>RegisterView_BadRegister</value>
   </data>
+  <data name="TextValidationRule_MailaddressAlreadyTaken" xml:space="preserve">
+    <value>TextValidationRule_MailaddressAlreadyTaken</value>
+  </data>
+  <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
+    <value>TextValidationRule_UsernameAlreadyTaken</value>
+  </data>
 </root>
