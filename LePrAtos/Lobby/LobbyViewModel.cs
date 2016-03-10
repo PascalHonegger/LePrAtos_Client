@@ -25,6 +25,7 @@ namespace LePrAtos.Lobby
 	public class LobbyViewModel : ViewModelBase, IRequestWindowClose
 	{
 		private ICommand _leaveLobbyCommand;
+		private DelegateCommand _updateSettingsCommand;
 		private gameLobby _lobby;
 		private DelegateCommand _startGameCommand;
 
@@ -87,6 +88,22 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public DelegateCommand StartGameCommand
 			=> _startGameCommand ?? (_startGameCommand = new DelegateCommand(StartGame, CanStartGame));
+
+		/// <summary>
+		///     Command zum übernehmen der neu gesetzten Einstellungen für die Lobby
+		/// </summary>
+		public DelegateCommand UpdateSettingsCommand
+			=> _updateSettingsCommand ?? (_updateSettingsCommand = new DelegateCommand(UpdateSettings, CanUpdateSettings));
+
+		private void UpdateSettings()
+		{
+			throw new NotImplementedException();
+		}
+
+		private bool CanUpdateSettings()
+		{
+			return CurrentSession.Player.IsLeader;
+		}
 
 		/// <summary>
 		///     Die vom Server stammende Lobby
