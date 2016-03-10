@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -88,6 +89,11 @@ namespace LePrAtos.Startup.Register
 					errors.Add(string.Format(Strings.TextValidationRule_ForbiddenChar, "@"));
 				}
 
+				if (!errors.Any() && !CurrentSession.Client.username_availability(_username))
+				{
+					errors.Add("Username already taken!");
+				}
+
 				SetErrorForProperty(errors);
 
 				OnPropertyChanged();
@@ -127,6 +133,10 @@ namespace LePrAtos.Startup.Register
 				if (!MailRegex.IsMatch(_mailAddress))
 				{
 					errors.Add(Strings.TextValidationRule_MailValid);
+				}
+				else if(!CurrentSession.Client.email_verification(_mailAddress))
+				{
+					errors.Add("Username already taken!");
 				}
 
 				SetErrorForProperty(errors);
@@ -169,9 +179,9 @@ namespace LePrAtos.Startup.Register
 
 				RequestWindowCloseEvent.Invoke(this, null);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				MessageBox.Show(e.Message, "Fehlurr");
+				MessageBox.Show(Strings.RegisterView_BadRegister, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 		}
 

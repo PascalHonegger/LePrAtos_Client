@@ -216,4 +216,13 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="TextValidationRule_MailValid" xml:space="preserve">
     <value>E-Mail-Adress ist nicht gültig</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="LoginView_BadLogin" xml:space="preserve">
+    <value>Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten oder erstellen Sie neuen Account.</value>
+  </data>
+  <data name="RegisterView_BadRegister" xml:space="preserve">
+    <value>Registrierung fehlgeschlagen. Bütte überprüfen Sie Ihre Angaben und versuchen Sie es später erneut.</value>
+  </data>
 </root>

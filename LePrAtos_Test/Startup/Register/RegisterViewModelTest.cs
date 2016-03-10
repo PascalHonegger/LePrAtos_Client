@@ -6,9 +6,9 @@ using LePrAtos.Startup.Login;
 using LePrAtos_Test.Infrastructure;
 using NUnit.Framework;
 
-namespace LePrAtos_Test.Startup.Login
+namespace LePrAtos_Test.Startup.Register
 {
-	public class LoginViewModelTest : IntegrationTestBase
+	public class RegisterViewModelText : IntegrationTestBase
 	{
 		private LoginViewModel _unitUnderTest;
 
@@ -19,7 +19,7 @@ namespace LePrAtos_Test.Startup.Login
 
 		[Test]
 		//TODO Pascal
-		public void TestLogin()
+		public void TestRegister()
 		{
 			// Arrange
 

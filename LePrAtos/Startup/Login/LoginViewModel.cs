@@ -187,9 +187,9 @@ namespace LePrAtos.Startup.Login
 
 				RequestWindowCloseEvent.Invoke(this, null);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				MessageBox.Show(e.Message, "Fehlurr");
+				MessageBox.Show(Strings.LoginView_BadLogin, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 	}

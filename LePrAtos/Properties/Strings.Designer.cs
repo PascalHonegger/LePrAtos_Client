@@ -70,6 +70,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ExceptionHandling_Caption.
         /// </summary>
         public static string ExceptionHandling_Caption {
@@ -205,6 +214,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_BadLogin.
+        /// </summary>
+        public static string LoginView_BadLogin {
+            get {
+                return ResourceManager.GetString("LoginView_BadLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_Language.
         /// </summary>
         public static string LoginView_Language {
@@ -264,6 +282,15 @@ namespace LePrAtos.Properties {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegisterView_BadRegister.
+        /// </summary>
+        public static string RegisterView_BadRegister {
+            get {
+                return ResourceManager.GetString("RegisterView_BadRegister", resourceCulture);
             }
         }
         

@@ -216,4 +216,13 @@ Please send the following info to the support!
   <data name="TextValidationRule_MailValid" xml:space="preserve">
     <value>Email address is invalid</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="LoginView_BadLogin" xml:space="preserve">
+    <value>Login failed. Please check your credentials or create a new account.</value>
+  </data>
+  <data name="RegisterView_BadRegister" xml:space="preserve">
+    <value>Register failed. Please check your data and try again later.</value>
+  </data>
 </root>
