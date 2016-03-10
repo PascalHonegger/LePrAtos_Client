@@ -31,7 +31,7 @@
     <PublisherName>LePrAtos</PublisherName>
     <SuiteName>LePrAtos</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -181,6 +181,7 @@
     <Compile Include="Service References\PlayerViewModel.cs" />
     <Compile Include="Infrastructure\ViewModelBase.cs" />
     <Compile Include="Startup\Login\LanguageViewModel.cs" />
+    <Compile Include="Startup\PasswordHasher.cs" />
     <Compile Include="Startup\Register\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>

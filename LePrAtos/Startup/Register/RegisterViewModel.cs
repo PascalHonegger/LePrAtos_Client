@@ -97,7 +97,7 @@ namespace LePrAtos.Startup.Register
 		{
 			try
 			{
-				var response = await CurrentSession.Client.registrationAsync(MailAddress, Username, passwordBox.Password);
+				var response = await CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwordBox.Password));
 
 				var player = Container.Resolve<PlayerViewModel>();
 

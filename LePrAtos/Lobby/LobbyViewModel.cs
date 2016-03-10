@@ -76,16 +76,11 @@ namespace LePrAtos.Lobby
 		///     Lobby verfügt über ein Passwort
 		/// </summary>
 		public bool LobbyHasPassword { get; set; }
-
-		/// <summary>
-		///     Der Leiter der Lobby, darf beispielsweise leute aus der Lobby entfernen
-		/// </summary>
-		private playerIdentification LobbyLeader { get; set; }
-
+		
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
 		/// </summary>
-		public ICommand LeaveLobbyCommand => _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => LeaveLobby()));
+		public ICommand LeaveLobbyCommand => _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => RequestWindowCloseEvent.Invoke(this, null)));
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -102,7 +97,6 @@ namespace LePrAtos.Lobby
 			{
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
-				LobbyLeader = _lobby.gameLobbyAdmin;
 				LobbyName = _lobby.gameLobbyName;
 
 				Members.Clear();
@@ -118,7 +112,8 @@ namespace LePrAtos.Lobby
 					admin = Container.Resolve<PlayerViewModel>();
 					admin.Identification = _lobby.gameLobbyAdmin;
 				}
-				
+
+				admin.IsLeader = true;
 				Members.Add(admin);
 
 				if (_lobby.gamePlayerList != null)

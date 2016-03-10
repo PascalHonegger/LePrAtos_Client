@@ -150,7 +150,7 @@ namespace LePrAtos.Startup.Login
 		{
 			try
 			{
-				var response = await CurrentSession.Client.loginAsync(Username, passwordBox.Password);
+				var response = await CurrentSession.Client.loginAsync(Username, PasswordHasher.HashPasswort(passwordBox.Password));
 
 				var player = Container.Resolve<PlayerViewModel>();
 
