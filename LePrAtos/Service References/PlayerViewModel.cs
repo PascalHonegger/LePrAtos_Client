@@ -16,6 +16,7 @@ namespace LePrAtos.Service_References
 	{
 		private bool _isReady;
 		private playerIdentification _identification;
+		private bool _isLeader;
 
 
 		/// <summary>
@@ -85,7 +86,17 @@ namespace LePrAtos.Service_References
 		///     True, wenn der Spieler ein Lobby-Leiter ist. Da er nur in einem Spiel zur gleichen zeit sein kann, wird dies zur
 		///     bestimmung des Leiters pro Lobby verwendet
 		/// </summary>
-		public bool IsLeader { get; set; }
+		public bool IsLeader
+		{
+			get { return _isLeader; }
+			set
+			{
+				if (value == _isLeader) return;
+
+				_isLeader = value;
+				OnPropertyChanged();
+			}
+		}
 
 		private bool Equals(PlayerViewModel other)
 		{

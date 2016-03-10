@@ -3,13 +3,14 @@
 // Author: Keller, Alain
 
 using System;
-using System.ServiceModel;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
 using LePrAtos.Lobby;
+using LePrAtos.Properties;
 using LePrAtos.Service_References;
 using LePrAtos.Startup.Login;
 using Microsoft.Practices.Prism.Commands;
@@ -35,12 +36,12 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Die Minimallänge des Passworts
 		/// </summary>
-		public const int PasswordMinLength = 5;
+		private const int PasswordMinLength = 5;
 
 		/// <summary>
 		///     Die Maximallänge des Passworts
 		/// </summary>
-		public const int PasswordMaxLength = 30;
+		private const int PasswordMaxLength = 30;
 
 		private const string MailPattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
 
@@ -48,13 +49,50 @@ namespace LePrAtos.Startup.Register
 		///     Regex für die Überprüfung von E-Mail-Adressen
 		/// </summary>
 		public static readonly Regex MailRegex = new Regex(MailPattern);
+
 		private ICommand _cancelCommand;
+		private string _mailAddress;
 		private DelegateCommand<PasswordBox> _registerCommand;
+		private string _username;
+
+		/// <summary>
+		///     Setzt die Standardwerte der Properties und führt somit die Validierung aus.
+		/// </summary>
+		public RegisterViewModel()
+		{
+			Username = string.Empty;
+			MailAddress = string.Empty;
+		}
 
 		/// <summary>
 		///     Der Benutzername für das Login und die Anzeige
 		/// </summary>
-		public string Username { get; set; }
+		public string Username
+		{
+			get { return _username; }
+			set
+			{
+				if (Equals(value, _username)) return;
+
+				_username = value;
+
+				var errors = new List<string>();
+
+				if (_username.Length > UsernameMaxLength || _username.Length < UsernameMinLength)
+				{
+					errors.Add(string.Format(Strings.TextValidationRule_Lenght, UsernameMinLength, UsernameMaxLength));
+				}
+
+				if (_username.Contains("@"))
+				{
+					errors.Add(string.Format(Strings.TextValidationRule_ForbiddenChar, "@"));
+				}
+
+				SetErrorForProperty(errors);
+
+				OnPropertyChanged();
+			}
+		}
 
 		/// <summary>
 		///     Comand for cancelling registration
@@ -75,7 +113,27 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Die Mailadresse des Users
 		/// </summary>
-		public string MailAddress { get; set; } = string.Empty;
+		public string MailAddress
+		{
+			get { return _mailAddress; }
+			set
+			{
+				if (Equals(value, _mailAddress)) return;
+
+				_mailAddress = value;
+
+				var errors = new List<string>();
+
+				if (!MailRegex.IsMatch(_mailAddress))
+				{
+					errors.Add(Strings.TextValidationRule_MailValid);
+				}
+
+				SetErrorForProperty(errors);
+
+				OnPropertyChanged();
+			}
+		}
 
 		/// <summary>
 		///     Event, welcher das schliessen des Dialoges anfordert
@@ -126,10 +184,7 @@ namespace LePrAtos.Startup.Register
 		public bool CanRegister(string password, string repeatPassword)
 		{
 			return
-				Username.Length <= UsernameMaxLength &&
-				Username.Length >= UsernameMinLength &&
-				!Username.Contains("@") &&
-				MailRegex.IsMatch(MailAddress) &&
+				!HasErrors &&
 				Equals(password, repeatPassword) &&
 				password.Length <= PasswordMaxLength &&
 				password.Length >= PasswordMinLength;

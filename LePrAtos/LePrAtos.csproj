@@ -186,7 +186,6 @@
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Startup\Register\RegisterViewModel.cs" />
-    <Compile Include="ValidationRules\TextValidationRule.cs" />
     <Page Include="Dialogs\CustomDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
