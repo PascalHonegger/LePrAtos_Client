@@ -6,96 +6,114 @@
         xmlns:local="clr-namespace:LePrAtos.Lobby"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Lobby Browser" MinHeight="350" MinWidth="600"
         d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowState="Maximized">
 	<Window.InputBindings>
 		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5" />
-		<KeyBinding Command="{Binding JoinLobbyCommand}" Key="Enter" />
 	</Window.InputBindings>
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="6*" />
+		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="3*" />
 			<ColumnDefinition Width="1*" />
 		</Grid.ColumnDefinitions>
-		<Grid Grid.Row="0" Grid.Column="1">
+
+		<Grid Margin="10" Grid.Row="0" Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<xctk:WatermarkTextBox Watermark="TODO SUCHE" Grid.Column="0"
+			                       Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"
+			                       Margin="10, 0" />
+			<CheckBox Grid.Row="0" Grid.Column="1" Content="TODO Passwort" IsChecked="{Binding ShowProtectedLobbies}"
+			          VerticalAlignment="Center" />
+			<CheckBox Grid.Row="0" Grid.Column="2" Content="TODO Full" IsChecked="{Binding ShowFullLobbies}"
+			          VerticalAlignment="Center" />
+		</Grid>
+
+		<Grid Margin="10" Grid.Row="0" Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center"
+			           HorizontalAlignment="Center" />
+			<Button Grid.Column="1" Command="{Binding RefreshViewCommand}" Margin="0, 10">
+				<Image Source="../Resources/Reload.png" />
+			</Button>
+		</Grid>
+
+		<Grid Grid.Row="1" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
 				<RowDefinition Height="*" />
 				<RowDefinition Height="*" />
 				<RowDefinition Height="*" />
-				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
-			<Grid Margin="10" Grid.Row="0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-				<TextBlock Grid.Column="0" Text="{Binding CurrentSession.Player.Username}" VerticalAlignment="Center"
-				           HorizontalAlignment="Center" />
-				<Button Grid.Column="1" Command="{Binding RefreshViewCommand}" HorizontalAlignment="Right" Margin="10, 10, 0, 10">
-					<Image Source="../Resources/Reload.png" />
-				</Button>
-			</Grid>
-			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}"
+			<Button Margin="10" Grid.Row="0" Content="{x:Static properties:Strings.LobbyBrowser_CreateLobby}"
 			        Command="{Binding CreateLobbyCommand}" />
-			<Button Margin="10" Grid.Row="2" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"
-			        Command="{Binding JoinLobbyCommand}" />
-			<Grid Margin="10" Grid.Row="3">
-				<Grid.RowDefinitions>
-					<RowDefinition />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-				<Label Target="{Binding ElementName=LobbyPassword}" Content="{x:Static properties:Strings.LobbyView_LobbyPassword}"
-				       VerticalAlignment="Center" />
-				<TextBox Name="LobbyPassword" Grid.Row="1">
-					<TextBox.Text>
-						<Binding Path="LobbyPassword" UpdateSourceTrigger="PropertyChanged" />
-					</TextBox.Text>
-				</TextBox>
-			</Grid>
+			<Button Margin="10" Grid.Row="1" Content="{x:Static properties:Strings.LobbyBrowser_JoinLobby}"
+			        Command="{Binding JoinLobbyCommand}" IsDefault="True" />
+			<xctk:WatermarkTextBox Watermark="{x:Static properties:Strings.LobbyView_LobbyPassword}" Grid.Row="2" Margin="10"
+			                       Text="{Binding LobbyPassword, UpdateSourceTrigger=PropertyChanged}" />
 
-			<Button Margin="10" Grid.Row="4" Content="{x:Static properties:Strings.LobbyBrowser_Logout}"
+			<Button Margin="10" Grid.Row="3" Content="{x:Static properties:Strings.LobbyBrowser_Logout}"
 			        Command="{Binding LogoutCommand}" />
 		</Grid>
 
-		<xcdg:DataGridControl Grid.Column="0" Grid.Row="0" ItemsSource="{Binding AvailableLobbies}"
-		          SelectedItem="{Binding SeletedLobby}" AutoCreateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<xcdg:DataGridControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding FilteredLobbies}"
+		                      SelectedItem="{Binding SeletedLobby}" AutoCreateColumns="False" HorizontalAlignment="Stretch"
+		                      VerticalAlignment="Stretch" SelectionMode="Single" IsFixedHeadersHost="False"
+		                      IsFixedFootersHost="False">
 			<xcdg:DataGridControl.ItemContainerStyle>
-				<Style TargetType="{x:Type DataGridRow}">
-					<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+				<Style TargetType="{x:Type xcdg:Row}">
+					<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
 				</Style>
 			</xcdg:DataGridControl.ItemContainerStyle>
+			<xcdg:DataGridControl.View>
+				<xcdg:TableflowView ContainerHeight="40" />
+			</xcdg:DataGridControl.View>
 			<xcdg:DataGridControl.Columns>
-				<xcdg:Column FieldName="LobbyName" Title="{x:Static properties:Strings.LobbyBrowser_GameName}" ReadOnly="True" AllowGroup="False">
+				<xcdg:Column Width="3*" FieldName="LobbyName" Title="{x:Static properties:Strings.LobbyBrowser_GameName}"
+				             ReadOnly="True" AllowGroup="False">
 					<xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:DataGridBindingInfo Path="LobbyName" />
 					</xcdg:Column.DisplayMemberBindingInfo>
 				</xcdg:Column>
-				<xcdg:Column FieldName="Owner" Title="{x:Static properties:Strings.LobbyView_Owner}" ReadOnly="True" AllowGroup="False">
+				<xcdg:Column Width="2*" FieldName="Owner" Title="{x:Static properties:Strings.LobbyView_Owner}" ReadOnly="True"
+				             AllowGroup="False">
 					<xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:DataGridBindingInfo ReadOnly="True" Path="LobbyLeaderName" />
 					</xcdg:Column.DisplayMemberBindingInfo>
 				</xcdg:Column>
-				<xcdg:Column FieldName="MemberCount" Title="TODO ANZAHL SPIELER" ReadOnly="True">
+				<xcdg:Column Width="*" FieldName="MemberCount" Title="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}"
+				             ReadOnly="True">
 					<xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:DataGridBindingInfo ReadOnly="True" Path="Members.Count" />
 					</xcdg:Column.DisplayMemberBindingInfo>
 				</xcdg:Column>
-				<xcdg:Column FieldName="MaxMemberCount" Title="TODO MAX SPIELER" ReadOnly="True">
+				<xcdg:Column Width="*" FieldName="MaxMemberCount" Title="{x:Static properties:Strings.LobbyBrowser_MaxPlayers}"
+				             ReadOnly="True">
 					<xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:DataGridBindingInfo Path="MaxMemberCount" />
 					</xcdg:Column.DisplayMemberBindingInfo>
 				</xcdg:Column>
-				<xcdg:Column FieldName="HasPassword" Title="{x:Static properties:Strings.LobbyBrowser_HasPassword}" ReadOnly="True">
+				<xcdg:Column Width="*" FieldName="HasPassword" Title="{x:Static properties:Strings.Password}"
+				             ReadOnly="True">
 					<xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:DataGridBindingInfo Path="LobbyHasPassword" />
 					</xcdg:Column.DisplayMemberBindingInfo>
 					<xcdg:Column.CellContentTemplate>
 						<DataTemplate>
 							<Image Source="../Resources/lock.png"
-								       Visibility="{Binding Converter={StaticResource BoolToVis}}" Stretch="None"
-								       HorizontalAlignment="Center" VerticalAlignment="Center" />
+							       Visibility="{Binding Converter={StaticResource BoolToVis}}" Stretch="None" />
 						</DataTemplate>
 					</xcdg:Column.CellContentTemplate>
 				</xcdg:Column>

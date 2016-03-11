@@ -9,19 +9,24 @@
              d:DesignHeight="100" d:DesignWidth="400"
              d:DataContext="{d:DesignInstance serviceReferences:PlayerViewModel}">
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
-		<Image Grid.Column="0" ToolTip="{x:Static properties:Strings.LobbyView_Owner}" Source="../Resources/Crown.png"
-		       Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}" />
-		<TextBlock Grid.Column="1" Text="{Binding Username}" ToolTip="{x:Static properties:Strings.Username}" />
-		<TextBlock Grid.Column="2" Text="✓" ToolTip="{x:Static properties:Strings.LobbyView_Ready}"
+		<Image Grid.Row="0" Grid.Column="0" ToolTip="{x:Static properties:Strings.LobbyView_Owner}" Source="../Resources/Crown.png"
+		       Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}" Margin="20"/>
+		<TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding Username}" ToolTip="{x:Static properties:Strings.Username}" />
+		<TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" FontSize="25" Text="✓" ToolTip="{x:Static properties:Strings.LobbyView_Ready}"
 		           Visibility="{Binding IsReady, Converter={StaticResource BoolToVis}}" />
-		<Button Grid.Column="3" Width="30" ToolTip="{x:Static properties:Strings.LobbyView_Remove}">
+		<Button Grid.Row="0" Grid.Column="3" ToolTip="{x:Static properties:Strings.LobbyView_Remove}" Margin="20" Command="{Binding RemoveCommand}">
 			<Image Source="../Resources/DeleteRed.png" />
 		</Button>
+		<Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}"/>
 	</Grid>
 </UserControl>

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using LePrAtos.GameManagerService;
@@ -25,9 +26,9 @@ namespace LePrAtos.Lobby
 	public class LobbyViewModel : ViewModelBase, IRequestWindowClose
 	{
 		private ICommand _leaveLobbyCommand;
-		private DelegateCommand _updateSettingsCommand;
 		private gameLobby _lobby;
 		private DelegateCommand _startGameCommand;
+		private DelegateCommand _updateSettingsCommand;
 
 		/// <summary>
 		///     Constructor
@@ -36,10 +37,20 @@ namespace LePrAtos.Lobby
 		{
 			// ReSharper disable once ExplicitCallerInfoArgument
 			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); };
-			CurrentSession.PollingTimer.Elapsed += (sender, e) =>
-			{
-				Application.Current.Dispatcher.InvokeAsync(Refresh);
-			};
+			CurrentSession.PollingTimer.Elapsed += PollingTimerOnElapsed;
+		}
+
+		/// <summary>
+		///     Trennt die <see cref="Refresh"/> Funktion vom Timer
+		/// </summary>
+		public void StopUpdate()
+		{
+			CurrentSession.PollingTimer.Elapsed -= PollingTimerOnElapsed;
+		}
+
+		private void PollingTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+		{
+			Application.Current.Dispatcher.InvokeAsync(Refresh);
 		}
 
 		/// <summary>
@@ -47,21 +58,13 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public string LobbyLeaderName => Members.FirstOrDefault(m => m.IsLeader)?.Username;
 
-		private async Task Refresh()
-		{
-			if (IsRefreshing)
-			{
-				Lobby = (await CurrentSession.Client.getGameLobbyAsync(LobbyId)).@return;
-			}
-		}
-
 		/// <summary>
 		///     Alle Mitglieder dieser Lobby
 		/// </summary>
 		public ObservableCollection<PlayerViewModel> Members { get; } = new ObservableCollection<PlayerViewModel>();
 
 		//TODO: Implementierung Server & Client
-		private static int MaxMemberCount { get; set; } = 13;
+		public int MaxMemberCount { get; set; } = 1;
 
 		/// <summary>
 		///     Lobby Name
@@ -77,11 +80,13 @@ namespace LePrAtos.Lobby
 		///     Lobby verfügt über ein Passwort
 		/// </summary>
 		public bool LobbyHasPassword { get; set; }
-		
+
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
 		/// </summary>
-		public ICommand LeaveLobbyCommand => _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => RequestWindowCloseEvent.Invoke(this, null)));
+		public ICommand LeaveLobbyCommand
+			=> _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => RequestWindowCloseEvent.Invoke(this, null)))
+			;
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -95,16 +100,6 @@ namespace LePrAtos.Lobby
 		public DelegateCommand UpdateSettingsCommand
 			=> _updateSettingsCommand ?? (_updateSettingsCommand = new DelegateCommand(UpdateSettings, CanUpdateSettings));
 
-		private void UpdateSettings()
-		{
-			throw new NotImplementedException();
-		}
-
-		private bool CanUpdateSettings()
-		{
-			return CurrentSession.Player.IsLeader;
-		}
-
 		/// <summary>
 		///     Die vom Server stammende Lobby
 		/// </summary>
@@ -112,6 +107,11 @@ namespace LePrAtos.Lobby
 		{
 			set
 			{
+				if (value?.gameLobbyAdmin == null)
+				{
+					StopUpdate();
+					return;
+				}
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
@@ -131,6 +131,7 @@ namespace LePrAtos.Lobby
 				}
 
 				admin.IsLeader = true;
+
 				Members.Add(admin);
 
 				if (_lobby.gamePlayerList != null)
@@ -148,8 +149,10 @@ namespace LePrAtos.Lobby
 						{
 							playerViewModel = Container.Resolve<PlayerViewModel>();
 							playerViewModel.Identification = playerIdentification;
+							playerViewModel.RemoveAction = RemovePlayer;
 						}
 
+						playerViewModel.IsLeader = false;
 						Members.Add(playerViewModel);
 					}
 				}
@@ -163,10 +166,20 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
 
-		/// <summary>
-		///     Entscheided, ob sich der bool refreshed
-		/// </summary>
-		public bool IsRefreshing { private get; set; } = true;
+		private async Task Refresh()
+		{
+			Lobby = (await CurrentSession.Client.getGameLobbyAsync(LobbyId)).@return;
+		}
+
+		private void UpdateSettings()
+		{
+			throw new NotImplementedException();
+		}
+
+		private bool CanUpdateSettings()
+		{
+			return CurrentSession.Player.IsLeader;
+		}
 
 		private bool CanStartGame()
 		{
@@ -191,17 +204,18 @@ namespace LePrAtos.Lobby
 
 			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
 
-			lobbyBrowserViewModel.IsRefreshing = true;
-
 			lobbyBrowserViewModel.Refresh();
 
 			var lobbyBrowserView = new LobbyBrowserView(lobbyBrowserViewModel);
 
 			lobbyBrowserView.Show();
-
 			return true;
 		}
 
+		private void RemovePlayer(PlayerViewModel player)
+		{
+			//TODO Call server and remove Player
+		}
 
 		private bool Equals(LobbyViewModel other)
 		{

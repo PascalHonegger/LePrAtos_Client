@@ -66,6 +66,16 @@ namespace LePrAtos.Infrastructure
 		}
 
 		/// <summary>
+		///     Setzt die Fehler einer Property
+		/// </summary>
+		/// <param name="error">Die zu setzenden Fehler</param>
+		/// <param name="property">Das Property, bei welchem die Fehler gesetzt werden</param>
+		protected void SetErrorForProperty(string error, [CallerMemberName] string property = null)
+		{
+			SetErrorForProperty(new List<string> {error}, property);
+		}
+
+		/// <summary>
 		///     Tritt auf, wenn sich die Validierungsfehler für eine Eigenschaft oder die gesamte Entität geändert haben.
 		/// </summary>
 		public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;

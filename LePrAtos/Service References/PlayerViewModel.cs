@@ -2,9 +2,11 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using System;
 using System.ComponentModel.Composition;
 using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
+using Microsoft.Practices.Prism.Commands;
 
 namespace LePrAtos.Service_References
 {
@@ -17,7 +19,12 @@ namespace LePrAtos.Service_References
 		private bool _isReady;
 		private playerIdentification _identification;
 		private bool _isLeader;
-
+		private DelegateCommand _removeCommand;
+		
+		/// <summary>
+		///     Benutzt für <see cref="RemoveCommand"/>
+		/// </summary>
+		public Action<PlayerViewModel> RemoveAction;
 
 		/// <summary>
 		///     Gewählter Benutzername
@@ -95,6 +102,18 @@ namespace LePrAtos.Service_References
 
 				_isLeader = value;
 				OnPropertyChanged();
+			}
+		}
+
+		/// <summary>
+		///     Command zum entfernen dieses Spieler aus seiner Lobby. Führt die <see cref="RemoveAction"/> aus.
+		/// </summary>
+		public DelegateCommand RemoveCommand
+		{
+			get
+			{
+				return _removeCommand ??
+				       (_removeCommand = new DelegateCommand(() => RemoveAction?.Invoke(this), () => RemoveAction != null && CurrentSession.Player.IsLeader));
 			}
 		}
 

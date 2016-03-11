@@ -198,8 +198,8 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LoginView_UsernameOrMail" xml:space="preserve">
     <value>Benutzername / Mail</value>
   </data>
-  <data name="TextValidationRule_MandatoryChar" xml:space="preserve">
-    <value>Muss {0} beinhalten</value>
+  <data name="TextValidationRule_Mandatory" xml:space="preserve">
+    <value>Muss einen Wert haben</value>
   </data>
   <data name="TextValidationRule_Length" xml:space="preserve">
     <value>Muss zwischen {0} und {1} Zeichen lang sein</value>
@@ -230,5 +230,8 @@ Bitte senden Sie folgende Informationen an den Support
   </data>
   <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
     <value>Benutzername bereits vergeben</value>
+  </data>
+  <data name="LobbyBrowser_MaxPlayers" xml:space="preserve">
+    <value>Limit</value>
   </data>
 </root>

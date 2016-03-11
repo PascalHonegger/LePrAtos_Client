@@ -142,6 +142,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_MaxPlayers.
+        /// </summary>
+        public static string LobbyBrowser_MaxPlayers {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_MaxPlayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyBrowser_NumberPlayers.
         /// </summary>
         public static string LobbyBrowser_NumberPlayers {
@@ -367,11 +376,11 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TextValidationRule_MandatoryChar.
+        ///   Looks up a localized string similar to TextValidationRule_Mandatory.
         /// </summary>
-        public static string TextValidationRule_MandatoryChar {
+        public static string TextValidationRule_Mandatory {
             get {
-                return ResourceManager.GetString("TextValidationRule_MandatoryChar", resourceCulture);
+                return ResourceManager.GetString("TextValidationRule_Mandatory", resourceCulture);
             }
         }
         
