@@ -8,13 +8,11 @@ using NUnit.Framework;
 
 namespace LePrAtos_Test.Startup.Register
 {
-	public class RegisterViewModelText : IntegrationTestBase
+	public class RegisterViewModelText : IntegrationTestBase<LoginViewModel>
 	{
-		private LoginViewModel _unitUnderTest;
-
 		protected override void DoSetup()
 		{
-			_unitUnderTest = new LoginViewModel();
+			UnitUnderTest = new LoginViewModel();
 		}
 
 		[Test]

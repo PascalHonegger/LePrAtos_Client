@@ -8,13 +8,11 @@ using NUnit.Framework;
 
 namespace LePrAtos_Test.Converter
 {
-	public class InvertBooleanConverterTest : UnitTestBase
+	public class InvertBooleanConverterTest : UnitTestBase<InvertBooleanConverter>
 	{
-		private InvertBooleanConverter _unitUnderTest;
-
 		protected override void DoSetup()
 		{
-			_unitUnderTest = new InvertBooleanConverter();
+			UnitUnderTest = new InvertBooleanConverter();
 		}
 
 		[TestCase(true, false)]
@@ -22,7 +20,7 @@ namespace LePrAtos_Test.Converter
 		[TestCase(null, false)]
 		public void TestConvert(object input, bool expectedOutput)
 		{
-			Assert.That(_unitUnderTest.Convert(input, null, null, null), Is.EqualTo(expectedOutput));
+			Assert.That(UnitUnderTest.Convert(input, null, null, null), Is.EqualTo(expectedOutput));
 		}
 
 		[TestCase(true, false)]
@@ -30,7 +28,7 @@ namespace LePrAtos_Test.Converter
 		[TestCase(null, false)]
 		public void TestConvertBack(object input, bool expectedOutput)
 		{
-			Assert.That(_unitUnderTest.Convert(input, null, null, null), Is.EqualTo(expectedOutput));
+			Assert.That(UnitUnderTest.Convert(input, null, null, null), Is.EqualTo(expectedOutput));
 		}
 	}
 }

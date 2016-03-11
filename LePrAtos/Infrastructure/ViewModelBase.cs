@@ -107,6 +107,14 @@ namespace LePrAtos.Infrastructure
 		/// </returns>
 		public bool HasErrors => _propertyErrors.Any(v => v.Value.Any());
 
+		/// <summary>
+		///    Entfernt alle gespeicherten Fehler der Properties. Normalerweise benutzt für Tests
+		/// </summary>
+		public void ResetErrors()
+		{
+			_propertyErrors.Clear();
+		}
+
 		#endregion
 
 		#region PropertyChanged

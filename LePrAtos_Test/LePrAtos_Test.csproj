@@ -79,8 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\InvertBooleanConverterTest.cs" />
+    <Compile Include="Infrastructure\ExampleViewModel.cs" />
     <Compile Include="Infrastructure\IntegrationTestBase.cs" />
     <Compile Include="Infrastructure\UnitTestBase.cs" />
+    <Compile Include="Infrastructure\ViewModelBaseTest.cs" />
     <Compile Include="Startup\Register\RegisterViewModelTest.cs" />
     <Compile Include="Startup\Login\LoginViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

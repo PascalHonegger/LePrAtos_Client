@@ -7,8 +7,10 @@ using NUnit.Framework;
 namespace LePrAtos_Test.Infrastructure
 {
 	[TestFixture, Category("IntegrationTest")]
-	public abstract class IntegrationTestBase
+	public abstract class IntegrationTestBase<T>
 	{
+		public T UnitUnderTest;
+
 		[SetUp]
 		public void SetUp()
 		{
