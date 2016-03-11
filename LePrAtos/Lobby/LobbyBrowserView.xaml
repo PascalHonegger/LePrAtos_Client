@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LePrAtos.Lobby"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
+        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         mc:Ignorable="d"
         Title="Lobby Browser" MinHeight="350" MinWidth="600"
         d:DataContext="{d:DesignInstance local:LobbyBrowserViewModel }" WindowState="Maximized">
@@ -58,31 +59,47 @@
 			        Command="{Binding LogoutCommand}" />
 		</Grid>
 
-		<ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding AvailableLobbies}"
-		          SelectedItem="{Binding SeletedLobby}">
-			<ListView.ItemContainerStyle>
-				<Style TargetType="ListViewItem">
-					<Setter Property="Height" Value="50" />
-					<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
+		<xcdg:DataGridControl Grid.Column="0" Grid.Row="0" ItemsSource="{Binding AvailableLobbies}"
+		          SelectedItem="{Binding SeletedLobby}" AutoCreateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<xcdg:DataGridControl.ItemContainerStyle>
+				<Style TargetType="{x:Type DataGridRow}">
+					<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
 				</Style>
-			</ListView.ItemContainerStyle>
-			<ListView.View>
-				<GridView>
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_GameName}"
-					                DisplayMemberBinding="{Binding LobbyName}" />
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_NumberPlayers}"
-					                DisplayMemberBinding="{Binding MemberCount}" />
-					<GridViewColumn Header="{x:Static properties:Strings.LobbyBrowser_HasPassword}">
-						<GridViewColumn.CellTemplate>
-							<DataTemplate DataType="local:LobbyViewModel">
-								<Image Source="../Resources/lock.png"
-								       Visibility="{Binding LobbyHasPassword, Converter={StaticResource BoolToVis}}" Stretch="None"
+			</xcdg:DataGridControl.ItemContainerStyle>
+			<xcdg:DataGridControl.Columns>
+				<xcdg:Column FieldName="LobbyName" Title="{x:Static properties:Strings.LobbyBrowser_GameName}" ReadOnly="True" AllowGroup="False">
+					<xcdg:Column.DisplayMemberBindingInfo>
+						<xcdg:DataGridBindingInfo Path="LobbyName" />
+					</xcdg:Column.DisplayMemberBindingInfo>
+				</xcdg:Column>
+				<xcdg:Column FieldName="Owner" Title="{x:Static properties:Strings.LobbyView_Owner}" ReadOnly="True" AllowGroup="False">
+					<xcdg:Column.DisplayMemberBindingInfo>
+						<xcdg:DataGridBindingInfo ReadOnly="True" Path="LobbyLeaderName" />
+					</xcdg:Column.DisplayMemberBindingInfo>
+				</xcdg:Column>
+				<xcdg:Column FieldName="MemberCount" Title="TODO ANZAHL SPIELER" ReadOnly="True">
+					<xcdg:Column.DisplayMemberBindingInfo>
+						<xcdg:DataGridBindingInfo ReadOnly="True" Path="Members.Count" />
+					</xcdg:Column.DisplayMemberBindingInfo>
+				</xcdg:Column>
+				<xcdg:Column FieldName="MaxMemberCount" Title="TODO MAX SPIELER" ReadOnly="True">
+					<xcdg:Column.DisplayMemberBindingInfo>
+						<xcdg:DataGridBindingInfo Path="MaxMemberCount" />
+					</xcdg:Column.DisplayMemberBindingInfo>
+				</xcdg:Column>
+				<xcdg:Column FieldName="HasPassword" Title="{x:Static properties:Strings.LobbyBrowser_HasPassword}" ReadOnly="True">
+					<xcdg:Column.DisplayMemberBindingInfo>
+						<xcdg:DataGridBindingInfo Path="LobbyHasPassword" />
+					</xcdg:Column.DisplayMemberBindingInfo>
+					<xcdg:Column.CellContentTemplate>
+						<DataTemplate>
+							<Image Source="../Resources/lock.png"
+								       Visibility="{Binding Converter={StaticResource BoolToVis}}" Stretch="None"
 								       HorizontalAlignment="Center" VerticalAlignment="Center" />
-							</DataTemplate>
-						</GridViewColumn.CellTemplate>
-					</GridViewColumn>
-				</GridView>
-			</ListView.View>
-		</ListView>
+						</DataTemplate>
+					</xcdg:Column.CellContentTemplate>
+				</xcdg:Column>
+			</xcdg:DataGridControl.Columns>
+		</xcdg:DataGridControl>
 	</Grid>
 </Window>

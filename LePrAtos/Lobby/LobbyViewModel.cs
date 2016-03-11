@@ -34,12 +34,17 @@ namespace LePrAtos.Lobby
 		public LobbyViewModel()
 		{
 			// ReSharper disable once ExplicitCallerInfoArgument
-			Members.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(MemberCount));
+			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); };
 			CurrentSession.PollingTimer.Elapsed += (sender, e) =>
 			{
 				Application.Current.Dispatcher.InvokeAsync(Refresh);
 			};
 		}
+
+		/// <summary>
+		///     Der Name des Lobby-Leiters. Benutzt für die Lobby-Übersicht
+		/// </summary>
+		public string LobbyLeaderName => Members.FirstOrDefault(m => m.IsLeader)?.Username;
 
 		private async Task Refresh()
 		{
@@ -54,13 +59,8 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public ObservableCollection<PlayerViewModel> Members { get; } = new ObservableCollection<PlayerViewModel>();
 
-		/// <summary>
-		///     Anzahl <see cref="Members" /> / maximum <see cref="MaxMemberCount" />
-		/// </summary>
-		public string MemberCount => $"{Members.Count} / {MaxMemberCount}";
-
 		//TODO: Implementierung Server & Client
-		private static int MaxMemberCount => 13;
+		private static int MaxMemberCount { get; set; } = 13;
 
 		/// <summary>
 		///     Lobby Name
@@ -137,7 +137,7 @@ namespace LePrAtos.Lobby
 					}
 				}
 
-				LobbyHasPassword = false;
+				LobbyHasPassword = true;
 			}
 		}
 
