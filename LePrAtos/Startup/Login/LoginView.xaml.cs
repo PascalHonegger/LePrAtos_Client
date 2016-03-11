@@ -20,11 +20,7 @@ namespace LePrAtos.Startup.Login
 			InitializeComponent();
 
 			DataContext = dataContext;
-			dataContext.RequestWindowCloseEvent += (sender, e) =>
-			{
-				(sender as LoginView)?.Show();
-				Close();
-			};
+			dataContext.RequestWindowCloseEvent += (sender, e) => { Close(); };
 
 			TextChanged(this, null);
 		}

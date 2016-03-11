@@ -18,7 +18,7 @@ namespace LePrAtos.Converter
 		///     Konvertiert einen Wert.
 		/// </summary>
 		/// <returns>
-		///     Ein konvertierter Wert.Wenn die Methode null zurückgibt, wird der gültige NULL-Wert verwendet.
+		///     Ein konvertierter Wert. Wenn die Methode null zurückgibt, wird der gültige NULL-Wert verwendet.
 		/// </returns>
 		/// <param name="value">Der von der Bindungsquelle erzeugte Wert.</param>
 		/// <param name="targetType">Der Typ der Bindungsziel-Eigenschaft.</param>
@@ -38,7 +38,7 @@ namespace LePrAtos.Converter
 		///     Konvertiert einen Wert.
 		/// </summary>
 		/// <returns>
-		///     Ein konvertierter Wert.Wenn die Methode null zurückgibt, wird der gültige NULL-Wert verwendet.
+		///     Ein konvertierter Wert. Wenn die Methode null zurückgibt, wird der gültige NULL-Wert verwendet.
 		/// </returns>
 		/// <param name="value">Der Wert, der vom Bindungsziel erzeugt wird.</param>
 		/// <param name="targetType">Der Typ, in den konvertiert werden soll.</param>

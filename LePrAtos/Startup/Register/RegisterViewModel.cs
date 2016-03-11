@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -49,7 +50,7 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Regex für die Überprüfung von E-Mail-Adressen
 		/// </summary>
-		public static readonly Regex MailRegex = new Regex(MailPattern);
+		private static readonly Regex MailRegex = new Regex(MailPattern);
 
 		private ICommand _cancelCommand;
 		private string _mailAddress;
@@ -81,7 +82,7 @@ namespace LePrAtos.Startup.Register
 
 				if (_username.Length > UsernameMaxLength || _username.Length < UsernameMinLength)
 				{
-					errors.Add(string.Format(Strings.TextValidationRule_Lenght, UsernameMinLength, UsernameMaxLength));
+					errors.Add(string.Format(Strings.TextValidationRule_Length, UsernameMinLength, UsernameMaxLength));
 				}
 
 				if (_username.Contains("@"))
@@ -155,9 +156,10 @@ namespace LePrAtos.Startup.Register
 		/// </summary>
 		private void CancelRegister()
 		{
-			var loginWindow = new LoginView(new LoginViewModel());
+			var loginViewModel = new LoginViewModel {Username = Username};
 
-			loginWindow.Show();
+			new LoginView(loginViewModel).Show();
+
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 

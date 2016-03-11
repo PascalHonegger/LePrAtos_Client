@@ -342,9 +342,9 @@ namespace LePrAtos.Properties {
         /// <summary>
         ///   Looks up a localized string similar to TextValidationRule_Lenght.
         /// </summary>
-        public static string TextValidationRule_Lenght {
+        public static string TextValidationRule_Length {
             get {
-                return ResourceManager.GetString("TextValidationRule_Lenght", resourceCulture);
+                return ResourceManager.GetString("TextValidationRule_Length", resourceCulture);
             }
         }
         

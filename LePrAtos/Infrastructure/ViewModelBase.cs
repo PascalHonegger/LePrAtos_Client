@@ -5,9 +5,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using LePrAtos.Properties;
 using Microsoft.Practices.Unity;
 using UnityContainer;
@@ -33,7 +35,7 @@ namespace LePrAtos.Infrastructure
 
 		#region INotifyDataErrorInfo
 
-		private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+		private readonly Dictionary<string, string> _propertyErrors = new Dictionary<string, string>();
 
 		/// <summary>
 		///     Setzt die Fehler einer Property
@@ -44,15 +46,22 @@ namespace LePrAtos.Infrastructure
 		{
 			if (property == null || errors == null) return;
 
-			List<string> existingErrors;
-			if (_propertyErrors.TryGetValue(property, out existingErrors))
+			var builder = new StringBuilder();
+
+			foreach (var error in errors)
 			{
-				existingErrors.Clear();
-				existingErrors.AddRange(errors);
+				builder.AppendLine(error);
+			}
+
+			var errorString = builder.ToString().Trim('\r', '\n');
+
+			if (_propertyErrors.ContainsKey(property))
+			{
+				_propertyErrors[property] = errorString;
 			}
 			else
 			{
-				_propertyErrors.Add(property, errors);
+				_propertyErrors.Add(property, errorString);
 			}
 		}
 
@@ -75,9 +84,9 @@ namespace LePrAtos.Infrastructure
 		{
 			if (propertyName == null) return null;
 
-			List<string> errors;
+			string errors;
 			_propertyErrors.TryGetValue(propertyName, out errors);
-			return errors;
+			return string.IsNullOrEmpty(errors) ? null :  new List<string> { errors };
 		}
 
 		/// <summary>
@@ -86,7 +95,7 @@ namespace LePrAtos.Infrastructure
 		/// <returns>
 		///     true, wenn die Entität derzeit Validierungsfehler aufweist, andernfalls false.
 		/// </returns>
-		public bool HasErrors => _propertyErrors.Values.Any(v => v.Any());
+		public bool HasErrors => _propertyErrors.Any(v => v.Value.Any());
 
 		#endregion
 

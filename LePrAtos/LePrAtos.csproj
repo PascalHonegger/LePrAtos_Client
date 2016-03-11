@@ -184,6 +184,9 @@
       <DependentUpon>LobbyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lobby\LobbyViewModel.cs" />
+    <Compile Include="Lobby\MemberRowControl.xaml.cs">
+      <DependentUpon>MemberRowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -222,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Lobby\LobbyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lobby\MemberRowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -201,7 +201,7 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="TextValidationRule_MandatoryChar" xml:space="preserve">
     <value>Muss {0} beinhalten</value>
   </data>
-  <data name="TextValidationRule_Lenght" xml:space="preserve">
+  <data name="TextValidationRule_Length" xml:space="preserve">
     <value>Muss zwischen {0} und {1} Zeichen lang sein</value>
   </data>
   <data name="LobbyView_ReallyQuit" xml:space="preserve">
