@@ -234,4 +234,28 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LobbyBrowser_MaxPlayers" xml:space="preserve">
     <value>Limit</value>
   </data>
+  <data name="LobbyBrowser_SearchText" xml:space="preserve">
+    <value>Suchen nach Lobbyname oder Lobby-Besitzer</value>
+  </data>
+  <data name="LobbyBrowser_ShowFull" xml:space="preserve">
+    <value>Zeige volle Lobbies an</value>
+  </data>
+  <data name="LobbyBrowser_ShowProtected" xml:space="preserve">
+    <value>Zeige Passwortgeschütze Lobbies an</value>
+  </data>
+  <data name="LobbyView_ApplySettings" xml:space="preserve">
+    <value>Einstellungen übernehmen</value>
+  </data>
+  <data name="LobbyView_NewLobbyMax" xml:space="preserve">
+    <value>Lobby-Limit</value>
+  </data>
+  <data name="LobbyView_NewLobbyName" xml:space="preserve">
+    <value>Lobbyname</value>
+  </data>
+  <data name="LobbyView_NewLobbyPassword" xml:space="preserve">
+    <value>Lobby-Password</value>
+  </data>
+  <data name="LobbyView_NewLobbySettings" xml:space="preserve">
+    <value>Lobby Einstellungen</value>
+  </data>
 </root>

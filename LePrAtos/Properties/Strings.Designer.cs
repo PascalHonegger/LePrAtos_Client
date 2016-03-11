@@ -160,6 +160,42 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_SearchText.
+        /// </summary>
+        public static string LobbyBrowser_SearchText {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_SearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_ShowFull.
+        /// </summary>
+        public static string LobbyBrowser_ShowFull {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_ShowFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_ShowProtected.
+        /// </summary>
+        public static string LobbyBrowser_ShowProtected {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_ShowProtected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_ApplySettings.
+        /// </summary>
+        public static string LobbyView_ApplySettings {
+            get {
+                return ResourceManager.GetString("LobbyView_ApplySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyView_LeaveLobby.
         /// </summary>
         public static string LobbyView_LeaveLobby {
@@ -174,6 +210,42 @@ namespace LePrAtos.Properties {
         public static string LobbyView_LobbyPassword {
             get {
                 return ResourceManager.GetString("LobbyView_LobbyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_NewLobbyMax.
+        /// </summary>
+        public static string LobbyView_NewLobbyMax {
+            get {
+                return ResourceManager.GetString("LobbyView_NewLobbyMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_NewLobbyName.
+        /// </summary>
+        public static string LobbyView_NewLobbyName {
+            get {
+                return ResourceManager.GetString("LobbyView_NewLobbyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_NewLobbyPassword.
+        /// </summary>
+        public static string LobbyView_NewLobbyPassword {
+            get {
+                return ResourceManager.GetString("LobbyView_NewLobbyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_NewLobbySettings.
+        /// </summary>
+        public static string LobbyView_NewLobbySettings {
+            get {
+                return ResourceManager.GetString("LobbyView_NewLobbySettings", resourceCulture);
             }
         }
         

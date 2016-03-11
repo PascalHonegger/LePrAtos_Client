@@ -231,4 +231,28 @@
   <data name="LobbyBrowser_MaxPlayers" xml:space="preserve">
     <value>LobbyBrowser_MaxPlayers</value>
   </data>
+  <data name="LobbyBrowser_SearchText" xml:space="preserve">
+    <value>LobbyBrowser_SearchText</value>
+  </data>
+  <data name="LobbyBrowser_ShowFull" xml:space="preserve">
+    <value>LobbyBrowser_ShowFull</value>
+  </data>
+  <data name="LobbyBrowser_ShowProtected" xml:space="preserve">
+    <value>LobbyBrowser_ShowProtected</value>
+  </data>
+  <data name="LobbyView_ApplySettings" xml:space="preserve">
+    <value>LobbyView_ApplySettings</value>
+  </data>
+  <data name="LobbyView_NewLobbyMax" xml:space="preserve">
+    <value>LobbyView_NewLobbyMax</value>
+  </data>
+  <data name="LobbyView_NewLobbyName" xml:space="preserve">
+    <value>LobbyView_NewLobbyName</value>
+  </data>
+  <data name="LobbyView_NewLobbyPassword" xml:space="preserve">
+    <value>LobbyView_NewLobbyPassword</value>
+  </data>
+  <data name="LobbyView_NewLobbySettings" xml:space="preserve">
+    <value>LobbyView_NewLobbySettings</value>
+  </data>
 </root>

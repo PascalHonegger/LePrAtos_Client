@@ -29,12 +29,12 @@
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<xctk:WatermarkTextBox Watermark="TODO SUCHE" Grid.Column="0"
+			<xctk:WatermarkTextBox Watermark="{x:Static properties:Strings.LobbyBrowser_SearchText}" Grid.Column="0"
 			                       Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"
 			                       Margin="10, 0" />
-			<CheckBox Grid.Row="0" Grid.Column="1" Content="TODO Passwort" IsChecked="{Binding ShowProtectedLobbies}"
+			<CheckBox Grid.Row="0" Grid.Column="1" Content="{x:Static properties:Strings.LobbyBrowser_ShowProtected}" IsChecked="{Binding ShowProtectedLobbies}"
 			          VerticalAlignment="Center" />
-			<CheckBox Grid.Row="0" Grid.Column="2" Content="TODO Full" IsChecked="{Binding ShowFullLobbies}"
+			<CheckBox Grid.Row="0" Grid.Column="2" Content="{x:Static properties:Strings.LobbyBrowser_ShowFull}" IsChecked="{Binding ShowFullLobbies}"
 			          VerticalAlignment="Center" />
 		</Grid>
 
