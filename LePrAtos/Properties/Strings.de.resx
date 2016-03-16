@@ -258,4 +258,7 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LobbyView_NewLobbySettings" xml:space="preserve">
     <value>Lobby Einstellungen</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
 </root>

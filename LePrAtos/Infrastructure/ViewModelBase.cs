@@ -21,12 +21,34 @@ namespace LePrAtos.Infrastructure
 	/// </summary>
 	public abstract class ViewModelBase : INotifyPropertyChanged, INotifyDataErrorInfo, IViewModel
 	{
+		#region Session
+
 		private ISession _currentSession;
 
 		/// <summary>
 		///     Die jetzige Instanz der Session
 		/// </summary>
 		public ISession CurrentSession => _currentSession ?? (_currentSession = Container.Resolve<ISession>());
+
+		#endregion
+
+		/// <summary>
+		///    Sagt aus, ob das ViewModel gerade beschäftigt ist (Bsp. Serverabfrage)
+		/// </summary>
+		public bool IsBusy
+		{
+			get { return _isBusy; }
+			set
+			{
+				if (_isBusy == value)
+				{
+					return;
+				}
+
+				_isBusy = value;
+				OnPropertyChanged();
+			}
+		}
 
 		/// <summary>
 		///     Der UnityContainer
@@ -36,6 +58,7 @@ namespace LePrAtos.Infrastructure
 		#region INotifyDataErrorInfo
 
 		private readonly Dictionary<string, string> _propertyErrors = new Dictionary<string, string>();
+		private bool _isBusy;
 
 		/// <summary>
 		///     Setzt die Fehler einer Property

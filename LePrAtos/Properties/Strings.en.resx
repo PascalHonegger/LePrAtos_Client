@@ -258,4 +258,7 @@ Please send the following info to the support!
   <data name="LobbyView_NewLobbySettings" xml:space="preserve">
     <value>Lobby settings</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
 </root>

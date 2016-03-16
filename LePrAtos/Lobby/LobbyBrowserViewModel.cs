@@ -195,6 +195,8 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public async void Refresh()
 		{
+			IsBusy = true;
+
 			var gameLobbies = (await CurrentSession.Client.getGameLobbiesAsync()).@return;
 
 			if (gameLobbies == null)
@@ -210,6 +212,8 @@ namespace LePrAtos.Lobby
 			});
 
 			ApplyLobbyFilter();
+
+			IsBusy = false;
 		}
 
 		private void Logout()

@@ -165,9 +165,13 @@ namespace LePrAtos.Startup.Register
 
 		private async void Register(PasswordBox passwordBox)
 		{
+			IsBusy = true;
+
 			try
 			{
-				var response = await CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwordBox.Password));
+				var response =
+					await
+						CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwordBox.Password));
 
 				var player = Container.Resolve<PlayerViewModel>();
 
@@ -184,6 +188,10 @@ namespace LePrAtos.Startup.Register
 			catch (Exception)
 			{
 				MessageBox.Show(Strings.RegisterView_BadRegister, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			finally
+			{
+				IsBusy = false;
 			}
 		}
 

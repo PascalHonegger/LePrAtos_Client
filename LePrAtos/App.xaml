@@ -3,59 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converter="clr-namespace:LePrAtos.Converter"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:infrastructure="clr-namespace:LePrAtos.Infrastructure"
+             xmlns:properties="clr-namespace:LePrAtos.Properties"
+             mc:Ignorable="d"
              Startup="OnStartup"
              Exit="App_OnExit" DispatcherUnhandledException="App_OnDispatcherUnhandledException">
 	<Application.Resources>
 		<BooleanToVisibilityConverter x:Key="BoolToVis" />
 		<converter:InvertBooleanConverter x:Key="InvertBool" />
 
+		<ControlTemplate x:Key="RedBorder">
+			<Border BorderBrush="Red" BorderThickness="2">
+				<AdornedElementPlaceholder />
+			</Border>
+		</ControlTemplate>
+
 		<Style TargetType="{x:Type TextBox}">
 			<Style.Triggers>
-				<Trigger Property="Validation.HasError" Value="true" >
-					<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-					<Setter Property="Validation.ErrorTemplate">
-						<Setter.Value>
-							<ControlTemplate>
-								<Border BorderBrush="Red" BorderThickness="2">
-									<AdornedElementPlaceholder />
-								</Border>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
+				<Trigger Property="Validation.HasError" Value="true">
+					<Setter Property="ToolTip"
+					        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+					<Setter Property="Validation.ErrorTemplate" Value="{StaticResource RedBorder}" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>
 		<Style TargetType="{x:Type xctk:IntegerUpDown}">
 			<Style.Triggers>
-				<Trigger Property="Validation.HasError" Value="true" >
-					<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-					<Setter Property="Validation.ErrorTemplate">
-						<Setter.Value>
-							<ControlTemplate>
-								<Border BorderBrush="Red" BorderThickness="2">
-									<AdornedElementPlaceholder />
-								</Border>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
+				<Trigger Property="Validation.HasError" Value="true">
+					<Setter Property="ToolTip"
+					        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+					<Setter Property="Validation.ErrorTemplate" Value="{StaticResource RedBorder}" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>
 		<Style TargetType="{x:Type xctk:WatermarkTextBox}">
 			<Style.Triggers>
-				<Trigger Property="Validation.HasError" Value="true" >
-					<Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-					<Setter Property="Validation.ErrorTemplate">
-						<Setter.Value>
-							<ControlTemplate>
-								<Border BorderBrush="Red" BorderThickness="2">
-									<AdornedElementPlaceholder />
-								</Border>
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
+				<Trigger Property="Validation.HasError" Value="true">
+					<Setter Property="ToolTip"
+					        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+					<Setter Property="Validation.ErrorTemplate" Value="{StaticResource RedBorder}" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+
+		<!--Style x:Key="DisplayIsBusy" TargetType="{x:Type Window}" BasedOn="{StaticResource {x:Type Window}}">
+			<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+			<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Window}">
+						<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+						        Background="{TemplateBinding Background}">
+							<xctk:BusyIndicator IsBusy="{Binding IsBusy}"
+							                    BusyContent="{x:Static properties:Strings.Loading}" d:DataContext="{d:DesignInstance infrastructure:ViewModelBase}">
+								<ContentPresenter />
+							</xctk:BusyIndicator>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</-->
 	</Application.Resources>
 </Application>

@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -177,11 +178,13 @@ namespace LePrAtos.Startup.Login
 		///     Meldet den User an. Zeigte eine MessageBox im Fehlerfall an
 		/// </summary>
 		/// <param name="box">Das zu verwendende Passwort</param>
-		private void Login(PasswordBox box)
+		private async void Login(PasswordBox box)
 		{
+			IsBusy = true;
+
 			try
 			{
-				LoginUser(box.Password);
+				await LoginUser(box.Password);
 
 				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 
@@ -193,19 +196,23 @@ namespace LePrAtos.Startup.Login
 			{
 				MessageBox.Show(Strings.LoginView_BadLogin, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
+			finally
+			{
+				IsBusy = false;
+			}
 		}
 
 		/// <summary>
 		///     Meldet den User an, indem 
 		/// </summary>
 		/// <param name="password">Das zu verwendende Passwort</param>
-		public void LoginUser(string password)
+		public async Task LoginUser(string password)
 		{
-			var response = CurrentSession.Client.login(Username, PasswordHasher.HashPasswort(password));
+			var response = await CurrentSession.Client.loginAsync(Username, PasswordHasher.HashPasswort(password));
 
 			var player = Container.Resolve<PlayerViewModel>();
 
-			player.Player = response;
+			player.Player = response.@return;
 
 			CurrentSession.Player = player;
 
