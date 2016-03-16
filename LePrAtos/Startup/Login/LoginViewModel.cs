@@ -173,23 +173,15 @@ namespace LePrAtos.Startup.Login
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private async void Login(PasswordBox passwordBox)
+		/// <summary>
+		///     Meldet den User an. Zeigte eine MessageBox im Fehlerfall an
+		/// </summary>
+		/// <param name="box">Das zu verwendende Passwort</param>
+		private void Login(PasswordBox box)
 		{
 			try
 			{
-				var response = await CurrentSession.Client.loginAsync(Username, PasswordHasher.HashPasswort(passwordBox.Password));
-
-				var player = Container.Resolve<PlayerViewModel>();
-
-				player.Player = response.@return;
-
-				CurrentSession.Player = player;
-
-				if (SaveLogin)
-				{
-					Settings.Default.SavedUser = CurrentSession.Player.PlayerId;
-					Settings.Default.Save();
-				}
+				LoginUser(box.Password);
 
 				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 
@@ -200,6 +192,27 @@ namespace LePrAtos.Startup.Login
 			catch (Exception)
 			{
 				MessageBox.Show(Strings.LoginView_BadLogin, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		/// <summary>
+		///     Meldet den User an, indem 
+		/// </summary>
+		/// <param name="password">Das zu verwendende Passwort</param>
+		public void LoginUser(string password)
+		{
+			var response = CurrentSession.Client.login(Username, PasswordHasher.HashPasswort(password));
+
+			var player = Container.Resolve<PlayerViewModel>();
+
+			player.Player = response;
+
+			CurrentSession.Player = player;
+
+			if (SaveLogin)
+			{
+				Settings.Default.SavedUser = CurrentSession.Player.PlayerId;
+				Settings.Default.Save();
 			}
 		}
 	}

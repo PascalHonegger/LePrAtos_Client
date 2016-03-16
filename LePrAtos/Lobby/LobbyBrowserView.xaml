@@ -25,17 +25,22 @@
 
 		<Grid Margin="10" Grid.Row="0" Grid.Column="0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="2*" />
-				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="1.5*" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<xctk:WatermarkTextBox Watermark="{x:Static properties:Strings.LobbyBrowser_SearchText}" Grid.Column="0"
 			                       Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"
 			                       Margin="10, 0" />
-			<CheckBox Grid.Row="0" Grid.Column="1" Content="{x:Static properties:Strings.LobbyBrowser_ShowProtected}" IsChecked="{Binding ShowProtectedLobbies}"
-			          VerticalAlignment="Center" />
-			<CheckBox Grid.Row="0" Grid.Column="2" Content="{x:Static properties:Strings.LobbyBrowser_ShowFull}" IsChecked="{Binding ShowFullLobbies}"
-			          VerticalAlignment="Center" />
+			<Grid Grid.Row="0" Grid.Column="1">
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<CheckBox Content="{x:Static properties:Strings.LobbyBrowser_ShowProtected}" IsChecked="{Binding ShowProtectedLobbies}"
+			          VerticalAlignment="Center" Grid.Row="0"/>
+				<CheckBox Content="{x:Static properties:Strings.LobbyBrowser_ShowFull}" IsChecked="{Binding ShowFullLobbies}"
+			          VerticalAlignment="Center" Grid.Row="1"/>
+			</Grid>
 		</Grid>
 
 		<Grid Margin="10" Grid.Row="0" Grid.Column="1">
