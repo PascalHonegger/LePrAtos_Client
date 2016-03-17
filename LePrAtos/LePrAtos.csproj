@@ -31,8 +31,8 @@
     <PublisherName>LePrAtos</PublisherName>
     <SuiteName>LePrAtos</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -174,6 +174,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\InvertBooleanConverter.cs" />
+    <Compile Include="Infrastructure\Extensions\StringExtension.cs" />
     <Compile Include="Infrastructure\ISession.cs" />
     <Compile Include="Infrastructure\IViewModel.cs" />
     <Compile Include="Lobby\LobbyBrowserView.xaml.cs">
@@ -187,20 +188,25 @@
     <Compile Include="Lobby\MemberRowControl.xaml.cs">
       <DependentUpon>MemberRowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Strings.DE-ch.Designer.cs">
+      <DependentUpon>Strings.DE-ch.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\Strings.Designer.cs">
       <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Properties\Strings.en.Designer.cs">
-      <DependentUpon>Strings.en.resx</DependentUpon>
+    <Compile Include="Properties\Strings.EN-gb.Designer.cs">
+      <DependentUpon>Strings.EN-gb.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Properties\Strings.de.Designer.cs">
+    <Compile Include="Properties\Strings.DE-de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.de.resx</DependentUpon>
+      <DependentUpon>Strings.DE-de.resx</DependentUpon>
     </Compile>
     <Compile Include="Service References\GameManagerService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -273,18 +279,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Strings.DE-ch.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.DE-ch.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Strings.en.resx">
+    <EmbeddedResource Include="Properties\Strings.EN-gb.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.en.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.EN-gb.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Strings.de.resx">
+    <EmbeddedResource Include="Properties\Strings.DE-de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.DE-de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Service References\GameManagerService\GameManager.xsd">
       <SubType>Designer</SubType>
@@ -309,6 +319,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.joinGameLobbyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.kickPlayerResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.leaveGameLobbyResponse.datasource">
@@ -364,6 +377,15 @@
     <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.registrationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.setGameLobbyNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.setGameLobbyPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.setPlayerLimitResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.setPlayerStatusResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -401,10 +423,15 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\FlagDE.jpg">
+    <Resource Include="Resources\de-CH.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\FlagEN.jpg">
+    <Resource Include="Resources\de-DE.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\en-GB.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

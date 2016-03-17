@@ -51,6 +51,8 @@ namespace LePrAtos.Service_References
 				_identification = value;
 				Username = _identification.username;
 				_isReady = _identification.status;
+
+				OnPropertyChanged(nameof(IsReady));
 			}
 		}
 

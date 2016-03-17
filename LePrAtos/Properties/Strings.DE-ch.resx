@@ -117,133 +117,133 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LobbyView_Remove" xml:space="preserve">
-    <value>LobbyView_Remove</value>
-  </data>
-  <data name="LobbyView_StartGame" xml:space="preserve">
-    <value>LobbyView_StartGame</value>
-  </data>
-  <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
-    <value>LobbyBrowser_CreateLobby</value>
-  </data>
-  <data name="LobbyBrowser_GameName" xml:space="preserve">
-    <value>LobbyBrowser_GameName</value>
-  </data>
-  <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
-    <value>LobbyBrowser_JoinLobby</value>
-  </data>
-  <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
-    <value>LobbyBrowser_NumberPlayers</value>
-  </data>
-  <data name="LoginView_Login" xml:space="preserve">
-    <value>LoginView_Login</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>LoginView_Password</value>
-  </data>
-  <data name="Username" xml:space="preserve">
-    <value>Username</value>
-  </data>
-  <data name="LobbyView_LeaveLobby" xml:space="preserve">
-    <value>LobbyView_LeaveLobby</value>
-  </data>
-  <data name="LobbyView_Owner" xml:space="preserve">
-    <value>LobbyView_Owner</value>
-  </data>
-  <data name="LobbyView_Ready" xml:space="preserve">
-    <value>LobbyView_Ready</value>
-  </data>
-  <data name="LoginView_Language" xml:space="preserve">
-    <value>LoginView_Language</value>
-  </data>
-  <data name="LoginView_SaveLogin" xml:space="preserve">
-    <value>LoginView_SaveLogin</value>
-  </data>
-  <data name="LobbyBrowser_HasPassword" xml:space="preserve">
-    <value>LobbyBrowser_HasPassword</value>
-  </data>
-  <data name="LobbyBrowser_Logout" xml:space="preserve">
-    <value>LobbyBrowser_Logout</value>
-  </data>
-  <data name="LobbyView_LobbyPassword" xml:space="preserve">
-    <value>LobbyView_LobbyPassword</value>
-  </data>
   <data name="ExceptionHandling_Caption" xml:space="preserve">
-    <value>ExceptionHandling_Caption</value>
+    <value>Fehler Reporting</value>
   </data>
   <data name="ExceptionHandling_Message" xml:space="preserve">
-    <value>ExceptionHandling_Message</value>
+    <value>En Fehler isch uufgetrette</value>
+  </data>
+  <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
+    <value>Neui Lobby erstellä</value>
+  </data>
+  <data name="LobbyBrowser_GameName" xml:space="preserve">
+    <value>Lobby Namä</value>
+  </data>
+  <data name="LobbyBrowser_HasPassword" xml:space="preserve">
+    <value>Lobby verfüegt über äs Passwort</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
+    <value>Lobby biitrette</value>
+  </data>
+  <data name="LobbyBrowser_Logout" xml:space="preserve">
+    <value>Abmälde</value>
+  </data>
+  <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
+    <value>Mitgliider</value>
+  </data>
+  <data name="LobbyView_LeaveLobby" xml:space="preserve">
+    <value>Lobby verlaah</value>
+  </data>
+  <data name="LobbyView_LobbyPassword" xml:space="preserve">
+    <value>Lobby Passwort</value>
+  </data>
+  <data name="LobbyView_Owner" xml:space="preserve">
+    <value>Besitzer</value>
+  </data>
+  <data name="LobbyView_Ready" xml:space="preserve">
+    <value>Isch parat</value>
+  </data>
+  <data name="LobbyView_Remove" xml:space="preserve">
+    <value>Us Lobby entfernä</value>
+  </data>
+  <data name="LobbyView_StartGame" xml:space="preserve">
+    <value>Spiel startä</value>
+  </data>
+  <data name="LoginView_Language" xml:space="preserve">
+    <value>Spraach</value>
+  </data>
+  <data name="LoginView_Login" xml:space="preserve">
+    <value>Aahmelde</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
   </data>
   <data name="LoginView_Register" xml:space="preserve">
-    <value>LoginView_Register</value>
+    <value>Neue Account erstellä</value>
+  </data>
+  <data name="LoginView_SaveLogin" xml:space="preserve">
+    <value>Aahgmelded bliibe</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Benutzername</value>
   </data>
   <data name="RegisterView_Title" xml:space="preserve">
-    <value>RegisterView_Title</value>
+    <value>Registriere</value>
   </data>
   <data name="Abort" xml:space="preserve">
-    <value>Abort</value>
+    <value>Abbräche</value>
   </data>
   <data name="RegisterView_Register" xml:space="preserve">
-    <value>RegisterView_Register</value>
+    <value>Registriere</value>
   </data>
   <data name="RegisterView_RepeatPassword" xml:space="preserve">
-    <value>RegisterView_RepeatPassword</value>
+    <value>Passwort wiiderhole</value>
   </data>
   <data name="LoginView_UsernameOrMail" xml:space="preserve">
-    <value>LoginView_UsernameOrMail</value>
+    <value>Benutzername / Mail</value>
   </data>
   <data name="TextValidationRule_Mandatory" xml:space="preserve">
-    <value>TextValidationRule_Mandatory</value>
+    <value>Mues en Wert haa</value>
   </data>
   <data name="TextValidationRule_Length" xml:space="preserve">
-    <value>TextValidationRule_Lenght</value>
+    <value>Mues zwüsched {0} und {1} Zeiche lang sii</value>
   </data>
   <data name="LobbyView_ReallyQuit" xml:space="preserve">
-    <value>LobbyBrowser_ReallyQuit</value>
+    <value>Lobby würkliich verlaah?</value>
   </data>
   <data name="Mail" xml:space="preserve">
-    <value>Mail</value>
+    <value>E-Mail</value>
   </data>
   <data name="TextValidationRule_ForbiddenChar" xml:space="preserve">
-    <value>TextValidationRule_ForbiddenChar</value>
+    <value>Dörf keis {0} beinhalten</value>
   </data>
   <data name="TextValidationRule_MailValid" xml:space="preserve">
-    <value>TextValidationRule_MailValid</value>
+    <value>E-Mail-Adresse ischt nöd gültig</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="LoginView_BadLogin" xml:space="preserve">
-    <value>LoginView_BadLogin</value>
+    <value>Aahmeldig fehlgschlage. Bitte überprüefed Sie Ihri Aahmeldedate oder erstelled Sie en neue Account.</value>
   </data>
   <data name="RegisterView_BadRegister" xml:space="preserve">
-    <value>RegisterView_BadRegister</value>
+    <value>Registrierig fehlgschlage. Bitte überprüefed Sie Ihri Aahgabe und versueched Sie es spöter erneut.</value>
   </data>
   <data name="TextValidationRule_MailaddressAlreadyTaken" xml:space="preserve">
-    <value>TextValidationRule_MailaddressAlreadyTaken</value>
+    <value>Account mit dere E-Mail-Addresse existiert scho</value>
   </data>
   <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
-    <value>TextValidationRule_UsernameAlreadyTaken</value>
+    <value>Benutzername bereits vergeeh</value>
   </data>
   <data name="LobbyBrowser_MaxPlayers" xml:space="preserve">
-    <value>LobbyBrowser_MaxPlayers</value>
+    <value>Limit</value>
   </data>
   <data name="LobbyBrowser_SearchText" xml:space="preserve">
-    <value>LobbyBrowser_SearchText</value>
+    <value>Suech nach Lobbynamä oder Lobby-Besitzer</value>
   </data>
   <data name="LobbyBrowser_ShowFull" xml:space="preserve">
-    <value>LobbyBrowser_ShowFull</value>
+    <value>Zeig volli Lobbiis ah</value>
   </data>
   <data name="LobbyBrowser_ShowProtected" xml:space="preserve">
-    <value>LobbyBrowser_ShowProtected</value>
+    <value>Zeig Passwortgschützi Lobbies ah</value>
   </data>
   <data name="LobbyView_ApplySettings" xml:space="preserve">
-    <value>LobbyView_ApplySettings</value>
-  </data>
-  <data name="Loading" xml:space="preserve">
-    <value>Loading</value>
+    <value>Iistellige überneh</value>
   </data>
   <data name="LobbyView_NewLobbySettings" xml:space="preserve">
-    <value>LobbyView_NewLobbySettings</value>
+    <value>Lobby Iistellige</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Lade...</value>
   </data>
 </root>

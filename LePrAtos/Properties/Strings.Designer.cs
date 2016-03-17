@@ -223,33 +223,6 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LobbyView_NewLobbyMax.
-        /// </summary>
-        public static string LobbyView_NewLobbyMax {
-            get {
-                return ResourceManager.GetString("LobbyView_NewLobbyMax", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to LobbyView_NewLobbyName.
-        /// </summary>
-        public static string LobbyView_NewLobbyName {
-            get {
-                return ResourceManager.GetString("LobbyView_NewLobbyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to LobbyView_NewLobbyPassword.
-        /// </summary>
-        public static string LobbyView_NewLobbyPassword {
-            get {
-                return ResourceManager.GetString("LobbyView_NewLobbyPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to LobbyView_NewLobbySettings.
         /// </summary>
         public static string LobbyView_NewLobbySettings {
@@ -399,15 +372,6 @@ namespace LePrAtos.Properties {
         public static string RegisterView_RepeatPassword {
             get {
                 return ResourceManager.GetString("RegisterView_RepeatPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RegisterView_Sallary.
-        /// </summary>
-        public static string RegisterView_Sallary {
-            get {
-                return ResourceManager.GetString("RegisterView_Sallary", resourceCulture);
             }
         }
         

@@ -2,14 +2,12 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
-using System.Windows.Controls;
-
 namespace LePrAtos.Lobby
 {
 	/// <summary>
 	///     Interaction logic for MemberRowControl.xaml
 	/// </summary>
-	public partial class MemberRowControl : UserControl
+	public partial class MemberRowControl
 	{
 		/// <summary>
 		///     Default Constructor

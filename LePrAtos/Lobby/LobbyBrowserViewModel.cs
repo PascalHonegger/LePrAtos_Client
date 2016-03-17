@@ -14,6 +14,8 @@ using LePrAtos.Properties;
 using LePrAtos.Startup.Login;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
+using LePrAtos.Infrastructure.Extensions;
+using Exception = System.Exception;
 
 namespace LePrAtos.Lobby
 {
@@ -88,9 +90,9 @@ namespace LePrAtos.Lobby
 		private void ApplyLobbyFilter()
 		{
 			var filteredLobbies = _availableLobbies
-				.Where(l => ShowProtectedLobbies || !l.LobbyHasPassword)
-				.Where(l => ShowFullLobbies || l.MaxMemberCount > l.Members.Count)
-				.Where(l => l.LobbyName.Contains(SearchText) || l.LobbyLeaderName.Contains(SearchText));
+				.Where(l => ShowProtectedLobbies || !l.IsPasswordProtected)
+				.Where(l => ShowFullLobbies || l.PlayerLimit > l.Members.Count)
+				.Where(l => l.LobbyName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase) || l.LobbyLeaderName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase));
 
 			FilteredLobbies.Clear();
 
@@ -110,7 +112,7 @@ namespace LePrAtos.Lobby
 			{
 				_lobbyPassword = value;
 
-				if (SeletedLobby != null && SeletedLobby.LobbyHasPassword && string.IsNullOrEmpty(_lobbyPassword))
+				if (SeletedLobby != null && SeletedLobby.IsPasswordProtected && string.IsNullOrEmpty(_lobbyPassword))
 				{
 					SetErrorForProperty(Strings.TextValidationRule_Mandatory);
 				}
@@ -197,23 +199,28 @@ namespace LePrAtos.Lobby
 		{
 			IsBusy = true;
 
-			var gameLobbies = (await CurrentSession.Client.getGameLobbiesAsync()).@return;
-
-			if (gameLobbies == null)
+			try
 			{
-				return;
+				var gameLobbies = (await CurrentSession.Client.getGameLobbiesAsync()).@return;
+
+				if (gameLobbies == null)
+				{
+					return;
+				}
+
+				_availableLobbies = gameLobbies.Where(l => l?.gameLobbyAdmin != null && l.gameLobbyID != null).Select(lobby =>
+				{
+					var lobbyViewModel = Container.Resolve<LobbyViewModel>();
+					lobbyViewModel.Lobby = lobby;
+					return lobbyViewModel;
+				});
+
+				ApplyLobbyFilter();
 			}
-
-			_availableLobbies = gameLobbies.Where(l => l?.gameLobbyAdmin != null && l.gameLobbyID != null).Select(lobby =>
+			finally
 			{
-				var lobbyViewModel = Container.Resolve<LobbyViewModel>();
-				lobbyViewModel.Lobby = lobby;
-				return lobbyViewModel;
-			});
-
-			ApplyLobbyFilter();
-
-			IsBusy = false;
+				IsBusy = false;
+			}
 		}
 
 		private void Logout()

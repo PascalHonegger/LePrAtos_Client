@@ -27,6 +27,10 @@ namespace LePrAtos.Lobby
 	{
 		private ICommand _leaveLobbyCommand;
 		private gameLobby _lobby;
+		private string _newLobbyName;
+		private string _newLobbyPassword;
+		private int _newPlayerLimit;
+		private int _playerLimit;
 		private DelegateCommand _startGameCommand;
 		private DelegateCommand _updateSettingsCommand;
 
@@ -37,20 +41,7 @@ namespace LePrAtos.Lobby
 		{
 			// ReSharper disable once ExplicitCallerInfoArgument
 			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); };
-			CurrentSession.PollingTimer.Elapsed += PollingTimerOnElapsed;
-		}
-
-		/// <summary>
-		///     Trennt die <see cref="Refresh"/> Funktion vom Timer
-		/// </summary>
-		public void StopUpdate()
-		{
-			CurrentSession.PollingTimer.Elapsed -= PollingTimerOnElapsed;
-		}
-
-		private void PollingTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
-		{
-			Application.Current.Dispatcher.InvokeAsync(Refresh);
+			StartUpdate();
 		}
 
 		/// <summary>
@@ -63,8 +54,19 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public ObservableCollection<PlayerViewModel> Members { get; } = new ObservableCollection<PlayerViewModel>();
 
-		//TODO: Implementierung Server & Client
-		public int MaxMemberCount { get; set; } = 1;
+		/// <summary>
+		///     Das Limit an Spielern.
+		/// </summary>
+		public int PlayerLimit
+		{
+			get { return _playerLimit; }
+			private set
+			{
+				if (Equals(_playerLimit, value)) return;
+				_playerLimit = value;
+				OnPropertyChanged();
+			}
+		}
 
 		/// <summary>
 		///     Lobby Name
@@ -79,7 +81,7 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Lobby verfügt über ein Passwort
 		/// </summary>
-		public bool LobbyHasPassword { get; set; }
+		public bool IsPasswordProtected { get; set; } = false;
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -115,6 +117,8 @@ namespace LePrAtos.Lobby
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
+				PlayerLimit = _lobby.playerLimit;
+				//TODO IsPasswordProtected = _lobby.gameLobbyHasPassword;
 
 				Members.Clear();
 
@@ -134,30 +138,74 @@ namespace LePrAtos.Lobby
 
 				Members.Add(admin);
 
-				if (_lobby.gamePlayerList != null)
+				if (_lobby.gamePlayerList == null) return;
+
+				foreach (var playerIdentification in _lobby.gamePlayerList)
 				{
-					foreach (var playerIdentification in _lobby.gamePlayerList)
+					PlayerViewModel playerViewModel;
+
+					if (Equals(playerIdentification, CurrentSession.Player.Identification))
 					{
-						PlayerViewModel playerViewModel;
-
-						if (Equals(playerIdentification, CurrentSession.Player.Identification))
-						{
-							CurrentSession.Player.Identification = playerIdentification;
-							playerViewModel = CurrentSession.Player;
-						}
-						else
-						{
-							playerViewModel = Container.Resolve<PlayerViewModel>();
-							playerViewModel.Identification = playerIdentification;
-							playerViewModel.RemoveAction = RemovePlayer;
-						}
-
-						playerViewModel.IsLeader = false;
-						Members.Add(playerViewModel);
+						CurrentSession.Player.Identification = playerIdentification;
+						playerViewModel = CurrentSession.Player;
 					}
-				}
+					else
+					{
+						playerViewModel = Container.Resolve<PlayerViewModel>();
+						playerViewModel.Identification = playerIdentification;
+						playerViewModel.RemoveAction = RemovePlayer;
+					}
 
-				LobbyHasPassword = true;
+					playerViewModel.IsLeader = false;
+					Members.Add(playerViewModel);
+				}
+			}
+		}
+
+		/// <summary>
+		///     Der Text, welcher im GUI als Passwort-Platzhalter angezeigt wird.
+		/// </summary>
+		public string PasswordDisplayValue => IsPasswordProtected ? "*****" : string.Empty;
+
+		/// <summary>
+		///     Das neue Spieler-Limit
+		/// </summary>
+		public int NewPlayerLimit
+		{
+			get { return _newPlayerLimit; }
+			set
+			{
+				if (Equals(_newPlayerLimit, value)) return;
+				_newPlayerLimit = value;
+				OnPropertyChanged();
+			}
+		}
+
+		/// <summary>
+		///     Das neue Lobby-Passwort
+		/// </summary>
+		public string NewLobbyPassword
+		{
+			get { return _newLobbyPassword; }
+			set
+			{
+				if (Equals(_newLobbyPassword, value)) return;
+				_newLobbyPassword = value;
+				OnPropertyChanged();
+			}
+		}
+
+		/// <summary>
+		///     Der neue Lobby-Name
+		/// </summary>
+		public string NewLobbyName
+		{
+			get { return _newLobbyName; }
+			set
+			{
+				if (Equals(_newLobbyName, value)) return;
+				_newLobbyName = value;
+				OnPropertyChanged();
 			}
 		}
 
@@ -166,14 +214,38 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
 
+		private void StartUpdate()
+		{
+			CurrentSession.PollingTimer.Elapsed += PollingTimerOnElapsed;
+		}
+
+		/// <summary>
+		///     Trennt die <see cref="Refresh" /> Funktion vom Timer
+		/// </summary>
+		public void StopUpdate()
+		{
+			CurrentSession.PollingTimer.Elapsed -= PollingTimerOnElapsed;
+		}
+
+		private void PollingTimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+		{
+			Application.Current.Dispatcher.InvokeAsync(Refresh);
+		}
+
 		private async Task Refresh()
 		{
 			Lobby = (await CurrentSession.Client.getGameLobbyAsync(LobbyId)).@return;
 		}
 
-		private void UpdateSettings()
+		private async void UpdateSettings()
 		{
-			throw new NotImplementedException();
+			IsBusy = true;
+
+			await CurrentSession.Client.setGameLobbyNameAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyName);
+			await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyPassword);
+			await CurrentSession.Client.setPlayerLimitAsync(CurrentSession.Player.PlayerId, LobbyId, NewPlayerLimit);
+
+			IsBusy = false;
 		}
 
 		private bool CanUpdateSettings()

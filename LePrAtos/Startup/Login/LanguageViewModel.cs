@@ -18,7 +18,7 @@ namespace LePrAtos.Startup.Login
 		public LanguageViewModel(CultureInfo culture)
 		{
 			DisplayText = culture.DisplayName;
-			PathToFlag = $"../../Resources/Flag{culture.Name.ToUpper()}.jpg";
+			PathToFlag = $"../../Resources/{culture.Name}.jpg";
 			Culture = culture;
 		}
 
@@ -28,7 +28,7 @@ namespace LePrAtos.Startup.Login
 		public string DisplayText { get; }
 
 		/// <summary>
-		///     Der Pfad zu der Datai der dazugehörigen Flagge. Die Flagge muss jeweils Flag + Kürzel + .jpg heissten. Bsp: FlagDE.jpg
+		///     Der Pfad zu der Datai der dazugehörigen Flagge. Die Flagge muss jeweils Kürzel + .jpg heissten. Bsp: de-CH.jpg
 		/// </summary>
 		public string PathToFlag { get; }
 

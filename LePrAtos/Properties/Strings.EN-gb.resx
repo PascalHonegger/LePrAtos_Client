@@ -117,148 +117,136 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ExceptionHandling_Caption" xml:space="preserve">
-    <value>Fehler Reporting</value>
-  </data>
-  <data name="ExceptionHandling_Message" xml:space="preserve">
-    <value>Ein Fehler ist aufgetreten
-{0}
-Bitte senden Sie folgende Informationen an den Support
-{1}</value>
-  </data>
-  <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
-    <value>Neue Lobby erstellen</value>
-  </data>
-  <data name="LobbyBrowser_GameName" xml:space="preserve">
-    <value>Lobby Name</value>
-  </data>
-  <data name="LobbyBrowser_HasPassword" xml:space="preserve">
-    <value>Lobby verfügt über ein Passwort</value>
-  </data>
-  <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
-    <value>Lobby beitreten</value>
-  </data>
-  <data name="LobbyBrowser_Logout" xml:space="preserve">
-    <value>Abmelden</value>
-  </data>
-  <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
-    <value>Mitglieder</value>
-  </data>
-  <data name="LobbyView_LeaveLobby" xml:space="preserve">
-    <value>Lobby verlassen</value>
-  </data>
-  <data name="LobbyView_LobbyPassword" xml:space="preserve">
-    <value>Lobby Passwort</value>
-  </data>
-  <data name="LobbyView_Owner" xml:space="preserve">
-    <value>Besitzer</value>
-  </data>
-  <data name="LobbyView_Ready" xml:space="preserve">
-    <value>Ist bereit</value>
-  </data>
   <data name="LobbyView_Remove" xml:space="preserve">
-    <value>Aus Lobby entfernen</value>
+    <value>Remove from lobby</value>
   </data>
   <data name="LobbyView_StartGame" xml:space="preserve">
-    <value>Spiel starten</value>
+    <value>Start game</value>
   </data>
-  <data name="LoginView_Language" xml:space="preserve">
-    <value>Sprache</value>
+  <data name="LobbyBrowser_CreateLobby" xml:space="preserve">
+    <value>Create a new lobby</value>
+  </data>
+  <data name="LobbyBrowser_GameName" xml:space="preserve">
+    <value>Lobby name</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobby" xml:space="preserve">
+    <value>Join lobby</value>
+  </data>
+  <data name="LobbyBrowser_NumberPlayers" xml:space="preserve">
+    <value>Members</value>
   </data>
   <data name="LoginView_Login" xml:space="preserve">
-    <value>Anmelden</value>
+    <value>Login</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Passwort</value>
-  </data>
-  <data name="LoginView_Register" xml:space="preserve">
-    <value>Neuen Account erstellen</value>
-  </data>
-  <data name="LoginView_SaveLogin" xml:space="preserve">
-    <value>Angemeldet bleiben</value>
+    <value>Password</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Benutzername</value>
+    <value>Username</value>
+  </data>
+  <data name="LobbyView_LeaveLobby" xml:space="preserve">
+    <value>Leave lobby</value>
+  </data>
+  <data name="LobbyView_Owner" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="LobbyView_Ready" xml:space="preserve">
+    <value>Is Ready</value>
+  </data>
+  <data name="LoginView_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LoginView_SaveLogin" xml:space="preserve">
+    <value>Keep Me logged in</value>
+  </data>
+  <data name="LobbyBrowser_HasPassword" xml:space="preserve">
+    <value>Lobby has a password</value>
+  </data>
+  <data name="LobbyBrowser_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="LobbyView_LobbyPassword" xml:space="preserve">
+    <value>Lobby password</value>
+  </data>
+  <data name="ExceptionHandling_Caption" xml:space="preserve">
+    <value>Error Reporting</value>
+  </data>
+  <data name="ExceptionHandling_Message" xml:space="preserve">
+    <value>An error has occured
+{0}
+Please send the following info to the support!
+{1}</value>
+  </data>
+  <data name="LoginView_Register" xml:space="preserve">
+    <value>Create a new Account</value>
   </data>
   <data name="RegisterView_Title" xml:space="preserve">
-    <value>Registrieren</value>
+    <value>Register</value>
   </data>
   <data name="Abort" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Cancel</value>
   </data>
   <data name="RegisterView_Register" xml:space="preserve">
-    <value>Registrieren</value>
+    <value>Register</value>
   </data>
   <data name="RegisterView_RepeatPassword" xml:space="preserve">
-    <value>Passwort wiederholen</value>
-  </data>
-  <data name="RegisterView_Sallary" xml:space="preserve">
-    <value>Ihr Lohn</value>
+    <value>Repeat Password</value>
   </data>
   <data name="LoginView_UsernameOrMail" xml:space="preserve">
-    <value>Benutzername / Mail</value>
+    <value>Username / Mail</value>
   </data>
   <data name="TextValidationRule_Mandatory" xml:space="preserve">
-    <value>Muss einen Wert haben</value>
+    <value>Has to have a value</value>
   </data>
   <data name="TextValidationRule_Length" xml:space="preserve">
-    <value>Muss zwischen {0} und {1} Zeichen lang sein</value>
+    <value>Has to be between {0} and {1} characters long</value>
   </data>
   <data name="LobbyView_ReallyQuit" xml:space="preserve">
-    <value>Lobby wirklich verlassen?</value>
+    <value>Really leave the Lobby?</value>
   </data>
   <data name="Mail" xml:space="preserve">
-    <value>E-Mail</value>
+    <value>Email</value>
   </data>
   <data name="TextValidationRule_ForbiddenChar" xml:space="preserve">
-    <value>Darf kein {0} beinhalten</value>
+    <value>Can't contain {0}</value>
   </data>
   <data name="TextValidationRule_MailValid" xml:space="preserve">
-    <value>E-Mail-Adresse ist nicht gültig</value>
+    <value>Email address is invalid</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Fehler</value>
+    <value>Error</value>
   </data>
   <data name="LoginView_BadLogin" xml:space="preserve">
-    <value>Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten oder erstellen Sie neuen Account.</value>
+    <value>Login failed. Please check your credentials or create a new account.</value>
   </data>
   <data name="RegisterView_BadRegister" xml:space="preserve">
-    <value>Registrierung fehlgeschlagen. Bütte überprüfen Sie Ihre Angaben und versuchen Sie es später erneut.</value>
+    <value>Register failed. Please check your data and try again later.</value>
   </data>
   <data name="TextValidationRule_MailaddressAlreadyTaken" xml:space="preserve">
-    <value>Account mit dieser E-Mail-Addresse existiert bereits</value>
+    <value>Account with same email address already exists</value>
   </data>
   <data name="TextValidationRule_UsernameAlreadyTaken" xml:space="preserve">
-    <value>Benutzername bereits vergeben</value>
+    <value>Username already taken</value>
   </data>
   <data name="LobbyBrowser_MaxPlayers" xml:space="preserve">
     <value>Limit</value>
   </data>
   <data name="LobbyBrowser_SearchText" xml:space="preserve">
-    <value>Suchen nach Lobbyname oder Lobby-Besitzer</value>
+    <value>Search for lobby name or lobby owner</value>
   </data>
   <data name="LobbyBrowser_ShowFull" xml:space="preserve">
-    <value>Zeige volle Lobbies an</value>
+    <value>Display full lobbies</value>
   </data>
   <data name="LobbyBrowser_ShowProtected" xml:space="preserve">
-    <value>Zeige Passwortgeschütze Lobbies an</value>
+    <value>Display password protected lobbies</value>
   </data>
   <data name="LobbyView_ApplySettings" xml:space="preserve">
-    <value>Einstellungen übernehmen</value>
-  </data>
-  <data name="LobbyView_NewLobbyMax" xml:space="preserve">
-    <value>Lobby-Limit</value>
-  </data>
-  <data name="LobbyView_NewLobbyName" xml:space="preserve">
-    <value>Lobbyname</value>
-  </data>
-  <data name="LobbyView_NewLobbyPassword" xml:space="preserve">
-    <value>Lobby-Password</value>
+    <value>Apply settings</value>
   </data>
   <data name="LobbyView_NewLobbySettings" xml:space="preserve">
-    <value>Lobby Einstellungen</value>
+    <value>Lobby settings</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Laden...</value>
+    <value>Loading...</value>
   </data>
 </root>

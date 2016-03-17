@@ -51,7 +51,7 @@ namespace LePrAtos.Startup.Login
 
 				var rm = new ResourceManager(typeof (Strings));
 
-				var cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+				var cultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Distinct();
 				foreach (var culture in cultures.Where(c => !string.IsNullOrEmpty(c.Name)))
 				{
 					try

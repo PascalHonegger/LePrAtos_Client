@@ -105,16 +105,16 @@
 							<xcdg:DataGridBindingInfo ReadOnly="True" Path="Members.Count" />
 						</xcdg:Column.DisplayMemberBindingInfo>
 					</xcdg:Column>
-					<xcdg:Column Width="*" FieldName="MaxMemberCount" Title="{x:Static properties:Strings.LobbyBrowser_MaxPlayers}"
+					<xcdg:Column Width="*" FieldName="PlayerLimit" Title="{x:Static properties:Strings.LobbyBrowser_MaxPlayers}"
 								 ReadOnly="True">
 						<xcdg:Column.DisplayMemberBindingInfo>
-							<xcdg:DataGridBindingInfo Path="MaxMemberCount" />
+							<xcdg:DataGridBindingInfo Path="PlayerLimit" />
 						</xcdg:Column.DisplayMemberBindingInfo>
 					</xcdg:Column>
 					<xcdg:Column Width="*" FieldName="HasPassword" Title="{x:Static properties:Strings.Password}"
 								 ReadOnly="True">
 						<xcdg:Column.DisplayMemberBindingInfo>
-							<xcdg:DataGridBindingInfo Path="LobbyHasPassword" />
+							<xcdg:DataGridBindingInfo Path="IsPasswordProtected" />
 						</xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:Column.CellContentTemplate>
 							<DataTemplate>

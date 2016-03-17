@@ -5,12 +5,6 @@
       <xsd:import schemaLocation="http://tm-tomcat.ch902.my-it-solutions.net:80/LePrAtos/GameManager?xsd=1" namespace="http://webservices.org/" />
     </xsd:schema>
   </types>
-  <message name="registration">
-    <part name="parameters" element="tns:registration" />
-  </message>
-  <message name="registrationResponse">
-    <part name="parameters" element="tns:registrationResponse" />
-  </message>
   <message name="username_availability">
     <part name="parameters" element="tns:username_availability" />
   </message>
@@ -22,6 +16,18 @@
   </message>
   <message name="email_verificationResponse">
     <part name="parameters" element="tns:email_verificationResponse" />
+  </message>
+  <message name="setGameLobbyPassword">
+    <part name="parameters" element="tns:setGameLobbyPassword" />
+  </message>
+  <message name="setGameLobbyPasswordResponse">
+    <part name="parameters" element="tns:setGameLobbyPasswordResponse" />
+  </message>
+  <message name="registration">
+    <part name="parameters" element="tns:registration" />
+  </message>
+  <message name="registrationResponse">
+    <part name="parameters" element="tns:registrationResponse" />
   </message>
   <message name="login">
     <part name="parameters" element="tns:login" />
@@ -46,6 +52,24 @@
   </message>
   <message name="Exception">
     <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="setGameLobbyName">
+    <part name="parameters" element="tns:setGameLobbyName" />
+  </message>
+  <message name="setGameLobbyNameResponse">
+    <part name="parameters" element="tns:setGameLobbyNameResponse" />
+  </message>
+  <message name="setPlayerLimit">
+    <part name="parameters" element="tns:setPlayerLimit" />
+  </message>
+  <message name="setPlayerLimitResponse">
+    <part name="parameters" element="tns:setPlayerLimitResponse" />
+  </message>
+  <message name="kickPlayer">
+    <part name="parameters" element="tns:kickPlayer" />
+  </message>
+  <message name="kickPlayerResponse">
+    <part name="parameters" element="tns:kickPlayerResponse" />
   </message>
   <message name="joinGameLobby">
     <part name="parameters" element="tns:joinGameLobby" />
@@ -84,10 +108,6 @@
     <part name="parameters" element="tns:setPlayerStatusResponse" />
   </message>
   <portType name="GameManager">
-    <operation name="registration">
-      <input wsam:Action="http://webservices.org/GameManager/registrationRequest" message="tns:registration" />
-      <output wsam:Action="http://webservices.org/GameManager/registrationResponse" message="tns:registrationResponse" />
-    </operation>
     <operation name="username_availability">
       <input wsam:Action="http://webservices.org/GameManager/username_availabilityRequest" message="tns:username_availability" />
       <output wsam:Action="http://webservices.org/GameManager/username_availabilityResponse" message="tns:username_availabilityResponse" />
@@ -95,6 +115,14 @@
     <operation name="email_verification">
       <input wsam:Action="http://webservices.org/GameManager/email_verificationRequest" message="tns:email_verification" />
       <output wsam:Action="http://webservices.org/GameManager/email_verificationResponse" message="tns:email_verificationResponse" />
+    </operation>
+    <operation name="setGameLobbyPassword">
+      <input wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest" message="tns:setGameLobbyPassword" />
+      <output wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordResponse" message="tns:setGameLobbyPasswordResponse" />
+    </operation>
+    <operation name="registration">
+      <input wsam:Action="http://webservices.org/GameManager/registrationRequest" message="tns:registration" />
+      <output wsam:Action="http://webservices.org/GameManager/registrationResponse" message="tns:registrationResponse" />
     </operation>
     <operation name="login">
       <input wsam:Action="http://webservices.org/GameManager/loginRequest" message="tns:login" />
@@ -109,6 +137,18 @@
       <input wsam:Action="http://webservices.org/GameManager/createGameLobbyRequest" message="tns:createGameLobby" />
       <output wsam:Action="http://webservices.org/GameManager/createGameLobbyResponse" message="tns:createGameLobbyResponse" />
       <fault wsam:Action="http://webservices.org/GameManager/createGameLobby/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="setGameLobbyName">
+      <input wsam:Action="http://webservices.org/GameManager/setGameLobbyNameRequest" message="tns:setGameLobbyName" />
+      <output wsam:Action="http://webservices.org/GameManager/setGameLobbyNameResponse" message="tns:setGameLobbyNameResponse" />
+    </operation>
+    <operation name="setPlayerLimit">
+      <input wsam:Action="http://webservices.org/GameManager/setPlayerLimitRequest" message="tns:setPlayerLimit" />
+      <output wsam:Action="http://webservices.org/GameManager/setPlayerLimitResponse" message="tns:setPlayerLimitResponse" />
+    </operation>
+    <operation name="kickPlayer">
+      <input wsam:Action="http://webservices.org/GameManager/kickPlayerRequest" message="tns:kickPlayer" />
+      <output wsam:Action="http://webservices.org/GameManager/kickPlayerResponse" message="tns:kickPlayerResponse" />
     </operation>
     <operation name="joinGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/joinGameLobbyRequest" message="tns:joinGameLobby" />
@@ -138,15 +178,6 @@
   </portType>
   <binding name="GameManagerImplPortBinding" type="tns:GameManager">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="registration">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="username_availability">
       <soap:operation soapAction="" />
       <input>
@@ -157,6 +188,24 @@
       </output>
     </operation>
     <operation name="email_verification">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="setGameLobbyPassword">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="registration">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -197,6 +246,33 @@
       <fault name="Exception">
         <soap:fault use="literal" name="Exception" namespace="" />
       </fault>
+    </operation>
+    <operation name="setGameLobbyName">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="setPlayerLimit">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="kickPlayer">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
     </operation>
     <operation name="joinGameLobby">
       <soap:operation soapAction="" />

@@ -18,16 +18,8 @@ namespace LePrAtos.Infrastructure
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	public sealed class Session : ISession
 	{
-		private const int PollingInterval = 5000;
+		private const int PollingInterval = 10000;
 		private string _endpointconfiguration;
-
-		/// <summary>
-		///     Constructor
-		/// </summary>
-		public Session()
-		{
-			PollingTimer = new Timer(PollingInterval);
-		}
 
 		/// <summary>
 		///     Die gewählte Endpunktkonfiguration
@@ -58,7 +50,7 @@ namespace LePrAtos.Infrastructure
 		/// <summary>
 		///     Der Timer, welcher allen Services sagt, dass sie erneut daten vom Server laden sollten
 		/// </summary>
-		public Timer PollingTimer { get; }
+		public Timer PollingTimer { get; } = new Timer(PollingInterval);
 
 		/// <summary>
 		/// Führt anwendungsspezifische Aufgaben durch, die mit der Freigabe, der Zurückgabe oder dem Zurücksetzen von nicht verwalteten Ressourcen zusammenhängen.
