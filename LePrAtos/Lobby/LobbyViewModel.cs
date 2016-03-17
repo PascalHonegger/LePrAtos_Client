@@ -25,12 +25,15 @@ namespace LePrAtos.Lobby
 	[Export(typeof (LobbyViewModel))]
 	public class LobbyViewModel : ViewModelBase, IRequestWindowClose
 	{
+		private bool _isPasswordProtected;
 		private ICommand _leaveLobbyCommand;
 		private gameLobby _lobby;
+		private string _lobbyName;
 		private string _newLobbyName;
 		private string _newLobbyPassword;
 		private int _newPlayerLimit;
 		private int _playerLimit;
+		private DelegateCommand _removePasswordCommand;
 		private DelegateCommand _startGameCommand;
 		private DelegateCommand _updateSettingsCommand;
 
@@ -63,7 +66,7 @@ namespace LePrAtos.Lobby
 			private set
 			{
 				if (Equals(_playerLimit, value)) return;
-				_playerLimit = value;
+				NewPlayerLimit = _playerLimit = value;
 				OnPropertyChanged();
 			}
 		}
@@ -71,7 +74,16 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Lobby Name
 		/// </summary>
-		public string LobbyName { get; set; }
+		public string LobbyName
+		{
+			get { return _lobbyName; }
+			set
+			{
+				if (Equals(value, _lobbyName)) return;
+				NewLobbyName = _lobbyName = value;
+				OnPropertyChanged();
+			}
+		}
 
 		/// <summary>
 		///     Lobby ID
@@ -81,7 +93,17 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Lobby verfügt über ein Passwort
 		/// </summary>
-		public bool IsPasswordProtected { get; set; } = false;
+		public bool IsPasswordProtected
+		{
+			get { return _isPasswordProtected; }
+			set
+			{
+				if (Equals(value, _isPasswordProtected)) return;
+				_isPasswordProtected = value;
+				OnPropertyChanged();
+				OnPropertyChanged(nameof(PasswordDisplayValue));
+			}
+		}
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -103,6 +125,12 @@ namespace LePrAtos.Lobby
 			=> _updateSettingsCommand ?? (_updateSettingsCommand = new DelegateCommand(UpdateSettings, CanUpdateSettings));
 
 		/// <summary>
+		///     Command zum übernehmen der neu gesetzten Einstellungen für die Lobby
+		/// </summary>
+		public DelegateCommand RemovePasswordCommand
+			=> _removePasswordCommand ?? (_removePasswordCommand = new DelegateCommand(RemovePassword, CanRemovePassword));
+
+		/// <summary>
 		///     Die vom Server stammende Lobby
 		/// </summary>
 		public gameLobby Lobby
@@ -114,6 +142,7 @@ namespace LePrAtos.Lobby
 					StopUpdate();
 					return;
 				}
+
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
@@ -205,6 +234,8 @@ namespace LePrAtos.Lobby
 			{
 				if (Equals(_newLobbyName, value)) return;
 				_newLobbyName = value;
+				SetErrorForProperty(string.IsNullOrEmpty(_newLobbyName) ? Strings.TextValidationRule_Mandatory : string.Empty);
+
 				OnPropertyChanged();
 			}
 		}
@@ -213,6 +244,27 @@ namespace LePrAtos.Lobby
 		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		private bool CanRemovePassword()
+		{
+			throw new NotImplementedException();
+		}
+
+		private async void RemovePassword()
+		{
+			IsBusy = true;
+
+			try
+			{
+				await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, string.Empty);
+
+				await Refresh();
+			}
+			finally
+			{
+				IsBusy = false;
+			}
+		}
 
 		private void StartUpdate()
 		{
@@ -241,11 +293,29 @@ namespace LePrAtos.Lobby
 		{
 			IsBusy = true;
 
-			await CurrentSession.Client.setGameLobbyNameAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyName);
-			await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyPassword);
-			await CurrentSession.Client.setPlayerLimitAsync(CurrentSession.Player.PlayerId, LobbyId, NewPlayerLimit);
+			try
+			{
+				if (!Equals(NewLobbyName, LobbyName))
+				{
+					await CurrentSession.Client.setGameLobbyNameAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyName);
+				}
 
-			IsBusy = false;
+				if (!string.IsNullOrEmpty(NewLobbyPassword))
+				{
+					await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyPassword);
+				}
+
+				if (!Equals(NewPlayerLimit, PlayerLimit))
+				{
+					await CurrentSession.Client.setPlayerLimitAsync(CurrentSession.Player.PlayerId, LobbyId, NewPlayerLimit);
+				}
+
+				await Refresh();
+			}
+			finally
+			{
+				IsBusy = false;
+			}
 		}
 
 		private bool CanUpdateSettings()
@@ -286,7 +356,7 @@ namespace LePrAtos.Lobby
 
 		private void RemovePlayer(PlayerViewModel player)
 		{
-			//TODO Call server and remove Player
+			CurrentSession.Client.kickPlayer(CurrentSession.Player.PlayerId, LobbyId, player.Username);
 		}
 
 		private bool Equals(LobbyViewModel other)

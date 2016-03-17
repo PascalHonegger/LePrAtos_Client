@@ -268,7 +268,7 @@ namespace LePrAtos.Lobby
 			StopRefresh();
 
 			var createdLobby =
-				(await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, CurrentSession.Player.Username)).@return;
+				(await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, string.Format(Strings.LobbyBrowser_CreatedByTempalte, CurrentSession.Player.Username))).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 

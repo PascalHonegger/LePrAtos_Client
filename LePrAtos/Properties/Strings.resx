@@ -246,4 +246,10 @@
   <data name="LobbyView_NewLobbySettings" xml:space="preserve">
     <value>LobbyView_NewLobbySettings</value>
   </data>
+  <data name="LobbyBrowser_CreatedByTempalte" xml:space="preserve">
+    <value>LobbyBrowser_CreatedByTempalte</value>
+  </data>
+  <data name="LobbyView_RemovePassword" xml:space="preserve">
+    <value>LobbyView_RemovePassword</value>
+  </data>
 </root>

@@ -106,6 +106,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_CreatedByTempalte.
+        /// </summary>
+        public static string LobbyBrowser_CreatedByTempalte {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_CreatedByTempalte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyBrowser_CreateLobby.
         /// </summary>
         public static string LobbyBrowser_CreateLobby {
@@ -264,6 +273,15 @@ namespace LePrAtos.Properties {
         public static string LobbyView_Remove {
             get {
                 return ResourceManager.GetString("LobbyView_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyView_RemovePassword.
+        /// </summary>
+        public static string LobbyView_RemovePassword {
+            get {
+                return ResourceManager.GetString("LobbyView_RemovePassword", resourceCulture);
             }
         }
         
