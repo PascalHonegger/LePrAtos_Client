@@ -15,6 +15,7 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition />
+				<ColumnDefinition Width="0.1*"/>
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
@@ -25,16 +26,30 @@
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
+			<Grid.Resources>
+				<Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+					<Setter Property="VerticalAlignment" Value="Center" />
+				</Style>
+				<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+					<Setter Property="VerticalAlignment" Value="Center" />
+				</Style>
+				<Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+					<Setter Property="VerticalAlignment" Value="Center" />
+				</Style>
+				<Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+					<Setter Property="VerticalAlignment" Value="Center" />
+				</Style>
+			</Grid.Resources>
+			
 			<!-- Login -->
 			<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="TODO Login"/>
 
 			<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
-		       Content="{x:Static localization:Strings.LoginView_UsernameOrMail}" VerticalAlignment="Center" />
-			<TextBox Grid.Column="1" Grid.Row="1" TabIndex="0" x:Name="Username" VerticalAlignment="Center"
-		         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextChanged" />
+		       Content="{x:Static localization:Strings.LoginView_UsernameOrMail}" />
+			<TextBox Grid.Column="1" Grid.Row="1" TabIndex="0" x:Name="Username" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextChanged" />
 
 			<Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}"
-		       Content="{x:Static localization:Strings.Password}" VerticalAlignment="Center" />
+		       Content="{x:Static localization:Strings.Password}" />
 			<PasswordBox TabIndex="1" x:Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
 		             PasswordChanged="TextChanged" />
 
@@ -48,11 +63,11 @@
 		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" IsDefault="True" />
 
 			<!-- Settings -->
-			<TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Text="TODO Settings"/>
+			<TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="TODO Settings"/>
 
-			<Label Target="{Binding ElementName=LanguageSelector}" Grid.Row="1" Grid.Column="2"
+			<Label Target="{Binding ElementName=LanguageSelector}" Grid.Row="1" Grid.Column="3"
 			    Content="{x:Static localization:Strings.LoginView_Language}" />
-			<ComboBox TabIndex="5" Name="LanguageSelector" Grid.Row="1" Grid.Column="3"
+			<ComboBox TabIndex="5" Name="LanguageSelector" Grid.Row="1" Grid.Column="4"
 			        ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
@@ -68,13 +83,14 @@
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 
-			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="2" Grid.Column="2"
+			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="2" Grid.Column="3"
 			    Content="TODO Theme" />
-			<ComboBox TabIndex="5" Name="ThemeSelector" Grid.Row="2" Grid.Column="3"
+			<ComboBox TabIndex="5" Name="ThemeSelector" Grid.Row="2" Grid.Column="4"
 			        ItemsSource="{Binding PossibleThemes}" SelectedItem="{Binding SelectedTheme}" ToolTip="{x:Static localization:Strings.LoginView_ApplyOnRestart}"/>
-
-			<CheckBox TabIndex="2" Grid.Column="3" Grid.Row="3" Content="{x:Static localization:Strings.LoginView_SaveLogin}"
-		          IsChecked="{Binding SaveLogin}" />
+			
+			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="3" Grid.Column="3"
+			    Content="{x:Static localization:Strings.LoginView_SaveLogin}" />
+			<CheckBox TabIndex="2" Grid.Column="4" Grid.Row="3" IsChecked="{Binding SaveLogin}" />
 		</Grid>
 	</xctk:BusyIndicator>
 </Window>

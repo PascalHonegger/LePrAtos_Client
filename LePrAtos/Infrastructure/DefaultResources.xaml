@@ -1,41 +1,33 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                    xmlns:converter="clr-namespace:LePrAtos.Converter">
-
-	<BooleanToVisibilityConverter x:Key="BoolToVis" />
-	<converter:InvertBooleanConverter x:Key="InvertBool" />
-
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 	<ControlTemplate x:Key="RedBorder">
 		<Border BorderBrush="Red" BorderThickness="2">
 			<AdornedElementPlaceholder />
 		</Border>
 	</ControlTemplate>
 
-	<Style TargetType="{x:Type TextBox}">
+	<Style TargetType="{x:Type TextBox}"  BasedOn="{StaticResource {x:Type TextBox}}">
 		<Style.Triggers>
 			<Trigger Property="Validation.HasError" Value="true">
 				<Setter Property="ToolTip"
 					        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-				<Setter Property="Validation.ErrorTemplate" Value="{StaticResource RedBorder}" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>
-	<Style TargetType="{x:Type xctk:IntegerUpDown}">
+	<Style TargetType="{x:Type xctk:IntegerUpDown}" BasedOn="{StaticResource {x:Type xctk:IntegerUpDown}}">
 		<Style.Triggers>
 			<Trigger Property="Validation.HasError" Value="true">
 				<Setter Property="ToolTip"
 					        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-				<Setter Property="Validation.ErrorTemplate" Value="{StaticResource RedBorder}" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>
-	<Style TargetType="{x:Type xctk:WatermarkTextBox}">
+	<Style TargetType="{x:Type xctk:WatermarkTextBox}" BasedOn="{StaticResource {x:Type xctk:WatermarkTextBox}}">
 		<Style.Triggers>
 			<Trigger Property="Validation.HasError" Value="true">
 				<Setter Property="ToolTip"
 					        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
-				<Setter Property="Validation.ErrorTemplate" Value="{StaticResource RedBorder}" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>

@@ -53,16 +53,17 @@
 					<RowDefinition />
 				</Grid.RowDefinitions>
 				<Grid.Resources>
-					<Style TargetType="{x:Type xctk:WatermarkTextBox}">
+					<Style TargetType="{x:Type xctk:WatermarkTextBox}" BasedOn="{StaticResource {x:Type xctk:WatermarkTextBox}}">
 						<Setter Property="IsEnabled" Value="{Binding CurrentSession.Player.IsLeader}" />
 					</Style>
-					<Style TargetType="{x:Type xctk:IntegerUpDown}">
+					<Style TargetType="{x:Type xctk:IntegerUpDown}" BasedOn="{StaticResource {x:Type xctk:IntegerUpDown}}">
 						<Setter Property="IsEnabled" Value="{Binding CurrentSession.Player.IsLeader}" />
 					</Style>
-					<Style TargetType="{x:Type Label}">
+					<Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
 						<Setter Property="VerticalContentAlignment" Value="Center" />
 					</Style>
 				</Grid.Resources>
+				
 				<TextBlock TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
 				           Text="{x:Static properties:Strings.LobbyView_NewLobbySettings}" />
 

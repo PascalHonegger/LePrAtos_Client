@@ -79,7 +79,7 @@
 								  VerticalAlignment="Stretch" SelectionMode="Single" IsFixedHeadersHost="False"
 								  IsFixedFootersHost="False">
 				<xcdg:DataGridControl.ItemContainerStyle>
-					<Style TargetType="{x:Type xcdg:Row}">
+					<Style TargetType="{x:Type xcdg:Row}" BasedOn="{StaticResource {x:Type xcdg:Row}}">
 						<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
 					</Style>
 				</xcdg:DataGridControl.ItemContainerStyle>
