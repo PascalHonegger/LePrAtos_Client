@@ -16,6 +16,9 @@
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			<ListView Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Members}" HorizontalAlignment="Stretch">
+				<ListView.Style>
+					<Style />
+				</ListView.Style>
 				<ListView.ItemContainerStyle>
 					<Style TargetType="ListViewItem">
 						<Setter Property="Height" Value="70" />
@@ -32,7 +35,7 @@
 				</ListView.ItemContainerStyle>
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<local:MemberRowControl DataContext="{Binding}" />
+						<local:MemberRowControl DataContext="{Binding}"/>
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
