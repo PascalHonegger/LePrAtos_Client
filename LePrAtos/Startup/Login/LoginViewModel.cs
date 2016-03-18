@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,6 +72,26 @@ namespace LePrAtos.Startup.Login
 				}
 
 				return supportedCultures;
+			}
+		}
+
+		/// <summary>
+		///     Alle konfigurierten Themes
+		/// </summary>
+		public static IEnumerable<string> PossibleThemes => Settings.Default.ConfiguredThemes.Cast<string>();
+
+		/// <summary>
+		///     Das momentan ausgewälte Theme
+		/// </summary>
+		public string SelectedTheme
+		{
+			get { return Settings.Default.SelectedTheme; }
+			set
+			{
+				if (Equals(value, Settings.Default.SelectedTheme)) return;
+				Settings.Default.SelectedTheme = value;
+				Settings.Default.Save();
+				OnPropertyChanged();
 			}
 		}
 

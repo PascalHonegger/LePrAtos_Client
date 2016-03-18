@@ -27,6 +27,7 @@ namespace LePrAtos
 	{
 		private void OnStartup(object sender, StartupEventArgs e)
 		{
+			//Load Culture
 			CultureInfo culture;
 			try
 			{
@@ -40,10 +41,22 @@ namespace LePrAtos
 			Strings.Culture = culture;
 			Thread.CurrentThread.CurrentUICulture = culture;
 
+			//Load Unity
 			new ScannerModule().Initialize();
-
 			_session = ContainerProvider.Container.Resolve<ISession>();
 
+			//Load Selected Theme
+			try
+			{
+				Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri($"Themes/{Settings.Default.SelectedTheme}.xaml", UriKind.Relative) });
+			}
+			catch (Exception)
+			{
+				Settings.Default.SelectedTheme = string.Empty;
+				Settings.Default.Save();
+			}
+
+			//Start Application
 #if DEBUG
 			SelectEnvironment();
 #else
@@ -136,8 +149,10 @@ namespace LePrAtos
 
 		private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
 		{
+			//Try to say server, that I closed
+			App_OnExit(sender, null);
 			MessageBox.Show(string.Format(Strings.ExceptionHandling_Message, e.Exception.Message, e.Exception.StackTrace), Strings.ExceptionHandling_Caption);
-			Environment.Exit(1);
+			Current.Shutdown(666);
 		}
 	}
 }

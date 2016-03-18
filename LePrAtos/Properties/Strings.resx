@@ -252,4 +252,7 @@
   <data name="LobbyView_RemovePassword" xml:space="preserve">
     <value>LobbyView_RemovePassword</value>
   </data>
+  <data name="LoginView_ApplyOnRestart" xml:space="preserve">
+    <value>LoginView_ApplyOnRestart</value>
+  </data>
 </root>

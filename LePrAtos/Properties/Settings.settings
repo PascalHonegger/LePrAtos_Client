@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SelectedCulture" Type="System.String" Scope="User">
-      <Value Profile="(Default)">de</Value>
+      <Value Profile="(Default)">de-DE</Value>
     </Setting>
     <Setting Name="ConfiguredServers" Type="System.Collections.Specialized.StringCollection" Scope="Application">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -15,6 +15,21 @@
     </Setting>
     <Setting Name="SavedUser" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ConfiguredThemes" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;BureauBlack&lt;/string&gt;
+  &lt;string&gt;BureauBlue&lt;/string&gt;
+  &lt;string&gt;ExpressionDark&lt;/string&gt;
+  &lt;string&gt;ExpressionLight&lt;/string&gt;
+  &lt;string&gt;ShinyBlue&lt;/string&gt;
+  &lt;string&gt;ShinyRed&lt;/string&gt;
+  &lt;string&gt;WhistlerBlue&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="SelectedTheme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WhistlerBlue</Value>
     </Setting>
   </Settings>
 </SettingsFile>

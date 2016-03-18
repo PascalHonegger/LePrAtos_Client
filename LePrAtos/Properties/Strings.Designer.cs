@@ -295,6 +295,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_ApplyOnRestart.
+        /// </summary>
+        public static string LoginView_ApplyOnRestart {
+            get {
+                return ResourceManager.GetString("LoginView_ApplyOnRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_BadLogin.
         /// </summary>
         public static string LoginView_BadLogin {

@@ -25,7 +25,7 @@ namespace LePrAtos.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("de")]
+        [global::System.Configuration.DefaultSettingValueAttribute("de-DE")]
         public string SelectedCulture {
             get {
                 return ((string)(this["SelectedCulture"]));
@@ -58,6 +58,36 @@ namespace LePrAtos.Properties {
             }
             set {
                 this["SavedUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>BureauBlack</string>
+  <string>BureauBlue</string>
+  <string>ExpressionDark</string>
+  <string>ExpressionLight</string>
+  <string>ShinyBlue</string>
+  <string>ShinyRed</string>
+  <string>WhistlerBlue</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection ConfiguredThemes {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ConfiguredThemes"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("WhistlerBlue")]
+        public string SelectedTheme {
+            get {
+                return ((string)(this["SelectedTheme"]));
+            }
+            set {
+                this["SelectedTheme"] = value;
             }
         }
     }

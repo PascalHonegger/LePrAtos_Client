@@ -14,7 +14,6 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Themes/WhistlerBlue.xaml"/>
-				<ResourceDictionary Source="Themes/DefaultResources.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

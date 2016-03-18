@@ -255,4 +255,7 @@ Please send the following info to the support!
   <data name="LobbyView_RemovePassword" xml:space="preserve">
     <value>Remove Password</value>
   </data>
+  <data name="LoginView_ApplyOnRestart" xml:space="preserve">
+    <value>Will apply on application restart</value>
+  </data>
 </root>

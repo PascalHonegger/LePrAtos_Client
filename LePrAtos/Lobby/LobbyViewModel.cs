@@ -43,6 +43,13 @@ namespace LePrAtos.Lobby
 		{
 			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); };
 			ErrorsChanged += (sender, e) => UpdateSettingsCommand.RaiseCanExecuteChanged();
+			CurrentSession.Player.PropertyChanged += (sender, e) =>
+			{
+				if (e.PropertyName == nameof(CurrentSession.Player.IsReady))
+				{
+					UpdateSettingsCommand.RaiseCanExecuteChanged();
+				}
+			};
 			StartUpdate();
 		}
 
@@ -162,11 +169,11 @@ namespace LePrAtos.Lobby
 
 				if (_lobby.gamePlayerList == null) return;
 
-				foreach (var playerIdentification in _lobby.gamePlayerList)
+				foreach (var playerIdentification in _lobby.gamePlayerList.Where(p => p != null))
 				{
 					PlayerViewModel playerViewModel;
 
-					if (Equals(playerIdentification, CurrentSession.Player.Identification))
+					if (Equals(playerIdentification.username, CurrentSession.Player.Username))
 					{
 						CurrentSession.Player.Identification = playerIdentification;
 						playerViewModel = CurrentSession.Player;

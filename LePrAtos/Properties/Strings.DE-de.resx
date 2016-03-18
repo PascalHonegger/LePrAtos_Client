@@ -255,4 +255,7 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LobbyView_RemovePassword" xml:space="preserve">
     <value>Password entfernen</value>
   </data>
+  <data name="LoginView_ApplyOnRestart" xml:space="preserve">
+    <value>Wird beim nächsten Start der Applikation angewandt</value>
+  </data>
 </root>

@@ -252,4 +252,7 @@
   <data name="LobbyView_RemovePassword" xml:space="preserve">
     <value>Passwort entferne</value>
   </data>
+  <data name="LoginView_ApplyOnRestart" xml:space="preserve">
+    <value>Wird bim nächste Start vo de Applikation aahgwandt</value>
+  </data>
 </root>
