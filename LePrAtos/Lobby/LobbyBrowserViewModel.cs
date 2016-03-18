@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
@@ -15,6 +16,7 @@ using LePrAtos.Startup.Login;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 using LePrAtos.Infrastructure.Extensions;
+using LePrAtos.Startup;
 using Exception = System.Exception;
 
 namespace LePrAtos.Lobby
@@ -56,6 +58,19 @@ namespace LePrAtos.Lobby
 		}
 
 		/// <summary>
+		///     Entscheidet, ob die Lobbies neue Daten vom Server laden
+		/// </summary>
+		private void StartRefresh()
+		{
+			StopRefresh(false);
+
+			foreach (var lobby in _availableLobbies)
+			{
+				lobby.StartUpdate();
+			}
+		}
+
+		/// <summary>
 		///     Command zum erstellen einer Lobby
 		/// </summary>
 		public ICommand CreateLobbyCommand => _createLobbyCommand ?? (_createLobbyCommand = new DelegateCommand(CreateLobby));
@@ -90,9 +105,12 @@ namespace LePrAtos.Lobby
 		private void ApplyLobbyFilter()
 		{
 			var filteredLobbies = _availableLobbies
-				.Where(l => ShowProtectedLobbies || !l.IsPasswordProtected)
+				.Where(l => ShowProtectedLobbies || !l.PasswordProtected)
 				.Where(l => ShowFullLobbies || l.PlayerLimit > l.Members.Count)
-				.Where(l => l.LobbyName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase) || l.LobbyLeaderName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase));
+				.Where(
+					l =>
+						l.LobbyName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase) ||
+						l.LobbyLeaderName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase));
 
 			FilteredLobbies.Clear();
 
@@ -112,7 +130,7 @@ namespace LePrAtos.Lobby
 			{
 				_lobbyPassword = value;
 
-				if (SeletedLobby != null && SeletedLobby.IsPasswordProtected && string.IsNullOrEmpty(_lobbyPassword))
+				if (SeletedLobby != null && SeletedLobby.PasswordProtected && string.IsNullOrEmpty(_lobbyPassword))
 				{
 					SetErrorForProperty(Strings.TextValidationRule_Mandatory);
 				}
@@ -195,11 +213,9 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Visitor-Pattern, maybe? Updates the <see cref="_availableLobbies" />
 		/// </summary>
-		public async void Refresh()
+		public void Refresh()
 		{
-			IsBusy = true;
-
-			try
+			BusyRunner.RunAsync(async () =>
 			{
 				var gameLobbies = (await CurrentSession.Client.getGameLobbiesAsync()).@return;
 
@@ -216,14 +232,10 @@ namespace LePrAtos.Lobby
 				});
 
 				ApplyLobbyFilter();
-			}
-			finally
-			{
-				IsBusy = false;
-			}
+			});
 		}
 
-		private void Logout()
+	private void Logout()
 		{
 			CurrentSession.PollingTimer.Stop();
 
@@ -236,7 +248,7 @@ namespace LePrAtos.Lobby
 			Settings.Default.SavedUser = null;
 			Settings.Default.Save();
 
-			var loginViewModel = new LoginViewModel {Username = preSelectedUsername};
+			var loginViewModel = new LoginViewModel {UsernameOrMail = preSelectedUsername};
 
 			var loginView = new LoginView(loginViewModel);
 
@@ -250,17 +262,20 @@ namespace LePrAtos.Lobby
 			return SeletedLobby != null && !HasErrors;
 		}
 
-		private async void JoinLobby()
+		private void JoinLobby()
 		{
 			if (SeletedLobby == null) return;
 
-			StopRefresh();
-
-			SeletedLobby.Lobby = (await CurrentSession.Client.joinGameLobbyAsync(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId)).@return;
-
-			new LobbyView(SeletedLobby).Show();
-
-			RequestWindowCloseEvent.Invoke(this, null);
+			BusyRunner.RunAsync(async () =>
+			{
+				StopRefresh();
+				SeletedLobby.Lobby =
+					(await
+						CurrentSession.Client.joinGameLobbyAsync(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId,
+							PasswordHasher.HashPasswort(LobbyPassword))).@return;
+				new LobbyView(SeletedLobby).Show();
+				RequestWindowCloseEvent.Invoke(this, null);
+			}, Strings.LobbyBrowser_WrongLobbyPassword);
 		}
 
 		private async void CreateLobby()

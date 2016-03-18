@@ -5,7 +5,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,42 +22,34 @@ namespace LePrAtos.Infrastructure
 	{
 		#region Session
 
-		private ISession _currentSession;
-
 		/// <summary>
 		///     Die jetzige Instanz der Session
 		/// </summary>
-		public ISession CurrentSession => _currentSession ?? (_currentSession = Container.Resolve<ISession>());
+		public ISession CurrentSession { get; } = Container.Resolve<ISession>();
 
 		#endregion
 
-		/// <summary>
-		///    Sagt aus, ob das ViewModel gerade beschäftigt ist (Bsp. Serverabfrage)
-		/// </summary>
-		public bool IsBusy
-		{
-			get { return _isBusy; }
-			set
-			{
-				if (_isBusy == value)
-				{
-					return;
-				}
-
-				_isBusy = value;
-				OnPropertyChanged();
-			}
-		}
+		#region Container
 
 		/// <summary>
 		///     Der UnityContainer
 		/// </summary>
-		protected static IUnityContainer Container => ContainerProvider.Container;
+		protected static IUnityContainer Container { get; } = ContainerProvider.Container;
+
+		#endregion
+
+		#region BusyRunner
+
+		/// <summary>
+		///     Der UnityContainer
+		/// </summary>
+		public static IBusyRunner BusyRunner { get; } = Container.Resolve<IBusyRunner>();
+
+		#endregion
 
 		#region INotifyDataErrorInfo
 
 		private readonly Dictionary<string, string> _propertyErrors = new Dictionary<string, string>();
-		private bool _isBusy;
 
 		/// <summary>
 		///     Setzt die Fehler einer Property
@@ -119,7 +110,7 @@ namespace LePrAtos.Infrastructure
 
 			string errors;
 			_propertyErrors.TryGetValue(propertyName, out errors);
-			return string.IsNullOrEmpty(errors) ? null :  new List<string> { errors };
+			return string.IsNullOrEmpty(errors) ? null : new List<string> {errors};
 		}
 
 		/// <summary>
@@ -131,7 +122,7 @@ namespace LePrAtos.Infrastructure
 		public bool HasErrors => _propertyErrors.Any(v => v.Value.Any());
 
 		/// <summary>
-		///    Entfernt alle gespeicherten Fehler der Properties. Normalerweise benutzt für Tests
+		///     Entfernt alle gespeicherten Fehler der Properties. Normalerweise benutzt für Tests.
 		/// </summary>
 		public void ResetErrors()
 		{
@@ -149,7 +140,7 @@ namespace LePrAtos.Infrastructure
 
 
 		/// <summary>
-		///     Notifies the GUI, that the Property was changed
+		///     Notifies the GUI, that the Property has changed
 		/// </summary>
 		/// <param name="propertyName">The Property, that changed</param>
 		[NotifyPropertyChangedInvocator]

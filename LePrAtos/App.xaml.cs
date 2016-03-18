@@ -49,6 +49,7 @@ namespace LePrAtos
 			try
 			{
 				Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri($"Themes/{Settings.Default.SelectedTheme}.xaml", UriKind.Relative) });
+				Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("Infrastructure/DefaultResources.xaml", UriKind.Relative) });
 			}
 			catch (Exception)
 			{

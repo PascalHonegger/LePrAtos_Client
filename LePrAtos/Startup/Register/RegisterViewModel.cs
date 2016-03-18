@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -135,7 +134,7 @@ namespace LePrAtos.Startup.Register
 				{
 					errors.Add(Strings.TextValidationRule_MailValid);
 				}
-				else if(!CurrentSession.Client.email_verification(_mailAddress))
+				else if (!CurrentSession.Client.email_verification(_mailAddress))
 				{
 					errors.Add(Strings.TextValidationRule_MailaddressAlreadyTaken);
 				}
@@ -156,43 +155,29 @@ namespace LePrAtos.Startup.Register
 		/// </summary>
 		private void CancelRegister()
 		{
-			var loginViewModel = new LoginViewModel {Username = Username};
+			var loginViewModel = new LoginViewModel {UsernameOrMail = Username};
 
 			new LoginView(loginViewModel).Show();
 
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		private async void Register(PasswordBox passwordBox)
+		private void Register(PasswordBox passwordBox)
 		{
-			IsBusy = true;
-
-			try
+			BusyRunner.RunAsync(async () =>
 			{
 				var response =
 					await
 						CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwordBox.Password));
 
 				var player = Container.Resolve<PlayerViewModel>();
-
 				player.Player = response.@return;
-
 				CurrentSession.Player = player;
 
 				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
-
 				lobbyBrowser.Show();
-
 				RequestWindowCloseEvent.Invoke(this, null);
-			}
-			catch (Exception)
-			{
-				MessageBox.Show(Strings.RegisterView_BadRegister, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Warning);
-			}
-			finally
-			{
-				IsBusy = false;
-			}
+				}, Strings.RegisterView_BadRegister);
 		}
 
 		/// <summary>

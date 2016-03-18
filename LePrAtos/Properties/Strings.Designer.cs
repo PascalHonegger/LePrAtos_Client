@@ -205,6 +205,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_WrongLobbyPassword.
+        /// </summary>
+        public static string LobbyBrowser_WrongLobbyPassword {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_WrongLobbyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyView_ApplySettings.
         /// </summary>
         public static string LobbyView_ApplySettings {
@@ -408,6 +417,15 @@ namespace LePrAtos.Properties {
         public static string RegisterView_Title {
             get {
                 return ResourceManager.GetString("RegisterView_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

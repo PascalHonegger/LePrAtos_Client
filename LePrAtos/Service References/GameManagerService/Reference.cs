@@ -206,6 +206,15 @@ namespace LePrAtos.GameManagerService {
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyPasswordResponse")]
         System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> setGameLobbyPasswordAsync(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request);
         
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/resetGameLobbyPasswordResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.resetGameLobbyPasswordResponse resetGameLobbyPassword(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/resetGameLobbyPasswordResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> resetGameLobbyPasswordAsync(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request);
+        
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/registrationRequest", ReplyAction="http://webservices.org/GameManager/registrationResponse")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -447,6 +456,39 @@ namespace LePrAtos.GameManagerService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="resetGameLobbyPassword", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class resetGameLobbyPasswordRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string playerID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string GameLobbyID;
+        
+        public resetGameLobbyPasswordRequest() {
+        }
+        
+        public resetGameLobbyPasswordRequest(string playerID, string GameLobbyID) {
+            this.playerID = playerID;
+            this.GameLobbyID = GameLobbyID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="resetGameLobbyPasswordResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class resetGameLobbyPasswordResponse {
+        
+        public resetGameLobbyPasswordResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="registration", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
     public partial class registrationRequest {
         
@@ -573,9 +615,9 @@ namespace LePrAtos.GameManagerService {
         
         private string gameLobbyNameField;
         
-        private string gameLobbyPasswordField;
-        
         private playerIdentification[] gamePlayerListField;
+        
+        private bool passwordProtectedField;
         
         private int playerLimitField;
         
@@ -616,19 +658,7 @@ namespace LePrAtos.GameManagerService {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
-        public string gameLobbyPassword {
-            get {
-                return this.gameLobbyPasswordField;
-            }
-            set {
-                this.gameLobbyPasswordField = value;
-                this.RaisePropertyChanged("gameLobbyPassword");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("gamePlayerList", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute("gamePlayerList", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true, Order=3)]
         public playerIdentification[] gamePlayerList {
             get {
                 return this.gamePlayerListField;
@@ -636,6 +666,18 @@ namespace LePrAtos.GameManagerService {
             set {
                 this.gamePlayerListField = value;
                 this.RaisePropertyChanged("gamePlayerList");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public bool passwordProtected {
+            get {
+                return this.passwordProtectedField;
+            }
+            set {
+                this.passwordProtectedField = value;
+                this.RaisePropertyChanged("passwordProtected");
             }
         }
         
@@ -830,12 +872,17 @@ namespace LePrAtos.GameManagerService {
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string GameLobbyID;
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string gameLobbyPassword;
+        
         public joinGameLobbyRequest() {
         }
         
-        public joinGameLobbyRequest(string playerID, string GameLobbyID) {
+        public joinGameLobbyRequest(string playerID, string GameLobbyID, string gameLobbyPassword) {
             this.playerID = playerID;
             this.GameLobbyID = GameLobbyID;
+            this.gameLobbyPassword = gameLobbyPassword;
         }
     }
     
@@ -1123,6 +1170,30 @@ namespace LePrAtos.GameManagerService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LePrAtos.GameManagerService.resetGameLobbyPasswordResponse LePrAtos.GameManagerService.GameManager.resetGameLobbyPassword(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request) {
+            return base.Channel.resetGameLobbyPassword(request);
+        }
+        
+        public void resetGameLobbyPassword(string playerID, string GameLobbyID) {
+            LePrAtos.GameManagerService.resetGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.resetGameLobbyPasswordRequest();
+            inValue.playerID = playerID;
+            inValue.GameLobbyID = GameLobbyID;
+            LePrAtos.GameManagerService.resetGameLobbyPasswordResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).resetGameLobbyPassword(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> LePrAtos.GameManagerService.GameManager.resetGameLobbyPasswordAsync(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request) {
+            return base.Channel.resetGameLobbyPasswordAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> resetGameLobbyPasswordAsync(string playerID, string GameLobbyID) {
+            LePrAtos.GameManagerService.resetGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.resetGameLobbyPasswordRequest();
+            inValue.playerID = playerID;
+            inValue.GameLobbyID = GameLobbyID;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).resetGameLobbyPasswordAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LePrAtos.GameManagerService.registrationResponse LePrAtos.GameManagerService.GameManager.registration(LePrAtos.GameManagerService.registrationRequest request) {
             return base.Channel.registration(request);
         }
@@ -1304,10 +1375,11 @@ namespace LePrAtos.GameManagerService {
             return base.Channel.joinGameLobby(request);
         }
         
-        public LePrAtos.GameManagerService.gameLobby joinGameLobby(string playerID, string GameLobbyID) {
+        public LePrAtos.GameManagerService.gameLobby joinGameLobby(string playerID, string GameLobbyID, string gameLobbyPassword) {
             LePrAtos.GameManagerService.joinGameLobbyRequest inValue = new LePrAtos.GameManagerService.joinGameLobbyRequest();
             inValue.playerID = playerID;
             inValue.GameLobbyID = GameLobbyID;
+            inValue.gameLobbyPassword = gameLobbyPassword;
             LePrAtos.GameManagerService.joinGameLobbyResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).joinGameLobby(inValue);
             return retVal.@return;
         }
@@ -1317,10 +1389,11 @@ namespace LePrAtos.GameManagerService {
             return base.Channel.joinGameLobbyAsync(request);
         }
         
-        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.joinGameLobbyResponse> joinGameLobbyAsync(string playerID, string GameLobbyID) {
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.joinGameLobbyResponse> joinGameLobbyAsync(string playerID, string GameLobbyID, string gameLobbyPassword) {
             LePrAtos.GameManagerService.joinGameLobbyRequest inValue = new LePrAtos.GameManagerService.joinGameLobbyRequest();
             inValue.playerID = playerID;
             inValue.GameLobbyID = GameLobbyID;
+            inValue.gameLobbyPassword = gameLobbyPassword;
             return ((LePrAtos.GameManagerService.GameManager)(this)).joinGameLobbyAsync(inValue);
         }
         

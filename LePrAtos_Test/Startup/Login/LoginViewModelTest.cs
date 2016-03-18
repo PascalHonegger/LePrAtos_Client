@@ -22,7 +22,7 @@ namespace LePrAtos_Test.Startup.Login
 		public async Task TestLoginWithUsername()
 		{
 			// Arrange
-			UnitUnderTest.Username = "test";
+			UnitUnderTest.UsernameOrMail = "test";
 
 			// Act
 			await UnitUnderTest.LoginUser("passwort");

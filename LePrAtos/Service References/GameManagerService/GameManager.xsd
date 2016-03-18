@@ -24,6 +24,8 @@
   <xs:element name="logoutResponse" type="tns:logoutResponse" />
   <xs:element name="registration" type="tns:registration" />
   <xs:element name="registrationResponse" type="tns:registrationResponse" />
+  <xs:element name="resetGameLobbyPassword" type="tns:resetGameLobbyPassword" />
+  <xs:element name="resetGameLobbyPasswordResponse" type="tns:resetGameLobbyPasswordResponse" />
   <xs:element name="setGameLobbyName" type="tns:setGameLobbyName" />
   <xs:element name="setGameLobbyNameResponse" type="tns:setGameLobbyNameResponse" />
   <xs:element name="setGameLobbyPassword" type="tns:setGameLobbyPassword" />
@@ -100,6 +102,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="playerID" type="xs:string" />
       <xs:element minOccurs="0" name="GameLobbyID" type="xs:string" />
+      <xs:element minOccurs="0" name="gameLobbyPassword" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="joinGameLobbyResponse">
@@ -112,8 +115,8 @@
       <xs:element minOccurs="0" name="gameLobbyAdmin" type="tns:playerIdentification" />
       <xs:element minOccurs="0" name="gameLobbyID" type="xs:string" />
       <xs:element minOccurs="0" name="gameLobbyName" type="xs:string" />
-      <xs:element minOccurs="0" name="gameLobbyPassword" type="xs:string" />
       <xs:element minOccurs="0" maxOccurs="unbounded" name="gamePlayerList" nillable="true" type="tns:playerIdentification" />
+      <xs:element name="passwordProtected" type="xs:boolean" />
       <xs:element name="playerLimit" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
@@ -160,6 +163,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="setPlayerStatusResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="resetGameLobbyPassword">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="playerID" type="xs:string" />
+      <xs:element minOccurs="0" name="GameLobbyID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="resetGameLobbyPasswordResponse">
     <xs:sequence />
   </xs:complexType>
   <xs:complexType name="setGameLobbyPassword">

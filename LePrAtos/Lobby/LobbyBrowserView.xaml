@@ -13,7 +13,7 @@
 	<Window.InputBindings>
 		<KeyBinding Command="{Binding RefreshViewCommand}" Key="F5" />
 	</Window.InputBindings>
-	<xctk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{x:Static properties:Strings.Loading}" >
+	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static properties:Strings.Loading}" >
 		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
@@ -79,7 +79,7 @@
 								  VerticalAlignment="Stretch" SelectionMode="Single" IsFixedHeadersHost="False"
 								  IsFixedFootersHost="False">
 				<xcdg:DataGridControl.ItemContainerStyle>
-					<Style TargetType="{x:Type xcdg:Row}" BasedOn="{StaticResource {x:Type xcdg:Row}}">
+					<Style TargetType="{x:Type xcdg:Row}" >
 						<EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick" />
 					</Style>
 				</xcdg:DataGridControl.ItemContainerStyle>
@@ -114,7 +114,7 @@
 					<xcdg:Column Width="*" FieldName="HasPassword" Title="{x:Static properties:Strings.Password}"
 								 ReadOnly="True">
 						<xcdg:Column.DisplayMemberBindingInfo>
-							<xcdg:DataGridBindingInfo Path="IsPasswordProtected" />
+							<xcdg:DataGridBindingInfo Path="PasswordProtected" />
 						</xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:Column.CellContentTemplate>
 							<DataTemplate>

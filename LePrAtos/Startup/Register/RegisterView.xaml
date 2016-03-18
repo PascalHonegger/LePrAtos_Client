@@ -10,7 +10,7 @@
         Title="{x:Static properties:Strings.RegisterView_Register}" Height="250" Width="400"
         d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-	<xctk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{x:Static properties:Strings.Loading}" >
+	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static properties:Strings.Loading}" >
 		<Grid FocusManager.FocusedElement="{Binding ElementName=Username}" Margin="5">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />

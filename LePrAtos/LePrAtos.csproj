@@ -33,7 +33,7 @@
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.10.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -176,7 +176,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\InvertBooleanConverter.cs" />
+    <Compile Include="Infrastructure\BusyRunner.cs" />
     <Compile Include="Infrastructure\Extensions\StringExtension.cs" />
+    <Compile Include="Infrastructure\IBusyRunner.cs" />
     <Compile Include="Infrastructure\ISession.cs" />
     <Compile Include="Infrastructure\IViewModel.cs" />
     <Compile Include="Lobby\LobbyBrowserView.xaml.cs">
@@ -416,6 +418,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.registrationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.resetGameLobbyPasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GameManagerService\LePrAtos.GameManagerService.setGameLobbyNameResponse.datasource">

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="{Binding LobbyName}" d:DataContext="{d:DesignInstance local:LobbyViewModel}"
         WindowStartupLocation="CenterScreen" Closing="LobbyView_OnClosing">
-	<xctk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{x:Static properties:Strings.Loading}">
+	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static properties:Strings.Loading}">
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="2*" />

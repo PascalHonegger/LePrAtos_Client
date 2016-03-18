@@ -258,4 +258,10 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LoginView_ApplyOnRestart" xml:space="preserve">
     <value>Wird beim nächsten Start der Applikation angewandt</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
+    <value>Falsches Lobby Passwort!</value>
+  </data>
 </root>

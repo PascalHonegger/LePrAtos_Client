@@ -255,4 +255,10 @@
   <data name="LoginView_ApplyOnRestart" xml:space="preserve">
     <value>Wird bim nächste Start vo de Applikation aahgwandt</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Iistellige</value>
+  </data>
+  <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
+    <value>Falsches Lobby Passwort!</value>
+  </data>
 </root>

@@ -4,15 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
@@ -32,14 +28,14 @@ namespace LePrAtos.Startup.Login
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private ICommand _registerCommand;
-		private string _username;
+		private string _usernameOrMail;
 
 		/// <summary>
 		///     Setzt die Standardwerte der Properties und führt somit die Validierung aus.
 		/// </summary>
 		public LoginViewModel()
 		{
-			Username = string.Empty;
+			UsernameOrMail = string.Empty;
 		}
 
 		/// <summary>
@@ -115,7 +111,7 @@ namespace LePrAtos.Startup.Login
 
 				var loginViewModel = new LoginViewModel
 				{
-					Username = Username,
+					UsernameOrMail = UsernameOrMail,
 					SaveLogin = SaveLogin
 				};
 
@@ -128,26 +124,16 @@ namespace LePrAtos.Startup.Login
 		/// <summary>
 		///     Benutzername
 		/// </summary>
-		public string Username
+		public string UsernameOrMail
 		{
-			get { return _username; }
+			get { return _usernameOrMail; }
 			set
 			{
-				if (Equals(value, _username)) return;
+				if (Equals(value, _usernameOrMail)) return;
 
-				_username = value;
+				_usernameOrMail = value;
 
-				var errors = new List<string>();
-
-				if (string.IsNullOrEmpty(_username) ||
-					_username.Length > RegisterViewModel.UsernameMaxLength ||
-				    _username.Length < RegisterViewModel.UsernameMinLength)
-				{
-					errors.Add(string.Format(Strings.TextValidationRule_Length, RegisterViewModel.UsernameMinLength,
-						RegisterViewModel.UsernameMaxLength));
-				}
-
-				SetErrorForProperty(errors);
+				SetErrorForProperty(string.IsNullOrEmpty(_usernameOrMail) ? Strings.TextValidationRule_Mandatory : null);
 
 				OnPropertyChanged();
 			}
@@ -191,20 +177,14 @@ namespace LePrAtos.Startup.Login
 
 		private void Register()
 		{
-			var registerView = new RegisterView(new RegisterViewModel {Username = Username});
+			var registerView = new RegisterView(new RegisterViewModel {Username = UsernameOrMail});
 			registerView.Show();
 			RequestWindowCloseEvent.Invoke(this, null);
 		}
 
-		/// <summary>
-		///     Meldet den User an. Zeigte eine MessageBox im Fehlerfall an
-		/// </summary>
-		/// <param name="box">Das zu verwendende Passwort</param>
-		private async void Login(PasswordBox box)
+		private void Login(PasswordBox box)
 		{
-			IsBusy = true;
-
-			try
+			BusyRunner.RunAsync(async () =>
 			{
 				await LoginUser(box.Password);
 
@@ -213,15 +193,7 @@ namespace LePrAtos.Startup.Login
 				lobbyBrowser.Show();
 
 				RequestWindowCloseEvent.Invoke(this, null);
-			}
-			catch (Exception)
-			{
-				MessageBox.Show(Strings.LoginView_BadLogin, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-			}
-			finally
-			{
-				IsBusy = false;
-			}
+			}, Strings.LoginView_BadLogin);
 		}
 
 		/// <summary>
@@ -230,7 +202,7 @@ namespace LePrAtos.Startup.Login
 		/// <param name="password">Das zu verwendende Passwort</param>
 		public async Task LoginUser(string password)
 		{
-			var response = await CurrentSession.Client.loginAsync(Username, PasswordHasher.HashPasswort(password));
+			var response = await CurrentSession.Client.loginAsync(UsernameOrMail, PasswordHasher.HashPasswort(password));
 
 			var player = Container.Resolve<PlayerViewModel>();
 

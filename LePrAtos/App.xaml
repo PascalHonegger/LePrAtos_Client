@@ -9,9 +9,6 @@
              Exit="App_OnExit" DispatcherUnhandledException="App_OnDispatcherUnhandledException">
 	<Application.Resources>
 		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="Infrastructure/DefaultResources.xaml"/>
-			</ResourceDictionary.MergedDictionaries>
 			<BooleanToVisibilityConverter x:Key="BoolToVis" />
 			<converter:InvertBooleanConverter x:Key="InvertBool" />
 		</ResourceDictionary>

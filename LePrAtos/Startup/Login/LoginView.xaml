@@ -6,11 +6,11 @@
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
         xmlns:localization="clr-namespace:LePrAtos.Properties"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        mc:Ignorable="d" ResizeMode="CanResizeWithGrip"
+        mc:Ignorable="d" ResizeMode="NoResize"
         Title="{x:Static localization:Strings.LoginView_Login}" Height="200" Width="600"
         d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
 
-	<xctk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{x:Static localization:Strings.Loading}" >
+	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static localization:Strings.Loading}" >
 		<Grid Margin="5" DockPanel.Dock="Bottom" FocusManager.FocusedElement="{Binding ElementName=Username}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
@@ -42,11 +42,11 @@
 			</Grid.Resources>
 			
 			<!-- Login -->
-			<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="TODO Login"/>
+			<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static localization:Strings.LoginView_Login}" TextAlignment="Center"/>
 
 			<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
 		       Content="{x:Static localization:Strings.LoginView_UsernameOrMail}" />
-			<TextBox Grid.Column="1" Grid.Row="1" TabIndex="0" x:Name="Username" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextChanged" />
+			<TextBox Grid.Column="1" Grid.Row="1" TabIndex="0" x:Name="Username" Text="{Binding UsernameOrMail, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextChanged" />
 
 			<Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}"
 		       Content="{x:Static localization:Strings.Password}" />
@@ -63,7 +63,7 @@
 		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" IsDefault="True" />
 
 			<!-- Settings -->
-			<TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="TODO Settings"/>
+			<TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="{x:Static localization:Strings.Settings}" TextAlignment="Center"/>
 
 			<Label Target="{Binding ElementName=LanguageSelector}" Grid.Row="1" Grid.Column="3"
 			    Content="{x:Static localization:Strings.LoginView_Language}" />

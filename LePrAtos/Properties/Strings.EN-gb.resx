@@ -258,4 +258,10 @@ Please send the following info to the support!
   <data name="LoginView_ApplyOnRestart" xml:space="preserve">
     <value>Will apply on application restart</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
+    <value>Wrong lobby password!</value>
+  </data>
 </root>
