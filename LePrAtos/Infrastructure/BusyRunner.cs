@@ -16,7 +16,6 @@ namespace LePrAtos.Infrastructure
 	///     Standardimplementation des BusyRunners
 	/// </summary>
 	[Export(typeof(IBusyRunner))]
-	[PartCreationPolicy(CreationPolicy.Shared)]
 	public sealed class BusyRunner : IBusyRunner
 	{
 		private bool _isBusy;

@@ -3,7 +3,9 @@
 // Author: Honegger, Pascal (ext)
 
 using LePrAtos.Infrastructure;
+using Microsoft.Practices.Unity;
 using NUnit.Framework;
+using UnityContainer;
 
 namespace LePrAtos_Test.Infrastructure
 {
@@ -11,6 +13,19 @@ namespace LePrAtos_Test.Infrastructure
 	public abstract class UnitTestBase<T>
 	{
 		protected T UnitUnderTest;
+
+		protected IUnityContainer Container;
+
+		[OneTimeSetUp]
+		public void OneTimeSetup()
+		{
+			//Load Unity
+			ContainerProvider.ResetForUnitTestingPurposesOnly();
+			Container = ContainerProvider.Container;
+
+			Container.RegisterType<ISession, Session>();
+			Container.RegisterType<IBusyRunner, BusyRunner>();
+		}
 
 		[SetUp]
 		public void SetUp()

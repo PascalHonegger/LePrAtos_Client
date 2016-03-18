@@ -7,6 +7,7 @@ using System.ComponentModel.Composition;
 using System.Timers;
 using LePrAtos.GameManagerService;
 using LePrAtos.Service_References;
+using UnityContainer;
 
 namespace LePrAtos.Infrastructure
 {
@@ -20,6 +21,20 @@ namespace LePrAtos.Infrastructure
 	{
 		private const int PollingInterval = 2000;
 		private string _endpointconfiguration;
+
+		/// <summary>
+		///     Setzt den <see cref="PollingTimer"/>
+		/// </summary>
+		public Session()
+		{
+			PollingTimer = new Timer(PollingInterval);
+
+			ContainerProvider.ContainerReset += () =>
+			{
+				Player = null;
+				PollingTimer?.Stop();
+			};
+		}
 
 		/// <summary>
 		///     Die gewählte Endpunktkonfiguration
@@ -50,7 +65,7 @@ namespace LePrAtos.Infrastructure
 		/// <summary>
 		///     Der Timer, welcher allen Services sagt, dass sie erneut daten vom Server laden sollten
 		/// </summary>
-		public Timer PollingTimer { get; } = new Timer(PollingInterval);
+		public Timer PollingTimer { get; }
 
 		/// <summary>
 		/// Führt anwendungsspezifische Aufgaben durch, die mit der Freigabe, der Zurückgabe oder dem Zurücksetzen von nicht verwalteten Ressourcen zusammenhängen.
