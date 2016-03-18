@@ -18,7 +18,7 @@ namespace LePrAtos.Infrastructure
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	public sealed class Session : ISession
 	{
-		private const int PollingInterval = 10000;
+		private const int PollingInterval = 2000;
 		private string _endpointconfiguration;
 
 		/// <summary>

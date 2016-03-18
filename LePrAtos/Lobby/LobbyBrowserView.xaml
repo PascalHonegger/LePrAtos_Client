@@ -108,7 +108,7 @@
 					<xcdg:Column Width="*" FieldName="PlayerLimit" Title="{x:Static properties:Strings.LobbyBrowser_MaxPlayers}"
 								 ReadOnly="True">
 						<xcdg:Column.DisplayMemberBindingInfo>
-							<xcdg:DataGridBindingInfo Path="PlayerLimit" />
+							<xcdg:DataGridBindingInfo ReadOnly="True" Path="PlayerLimit" />
 						</xcdg:Column.DisplayMemberBindingInfo>
 					</xcdg:Column>
 					<xcdg:Column Width="*" FieldName="HasPassword" Title="{x:Static properties:Strings.Password}"

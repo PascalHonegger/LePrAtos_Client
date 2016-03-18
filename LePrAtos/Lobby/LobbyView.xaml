@@ -70,11 +70,8 @@
 
 				<Label Grid.Column="0" Grid.Row="2" Content="{x:Static properties:Strings.Password}"
 				       Target="{Binding ElementName=LobbyPassword}" />
-				<DockPanel Grid.Column="1" Grid.Row="2">
-					<xctk:WatermarkTextBox Name="LobbyPassword" Text="{Binding NewLobbyPassword, UpdateSourceTrigger=PropertyChanged}"
+				<xctk:WatermarkTextBox Grid.Row="2" Grid.Column="1" Name="LobbyPassword" Text="{Binding NewLobbyPassword, UpdateSourceTrigger=PropertyChanged}"
 				                       Watermark="{Binding PasswordDisplayValue}" DockPanel.Dock="Top"/>
-					<Button DockPanel.Dock="Bottom" Content="{x:Static properties:Strings.LobbyView_RemovePassword}" Command="{Binding RemovePasswordCommand}"/>
-				</DockPanel>
 
 				<Label Grid.Column="0" Grid.Row="3" Content="{x:Static properties:Strings.LobbyBrowser_MaxPlayers}"
 				       Target="{Binding ElementName=LobbyMax}" />

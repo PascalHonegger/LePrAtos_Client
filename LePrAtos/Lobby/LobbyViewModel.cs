@@ -33,7 +33,6 @@ namespace LePrAtos.Lobby
 		private string _newLobbyPassword;
 		private int _newPlayerLimit;
 		private int _playerLimit;
-		private DelegateCommand _removePasswordCommand;
 		private DelegateCommand _startGameCommand;
 		private DelegateCommand _updateSettingsCommand;
 
@@ -42,8 +41,8 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public LobbyViewModel()
 		{
-			// ReSharper disable once ExplicitCallerInfoArgument
 			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); };
+			ErrorsChanged += (sender, e) => UpdateSettingsCommand.RaiseCanExecuteChanged();
 			StartUpdate();
 		}
 
@@ -123,12 +122,6 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public DelegateCommand UpdateSettingsCommand
 			=> _updateSettingsCommand ?? (_updateSettingsCommand = new DelegateCommand(UpdateSettings, CanUpdateSettings));
-
-		/// <summary>
-		///     Command zum übernehmen der neu gesetzten Einstellungen für die Lobby
-		/// </summary>
-		public DelegateCommand RemovePasswordCommand
-			=> _removePasswordCommand ?? (_removePasswordCommand = new DelegateCommand(RemovePassword, CanRemovePassword));
 
 		/// <summary>
 		///     Die vom Server stammende Lobby
@@ -245,27 +238,6 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
 
-		private bool CanRemovePassword()
-		{
-			throw new NotImplementedException();
-		}
-
-		private async void RemovePassword()
-		{
-			IsBusy = true;
-
-			try
-			{
-				await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, string.Empty);
-
-				await Refresh();
-			}
-			finally
-			{
-				IsBusy = false;
-			}
-		}
-
 		private void StartUpdate()
 		{
 			CurrentSession.PollingTimer.Elapsed += PollingTimerOnElapsed;
@@ -300,10 +272,7 @@ namespace LePrAtos.Lobby
 					await CurrentSession.Client.setGameLobbyNameAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyName);
 				}
 
-				if (!string.IsNullOrEmpty(NewLobbyPassword))
-				{
-					await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyPassword);
-				}
+				await CurrentSession.Client.setGameLobbyPasswordAsync(CurrentSession.Player.PlayerId, LobbyId, NewLobbyPassword);
 
 				if (!Equals(NewPlayerLimit, PlayerLimit))
 				{
@@ -320,7 +289,7 @@ namespace LePrAtos.Lobby
 
 		private bool CanUpdateSettings()
 		{
-			return CurrentSession.Player.IsLeader;
+			return CurrentSession.Player.IsLeader && !HasErrors;
 		}
 
 		private bool CanStartGame()
