@@ -84,7 +84,7 @@
 			</ComboBox>
 
 			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="2" Grid.Column="3"
-			    Content="TODO Theme" />
+			    Content="{x:Static localization:Strings.LoginView_Theme}" />
 			<ComboBox TabIndex="5" Name="ThemeSelector" Grid.Row="2" Grid.Column="4"
 			        ItemsSource="{Binding PossibleThemes}" SelectedItem="{Binding SelectedTheme}" ToolTip="{x:Static localization:Strings.LoginView_ApplyOnRestart}"/>
 			

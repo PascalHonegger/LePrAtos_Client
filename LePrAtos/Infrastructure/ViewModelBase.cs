@@ -80,9 +80,9 @@ namespace LePrAtos.Infrastructure
 		}
 
 		/// <summary>
-		///     Setzt die Fehler einer Property
+		///     Setzt den Fehler einer Property
 		/// </summary>
-		/// <param name="error">Die zu setzenden Fehler</param>
+		/// <param name="error">Der zu setzenden Fehler</param>
 		/// <param name="property">Das Property, bei welchem die Fehler gesetzt werden</param>
 		protected void SetErrorForProperty(string error, [CallerMemberName] string property = null)
 		{
@@ -120,14 +120,6 @@ namespace LePrAtos.Infrastructure
 		///     true, wenn die Entität derzeit Validierungsfehler aufweist, andernfalls false.
 		/// </returns>
 		public bool HasErrors => _propertyErrors.Any(v => v.Value.Any());
-
-		/// <summary>
-		///     Entfernt alle gespeicherten Fehler der Properties. Normalerweise benutzt für Tests.
-		/// </summary>
-		public void ResetErrors()
-		{
-			_propertyErrors.Clear();
-		}
 
 		#endregion
 

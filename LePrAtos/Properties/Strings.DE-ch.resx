@@ -261,4 +261,10 @@
   <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
     <value>Falsches Lobby Passwort!</value>
   </data>
+  <data name="LobbyView_LimitLowerThanCount" xml:space="preserve">
+    <value>S'neue Limit isch tüüfer als d'aahzahl Mitgliider! Entfern Mitspieler, um s'Limit z'senken.</value>
+  </data>
+  <data name="LoginView_Theme" xml:space="preserve">
+    <value>Theme (Bruucht en Neustart)</value>
+  </data>
 </root>

@@ -264,4 +264,10 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
     <value>Falsches Lobby Passwort!</value>
   </data>
+  <data name="LobbyView_LimitLowerThanCount" xml:space="preserve">
+    <value>Das neue Limit ist tiefer als die anzahl Mitglieder! Entferne Mitspieler, um das Limit zu senken.</value>
+  </data>
+  <data name="LoginView_Theme" xml:space="preserve">
+    <value>Theme (Benötigt Neustart)</value>
+  </data>
 </root>

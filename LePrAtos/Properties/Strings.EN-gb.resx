@@ -264,4 +264,10 @@ Please send the following info to the support!
   <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
     <value>Wrong lobby password!</value>
   </data>
+  <data name="LobbyView_LimitLowerThanCount" xml:space="preserve">
+    <value>The new limit is lower than the amount of members! Kick someone to lower the limit.</value>
+  </data>
+  <data name="LoginView_Theme" xml:space="preserve">
+    <value>Theme (Requires Restart)</value>
+  </data>
 </root>

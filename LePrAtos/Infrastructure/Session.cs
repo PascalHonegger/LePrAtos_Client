@@ -15,7 +15,7 @@ namespace LePrAtos.Infrastructure
 	///     Diese Klasse enthält informationen zur jetzigen Session, wie beispielsweise die
 	///     <see cref="Endpointconfiguration" />
 	/// </summary>
-	[Export(typeof (ISession))]
+	[Export(typeof(ISession))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	public sealed class Session : ISession
 	{
@@ -23,7 +23,7 @@ namespace LePrAtos.Infrastructure
 		private string _endpointconfiguration;
 
 		/// <summary>
-		///     Setzt den <see cref="PollingTimer"/>
+		///     Setzt den <see cref="PollingTimer" />
 		/// </summary>
 		public Session()
 		{
@@ -65,13 +65,24 @@ namespace LePrAtos.Infrastructure
 		/// <summary>
 		///     Der Timer, welcher allen Services sagt, dass sie erneut daten vom Server laden sollten
 		/// </summary>
-		public Timer PollingTimer { get; }
+		public Timer PollingTimer { get; private set; }
 
 		/// <summary>
-		/// Führt anwendungsspezifische Aufgaben durch, die mit der Freigabe, der Zurückgabe oder dem Zurücksetzen von nicht verwalteten Ressourcen zusammenhängen.
+		///     Führt anwendungsspezifische Aufgaben durch, die mit der Freigabe, der Zurückgabe oder dem Zurücksetzen von nicht
+		///     verwalteten Ressourcen zusammenhängen.
+		/// </summary>
+		/// <filterpriority>2</filterpriority>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		///     Führt anwendungsspezifische Aufgaben durch, die mit der Freigabe, der Zurückgabe oder dem Zurücksetzen von nicht
+		///     verwalteten Ressourcen zusammenhängen.
 		/// </summary>
 		/// <param name="disposing">Boolean ob Managed oder Native Resources freigegeben werden.</param>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "<PollingTimer>k__BackingField", Justification = "Code Analysis Rule CA2213 DisposableFieldsShouldBeDisposed doesn't understand read only auto properties being disposed. ")]
 		private void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -81,18 +92,21 @@ namespace LePrAtos.Infrastructure
 
 			// free native resources
 
-			PollingTimer.Dispose();
-			Client.Close();
+			PollingTimer?.Dispose();
+			PollingTimer = null;
+			Client?.Close();
+			Client = null;
+			Player = null;
+			_endpointconfiguration = null;
 		}
 
 		/// <summary>
-		/// Führt anwendungsspezifische Aufgaben durch, die mit der Freigabe, der Zurückgabe oder dem Zurücksetzen von nicht verwalteten Ressourcen zusammenhängen.
+		///     Gibt einem Objekt Gelegenheit zu dem Versuch, Ressourcen freizugeben und andere Bereinigungen durchzuführen,
+		///     bevor es von der Garbage Collection freigegeben wird.
 		/// </summary>
-		/// <filterpriority>2</filterpriority>
-		public void Dispose()
+		~Session()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+			Dispose(false);
 		}
 	}
 }

@@ -261,4 +261,10 @@
   <data name="LobbyBrowser_WrongLobbyPassword" xml:space="preserve">
     <value>LobbyBrowser_WrongLobbyPassword</value>
   </data>
+  <data name="LobbyView_LimitLowerThanCount" xml:space="preserve">
+    <value>LobbyView_LimitLowerThanCount</value>
+  </data>
+  <data name="LoginView_Theme" xml:space="preserve">
+    <value>LoginView_Theme</value>
+  </data>
 </root>

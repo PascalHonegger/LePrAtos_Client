@@ -103,7 +103,7 @@ namespace LePrAtos.Lobby
 		public bool PasswordProtected
 		{
 			get { return _passwordProtected; }
-			set
+			private set
 			{
 				if (Equals(value, _passwordProtected)) return;
 				_passwordProtected = value;
@@ -144,12 +144,14 @@ namespace LePrAtos.Lobby
 					return;
 				}
 
+				//Apply general settings
 				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
 				PlayerLimit = _lobby.playerLimit;
 				PasswordProtected = _lobby.passwordProtected;
 
+				//Load new Members
 				Members.Clear();
 
 				PlayerViewModel admin;
@@ -189,6 +191,9 @@ namespace LePrAtos.Lobby
 					playerViewModel.IsLeader = false;
 					Members.Add(playerViewModel);
 				}
+
+				//Validate
+				ValidateNewValuesStillValid();
 			}
 		}
 
@@ -207,8 +212,18 @@ namespace LePrAtos.Lobby
 			{
 				if (Equals(_newPlayerLimit, value)) return;
 				_newPlayerLimit = value;
+
+				ValidateNewValuesStillValid();
+
 				OnPropertyChanged();
 			}
+		}
+
+		private void ValidateNewValuesStillValid()
+		{
+			SetErrorForProperty(NewPlayerLimit < Members.Count ? Strings.LobbyView_LimitLowerThanCount : string.Empty, nameof(NewPlayerLimit));
+
+			UpdateSettingsCommand.RaiseCanExecuteChanged();
 		}
 
 		/// <summary>

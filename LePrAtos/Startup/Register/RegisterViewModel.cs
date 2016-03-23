@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
@@ -27,12 +27,12 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Die Maximallänge des <see cref="Username" />
 		/// </summary>
-		public const int UsernameMaxLength = 30;
+		private const int UsernameMaxLength = 30;
 
 		/// <summary>
 		///     Die Minimallänge des <see cref="Username" />
 		/// </summary>
-		public const int UsernameMinLength = 3;
+		private const int UsernameMinLength = 3;
 
 		/// <summary>
 		///     Die Minimallänge des Passworts
@@ -166,13 +166,7 @@ namespace LePrAtos.Startup.Register
 		{
 			BusyRunner.RunAsync(async () =>
 			{
-				var response =
-					await
-						CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwordBox.Password));
-
-				var player = Container.Resolve<PlayerViewModel>();
-				player.Player = response.@return;
-				CurrentSession.Player = player;
+				await RegisterUser(passwordBox.Password);
 
 				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 				lobbyBrowser.Show();
@@ -193,6 +187,22 @@ namespace LePrAtos.Startup.Register
 				Equals(password, repeatPassword) &&
 				password.Length <= PasswordMaxLength &&
 				password.Length >= PasswordMinLength;
+		}
+
+		/// <summary>
+		/// TODO
+		/// </summary>
+		/// <param name="passwort"></param>
+		/// <returns></returns>
+		public async Task RegisterUser(string passwort)
+		{
+			var response =
+					await
+						CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwort));
+
+			var player = Container.Resolve<PlayerViewModel>();
+			player.Player = response.@return;
+			CurrentSession.Player = player;
 		}
 	}
 }

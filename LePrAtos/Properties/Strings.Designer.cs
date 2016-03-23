@@ -232,6 +232,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyView_LimitLowerThanCount.
+        /// </summary>
+        public static string LobbyView_LimitLowerThanCount {
+            get {
+                return ResourceManager.GetString("LobbyView_LimitLowerThanCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyView_LobbyPassword.
         /// </summary>
         public static string LobbyView_LobbyPassword {
@@ -354,6 +363,15 @@ namespace LePrAtos.Properties {
         public static string LoginView_SaveLogin {
             get {
                 return ResourceManager.GetString("LoginView_SaveLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LoginView_Theme.
+        /// </summary>
+        public static string LoginView_Theme {
+            get {
+                return ResourceManager.GetString("LoginView_Theme", resourceCulture);
             }
         }
         

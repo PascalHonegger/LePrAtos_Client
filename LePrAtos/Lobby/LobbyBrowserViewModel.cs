@@ -7,9 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
-using LePrAtos.GameManagerService;
 using LePrAtos.Infrastructure;
 using LePrAtos.Properties;
 using LePrAtos.Startup.Login;
@@ -17,7 +15,6 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
 using LePrAtos.Infrastructure.Extensions;
 using LePrAtos.Startup;
-using Exception = System.Exception;
 
 namespace LePrAtos.Lobby
 {
@@ -54,19 +51,6 @@ namespace LePrAtos.Lobby
 			foreach (var lobby in _availableLobbies.Where(l => Equals(l, SeletedLobby) != ignoreSelectedLobby))
 			{
 				lobby.StopUpdate();
-			}
-		}
-
-		/// <summary>
-		///     Entscheidet, ob die Lobbies neue Daten vom Server laden
-		/// </summary>
-		private void StartRefresh()
-		{
-			StopRefresh(false);
-
-			foreach (var lobby in _availableLobbies)
-			{
-				lobby.StartUpdate();
 			}
 		}
 

@@ -114,7 +114,7 @@
 					<xcdg:Column Width="*" FieldName="HasPassword" Title="{x:Static properties:Strings.Password}"
 								 ReadOnly="True">
 						<xcdg:Column.DisplayMemberBindingInfo>
-							<xcdg:DataGridBindingInfo Path="PasswordProtected" />
+							<xcdg:DataGridBindingInfo ReadOnly="True" Path="PasswordProtected" />
 						</xcdg:Column.DisplayMemberBindingInfo>
 						<xcdg:Column.CellContentTemplate>
 							<DataTemplate>

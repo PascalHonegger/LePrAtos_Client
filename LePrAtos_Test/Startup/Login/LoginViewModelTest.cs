@@ -18,7 +18,7 @@ namespace LePrAtos_Test.Startup.Login
 			UnitUnderTest = new LoginViewModel();
 		}
 
-		[Test, Ignore("Datenbankanbidnugn berücksichtig den Standarduser noch nicht")]
+		[Test, Ignore("Datenbankanbindugn berücksichtig den Standarduser noch nicht")]
 		public async Task TestLoginWithUsername()
 		{
 			// Arrange

@@ -2,29 +2,38 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using System;
+using System.Threading.Tasks;
 using LePrAtos.Startup.Login;
+using LePrAtos.Startup.Register;
 using LePrAtos_Test.Infrastructure;
 using NUnit.Framework;
 
 namespace LePrAtos_Test.Startup.Register
 {
-	public class RegisterViewModelText : IntegrationTestBase<LoginViewModel>
+	public class RegisterViewModelText : IntegrationTestBase<RegisterViewModel>
 	{
 		protected override void DoSetup()
 		{
-			UnitUnderTest = new LoginViewModel();
+			UnitUnderTest = new RegisterViewModel();
 		}
 
-		[Test]
-		//TODO Pascal
-		public void TestRegister()
+		[Test, Ignore("Name und Mail sind noch nicht garantiert frei")]
+		public async Task TestRegister()
 		{
 			// Arrange
 
+			while (!UnitUnderTest.CanRegister("passwort", "password"))
+			{
+				UnitUnderTest.Username = "TODO Not taken Username";
+				UnitUnderTest.MailAddress = "TODONot@taken.Email";
+			}
+
 			// Act
+			await UnitUnderTest.RegisterUser("passwort");
 
 			// Assert
-			Assert.That(true, Is.True);
+			Assert.That(UnitUnderTest.CurrentSession.Player, Is.Not.Null);
 		}
 	}
 }
