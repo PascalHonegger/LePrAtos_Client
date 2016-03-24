@@ -52,31 +52,17 @@ namespace LePrAtos.Startup.Register
 		private static readonly Regex MailRegex = new Regex(MailPattern);
 
 		private ICommand _cancelCommand;
-		private string _mailAddress;
+		private string _mailAddress = string.Empty;
 		private DelegateCommand<PasswordBox> _registerCommand;
-		private string _username;
-
-		/// <summary>
-		///     Setzt die Standardwerte der Properties und führt somit die Validierung aus.
-		/// </summary>
-		public RegisterViewModel()
-		{
-			Username = string.Empty;
-			MailAddress = string.Empty;
-		}
+		private string _username = string.Empty;
 
 		/// <summary>
 		///     Der Benutzername für das Login und die Anzeige
 		/// </summary>
 		public string Username
 		{
-			get { return _username; }
-			set
+			get
 			{
-				if (Equals(value, _username)) return;
-
-				_username = value;
-
 				var errors = new List<string>();
 
 				if (_username.Length > UsernameMaxLength || _username.Length < UsernameMinLength)
@@ -95,6 +81,14 @@ namespace LePrAtos.Startup.Register
 				}
 
 				SetErrorForProperty(errors);
+
+				return _username;
+			}
+			set
+			{
+				if (Equals(value, _username)) return;
+
+				_username = value;
 
 				OnPropertyChanged();
 			}
@@ -121,13 +115,8 @@ namespace LePrAtos.Startup.Register
 		/// </summary>
 		public string MailAddress
 		{
-			get { return _mailAddress; }
-			set
+			get
 			{
-				if (Equals(value, _mailAddress)) return;
-
-				_mailAddress = value;
-
 				var errors = new List<string>();
 
 				if (!MailRegex.IsMatch(_mailAddress))
@@ -140,6 +129,14 @@ namespace LePrAtos.Startup.Register
 				}
 
 				SetErrorForProperty(errors);
+
+				return _mailAddress;
+			}
+			set
+			{
+				if (Equals(value, _mailAddress)) return;
+
+				_mailAddress = value;
 
 				OnPropertyChanged();
 			}
@@ -171,7 +168,7 @@ namespace LePrAtos.Startup.Register
 				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 				lobbyBrowser.Show();
 				RequestWindowCloseEvent.Invoke(this, null);
-				}, Strings.RegisterView_BadRegister);
+			}, Strings.RegisterView_BadRegister);
 		}
 
 		/// <summary>
@@ -190,15 +187,15 @@ namespace LePrAtos.Startup.Register
 		}
 
 		/// <summary>
-		/// TODO
+		///     Registriert einen neuen User
 		/// </summary>
-		/// <param name="passwort"></param>
+		/// <param name="passwort">Passwort</param>
 		/// <returns></returns>
 		public async Task RegisterUser(string passwort)
 		{
 			var response =
-					await
-						CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwort));
+				await
+					CurrentSession.Client.registrationAsync(MailAddress, Username, PasswordHasher.HashPasswort(passwort));
 
 			var player = Container.Resolve<PlayerViewModel>();
 			player.Player = response.@return;

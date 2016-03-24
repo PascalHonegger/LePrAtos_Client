@@ -75,7 +75,7 @@
 			</Grid>
 
 			<xcdg:DataGridControl Grid.Column="0" Grid.Row="1" ItemsSource="{Binding FilteredLobbies}"
-								  SelectedItem="{Binding SeletedLobby}" AutoCreateColumns="False" HorizontalAlignment="Stretch"
+								  SelectedItem="{Binding SelectedLobby}" AutoCreateColumns="False" HorizontalAlignment="Stretch"
 								  VerticalAlignment="Stretch" SelectionMode="Single" IsFixedHeadersHost="False"
 								  IsFixedFootersHost="False">
 				<xcdg:DataGridControl.ItemContainerStyle>

@@ -9,49 +9,41 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
+using LePrAtos.Infrastructure.Extensions;
 using LePrAtos.Properties;
+using LePrAtos.Startup;
 using LePrAtos.Startup.Login;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
-using LePrAtos.Infrastructure.Extensions;
-using LePrAtos.Startup;
 
 namespace LePrAtos.Lobby
 {
 	/// <summary>
 	///     ViewModel für für die Auswahl einer Lobby
 	/// </summary>
-	[Export(typeof (LobbyBrowserViewModel))]
+	[Export(typeof(LobbyBrowserViewModel))]
 	[PartCreationPolicy(CreationPolicy.Shared)]
 	public class LobbyBrowserViewModel : ViewModelBase, IRequestWindowClose
 	{
+		private IEnumerable<LobbyViewModel> _availableLobbies = new List<LobbyViewModel>();
 		private ICommand _createLobbyCommand;
 		private DelegateCommand _joinLobbyCommand;
 		private string _lobbyPassword;
 		private ICommand _logoutCommand;
 		private ICommand _refreshViewCommand;
-		private LobbyViewModel _seletedLobby;
+		private string _searchText = string.Empty;
+		private LobbyViewModel _selectedLobby;
+		private bool _showFullLobbies;
+		private bool _showProtectedLobbies = true;
 
 
 		/// <summary>
-		///     Constructor
+		///     Startet den Refresh
 		/// </summary>
 		public LobbyBrowserViewModel()
 		{
 			Refresh();
 			CurrentSession.PollingTimer.Start();
-			LobbyPassword = string.Empty;
-		}
-
-		/// <summary>
-		///     Entscheidet, ob die Lobbies neue Daten vom Server laden
-		/// </summary>
-		private void StopRefresh(bool ignoreSelectedLobby = true)
-		{
-			foreach (var lobby in _availableLobbies.Where(l => Equals(l, SeletedLobby) != ignoreSelectedLobby))
-			{
-				lobby.StopUpdate();
-			}
 		}
 
 		/// <summary>
@@ -76,45 +68,19 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public ICommand LogoutCommand => _logoutCommand ?? (_logoutCommand = new DelegateCommand(Logout));
 
-		private IEnumerable<LobbyViewModel> _availableLobbies = new List<LobbyViewModel>();
-		private bool _showProtectedLobbies = true;
-		private bool _showFullLobbies;
-		private string _searchText = string.Empty;
-
 		/// <summary>
 		///     Alle verfügbaren Lobbies
 		/// </summary>
 		public ObservableCollection<LobbyViewModel> FilteredLobbies { get; } = new ObservableCollection<LobbyViewModel>();
-
-		private void ApplyLobbyFilter()
-		{
-			var filteredLobbies = _availableLobbies
-				.Where(l => ShowProtectedLobbies || !l.PasswordProtected)
-				.Where(l => ShowFullLobbies || l.PlayerLimit > l.Members.Count)
-				.Where(
-					l =>
-						l.LobbyName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase) ||
-						l.LobbyLeaderName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase));
-
-			FilteredLobbies.Clear();
-
-			foreach (var lobby in filteredLobbies)
-			{
-				FilteredLobbies.Add(lobby);
-			}
-		}
 
 		/// <summary>
 		///     Passwort, welches für das beitreten in die Lobby verwendet wird
 		/// </summary>
 		public string LobbyPassword
 		{
-			get { return _lobbyPassword; }
-			set
+			get
 			{
-				_lobbyPassword = value;
-
-				if (SeletedLobby != null && SeletedLobby.PasswordProtected && string.IsNullOrEmpty(_lobbyPassword))
+				if (SelectedLobby != null && SelectedLobby.PasswordProtected && string.IsNullOrEmpty(_lobbyPassword))
 				{
 					SetErrorForProperty(Strings.TextValidationRule_Mandatory);
 				}
@@ -123,7 +89,14 @@ namespace LePrAtos.Lobby
 					SetErrorForProperty(string.Empty);
 				}
 
+				return _lobbyPassword;
+			}
+			set
+			{
+				_lobbyPassword = value;
+
 				OnPropertyChanged();
+
 				JoinLobbyCommand.RaiseCanExecuteChanged();
 			}
 		}
@@ -173,19 +146,20 @@ namespace LePrAtos.Lobby
 		/// <summary>
 		///     Die ausgewählte Lobby
 		/// </summary>
-		public LobbyViewModel SeletedLobby
+		public LobbyViewModel SelectedLobby
 		{
-			get { return _seletedLobby; }
+			get
+			{
+				return _selectedLobby;
+			}
 			set
 			{
-				if (Equals(value, _seletedLobby))
-				{
-					return;
-				}
+				if (Equals(value, _selectedLobby)) return;
 
-				_seletedLobby = value;
+				_selectedLobby = value;
 
-				LobbyPassword = _lobbyPassword;
+				OnPropertyChanged();
+				OnPropertyChanged(nameof(LobbyPassword));
 			}
 		}
 
@@ -193,6 +167,35 @@ namespace LePrAtos.Lobby
 		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		/// <summary>
+		///     Entscheidet, ob die Lobbies neue Daten vom Server laden
+		/// </summary>
+		private void StopRefresh(bool ignoreSelectedLobby = true)
+		{
+			foreach (var lobby in _availableLobbies.Where(l => Equals(l, SelectedLobby) != ignoreSelectedLobby))
+			{
+				lobby.StopUpdate();
+			}
+		}
+
+		private void ApplyLobbyFilter()
+		{
+			var filteredLobbies = _availableLobbies
+				.Where(l => ShowProtectedLobbies || !l.PasswordProtected)
+				.Where(l => ShowFullLobbies || l.PlayerLimit > l.Members.Count)
+				.Where(
+					l =>
+						l.LobbyName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase) ||
+						l.LobbyLeaderName.Contains(SearchText, StringComparison.InvariantCultureIgnoreCase));
+
+			FilteredLobbies.Clear();
+
+			foreach (var lobby in filteredLobbies)
+			{
+				FilteredLobbies.Add(lobby);
+			}
+		}
 
 		/// <summary>
 		///     Visitor-Pattern, maybe? Updates the <see cref="_availableLobbies" />
@@ -219,7 +222,7 @@ namespace LePrAtos.Lobby
 			});
 		}
 
-	private void Logout()
+		private void Logout()
 		{
 			CurrentSession.PollingTimer.Stop();
 
@@ -243,21 +246,21 @@ namespace LePrAtos.Lobby
 
 		private bool CanJoinLobby()
 		{
-			return SeletedLobby != null && !HasErrors;
+			return SelectedLobby != null && !HasErrors;
 		}
 
 		private void JoinLobby()
 		{
-			if (SeletedLobby == null) return;
+			if (SelectedLobby == null) return;
 
 			BusyRunner.RunAsync(async () =>
 			{
 				StopRefresh();
-				SeletedLobby.Lobby =
+				SelectedLobby.Lobby =
 					(await
-						CurrentSession.Client.joinGameLobbyAsync(CurrentSession.Player.PlayerId, SeletedLobby.LobbyId,
+						CurrentSession.Client.joinGameLobbyAsync(CurrentSession.Player.PlayerId, SelectedLobby.LobbyId,
 							PasswordHasher.HashPasswort(LobbyPassword))).@return;
-				new LobbyView(SeletedLobby).Show();
+				new LobbyView(SelectedLobby).Show();
 				RequestWindowCloseEvent.Invoke(this, null);
 			}, Strings.LobbyBrowser_WrongLobbyPassword);
 		}
@@ -267,7 +270,9 @@ namespace LePrAtos.Lobby
 			StopRefresh();
 
 			var createdLobby =
-				(await CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId, string.Format(Strings.LobbyBrowser_CreatedByTempalte, CurrentSession.Player.Username))).@return;
+				(await
+					CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId,
+						string.Format(Strings.LobbyBrowser_CreatedByTempalte, CurrentSession.Player.Username))).@return;
 
 			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 

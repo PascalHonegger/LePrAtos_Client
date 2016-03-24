@@ -51,6 +51,7 @@ namespace LePrAtos.Lobby
 					UpdateSettingsCommand.RaiseCanExecuteChanged();
 				}
 			};
+
 			StartUpdate();
 		}
 
@@ -192,9 +193,16 @@ namespace LePrAtos.Lobby
 					Members.Add(playerViewModel);
 				}
 
-				//Validate
-				ValidateNewValuesStillValid();
+				ValidateGui();
 			}
+		}
+
+		private void ValidateGui()
+		{
+			OnPropertyChanged(nameof(NewPlayerLimit));
+			//OnPropertyChanged(nameof(NewLobbyName));
+			//OnPropertyChanged(nameof(NewLobbyPassword));
+			StartGameCommand.RaiseCanExecuteChanged();
 		}
 
 		/// <summary>
@@ -207,23 +215,19 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public int NewPlayerLimit
 		{
-			get { return _newPlayerLimit; }
+			get
+			{
+				SetErrorForProperty(_newPlayerLimit < Members.Count ? Strings.LobbyView_LimitLowerThanCount : string.Empty);
+
+				return _newPlayerLimit;
+			}
 			set
 			{
 				if (Equals(_newPlayerLimit, value)) return;
 				_newPlayerLimit = value;
 
-				ValidateNewValuesStillValid();
-
 				OnPropertyChanged();
 			}
-		}
-
-		private void ValidateNewValuesStillValid()
-		{
-			SetErrorForProperty(NewPlayerLimit < Members.Count ? Strings.LobbyView_LimitLowerThanCount : string.Empty, nameof(NewPlayerLimit));
-
-			UpdateSettingsCommand.RaiseCanExecuteChanged();
 		}
 
 		/// <summary>
@@ -245,12 +249,16 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public string NewLobbyName
 		{
-			get { return _newLobbyName; }
+			get
+			{
+				SetErrorForProperty(string.IsNullOrEmpty(_newLobbyName) ? Strings.TextValidationRule_Mandatory : string.Empty);
+				return _newLobbyName;
+			}
 			set
 			{
 				if (Equals(_newLobbyName, value)) return;
+
 				_newLobbyName = value;
-				SetErrorForProperty(string.IsNullOrEmpty(_newLobbyName) ? Strings.TextValidationRule_Mandatory : string.Empty);
 
 				OnPropertyChanged();
 			}
