@@ -3,6 +3,7 @@
 // Author: Honegger, Pascal (ext)
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -42,13 +43,13 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public LobbyViewModel()
 		{
-			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); };
+			Members.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(LobbyLeaderName)); OnPropertyChanged(nameof(NewPlayerLimit)); };
 			ErrorsChanged += (sender, e) => UpdateSettingsCommand.RaiseCanExecuteChanged();
 			CurrentSession.Player.PropertyChanged += (sender, e) =>
 			{
 				if (e.PropertyName == nameof(CurrentSession.Player.IsReady))
 				{
-					UpdateSettingsCommand.RaiseCanExecuteChanged();
+					StartGameCommand.RaiseCanExecuteChanged();
 				}
 			};
 
@@ -145,64 +146,129 @@ namespace LePrAtos.Lobby
 					return;
 				}
 
+				//Load or Update Members
+				if (_lobby == null || !Equals(value.gameLobbyAdmin.username, _lobby.gameLobbyAdmin.username))
+				{
+					LoadAllMembers(value);
+					_lobby = value;
+				}
+				else
+				{
+					UpdateMembers(value);
+				}
+
 				//Apply general settings
-				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
 				PlayerLimit = _lobby.playerLimit;
 				PasswordProtected = _lobby.passwordProtected;
-
-				//Load new Members
-				Members.Clear();
-
-				PlayerViewModel admin;
-				if (Equals(_lobby.gameLobbyAdmin.username, CurrentSession.Player.Identification.username))
-				{
-					CurrentSession.Player.Identification = _lobby.gameLobbyAdmin;
-					admin = CurrentSession.Player;
-				}
-				else
-				{
-					admin = Container.Resolve<PlayerViewModel>();
-					admin.Identification = _lobby.gameLobbyAdmin;
-				}
-
-				admin.IsLeader = true;
-
-				Members.Add(admin);
-
-				if (_lobby.gamePlayerList == null) return;
-
-				foreach (var playerIdentification in _lobby.gamePlayerList.Where(p => p != null))
-				{
-					PlayerViewModel playerViewModel;
-
-					if (Equals(playerIdentification.username, CurrentSession.Player.Username))
-					{
-						CurrentSession.Player.Identification = playerIdentification;
-						playerViewModel = CurrentSession.Player;
-					}
-					else
-					{
-						playerViewModel = Container.Resolve<PlayerViewModel>();
-						playerViewModel.Identification = playerIdentification;
-						playerViewModel.RemoveAction = RemovePlayer;
-					}
-
-					playerViewModel.IsLeader = false;
-					Members.Add(playerViewModel);
-				}
-
-				ValidateGui();
 			}
 		}
 
-		private void ValidateGui()
+		private void UpdateMembers(gameLobby value)
 		{
-			OnPropertyChanged(nameof(NewPlayerLimit));
-			//OnPropertyChanged(nameof(NewLobbyName));
-			//OnPropertyChanged(nameof(NewLobbyPassword));
-			StartGameCommand.RaiseCanExecuteChanged();
+			//Update Admin
+			//TODO Equals ändern
+			var admin = Members.First(m => Equals(m.Username, _lobby.gameLobbyAdmin.username));
+			admin.Identification = value.gameLobbyAdmin;
+
+			if (value.gamePlayerList == null)
+			{
+				Members.Clear();
+				Members.Add(admin);
+				return;
+			}
+
+			//Already has Members
+			if (_lobby.gamePlayerList != null)
+			{
+				//Remove old Members
+				//TODO Equals ändern
+				var removedMembersName = _lobby.gamePlayerList.Select(p => p.username).Except(value.gamePlayerList.Select(p => p.username));
+				var removedMembers = value.gamePlayerList.Where(p => removedMembersName.Contains(p.username));
+
+				foreach (var playerIdentification in removedMembers)
+				{
+					var removedViewModel = Members.First(m => Equals(m.Username, playerIdentification.username));
+					Members.Remove(removedViewModel);
+				}
+
+				//Update existing Members
+				foreach (var playerIdentification in _lobby.gamePlayerList)
+				{
+					var viewModel = Members.First(m => Equals(m.Username, playerIdentification.username));
+
+					viewModel.Identification = playerIdentification;
+				}
+			}
+
+			//Add new Members
+			//TODO Equals ändern
+			var newMembersName = _lobby.gamePlayerList != null ?  value.gamePlayerList.Select(p => p.username).Except(_lobby.gamePlayerList.Select(p => p.username)) : value.gamePlayerList.Select(p => p.username);
+			var newMembers = value.gamePlayerList.Where(p => newMembersName.Contains(p.username));
+
+			foreach (var playerIdentification in newMembers)
+			{
+				PlayerViewModel playerViewModel;
+
+				if (Equals(playerIdentification.username, CurrentSession.Player.Username))
+				{
+					CurrentSession.Player.Identification = playerIdentification;
+					playerViewModel = CurrentSession.Player;
+				}
+				else
+				{
+					playerViewModel = Container.Resolve<PlayerViewModel>();
+					playerViewModel.Identification = playerIdentification;
+					playerViewModel.RemoveAction = RemovePlayer;
+				}
+
+				playerViewModel.IsLeader = false;
+				Members.Add(playerViewModel);
+			}
+		}
+
+		private void LoadAllMembers(gameLobby value)
+		{
+			Members.Clear();
+
+			PlayerViewModel admin;
+			if (Equals(value.gameLobbyAdmin.username, CurrentSession.Player.Identification.username))
+			{
+				CurrentSession.Player.Identification = value.gameLobbyAdmin;
+				admin = CurrentSession.Player;
+			}
+			else
+			{
+				admin = Container.Resolve<PlayerViewModel>();
+				admin.Identification = value.gameLobbyAdmin;
+			}
+
+			admin.IsLeader = true;
+
+			Members.Add(admin);
+
+			if (value.gamePlayerList == null) return;
+
+			foreach (var playerIdentification in value.gamePlayerList.Where(p => p != null))
+			{
+				PlayerViewModel playerViewModel;
+
+				if (Equals(playerIdentification.username, CurrentSession.Player.Username))
+				{
+					CurrentSession.Player.Identification = playerIdentification;
+					playerViewModel = CurrentSession.Player;
+				}
+				else
+				{
+					playerViewModel = Container.Resolve<PlayerViewModel>();
+					playerViewModel.Identification = playerIdentification;
+					playerViewModel.RemoveAction = RemovePlayer;
+				}
+
+				playerViewModel.IsLeader = false;
+				Members.Add(playerViewModel);
+			}
 		}
 
 		/// <summary>
@@ -251,7 +317,7 @@ namespace LePrAtos.Lobby
 		{
 			get
 			{
-				SetErrorForProperty(string.IsNullOrEmpty(_newLobbyName) ? Strings.TextValidationRule_Mandatory : string.Empty);
+				
 				return _newLobbyName;
 			}
 			set
@@ -259,6 +325,8 @@ namespace LePrAtos.Lobby
 				if (Equals(_newLobbyName, value)) return;
 
 				_newLobbyName = value;
+
+				SetErrorForProperty(string.IsNullOrEmpty(_newLobbyName) ? Strings.TextValidationRule_Mandatory : string.Empty);
 
 				OnPropertyChanged();
 			}

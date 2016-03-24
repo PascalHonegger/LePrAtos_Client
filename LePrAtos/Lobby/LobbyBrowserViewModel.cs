@@ -148,10 +148,7 @@ namespace LePrAtos.Lobby
 		/// </summary>
 		public LobbyViewModel SelectedLobby
 		{
-			get
-			{
-				return _selectedLobby;
-			}
+			get { return _selectedLobby; }
 			set
 			{
 				if (Equals(value, _selectedLobby)) return;
@@ -265,22 +262,25 @@ namespace LePrAtos.Lobby
 			}, Strings.LobbyBrowser_WrongLobbyPassword);
 		}
 
-		private async void CreateLobby()
+		private void CreateLobby()
 		{
 			StopRefresh();
 
-			var createdLobby =
-				(await
-					CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId,
-						string.Format(Strings.LobbyBrowser_CreatedByTempalte, CurrentSession.Player.Username))).@return;
+			BusyRunner.RunAsync(async () =>
+			{
+				var createdLobby =
+					(await
+						CurrentSession.Client.createGameLobbyAsync(CurrentSession.Player.PlayerId,
+							string.Format(Strings.LobbyBrowser_CreatedByTempalte, CurrentSession.Player.Username))).@return;
 
-			var lobbyViewModel = Container.Resolve<LobbyViewModel>();
+				var lobbyViewModel = Container.Resolve<LobbyViewModel>();
 
-			lobbyViewModel.Lobby = createdLobby;
+				lobbyViewModel.Lobby = createdLobby;
 
-			new LobbyView(lobbyViewModel).Show();
+				new LobbyView(lobbyViewModel).Show();
 
-			RequestWindowCloseEvent.Invoke(this, null);
+				RequestWindowCloseEvent.Invoke(this, null);
+			});
 		}
 	}
 }

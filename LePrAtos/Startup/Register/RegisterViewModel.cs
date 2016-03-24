@@ -52,9 +52,18 @@ namespace LePrAtos.Startup.Register
 		private static readonly Regex MailRegex = new Regex(MailPattern);
 
 		private ICommand _cancelCommand;
-		private string _mailAddress = string.Empty;
+		private string _mailAddress;
 		private DelegateCommand<PasswordBox> _registerCommand;
-		private string _username = string.Empty;
+		private string _username;
+
+		/// <summary>
+		///     Setzt die Default-Werte für die Validierung
+		/// </summary>
+		public RegisterViewModel()
+		{
+			Username = string.Empty;
+			MailAddress = string.Empty;
+		}
 
 		/// <summary>
 		///     Der Benutzername für das Login und die Anzeige
@@ -63,6 +72,14 @@ namespace LePrAtos.Startup.Register
 		{
 			get
 			{
+				return _username;
+			}
+			set
+			{
+				if (Equals(value, _username)) return;
+
+				_username = value;
+
 				var errors = new List<string>();
 
 				if (_username.Length > UsernameMaxLength || _username.Length < UsernameMinLength)
@@ -81,14 +98,6 @@ namespace LePrAtos.Startup.Register
 				}
 
 				SetErrorForProperty(errors);
-
-				return _username;
-			}
-			set
-			{
-				if (Equals(value, _username)) return;
-
-				_username = value;
 
 				OnPropertyChanged();
 			}
@@ -117,6 +126,14 @@ namespace LePrAtos.Startup.Register
 		{
 			get
 			{
+				return _mailAddress;
+			}
+			set
+			{
+				if (Equals(value, _mailAddress)) return;
+
+				_mailAddress = value;
+
 				var errors = new List<string>();
 
 				if (!MailRegex.IsMatch(_mailAddress))
@@ -129,14 +146,6 @@ namespace LePrAtos.Startup.Register
 				}
 
 				SetErrorForProperty(errors);
-
-				return _mailAddress;
-			}
-			set
-			{
-				if (Equals(value, _mailAddress)) return;
-
-				_mailAddress = value;
 
 				OnPropertyChanged();
 			}

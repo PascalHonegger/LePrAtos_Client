@@ -28,7 +28,15 @@ namespace LePrAtos.Startup.Login
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private ICommand _registerCommand;
-		private string _usernameOrMail = string.Empty;
+		private string _usernameOrMail;
+
+		/// <summary>
+		///     Setzt die Default-Werte für die Validierung
+		/// </summary>
+		public LoginViewModel()
+		{
+			UsernameOrMail = string.Empty;
+		}
 
 		/// <summary>
 		///     Alle möglichen Sprachen
@@ -120,7 +128,7 @@ namespace LePrAtos.Startup.Login
 		{
 			get
 			{
-				SetErrorForProperty(string.IsNullOrEmpty(_usernameOrMail) ? Strings.TextValidationRule_Mandatory : null);
+				
 				return _usernameOrMail;
 			}
 			set
@@ -128,6 +136,8 @@ namespace LePrAtos.Startup.Login
 				if (Equals(value, _usernameOrMail)) return;
 
 				_usernameOrMail = value;
+
+				SetErrorForProperty(string.IsNullOrEmpty(_usernameOrMail) ? Strings.TextValidationRule_Mandatory : null);
 
 				OnPropertyChanged();
 			}
