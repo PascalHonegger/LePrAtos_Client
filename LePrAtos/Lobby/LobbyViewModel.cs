@@ -118,8 +118,7 @@ namespace LePrAtos.Lobby
 		///     Command zum beitreten der ausgewählten Lobby
 		/// </summary>
 		public ICommand LeaveLobbyCommand
-			=> _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => RequestWindowCloseEvent.Invoke(this, null)))
-			;
+			=> _leaveLobbyCommand ?? (_leaveLobbyCommand = new DelegateCommand(() => RequestWindowCloseEvent.Invoke(this, null)));
 
 		/// <summary>
 		///     Command zum beitreten der ausgewählten Lobby
@@ -146,6 +145,9 @@ namespace LePrAtos.Lobby
 					return;
 				}
 
+				LoadAllMembers(value);
+				_lobby = value;
+				/*
 				//Load or Update Members
 				if (_lobby == null || !Equals(value.gameLobbyAdmin.username, _lobby.gameLobbyAdmin.username))
 				{
@@ -155,17 +157,42 @@ namespace LePrAtos.Lobby
 				else
 				{
 					UpdateMembers(value);
-				}
+				}*/
 
 				//Apply general settings
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
 				PlayerLimit = _lobby.playerLimit;
 				PasswordProtected = _lobby.passwordProtected;
+
+				ValidateStillInLobby(value);
 			}
 		}
 
-		private void UpdateMembers(gameLobby value)
+		private void ValidateStillInLobby(gameLobby oldLobbyStatus)
+		{
+			//Is in Lobby
+			if (CurrentSession.Player.IsLeader || Members.Contains(CurrentSession.Player)) return;
+
+			//Wasn't in oldLobbyStatus
+			var result = oldLobbyStatus.gamePlayerList?.Select(i => i.username).Contains(CurrentSession.Player.Username);
+
+			if (!result.HasValue || !result.Value) return;
+
+
+			MessageBox.Show(Strings.LobbyView_YouGotRemoved, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+			var lobbyBrowserViewModel = Container.Resolve<LobbyBrowserViewModel>();
+
+			lobbyBrowserViewModel.Refresh();
+
+			var lobbyBrowserView = new LobbyBrowserView(lobbyBrowserViewModel);
+
+			lobbyBrowserView.Show();
+		}
+
+
+		/*private void UpdateMembers(gameLobby value)
 		{
 			//Update Admin
 			//TODO Equals ändern
@@ -194,7 +221,10 @@ namespace LePrAtos.Lobby
 				}
 
 				//Update existing Members
-				foreach (var playerIdentification in _lobby.gamePlayerList)
+				var stayingMembersName = _lobby.gamePlayerList.Select(p => p.username).Except(removedMembersName);
+				var stayingMembers = _lobby.gamePlayerList.Where(p => stayingMembersName.Contains(p.username));
+
+				foreach (var playerIdentification in stayingMembers)
 				{
 					var viewModel = Members.First(m => Equals(m.Username, playerIdentification.username));
 
@@ -204,7 +234,7 @@ namespace LePrAtos.Lobby
 
 			//Add new Members
 			//TODO Equals ändern
-			var newMembersName = _lobby.gamePlayerList != null ?  value.gamePlayerList.Select(p => p.username).Except(_lobby.gamePlayerList.Select(p => p.username)) : value.gamePlayerList.Select(p => p.username);
+			var newMembersName = _lobby.gamePlayerList != null ? value.gamePlayerList.Select(p => p.username).Except(_lobby.gamePlayerList.Select(p => p.username)) : value.gamePlayerList.Select(p => p.username);
 			var newMembers = value.gamePlayerList.Where(p => newMembersName.Contains(p.username));
 
 			foreach (var playerIdentification in newMembers)
@@ -226,7 +256,7 @@ namespace LePrAtos.Lobby
 				playerViewModel.IsLeader = false;
 				Members.Add(playerViewModel);
 			}
-		}
+		}*/
 
 		private void LoadAllMembers(gameLobby value)
 		{
@@ -431,6 +461,8 @@ namespace LePrAtos.Lobby
 		private void RemovePlayer(PlayerViewModel player)
 		{
 			CurrentSession.Client.kickPlayer(CurrentSession.Player.PlayerId, LobbyId, player.Username);
+
+			BusyRunner.RunSilent(Refresh);
 		}
 
 		private bool Equals(LobbyViewModel other)

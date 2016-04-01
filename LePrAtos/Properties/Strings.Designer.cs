@@ -313,6 +313,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyView_YouGotRemoved.
+        /// </summary>
+        public static string LobbyView_YouGotRemoved {
+            get {
+                return ResourceManager.GetString("LobbyView_YouGotRemoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_ApplyOnRestart.
         /// </summary>
         public static string LoginView_ApplyOnRestart {

@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.Timers;
 using LePrAtos.GameManagerService;
+using LePrAtos.Properties;
 using LePrAtos.Service_References;
 using UnityContainer;
 
@@ -34,6 +35,8 @@ namespace LePrAtos.Infrastructure
 				Player = null;
 				PollingTimer?.Stop();
 			};
+
+			Endpointconfiguration = Settings.Default.ConfiguredServers[0];
 		}
 
 		/// <summary>

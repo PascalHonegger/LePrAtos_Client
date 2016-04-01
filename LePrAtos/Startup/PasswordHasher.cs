@@ -2,6 +2,7 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -26,7 +27,7 @@ namespace LePrAtos.Startup
 		private static IEnumerable<byte> GetHash(string inputString)
 		{
 			HashAlgorithm algorithm = SHA256.Create();
-			return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+			return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString ?? string.Empty));
 		}
 
 		private static string GetHashString(string inputString)

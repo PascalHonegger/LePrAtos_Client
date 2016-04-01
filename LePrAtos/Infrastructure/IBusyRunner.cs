@@ -22,7 +22,14 @@ namespace LePrAtos.Infrastructure
 		///     Führt die <paramref name="asyncOperation"/> aus und setzt <see cref="IsBusy"/> während der Ausführung auf True
 		/// </summary>
 		/// <param name="asyncOperation">Auszuführende Operation</param>
-		/// <param name="errorMessage">Nachricht, welche bei Fehler angezeigt wird.</param>
+		/// <param name="errorMessage">Nachricht, welche bei Fehler angezeigt wird</param>
 		void RunAsync(Func<Task> asyncOperation, string errorMessage = null);
+
+		/// <summary>
+		///    Führt die <paramref name="asyncOperation"/> aus.
+		/// </summary>
+		/// <param name="asyncOperation">Auszuführende Operation</param>
+		/// <param name="errorMessage">Nachricht, welche bei Fehler angezeigt wird</param>
+		void RunSilent(Func<Task> asyncOperation, string errorMessage = null);
 	}
 }

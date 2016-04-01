@@ -267,4 +267,7 @@
   <data name="LoginView_Theme" xml:space="preserve">
     <value>LoginView_Theme</value>
   </data>
+  <data name="LobbyView_YouGotRemoved" xml:space="preserve">
+    <value>LobbyView_YouGotRemoved</value>
+  </data>
 </root>

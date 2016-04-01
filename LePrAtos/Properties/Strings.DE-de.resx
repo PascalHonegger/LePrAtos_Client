@@ -270,4 +270,7 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LoginView_Theme" xml:space="preserve">
     <value>Theme (Benötigt Neustart)</value>
   </data>
+  <data name="LobbyView_YouGotRemoved" xml:space="preserve">
+    <value>Du wurdest aus der Lobby entfernt!</value>
+  </data>
 </root>

@@ -3,6 +3,7 @@
 // Author: Honegger, Pascal (ext)
 
 using LePrAtos.Infrastructure;
+using LePrAtos.Properties;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
 using UnityContainer;

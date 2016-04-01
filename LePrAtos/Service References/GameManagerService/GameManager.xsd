@@ -52,7 +52,6 @@
       <xs:extension base="tns:playerIdentification">
         <xs:sequence>
           <xs:element minOccurs="0" name="email" type="xs:string" />
-          <xs:element minOccurs="0" name="password" type="xs:string" />
           <xs:element minOccurs="0" name="playerID" type="xs:string" />
         </xs:sequence>
       </xs:extension>

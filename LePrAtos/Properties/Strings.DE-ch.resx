@@ -267,4 +267,7 @@
   <data name="LoginView_Theme" xml:space="preserve">
     <value>Theme (Bruucht en Neustart)</value>
   </data>
+  <data name="LobbyView_YouGotRemoved" xml:space="preserve">
+    <value>Du bisch uus de Lobby entfernt worde!</value>
+  </data>
 </root>

@@ -270,4 +270,7 @@ Please send the following info to the support!
   <data name="LoginView_Theme" xml:space="preserve">
     <value>Theme (Requires Restart)</value>
   </data>
+  <data name="LobbyView_YouGotRemoved" xml:space="preserve">
+    <value>You got removed from the lobby!</value>
+  </data>
 </root>

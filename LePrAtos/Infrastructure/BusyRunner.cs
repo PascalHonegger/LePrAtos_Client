@@ -42,7 +42,7 @@ namespace LePrAtos.Infrastructure
 		///     Führt die <paramref name="asyncOperation"/> aus und setzt <see cref="IBusyRunner.IsBusy"/> während der Ausführung auf True
 		/// </summary>
 		/// <param name="asyncOperation">Auszuführende Operation</param>
-		/// <param name="errorMessage">Nachricht, welche bei Fehler angezeigt wird.</param>
+		/// <param name="errorMessage">Nachricht, welche bei Fehler angezeigt wird</param>
 		public async void RunAsync(Func<Task> asyncOperation, string errorMessage = null)
 		{
 			try
@@ -58,6 +58,23 @@ namespace LePrAtos.Infrastructure
 			finally
 			{
 				IsBusy = false;
+			}
+		}
+
+		/// <summary>
+		///    Führt die <paramref name="asyncOperation"/> aus.
+		/// </summary>
+		/// <param name="asyncOperation">Auszuführende Operation</param>
+		/// <param name="errorMessage">Nachricht, welche bei Fehler angezeigt wird</param>
+		public async void RunSilent(Func<Task> asyncOperation, string errorMessage = null)
+		{
+			try
+			{
+				await asyncOperation();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show(string.IsNullOrEmpty(errorMessage) ? e.Message : errorMessage, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 

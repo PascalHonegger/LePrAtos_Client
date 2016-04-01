@@ -23,6 +23,9 @@
   <message name="setGameLobbyPasswordResponse">
     <part name="parameters" element="tns:setGameLobbyPasswordResponse" />
   </message>
+  <message name="MyExceptions">
+    <part name="fault" element="tns:MyExceptions" />
+  </message>
   <message name="resetGameLobbyPassword">
     <part name="parameters" element="tns:resetGameLobbyPassword" />
   </message>
@@ -40,9 +43,6 @@
   </message>
   <message name="loginResponse">
     <part name="parameters" element="tns:loginResponse" />
-  </message>
-  <message name="MyExceptions">
-    <part name="fault" element="tns:MyExceptions" />
   </message>
   <message name="logout">
     <part name="parameters" element="tns:logout" />
@@ -125,14 +125,17 @@
     <operation name="setGameLobbyPassword">
       <input wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest" message="tns:setGameLobbyPassword" />
       <output wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordResponse" message="tns:setGameLobbyPasswordResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/setGameLobbyPassword/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="resetGameLobbyPassword">
       <input wsam:Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest" message="tns:resetGameLobbyPassword" />
       <output wsam:Action="http://webservices.org/GameManager/resetGameLobbyPasswordResponse" message="tns:resetGameLobbyPasswordResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/resetGameLobbyPassword/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="registration">
       <input wsam:Action="http://webservices.org/GameManager/registrationRequest" message="tns:registration" />
       <output wsam:Action="http://webservices.org/GameManager/registrationResponse" message="tns:registrationResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/registration/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="login">
       <input wsam:Action="http://webservices.org/GameManager/loginRequest" message="tns:login" />
@@ -151,10 +154,12 @@
     <operation name="setGameLobbyName">
       <input wsam:Action="http://webservices.org/GameManager/setGameLobbyNameRequest" message="tns:setGameLobbyName" />
       <output wsam:Action="http://webservices.org/GameManager/setGameLobbyNameResponse" message="tns:setGameLobbyNameResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/setGameLobbyName/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="setPlayerLimit">
       <input wsam:Action="http://webservices.org/GameManager/setPlayerLimitRequest" message="tns:setPlayerLimit" />
       <output wsam:Action="http://webservices.org/GameManager/setPlayerLimitResponse" message="tns:setPlayerLimitResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/setPlayerLimit/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="kickPlayer">
       <input wsam:Action="http://webservices.org/GameManager/kickPlayerRequest" message="tns:kickPlayer" />
@@ -214,6 +219,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="resetGameLobbyPassword">
       <soap:operation soapAction="" />
@@ -223,6 +231,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="registration">
       <soap:operation soapAction="" />
@@ -232,6 +243,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="login">
       <soap:operation soapAction="" />
@@ -274,6 +288,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="setPlayerLimit">
       <soap:operation soapAction="" />
@@ -283,6 +300,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="kickPlayer">
       <soap:operation soapAction="" />
