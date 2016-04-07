@@ -145,6 +145,7 @@
     <operation name="logout">
       <input wsam:Action="http://webservices.org/GameManager/logoutRequest" message="tns:logout" />
       <output wsam:Action="http://webservices.org/GameManager/logoutResponse" message="tns:logoutResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/logout/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="createGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/createGameLobbyRequest" message="tns:createGameLobby" />
@@ -164,6 +165,7 @@
     <operation name="kickPlayer">
       <input wsam:Action="http://webservices.org/GameManager/kickPlayerRequest" message="tns:kickPlayer" />
       <output wsam:Action="http://webservices.org/GameManager/kickPlayerResponse" message="tns:kickPlayerResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/kickPlayer/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="joinGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/joinGameLobbyRequest" message="tns:joinGameLobby" />
@@ -173,10 +175,12 @@
     <operation name="leaveGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/leaveGameLobbyRequest" message="tns:leaveGameLobby" />
       <output wsam:Action="http://webservices.org/GameManager/leaveGameLobbyResponse" message="tns:leaveGameLobbyResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/leaveGameLobby/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="getGameLobby">
       <input wsam:Action="http://webservices.org/GameManager/getGameLobbyRequest" message="tns:getGameLobby" />
       <output wsam:Action="http://webservices.org/GameManager/getGameLobbyResponse" message="tns:getGameLobbyResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/getGameLobby/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="getGameLobbies">
       <input wsam:Action="http://webservices.org/GameManager/getGameLobbiesRequest" message="tns:getGameLobbies" />
@@ -185,10 +189,12 @@
     <operation name="getPlayerByID">
       <input wsam:Action="http://webservices.org/GameManager/getPlayerByIDRequest" message="tns:getPlayerByID" />
       <output wsam:Action="http://webservices.org/GameManager/getPlayerByIDResponse" message="tns:getPlayerByIDResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/getPlayerByID/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="setPlayerStatus">
       <input wsam:Action="http://webservices.org/GameManager/setPlayerStatusRequest" message="tns:setPlayerStatus" />
       <output wsam:Action="http://webservices.org/GameManager/setPlayerStatusResponse" message="tns:setPlayerStatusResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/setPlayerStatus/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
   </portType>
   <binding name="GameManagerImplPortBinding" type="tns:GameManager">
@@ -267,6 +273,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="createGameLobby">
       <soap:operation soapAction="" />
@@ -312,6 +321,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="joinGameLobby">
       <soap:operation soapAction="" />
@@ -333,6 +345,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="getGameLobby">
       <soap:operation soapAction="" />
@@ -342,6 +357,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="getGameLobbies">
       <soap:operation soapAction="" />
@@ -360,6 +378,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
     <operation name="setPlayerStatus">
       <soap:operation soapAction="" />
@@ -369,6 +390,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
     </operation>
   </binding>
   <service name="GameManagerImplService">

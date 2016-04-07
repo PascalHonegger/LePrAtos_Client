@@ -2,12 +2,9 @@
 // Copyright (c) 2016
 // Author: Keller, Alain
 
-using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
-using LePrAtos.Properties;
 
 namespace LePrAtos.Lobby
 {

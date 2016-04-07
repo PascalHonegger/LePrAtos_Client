@@ -3,10 +3,8 @@
 // Author: Honegger, Pascal (ext)
 
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using LePrAtos.Startup.Login;
 using LePrAtos_Test.Infrastructure;
-using Moq;
 using NUnit.Framework;
 
 namespace LePrAtos_Test.Startup.Login

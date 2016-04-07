@@ -2,7 +2,6 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
-using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;

@@ -137,6 +137,7 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/logoutRequest", ReplyAction="http://webservices.org/GameManager/logoutResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/logout/Fault/MyExceptions", Name="MyExceptions")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         LePrAtos.GameManagerService.logoutResponse logout(LePrAtos.GameManagerService.logoutRequest request);
         
@@ -173,6 +174,7 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/kickPlayerRequest", ReplyAction="http://webservices.org/GameManager/kickPlayerResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/kickPlayer/Fault/MyExceptions", Name="MyExceptions")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         LePrAtos.GameManagerService.kickPlayerResponse kickPlayer(LePrAtos.GameManagerService.kickPlayerRequest request);
         
@@ -191,6 +193,7 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/leaveGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/leaveGameLobbyResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/leaveGameLobby/Fault/MyExceptions", Name="MyExceptions")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         LePrAtos.GameManagerService.leaveGameLobbyResponse leaveGameLobby(LePrAtos.GameManagerService.leaveGameLobbyRequest request);
         
@@ -199,6 +202,7 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbyResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/getGameLobby/Fault/MyExceptions", Name="MyExceptions")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
         LePrAtos.GameManagerService.getGameLobbyResponse getGameLobby(LePrAtos.GameManagerService.getGameLobbyRequest request);
@@ -217,6 +221,7 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getPlayerByIDRequest", ReplyAction="http://webservices.org/GameManager/getPlayerByIDResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/getPlayerByID/Fault/MyExceptions", Name="MyExceptions")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
         LePrAtos.GameManagerService.getPlayerByIDResponse getPlayerByID(LePrAtos.GameManagerService.getPlayerByIDRequest request);
@@ -226,6 +231,7 @@ namespace LePrAtos.GameManagerService {
         
         // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerStatusRequest", ReplyAction="http://webservices.org/GameManager/setPlayerStatusResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setPlayerStatus/Fault/MyExceptions", Name="MyExceptions")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         LePrAtos.GameManagerService.setPlayerStatusResponse setPlayerStatus(LePrAtos.GameManagerService.setPlayerStatusRequest request);
         

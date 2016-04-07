@@ -2,9 +2,7 @@
 // Copyright (c) 2016
 // Author: Honegger, Pascal (ext)
 
-using System;
 using System.Threading.Tasks;
-using LePrAtos.Startup.Login;
 using LePrAtos.Startup.Register;
 using LePrAtos_Test.Infrastructure;
 using NUnit.Framework;

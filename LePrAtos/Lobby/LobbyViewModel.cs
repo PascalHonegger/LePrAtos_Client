@@ -3,7 +3,6 @@
 // Author: Honegger, Pascal (ext)
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -190,73 +189,6 @@ namespace LePrAtos.Lobby
 
 			lobbyBrowserView.Show();
 		}
-
-
-		/*private void UpdateMembers(gameLobby value)
-		{
-			//Update Admin
-			//TODO Equals ändern
-			var admin = Members.First(m => Equals(m.Username, _lobby.gameLobbyAdmin.username));
-			admin.Identification = value.gameLobbyAdmin;
-
-			if (value.gamePlayerList == null)
-			{
-				Members.Clear();
-				Members.Add(admin);
-				return;
-			}
-
-			//Already has Members
-			if (_lobby.gamePlayerList != null)
-			{
-				//Remove old Members
-				//TODO Equals ändern
-				var removedMembersName = _lobby.gamePlayerList.Select(p => p.username).Except(value.gamePlayerList.Select(p => p.username));
-				var removedMembers = value.gamePlayerList.Where(p => removedMembersName.Contains(p.username));
-
-				foreach (var playerIdentification in removedMembers)
-				{
-					var removedViewModel = Members.First(m => Equals(m.Username, playerIdentification.username));
-					Members.Remove(removedViewModel);
-				}
-
-				//Update existing Members
-				var stayingMembersName = _lobby.gamePlayerList.Select(p => p.username).Except(removedMembersName);
-				var stayingMembers = _lobby.gamePlayerList.Where(p => stayingMembersName.Contains(p.username));
-
-				foreach (var playerIdentification in stayingMembers)
-				{
-					var viewModel = Members.First(m => Equals(m.Username, playerIdentification.username));
-
-					viewModel.Identification = playerIdentification;
-				}
-			}
-
-			//Add new Members
-			//TODO Equals ändern
-			var newMembersName = _lobby.gamePlayerList != null ? value.gamePlayerList.Select(p => p.username).Except(_lobby.gamePlayerList.Select(p => p.username)) : value.gamePlayerList.Select(p => p.username);
-			var newMembers = value.gamePlayerList.Where(p => newMembersName.Contains(p.username));
-
-			foreach (var playerIdentification in newMembers)
-			{
-				PlayerViewModel playerViewModel;
-
-				if (Equals(playerIdentification.username, CurrentSession.Player.Username))
-				{
-					CurrentSession.Player.Identification = playerIdentification;
-					playerViewModel = CurrentSession.Player;
-				}
-				else
-				{
-					playerViewModel = Container.Resolve<PlayerViewModel>();
-					playerViewModel.Identification = playerIdentification;
-					playerViewModel.RemoveAction = RemovePlayer;
-				}
-
-				playerViewModel.IsLeader = false;
-				Members.Add(playerViewModel);
-			}
-		}*/
 
 		private void LoadAllMembers(gameLobby value)
 		{
