@@ -53,12 +53,18 @@ namespace LePrAtos.Infrastructure
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(string.IsNullOrEmpty(errorMessage) ? e.Message : errorMessage, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+				DisplayError(e, errorMessage);
 			}
 			finally
 			{
 				IsBusy = false;
 			}
+		}
+
+		private static void DisplayError(Exception e, string customErrorMessage)
+		{
+			var exceptionMessage = typeof(Strings).GetProperty(e.Message)?.GetValue(typeof(Strings), null) as string ?? e.Message;
+			MessageBox.Show(string.IsNullOrEmpty(customErrorMessage) ? exceptionMessage : customErrorMessage, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
 		}
 
 		/// <summary>
@@ -74,7 +80,7 @@ namespace LePrAtos.Infrastructure
 			}
 			catch (Exception e)
 			{
-				MessageBox.Show(string.IsNullOrEmpty(errorMessage) ? e.Message : errorMessage, Strings.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+				DisplayError(e, errorMessage);
 			}
 		}
 

@@ -145,39 +145,30 @@ namespace LePrAtos.Lobby
 				}
 
 				LoadAllMembers(value);
-				_lobby = value;
-				/*
-				//Load or Update Members
-				if (_lobby == null || !Equals(value.gameLobbyAdmin.username, _lobby.gameLobbyAdmin.username))
+
+				if (_lobby != null)
 				{
-					LoadAllMembers(value);
-					_lobby = value;
+					ValidateStillInLobby(_lobby);
 				}
-				else
-				{
-					UpdateMembers(value);
-				}*/
 
 				//Apply general settings
+				_lobby = value;
 				LobbyId = _lobby.gameLobbyID;
 				LobbyName = _lobby.gameLobbyName;
 				PlayerLimit = _lobby.playerLimit;
 				PasswordProtected = _lobby.passwordProtected;
-
-				ValidateStillInLobby(value);
 			}
 		}
 
 		private void ValidateStillInLobby(gameLobby oldLobbyStatus)
 		{
 			//Is in Lobby
-			if (CurrentSession.Player.IsLeader || Members.Contains(CurrentSession.Player)) return;
+			if (Members.Contains(CurrentSession.Player)) return;
 
 			//Wasn't in oldLobbyStatus
-			var result = oldLobbyStatus.gamePlayerList?.Select(i => i.username).Contains(CurrentSession.Player.Username);
+			var wasInOldLobby = oldLobbyStatus.gamePlayerList?.Select(i => i.username).Contains(CurrentSession.Player.Username) ?? false;
 
-			if (!result.HasValue || !result.Value) return;
-
+			if (!wasInOldLobby) return;
 
 			MessageBox.Show(Strings.LobbyView_YouGotRemoved, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -210,28 +201,38 @@ namespace LePrAtos.Lobby
 
 			Members.Add(admin);
 
-			if (value.gamePlayerList == null) return;
-
-			foreach (var playerIdentification in value.gamePlayerList.Where(p => p != null))
+			if (value.gamePlayerList != null)
 			{
-				PlayerViewModel playerViewModel;
-
-				if (Equals(playerIdentification.username, CurrentSession.Player.Username))
+				foreach (var playerIdentification in value.gamePlayerList.Where(p => p != null))
 				{
-					CurrentSession.Player.Identification = playerIdentification;
-					playerViewModel = CurrentSession.Player;
-				}
-				else
-				{
-					playerViewModel = Container.Resolve<PlayerViewModel>();
-					playerViewModel.Identification = playerIdentification;
-					playerViewModel.RemoveAction = RemovePlayer;
-				}
+					PlayerViewModel playerViewModel;
 
-				playerViewModel.IsLeader = false;
-				Members.Add(playerViewModel);
+					if (Equals(playerIdentification.username, CurrentSession.Player.Username))
+					{
+						CurrentSession.Player.Identification = playerIdentification;
+						playerViewModel = CurrentSession.Player;
+					}
+					else
+					{
+						playerViewModel = Container.Resolve<PlayerViewModel>();
+						playerViewModel.Identification = playerIdentification;
+						playerViewModel.RemoveAction = RemovePlayer;
+					}
+
+					playerViewModel.IsLeader = false;
+					Members.Add(playerViewModel);
+				}
 			}
+			//TODO PHO
+			/*
+			if (!CurrentPlayerIsMember)
+			{
+				RequestWindowCloseEvent?.Invoke(this, EventArgs.Empty);
+			}
+			*/
 		}
+
+		private bool CurrentPlayerIsMember => Members.Contains(CurrentSession.Player);
 
 		/// <summary>
 		///     Der Text, welcher im GUI als Passwort-Platzhalter angezeigt wird.
@@ -375,6 +376,21 @@ namespace LePrAtos.Lobby
 		/// <returns><c>True</c> bei Success</returns>
 		public bool LeaveLobby()
 		{
+			//TODO PHO
+			/*
+			if (!CurrentPlayerIsMember)
+			{
+				var viewModel = Container.Resolve<LobbyBrowserViewModel>();
+
+				viewModel.Refresh();
+
+				var view = new LobbyBrowserView(viewModel);
+
+				view.Show();
+
+				return true;
+			}
+			*/
 			var result = MessageBox.Show(Strings.LobbyView_ReallyQuit, "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 			if (result == MessageBoxResult.No) return false;
 

@@ -259,7 +259,7 @@ namespace LePrAtos.Lobby
 							PasswordHasher.HashPasswort(LobbyPassword))).@return;
 				new LobbyView(SelectedLobby).Show();
 				RequestWindowCloseEvent.Invoke(this, null);
-			}, Strings.LobbyBrowser_WrongLobbyPassword);
+			});
 		}
 
 		private void CreateLobby()

@@ -177,7 +177,7 @@ namespace LePrAtos.Startup.Register
 				var lobbyBrowser = new LobbyBrowserView(Container.Resolve<LobbyBrowserViewModel>());
 				lobbyBrowser.Show();
 				RequestWindowCloseEvent.Invoke(this, null);
-			}, Strings.RegisterView_BadRegister);
+			});
 		}
 
 		/// <summary>

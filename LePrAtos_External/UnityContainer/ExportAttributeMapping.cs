@@ -29,10 +29,7 @@ namespace UnityContainer
 			Configure();
 		}
 
-		public static bool AlreadyConfigured
-		{
-			get { return _initialized != 0; }
-		}
+		public static bool AlreadyConfigured => _initialized != 0;
 
 		private static void Configure()
 		{
@@ -113,7 +110,7 @@ namespace UnityContainer
 
 		private static LifetimeManager OnGetLifetimeManager(Type type)
 		{
-			PartCreationPolicyAttribute policy = type.GetCustomAttributes<PartCreationPolicyAttribute>().SingleOrDefault();
+			var policy = type.GetCustomAttributes<PartCreationPolicyAttribute>().SingleOrDefault();
 			if (policy != null && policy.CreationPolicy == CreationPolicy.Shared)
 			{
 				return WithLifetime.ContainerControlled(type);
@@ -129,11 +126,6 @@ namespace UnityContainer
 		private static IEnumerable<InjectionMember> OnGetInjectionMembers(Type x)
 		{
 			return new List<InjectionMember>();
-
-			/*if (x is ICommunicationObject)
-			{
-				yield return new InjectionConstructor();
-			}*/
 		}
 	}
 }

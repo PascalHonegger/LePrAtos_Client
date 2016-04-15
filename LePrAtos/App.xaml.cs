@@ -40,6 +40,7 @@ namespace LePrAtos
 			}
 			Strings.Culture = culture;
 			Thread.CurrentThread.CurrentUICulture = culture;
+			Thread.CurrentThread.CurrentCulture = culture;
 
 			//Load Unity
 			new ScannerModule().Initialize();

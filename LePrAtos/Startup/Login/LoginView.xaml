@@ -6,9 +6,11 @@
         xmlns:login="clr-namespace:LePrAtos.Startup.Login"
         xmlns:localization="clr-namespace:LePrAtos.Properties"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:helpService="clr-namespace:HelpService;assembly=HelpService"
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="{x:Static localization:Strings.LoginView_Login}" Height="200" Width="600"
-        d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen">
+        d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen"
+		helpService:CustomHelp.HelpTopic="1">
 
 	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static localization:Strings.Loading}" >
 		<Grid Margin="5" DockPanel.Dock="Bottom" FocusManager.FocusedElement="{Binding ElementName=Username}">

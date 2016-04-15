@@ -106,6 +106,7 @@ namespace LePrAtos.Startup.Login
 
 				Strings.Culture = value.Culture;
 				Thread.CurrentThread.CurrentUICulture = value.Culture;
+				Thread.CurrentThread.CurrentCulture = value.Culture;
 
 				//New LoginViewModel and new View to completely reload language
 
@@ -197,7 +198,7 @@ namespace LePrAtos.Startup.Login
 				lobbyBrowser.Show();
 
 				RequestWindowCloseEvent.Invoke(this, null);
-			}, Strings.LoginView_BadLogin);
+			});
 		}
 
 		/// <summary>

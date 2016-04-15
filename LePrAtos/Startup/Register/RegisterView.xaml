@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:LePrAtos.Startup.Register"
         xmlns:properties="clr-namespace:LePrAtos.Properties"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:helpService="clr-namespace:HelpService;assembly=HelpService"
         mc:Ignorable="d"
         Title="{x:Static properties:Strings.RegisterView_Register}" Height="250" Width="400"
         d:DataContext="{d:DesignInstance local:RegisterViewModel}" ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+		helpService:CustomHelp.HelpTopic="4">
 	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static properties:Strings.Loading}" >
 		<Grid FocusManager.FocusedElement="{Binding ElementName=Username}" Margin="5">
 			<Grid.ColumnDefinitions>
