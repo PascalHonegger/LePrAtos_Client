@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
@@ -31,8 +30,8 @@ namespace LePrAtos.Startup.Login
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private ICommand _registerCommand;
-		private ICommand _restartCommand;
 		private ICommand _resetPasswordCommand;
+		private ICommand _restartCommand;
 		private string _usernameOrMail;
 
 		/// <summary>
@@ -52,7 +51,7 @@ namespace LePrAtos.Startup.Login
 			{
 				var supportedCultures = new List<LanguageViewModel>();
 
-				var rm = new ResourceManager(typeof (Strings));
+				var rm = new ResourceManager(typeof(Strings));
 
 				var cultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Distinct();
 				foreach (var culture in cultures.Where(c => !string.IsNullOrEmpty(c.Name)))
@@ -132,11 +131,7 @@ namespace LePrAtos.Startup.Login
 		/// </summary>
 		public string UsernameOrMail
 		{
-			get
-			{
-				
-				return _usernameOrMail;
-			}
+			get { return _usernameOrMail; }
 			set
 			{
 				if (Equals(value, _usernameOrMail)) return;
@@ -171,15 +166,10 @@ namespace LePrAtos.Startup.Login
 				(_registerCommand = new DelegateCommand(Register));
 
 		/// <summary>
-		///     Event, welcher das schliessen des Dialoges anfordert
-		/// </summary>
-		public EventHandler RequestWindowCloseEvent { get; set; }
-
-		/// <summary>
 		///     Command für den Neustart
 		/// </summary>
 		public ICommand RestartCommand
-		=>
+			=>
 				_restartCommand ??
 				(_restartCommand = new DelegateCommand(Restart));
 
@@ -187,13 +177,18 @@ namespace LePrAtos.Startup.Login
 		///     Command für den Passwort-Reset
 		/// </summary>
 		public ICommand ResetPasswordCommand
-		=>
+			=>
 				_resetPasswordCommand ??
 				(_resetPasswordCommand = new DelegateCommand(ResetPassword));
 
-		private void ResetPassword()
+		/// <summary>
+		///     Event, welcher das schliessen des Dialoges anfordert
+		/// </summary>
+		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		private static void ResetPassword()
 		{
-			throw new NotImplementedException();
+			new ResetPasswordView().ShowDialog();
 		}
 
 		private static void Restart()
@@ -234,7 +229,7 @@ namespace LePrAtos.Startup.Login
 		}
 
 		/// <summary>
-		///     Meldet den User an, indem 
+		///     Meldet den User an, indem
 		/// </summary>
 		/// <param name="password">Das zu verwendende Passwort</param>
 		public async Task LoginUser(string password)
