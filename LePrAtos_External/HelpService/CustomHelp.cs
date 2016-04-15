@@ -78,7 +78,7 @@ namespace HelpService
 			try
 			{
 				var currentDir = Environment.CurrentDirectory;
-				var path = Path.GetFullPath(new Uri(currentDir + $"/../../../LePrAtos/Resources/{Thread.CurrentThread.CurrentCulture.Name}.chm").LocalPath);
+				var path = Path.GetFullPath(new Uri(currentDir + $"/Resources/{Thread.CurrentThread.CurrentCulture.Name}.chm").LocalPath);
 				Help.ShowHelp(null, path, HelpNavigator.TopicId, topic.ToString());
 			}
 			catch (Exception)
