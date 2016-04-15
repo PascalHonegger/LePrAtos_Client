@@ -4,11 +4,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LePrAtos.Infrastructure;
@@ -28,6 +31,8 @@ namespace LePrAtos.Startup.Login
 	{
 		private DelegateCommand<PasswordBox> _loginCommand;
 		private ICommand _registerCommand;
+		private ICommand _restartCommand;
+		private ICommand _resetPasswordCommand;
 		private string _usernameOrMail;
 
 		/// <summary>
@@ -169,6 +174,33 @@ namespace LePrAtos.Startup.Login
 		///     Event, welcher das schliessen des Dialoges anfordert
 		/// </summary>
 		public EventHandler RequestWindowCloseEvent { get; set; }
+
+		/// <summary>
+		///     Command für den Neustart
+		/// </summary>
+		public ICommand RestartCommand
+		=>
+				_restartCommand ??
+				(_restartCommand = new DelegateCommand(Restart));
+
+		/// <summary>
+		///     Command für den Passwort-Reset
+		/// </summary>
+		public ICommand ResetPasswordCommand
+		=>
+				_resetPasswordCommand ??
+				(_resetPasswordCommand = new DelegateCommand(ResetPassword));
+
+		private void ResetPassword()
+		{
+			throw new NotImplementedException();
+		}
+
+		private static void Restart()
+		{
+			Process.Start(Assembly.GetEntryAssembly().Location);
+			Environment.Exit(-1);
+		}
 
 		/// <summary>
 		///     Entscheided, ob das Login ausgeführt werden kann

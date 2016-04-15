@@ -273,4 +273,22 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="LobbyView_YouGotRemoved" xml:space="preserve">
     <value>Du wurdest aus der Lobby entfernt!</value>
   </data>
+  <data name="LobbyBrowser_JoinFullLobby" xml:space="preserve">
+    <value>Lobby ist voll! Bitte aktualisiere die Liste und versuche es später erneut.</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobbyFailed" xml:space="preserve">
+    <value>Beitreten fehlgeschlagen. Bitte aktualisiere die Liste und versuche es später erneut.</value>
+  </data>
+  <data name="LoginView_AlreadyLoggedIn" xml:space="preserve">
+    <value>Du bist bereits angemeldet! Wenn dies ein Fehler ist, kontaktiere bitte den Support</value>
+  </data>
+  <data name="NoPermissions" xml:space="preserve">
+    <value>Du benötigst mehr Rechte um diese Aktion durchzuführen</value>
+  </data>
+  <data name="LoginView_Restart" xml:space="preserve">
+    <value>Neustarten</value>
+  </data>
+  <data name="LoginView_ResetPassword" xml:space="preserve">
+    <value>Passwort vergessen?</value>
+  </data>
 </root>

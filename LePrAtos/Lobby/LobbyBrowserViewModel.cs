@@ -223,6 +223,8 @@ namespace LePrAtos.Lobby
 		{
 			CurrentSession.PollingTimer.Stop();
 
+			CurrentSession.Client.logout(CurrentSession.Player.PlayerId);
+
 			StopRefresh(false);
 
 			var preSelectedUsername = CurrentSession.Player.Username;

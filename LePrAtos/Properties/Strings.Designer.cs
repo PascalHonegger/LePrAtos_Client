@@ -142,11 +142,38 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_JoinFullLobby.
+        /// </summary>
+        public static string LobbyBrowser_JoinFullLobby {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_JoinFullLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LobbyBrowser_JoinLobby.
         /// </summary>
         public static string LobbyBrowser_JoinLobby {
             get {
                 return ResourceManager.GetString("LobbyBrowser_JoinLobby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_JoinLobbyFailed.
+        /// </summary>
+        public static string LobbyBrowser_JoinLobbyFailed {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_JoinLobbyFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LobbyBrowser_JoinLobbyFailed.
+        /// </summary>
+        public static string LobbyBrowser_JoinLobbyFailed1 {
+            get {
+                return ResourceManager.GetString("LobbyBrowser_JoinLobbyFailed1", resourceCulture);
             }
         }
         
@@ -322,6 +349,15 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_AlreadyLoggedIn.
+        /// </summary>
+        public static string LoginView_AlreadyLoggedIn {
+            get {
+                return ResourceManager.GetString("LoginView_AlreadyLoggedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_ApplyOnRestart.
         /// </summary>
         public static string LoginView_ApplyOnRestart {
@@ -367,6 +403,24 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LoginView_ResetPassword.
+        /// </summary>
+        public static string LoginView_ResetPassword {
+            get {
+                return ResourceManager.GetString("LoginView_ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LoginView_Restart.
+        /// </summary>
+        public static string LoginView_Restart {
+            get {
+                return ResourceManager.GetString("LoginView_Restart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LoginView_SaveLogin.
         /// </summary>
         public static string LoginView_SaveLogin {
@@ -399,6 +453,15 @@ namespace LePrAtos.Properties {
         public static string Mail {
             get {
                 return ResourceManager.GetString("Mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NoPermissions.
+        /// </summary>
+        public static string NoPermissions {
+            get {
+                return ResourceManager.GetString("NoPermissions", resourceCulture);
             }
         }
         

@@ -270,4 +270,25 @@
   <data name="LobbyView_YouGotRemoved" xml:space="preserve">
     <value>LobbyView_YouGotRemoved</value>
   </data>
+  <data name="LobbyBrowser_JoinFullLobby" xml:space="preserve">
+    <value>LobbyBrowser_JoinFullLobby</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobbyFailed" xml:space="preserve">
+    <value>LobbyBrowser_JoinLobbyFailed</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobbyFailed1" xml:space="preserve">
+    <value>LobbyBrowser_JoinLobbyFailed</value>
+  </data>
+  <data name="LoginView_AlreadyLoggedIn" xml:space="preserve">
+    <value>LoginView_AlreadyLoggedIn</value>
+  </data>
+  <data name="NoPermissions" xml:space="preserve">
+    <value>NoPermissions</value>
+  </data>
+  <data name="LoginView_Restart" xml:space="preserve">
+    <value>LoginView_Restart</value>
+  </data>
+  <data name="LoginView_ResetPassword" xml:space="preserve">
+    <value>LoginView_ResetPassword</value>
+  </data>
 </root>

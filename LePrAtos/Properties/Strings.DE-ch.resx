@@ -270,4 +270,22 @@
   <data name="LobbyView_YouGotRemoved" xml:space="preserve">
     <value>Du bisch uus de Lobby entfernt worde!</value>
   </data>
+  <data name="LobbyBrowser_JoinFullLobby" xml:space="preserve">
+    <value>Lobby isch voll! Bitte aktualisier d'Liste und versuech's spöter nomal.</value>
+  </data>
+  <data name="LobbyBrowser_JoinLobbyFailed" xml:space="preserve">
+    <value>Biitrette Fählgschlagge. Bitte aktualisier d'Liste und versuech's spöter nomal.</value>
+  </data>
+  <data name="LoginView_AlreadyLoggedIn" xml:space="preserve">
+    <value>Du bisch bereits ahgmeldet! Wenn das en Fehler isch, kontaktier bitte de Support</value>
+  </data>
+  <data name="NoPermissions" xml:space="preserve">
+    <value>Du benötigsch meh Rächt um die Aktion dure z'führe</value>
+  </data>
+  <data name="LoginView_Restart" xml:space="preserve">
+    <value>Neustarte</value>
+  </data>
+  <data name="LoginView_ResetPassword" xml:space="preserve">
+    <value>Passwort vergässe?</value>
+  </data>
 </root>

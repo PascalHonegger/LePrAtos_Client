@@ -55,11 +55,23 @@
 			<PasswordBox TabIndex="1" x:Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
 		             PasswordChanged="TextChanged" />
 
-			<TextBlock Grid.Column="0" Grid.Row="3" TextAlignment="Center">
-				<Hyperlink KeyboardNavigation.TabIndex="4" Command="{Binding RegisterCommand}">
-					<TextBlock Text="{x:Static localization:Strings.LoginView_Register}" />
-				</Hyperlink>
-			</TextBlock>
+			<Grid Grid.Column="0" Grid.Row="3" >
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="5px"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<TextBlock Grid.Row="0" TextAlignment="Center">
+					<Hyperlink Command="{Binding ResetPasswordCommand}">
+						<TextBlock Text="{x:Static localization:Strings.LoginView_ResetPassword}" />
+					</Hyperlink>
+				</TextBlock>
+				<TextBlock Grid.Row="2" TextAlignment="Center">
+					<Hyperlink KeyboardNavigation.TabIndex="4" Command="{Binding RegisterCommand}">
+						<TextBlock Text="{x:Static localization:Strings.LoginView_Register}" />
+					</Hyperlink>
+				</TextBlock>
+			</Grid>
 			<Button TabIndex="3" x:Name="Login" Grid.Column="1" Grid.Row="3"
 		        Content="{x:Static localization:Strings.LoginView_Login}"
 		        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" IsDefault="True" />
@@ -92,7 +104,14 @@
 			
 			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="3" Grid.Column="3"
 			    Content="{x:Static localization:Strings.LoginView_SaveLogin}" />
-			<CheckBox TabIndex="2" Grid.Column="4" Grid.Row="3" IsChecked="{Binding SaveLogin}" />
+			<Grid Grid.Column="4" Grid.Row="3">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<CheckBox TabIndex="2" IsChecked="{Binding SaveLogin}" Grid.Column="0" Margin="10, 0"/>
+				<Button Command="{Binding RestartCommand}" Grid.Column="1" Content="{x:Static localization:Strings.LoginView_Restart}"/>
+			</Grid>
 		</Grid>
 	</xctk:BusyIndicator>
 </Window>
