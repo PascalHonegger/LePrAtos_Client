@@ -288,4 +288,7 @@
   <data name="LoginView_ResetPassword" xml:space="preserve">
     <value>Passwort vergässe?</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Zrugg</value>
+  </data>
 </root>

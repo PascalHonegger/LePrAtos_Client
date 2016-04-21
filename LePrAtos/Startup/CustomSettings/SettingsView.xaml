@@ -1,0 +1,49 @@
+﻿<Window x:Class="LePrAtos.Startup.CustomSettings.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:localization="clr-namespace:LePrAtos.Properties"
+        xmlns:customSettings="clr-namespace:LePrAtos.Startup.CustomSettings"
+        mc:Ignorable="d"
+        Title="{x:Static localization:Strings.Settings}" Height="300" Width="300"
+        d:DataContext="{d:DesignInstance customSettings:SettingsViewModel}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Label Target="{Binding ElementName=LanguageSelector}" Grid.Row="0" Grid.Column="0"
+		       Content="{x:Static localization:Strings.LoginView_Language}" />
+		<ComboBox TabIndex="5" Name="LanguageSelector" Grid.Row="0" Grid.Column="1"
+		          ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<Grid Height="20" HorizontalAlignment="Stretch">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Image Grid.Column="0" Source="{Binding PathToFlag}" Margin="2, 3" />
+						<TextBlock Grid.Column="1" Text="{Binding DisplayText}" />
+					</Grid>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+
+		<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="1" Grid.Column="0"
+		       Content="{x:Static localization:Strings.LoginView_Theme}" />
+		<ComboBox TabIndex="5" Name="ThemeSelector" Grid.Row="1" Grid.Column="1"
+		          ItemsSource="{Binding PossibleThemes}" SelectedItem="{Binding SelectedTheme}"
+		          ToolTip="{x:Static localization:Strings.LoginView_ApplyOnRestart}" />
+		<Button Command="{Binding ReturnCommand}" Grid.Row="2" Grid.Column="0"
+		        Content="{x:Static localization:Strings.Back}" />
+		<Button Command="{Binding RestartCommand}" Grid.Row="2" Grid.Column="1"
+		        Content="{x:Static localization:Strings.LoginView_Restart}" />
+	</Grid>
+</Window>

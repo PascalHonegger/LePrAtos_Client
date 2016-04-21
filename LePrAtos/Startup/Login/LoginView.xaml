@@ -8,16 +8,13 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:helpService="clr-namespace:HelpService;assembly=HelpService"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="{x:Static localization:Strings.LoginView_Login}" Height="200" Width="600"
+        Title="{x:Static localization:Strings.LoginView_Login}" Height="200" Width="400"
         d:DataContext="{d:DesignInstance login:LoginViewModel}" WindowStartupLocation="CenterScreen"
         helpService:CustomHelp.HelpTopic="1">
 
 	<xctk:BusyIndicator IsBusy="{Binding BusyRunner.IsBusy}" BusyContent="{x:Static localization:Strings.Loading}">
-		<Grid Margin="5" DockPanel.Dock="Bottom" FocusManager.FocusedElement="{Binding ElementName=Username}">
+		<Grid Margin="2" DockPanel.Dock="Bottom" FocusManager.FocusedElement="{Binding ElementName=Username}">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-				<ColumnDefinition Width="0.1*" />
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
@@ -25,6 +22,7 @@
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="*" />
 				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
@@ -43,10 +41,7 @@
 				</Style>
 			</Grid.Resources>
 
-			<!-- Login -->
-			<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{x:Static localization:Strings.LoginView_Login}"
-			           TextAlignment="Center" />
-
+			<Button HorizontalAlignment="Right" Grid.Column="1" Content="🔧" FontSize="18" Width="30" Command="{Binding SettingsCommand}"/>
 			<Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}"
 			       Content="{x:Static localization:Strings.LoginView_UsernameOrMail}" />
 			<TextBox Grid.Column="1" Grid.Row="1" TabIndex="0" x:Name="Username"
@@ -57,66 +52,20 @@
 			<PasswordBox TabIndex="1" x:Name="Password" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
 			             PasswordChanged="TextChanged" />
 
-			<Grid Grid.Column="0" Grid.Row="3">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="*" />
-					<RowDefinition Height="5px" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-				<TextBlock Grid.Row="0" TextAlignment="Center">
-					<Hyperlink Command="{Binding ResetPasswordCommand}">
-						<TextBlock Text="{x:Static localization:Strings.LoginView_ResetPassword}" />
-					</Hyperlink>
-				</TextBlock>
-				<TextBlock Grid.Row="2" TextAlignment="Center">
-					<Hyperlink KeyboardNavigation.TabIndex="4" Command="{Binding RegisterCommand}">
-						<TextBlock Text="{x:Static localization:Strings.LoginView_Register}" />
-					</Hyperlink>
-				</TextBlock>
-			</Grid>
-			<Button TabIndex="3" x:Name="Login" Grid.Column="1" Grid.Row="3"
+			<TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Center">
+				<Hyperlink Command="{Binding ResetPasswordCommand}">
+					<TextBlock Text="{x:Static localization:Strings.LoginView_ResetPassword}" />
+				</Hyperlink>
+			</TextBlock>
+			<TextBlock Grid.Row="4" Grid.Column="0" TextAlignment="Center" VerticalAlignment="Center">
+				<Hyperlink KeyboardNavigation.TabIndex="4" Command="{Binding RegisterCommand}">
+					<TextBlock Text="{x:Static localization:Strings.LoginView_Register}" />
+				</Hyperlink>
+			</TextBlock>
+			<CheckBox TabIndex="2" IsChecked="{Binding SaveLogin}" Grid.Column="1" Grid.Row="3" Margin="10, 3" Content="{x:Static localization:Strings.LoginView_SaveLogin}"/>
+			<Button TabIndex="3" x:Name="Login" Grid.Column="1" Grid.Row="4"
 			        Content="{x:Static localization:Strings.LoginView_Login}"
 			        Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=Password}" IsDefault="True" />
-
-			<!-- Settings -->
-			<TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="{x:Static localization:Strings.Settings}"
-			           TextAlignment="Center" />
-
-			<Label Target="{Binding ElementName=LanguageSelector}" Grid.Row="1" Grid.Column="3"
-			       Content="{x:Static localization:Strings.LoginView_Language}" />
-			<ComboBox TabIndex="5" Name="LanguageSelector" Grid.Row="1" Grid.Column="4"
-			          ItemsSource="{Binding PossibleLanguages}" SelectedItem="{Binding SelectedLanguage}">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<Grid Height="20" HorizontalAlignment="Stretch">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-							<Image Grid.Column="0" Source="{Binding PathToFlag}" Margin="2, 3" />
-							<TextBlock Grid.Column="1" Text="{Binding DisplayText}" />
-						</Grid>
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
-
-			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="2" Grid.Column="3"
-			       Content="{x:Static localization:Strings.LoginView_Theme}" />
-			<ComboBox TabIndex="5" Name="ThemeSelector" Grid.Row="2" Grid.Column="4"
-			          ItemsSource="{Binding PossibleThemes}" SelectedItem="{Binding SelectedTheme}"
-			          ToolTip="{x:Static localization:Strings.LoginView_ApplyOnRestart}" />
-
-			<Label Target="{Binding ElementName=ThemeSelector}" Grid.Row="3" Grid.Column="3"
-			       Content="{x:Static localization:Strings.LoginView_SaveLogin}" />
-			<Grid Grid.Column="4" Grid.Row="3">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition />
-				</Grid.ColumnDefinitions>
-				<CheckBox TabIndex="2" IsChecked="{Binding SaveLogin}" Grid.Column="0" Margin="10, 0" />
-				<Button Command="{Binding RestartCommand}" Grid.Column="1"
-				        Content="{x:Static localization:Strings.LoginView_Restart}" />
-			</Grid>
 		</Grid>
 	</xctk:BusyIndicator>
 </Window>
