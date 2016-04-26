@@ -294,4 +294,22 @@ Please send the following info to the support!
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="ResetPassword_Code" xml:space="preserve">
+    <value>Received code</value>
+  </data>
+  <data name="ResetPassword_NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="ResetPassword_PasswordChanged" xml:space="preserve">
+    <value>Password changed!</value>
+  </data>
+  <data name="ResetPassword_RequestReset" xml:space="preserve">
+    <value>Request password reset</value>
+  </data>
+  <data name="ResetPassword_SetPassword" xml:space="preserve">
+    <value>Set new password</value>
+  </data>
 </root>

@@ -294,4 +294,22 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>ResetPassword</value>
+  </data>
+  <data name="ResetPassword_Code" xml:space="preserve">
+    <value>ResetPassword_Code</value>
+  </data>
+  <data name="ResetPassword_NewPassword" xml:space="preserve">
+    <value>ResetPassword_NewPassword</value>
+  </data>
+  <data name="ResetPassword_PasswordChanged" xml:space="preserve">
+    <value>ResetPassword_PasswordChanged</value>
+  </data>
+  <data name="ResetPassword_RequestReset" xml:space="preserve">
+    <value>ResetPassword_RequestReset</value>
+  </data>
+  <data name="ResetPassword_SetPassword" xml:space="preserve">
+    <value>ResetPassword_SetPassword</value>
+  </data>
 </root>

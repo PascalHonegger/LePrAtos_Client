@@ -37,12 +37,12 @@ namespace LePrAtos.Startup.Register
 		/// <summary>
 		///     Die Minimallänge des Passworts
 		/// </summary>
-		private const int PasswordMinLength = 5;
+		public const int PasswordMinLength = 5;
 
 		/// <summary>
 		///     Die Maximallänge des Passworts
 		/// </summary>
-		private const int PasswordMaxLength = 30;
+		public const int PasswordMaxLength = 30;
 
 		private const string MailPattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
 
@@ -191,8 +191,13 @@ namespace LePrAtos.Startup.Register
 			return
 				!HasErrors &&
 				Equals(password, repeatPassword) &&
-				password.Length <= PasswordMaxLength &&
-				password.Length >= PasswordMinLength;
+				PasswordValid(password);
+		}
+
+		public static bool PasswordValid(string password)
+		{
+			return password.Length <= PasswordMaxLength &&
+			password.Length >= PasswordMinLength;
 		}
 
 		/// <summary>

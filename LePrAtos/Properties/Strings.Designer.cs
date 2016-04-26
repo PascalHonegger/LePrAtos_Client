@@ -520,6 +520,60 @@ namespace LePrAtos.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ResetPassword.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResetPassword_Code.
+        /// </summary>
+        public static string ResetPassword_Code {
+            get {
+                return ResourceManager.GetString("ResetPassword_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResetPassword_NewPassword.
+        /// </summary>
+        public static string ResetPassword_NewPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResetPassword_PasswordChanged.
+        /// </summary>
+        public static string ResetPassword_PasswordChanged {
+            get {
+                return ResourceManager.GetString("ResetPassword_PasswordChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResetPassword_RequestReset.
+        /// </summary>
+        public static string ResetPassword_RequestReset {
+            get {
+                return ResourceManager.GetString("ResetPassword_RequestReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ResetPassword_SetPassword.
+        /// </summary>
+        public static string ResetPassword_SetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword_SetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {

@@ -294,4 +294,22 @@ Bitte senden Sie folgende Informationen an den Support
   <data name="Back" xml:space="preserve">
     <value>Zurück</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="ResetPassword_Code" xml:space="preserve">
+    <value>Erhaltener Code</value>
+  </data>
+  <data name="ResetPassword_NewPassword" xml:space="preserve">
+    <value>Neues Passwort</value>
+  </data>
+  <data name="ResetPassword_RequestReset" xml:space="preserve">
+    <value>Passwort Reset anfordern</value>
+  </data>
+  <data name="ResetPassword_SetPassword" xml:space="preserve">
+    <value>Neues Passwort setzen</value>
+  </data>
+  <data name="ResetPassword_PasswordChanged" xml:space="preserve">
+    <value>Passwort geändert!</value>
+  </data>
 </root>

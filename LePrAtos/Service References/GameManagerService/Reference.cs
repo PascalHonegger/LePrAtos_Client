@@ -44,382 +44,6 @@ namespace LePrAtos.GameManagerService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservices.org/")]
-    public partial class Exception : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string messageField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
-        public string message {
-            get {
-                return this.messageField;
-            }
-            set {
-                this.messageField = value;
-                this.RaisePropertyChanged("message");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://webservices.org/", ConfigurationName="GameManagerService.GameManager")]
-    public interface GameManager {
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/username_availabilityRequest", ReplyAction="http://webservices.org/GameManager/username_availabilityResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.username_availabilityResponse username_availability(LePrAtos.GameManagerService.username_availabilityRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/username_availabilityRequest", ReplyAction="http://webservices.org/GameManager/username_availabilityResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.username_availabilityResponse> username_availabilityAsync(LePrAtos.GameManagerService.username_availabilityRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/email_verificationRequest", ReplyAction="http://webservices.org/GameManager/email_verificationResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.email_verificationResponse email_verification(LePrAtos.GameManagerService.email_verificationRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/email_verificationRequest", ReplyAction="http://webservices.org/GameManager/email_verificationResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.email_verificationResponse> email_verificationAsync(LePrAtos.GameManagerService.email_verificationRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyPasswordResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setGameLobbyPassword/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.setGameLobbyPasswordResponse setGameLobbyPassword(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyPasswordResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> setGameLobbyPasswordAsync(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/resetGameLobbyPasswordResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/resetGameLobbyPassword/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.resetGameLobbyPasswordResponse resetGameLobbyPassword(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/resetGameLobbyPasswordResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> resetGameLobbyPasswordAsync(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/registrationRequest", ReplyAction="http://webservices.org/GameManager/registrationResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/registration/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.registrationResponse registration(LePrAtos.GameManagerService.registrationRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/registrationRequest", ReplyAction="http://webservices.org/GameManager/registrationResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.registrationResponse> registrationAsync(LePrAtos.GameManagerService.registrationRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/loginRequest", ReplyAction="http://webservices.org/GameManager/loginResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/login/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.loginResponse login(LePrAtos.GameManagerService.loginRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/loginRequest", ReplyAction="http://webservices.org/GameManager/loginResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> loginAsync(LePrAtos.GameManagerService.loginRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/logoutRequest", ReplyAction="http://webservices.org/GameManager/logoutResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/logout/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.logoutResponse logout(LePrAtos.GameManagerService.logoutRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/logoutRequest", ReplyAction="http://webservices.org/GameManager/logoutResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.logoutResponse> logoutAsync(LePrAtos.GameManagerService.logoutRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/createGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/createGameLobbyResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.Exception), Action="http://webservices.org/GameManager/createGameLobby/Fault/Exception", Name="Exception")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.createGameLobbyResponse createGameLobby(LePrAtos.GameManagerService.createGameLobbyRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/createGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/createGameLobbyResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.createGameLobbyResponse> createGameLobbyAsync(LePrAtos.GameManagerService.createGameLobbyRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyNameRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyNameResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setGameLobbyName/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.setGameLobbyNameResponse setGameLobbyName(LePrAtos.GameManagerService.setGameLobbyNameRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyNameRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyNameResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyNameResponse> setGameLobbyNameAsync(LePrAtos.GameManagerService.setGameLobbyNameRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerLimitRequest", ReplyAction="http://webservices.org/GameManager/setPlayerLimitResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setPlayerLimit/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.setPlayerLimitResponse setPlayerLimit(LePrAtos.GameManagerService.setPlayerLimitRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerLimitRequest", ReplyAction="http://webservices.org/GameManager/setPlayerLimitResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPlayerLimitResponse> setPlayerLimitAsync(LePrAtos.GameManagerService.setPlayerLimitRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/kickPlayerRequest", ReplyAction="http://webservices.org/GameManager/kickPlayerResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/kickPlayer/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.kickPlayerResponse kickPlayer(LePrAtos.GameManagerService.kickPlayerRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/kickPlayerRequest", ReplyAction="http://webservices.org/GameManager/kickPlayerResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.kickPlayerResponse> kickPlayerAsync(LePrAtos.GameManagerService.kickPlayerRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/joinGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/joinGameLobbyResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.Exception), Action="http://webservices.org/GameManager/joinGameLobby/Fault/Exception", Name="Exception")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.joinGameLobbyResponse joinGameLobby(LePrAtos.GameManagerService.joinGameLobbyRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/joinGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/joinGameLobbyResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.joinGameLobbyResponse> joinGameLobbyAsync(LePrAtos.GameManagerService.joinGameLobbyRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/leaveGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/leaveGameLobbyResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/leaveGameLobby/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.leaveGameLobbyResponse leaveGameLobby(LePrAtos.GameManagerService.leaveGameLobbyRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/leaveGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/leaveGameLobbyResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.leaveGameLobbyResponse> leaveGameLobbyAsync(LePrAtos.GameManagerService.leaveGameLobbyRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbyResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/getGameLobby/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.getGameLobbyResponse getGameLobby(LePrAtos.GameManagerService.getGameLobbyRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbyResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.getGameLobbyResponse> getGameLobbyAsync(LePrAtos.GameManagerService.getGameLobbyRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbiesRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbiesResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.getGameLobbiesResponse getGameLobbies(LePrAtos.GameManagerService.getGameLobbiesRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbiesRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbiesResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.getGameLobbiesResponse> getGameLobbiesAsync(LePrAtos.GameManagerService.getGameLobbiesRequest request);
-        
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getPlayerByIDRequest", ReplyAction="http://webservices.org/GameManager/getPlayerByIDResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/getPlayerByID/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        LePrAtos.GameManagerService.getPlayerByIDResponse getPlayerByID(LePrAtos.GameManagerService.getPlayerByIDRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getPlayerByIDRequest", ReplyAction="http://webservices.org/GameManager/getPlayerByIDResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.getPlayerByIDResponse> getPlayerByIDAsync(LePrAtos.GameManagerService.getPlayerByIDRequest request);
-        
-        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerStatusRequest", ReplyAction="http://webservices.org/GameManager/setPlayerStatusResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setPlayerStatus/Fault/MyExceptions", Name="MyExceptions")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        LePrAtos.GameManagerService.setPlayerStatusResponse setPlayerStatus(LePrAtos.GameManagerService.setPlayerStatusRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerStatusRequest", ReplyAction="http://webservices.org/GameManager/setPlayerStatusResponse")]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPlayerStatusResponse> setPlayerStatusAsync(LePrAtos.GameManagerService.setPlayerStatusRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="username_availability", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class username_availabilityRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string username;
-        
-        public username_availabilityRequest() {
-        }
-        
-        public username_availabilityRequest(string username) {
-            this.username = username;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="username_availabilityResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class username_availabilityResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public username_availabilityResponse() {
-        }
-        
-        public username_availabilityResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="email_verification", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class email_verificationRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string email;
-        
-        public email_verificationRequest() {
-        }
-        
-        public email_verificationRequest(string email) {
-            this.email = email;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="email_verificationResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class email_verificationResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool @return;
-        
-        public email_verificationResponse() {
-        }
-        
-        public email_verificationResponse(bool @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="setGameLobbyPassword", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class setGameLobbyPasswordRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string playerID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string GameLobbyID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=2)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string gameLobbyPassword;
-        
-        public setGameLobbyPasswordRequest() {
-        }
-        
-        public setGameLobbyPasswordRequest(string playerID, string GameLobbyID, string gameLobbyPassword) {
-            this.playerID = playerID;
-            this.GameLobbyID = GameLobbyID;
-            this.gameLobbyPassword = gameLobbyPassword;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="setGameLobbyPasswordResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class setGameLobbyPasswordResponse {
-        
-        public setGameLobbyPasswordResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="resetGameLobbyPassword", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class resetGameLobbyPasswordRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string playerID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string GameLobbyID;
-        
-        public resetGameLobbyPasswordRequest() {
-        }
-        
-        public resetGameLobbyPasswordRequest(string playerID, string GameLobbyID) {
-            this.playerID = playerID;
-            this.GameLobbyID = GameLobbyID;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="resetGameLobbyPasswordResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
-    public partial class resetGameLobbyPasswordResponse {
-        
-        public resetGameLobbyPasswordResponse() {
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservices.org/")]
-    public partial class player : playerIdentification {
-        
-        private string emailField;
-        
-        private string playerIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
-        public string email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-                this.RaisePropertyChanged("email");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
-        public string playerID {
-            get {
-                return this.playerIDField;
-            }
-            set {
-                this.playerIDField = value;
-                this.RaisePropertyChanged("playerID");
-            }
-        }
-    }
-    
-    /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(player))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
     [System.SerializableAttribute()]
@@ -463,6 +87,313 @@ namespace LePrAtos.GameManagerService {
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservices.org/")]
+    public partial class player : playerIdentification {
+        
+        private string emailField;
+        
+        private string playerIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+                this.RaisePropertyChanged("email");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string playerID {
+            get {
+                return this.playerIDField;
+            }
+            set {
+                this.playerIDField = value;
+                this.RaisePropertyChanged("playerID");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1067.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservices.org/")]
+    public partial class Exception : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string messageField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        public string message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+                this.RaisePropertyChanged("message");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://webservices.org/", ConfigurationName="GameManagerService.GameManager")]
+    public interface GameManager {
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/username_availabilityRequest", ReplyAction="http://webservices.org/GameManager/username_availabilityResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.username_availabilityResponse username_availability(LePrAtos.GameManagerService.username_availabilityRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/username_availabilityRequest", ReplyAction="http://webservices.org/GameManager/username_availabilityResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.username_availabilityResponse> username_availabilityAsync(LePrAtos.GameManagerService.username_availabilityRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/registrationRequest", ReplyAction="http://webservices.org/GameManager/registrationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/registration/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.registrationResponse registration(LePrAtos.GameManagerService.registrationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/registrationRequest", ReplyAction="http://webservices.org/GameManager/registrationResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.registrationResponse> registrationAsync(LePrAtos.GameManagerService.registrationRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/loginRequest", ReplyAction="http://webservices.org/GameManager/loginResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/login/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.loginResponse login(LePrAtos.GameManagerService.loginRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/loginRequest", ReplyAction="http://webservices.org/GameManager/loginResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.loginResponse> loginAsync(LePrAtos.GameManagerService.loginRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/logoutRequest", ReplyAction="http://webservices.org/GameManager/logoutResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/logout/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.logoutResponse logout(LePrAtos.GameManagerService.logoutRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/logoutRequest", ReplyAction="http://webservices.org/GameManager/logoutResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.logoutResponse> logoutAsync(LePrAtos.GameManagerService.logoutRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/createGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/createGameLobbyResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.Exception), Action="http://webservices.org/GameManager/createGameLobby/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.createGameLobbyResponse createGameLobby(LePrAtos.GameManagerService.createGameLobbyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/createGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/createGameLobbyResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.createGameLobbyResponse> createGameLobbyAsync(LePrAtos.GameManagerService.createGameLobbyRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/email_verificationRequest", ReplyAction="http://webservices.org/GameManager/email_verificationResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.email_verificationResponse email_verification(LePrAtos.GameManagerService.email_verificationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/email_verificationRequest", ReplyAction="http://webservices.org/GameManager/email_verificationResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.email_verificationResponse> email_verificationAsync(LePrAtos.GameManagerService.email_verificationRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyPasswordResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setGameLobbyPassword/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.setGameLobbyPasswordResponse setGameLobbyPassword(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyPasswordResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> setGameLobbyPasswordAsync(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/resetGameLobbyPasswordResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/resetGameLobbyPassword/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.resetGameLobbyPasswordResponse resetGameLobbyPassword(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest", ReplyAction="http://webservices.org/GameManager/resetGameLobbyPasswordResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> resetGameLobbyPasswordAsync(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/requestPasswordResetRequest", ReplyAction="http://webservices.org/GameManager/requestPasswordResetResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/requestPasswordReset/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.requestPasswordResetResponse requestPasswordReset(LePrAtos.GameManagerService.requestPasswordResetRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/requestPasswordResetRequest", ReplyAction="http://webservices.org/GameManager/requestPasswordResetResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.requestPasswordResetResponse> requestPasswordResetAsync(LePrAtos.GameManagerService.requestPasswordResetRequest request);
+        
+        // CODEGEN: Parameter 'mail' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPasswordFromResetRequest", ReplyAction="http://webservices.org/GameManager/setPasswordFromResetResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setPasswordFromReset/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.setPasswordFromResetResponse setPasswordFromReset(LePrAtos.GameManagerService.setPasswordFromResetRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPasswordFromResetRequest", ReplyAction="http://webservices.org/GameManager/setPasswordFromResetResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPasswordFromResetResponse> setPasswordFromResetAsync(LePrAtos.GameManagerService.setPasswordFromResetRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyNameRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyNameResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setGameLobbyName/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.setGameLobbyNameResponse setGameLobbyName(LePrAtos.GameManagerService.setGameLobbyNameRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setGameLobbyNameRequest", ReplyAction="http://webservices.org/GameManager/setGameLobbyNameResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyNameResponse> setGameLobbyNameAsync(LePrAtos.GameManagerService.setGameLobbyNameRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerLimitRequest", ReplyAction="http://webservices.org/GameManager/setPlayerLimitResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setPlayerLimit/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.setPlayerLimitResponse setPlayerLimit(LePrAtos.GameManagerService.setPlayerLimitRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerLimitRequest", ReplyAction="http://webservices.org/GameManager/setPlayerLimitResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPlayerLimitResponse> setPlayerLimitAsync(LePrAtos.GameManagerService.setPlayerLimitRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/kickPlayerRequest", ReplyAction="http://webservices.org/GameManager/kickPlayerResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/kickPlayer/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.kickPlayerResponse kickPlayer(LePrAtos.GameManagerService.kickPlayerRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/kickPlayerRequest", ReplyAction="http://webservices.org/GameManager/kickPlayerResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.kickPlayerResponse> kickPlayerAsync(LePrAtos.GameManagerService.kickPlayerRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/joinGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/joinGameLobbyResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.Exception), Action="http://webservices.org/GameManager/joinGameLobby/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.joinGameLobbyResponse joinGameLobby(LePrAtos.GameManagerService.joinGameLobbyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/joinGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/joinGameLobbyResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.joinGameLobbyResponse> joinGameLobbyAsync(LePrAtos.GameManagerService.joinGameLobbyRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/leaveGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/leaveGameLobbyResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/leaveGameLobby/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.leaveGameLobbyResponse leaveGameLobby(LePrAtos.GameManagerService.leaveGameLobbyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/leaveGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/leaveGameLobbyResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.leaveGameLobbyResponse> leaveGameLobbyAsync(LePrAtos.GameManagerService.leaveGameLobbyRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbyResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/getGameLobby/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.getGameLobbyResponse getGameLobby(LePrAtos.GameManagerService.getGameLobbyRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbyRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbyResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.getGameLobbyResponse> getGameLobbyAsync(LePrAtos.GameManagerService.getGameLobbyRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbiesRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbiesResponse")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.getGameLobbiesResponse getGameLobbies(LePrAtos.GameManagerService.getGameLobbiesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getGameLobbiesRequest", ReplyAction="http://webservices.org/GameManager/getGameLobbiesResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.getGameLobbiesResponse> getGameLobbiesAsync(LePrAtos.GameManagerService.getGameLobbiesRequest request);
+        
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getPlayerByIDRequest", ReplyAction="http://webservices.org/GameManager/getPlayerByIDResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/getPlayerByID/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        LePrAtos.GameManagerService.getPlayerByIDResponse getPlayerByID(LePrAtos.GameManagerService.getPlayerByIDRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/getPlayerByIDRequest", ReplyAction="http://webservices.org/GameManager/getPlayerByIDResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.getPlayerByIDResponse> getPlayerByIDAsync(LePrAtos.GameManagerService.getPlayerByIDRequest request);
+        
+        // CODEGEN: Parameter 'playerID' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerStatusRequest", ReplyAction="http://webservices.org/GameManager/setPlayerStatusResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(LePrAtos.GameManagerService.MyExceptions), Action="http://webservices.org/GameManager/setPlayerStatus/Fault/MyExceptions", Name="MyExceptions")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(playerIdentification))]
+        LePrAtos.GameManagerService.setPlayerStatusResponse setPlayerStatus(LePrAtos.GameManagerService.setPlayerStatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://webservices.org/GameManager/setPlayerStatusRequest", ReplyAction="http://webservices.org/GameManager/setPlayerStatusResponse")]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPlayerStatusResponse> setPlayerStatusAsync(LePrAtos.GameManagerService.setPlayerStatusRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="username_availability", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class username_availabilityRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string username;
+        
+        public username_availabilityRequest() {
+        }
+        
+        public username_availabilityRequest(string username) {
+            this.username = username;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="username_availabilityResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class username_availabilityResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public username_availabilityResponse() {
+        }
+        
+        public username_availabilityResponse(bool @return) {
+            this.@return = @return;
         }
     }
     
@@ -721,6 +652,187 @@ namespace LePrAtos.GameManagerService {
         
         public createGameLobbyResponse(LePrAtos.GameManagerService.gameLobby @return) {
             this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="email_verification", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class email_verificationRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string email;
+        
+        public email_verificationRequest() {
+        }
+        
+        public email_verificationRequest(string email) {
+            this.email = email;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="email_verificationResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class email_verificationResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool @return;
+        
+        public email_verificationResponse() {
+        }
+        
+        public email_verificationResponse(bool @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="setGameLobbyPassword", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class setGameLobbyPasswordRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string playerID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string GameLobbyID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string gameLobbyPassword;
+        
+        public setGameLobbyPasswordRequest() {
+        }
+        
+        public setGameLobbyPasswordRequest(string playerID, string GameLobbyID, string gameLobbyPassword) {
+            this.playerID = playerID;
+            this.GameLobbyID = GameLobbyID;
+            this.gameLobbyPassword = gameLobbyPassword;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="setGameLobbyPasswordResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class setGameLobbyPasswordResponse {
+        
+        public setGameLobbyPasswordResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="resetGameLobbyPassword", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class resetGameLobbyPasswordRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string playerID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string GameLobbyID;
+        
+        public resetGameLobbyPasswordRequest() {
+        }
+        
+        public resetGameLobbyPasswordRequest(string playerID, string GameLobbyID) {
+            this.playerID = playerID;
+            this.GameLobbyID = GameLobbyID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="resetGameLobbyPasswordResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class resetGameLobbyPasswordResponse {
+        
+        public resetGameLobbyPasswordResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="requestPasswordReset", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class requestPasswordResetRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string mail;
+        
+        public requestPasswordResetRequest() {
+        }
+        
+        public requestPasswordResetRequest(string mail) {
+            this.mail = mail;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="requestPasswordResetResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class requestPasswordResetResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string @return;
+        
+        public requestPasswordResetResponse() {
+        }
+        
+        public requestPasswordResetResponse(string @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="setPasswordFromReset", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class setPasswordFromResetRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string mail;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string currentPassword;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://webservices.org/", Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string newPassword;
+        
+        public setPasswordFromResetRequest() {
+        }
+        
+        public setPasswordFromResetRequest(string mail, string currentPassword, string newPassword) {
+            this.mail = mail;
+            this.currentPassword = currentPassword;
+            this.newPassword = newPassword;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="setPasswordFromResetResponse", WrapperNamespace="http://webservices.org/", IsWrapped=true)]
+    public partial class setPasswordFromResetResponse {
+        
+        public setPasswordFromResetResponse() {
         }
     }
     
@@ -1101,79 +1213,6 @@ namespace LePrAtos.GameManagerService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LePrAtos.GameManagerService.email_verificationResponse LePrAtos.GameManagerService.GameManager.email_verification(LePrAtos.GameManagerService.email_verificationRequest request) {
-            return base.Channel.email_verification(request);
-        }
-        
-        public bool email_verification(string email) {
-            LePrAtos.GameManagerService.email_verificationRequest inValue = new LePrAtos.GameManagerService.email_verificationRequest();
-            inValue.email = email;
-            LePrAtos.GameManagerService.email_verificationResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).email_verification(inValue);
-            return retVal.@return;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.email_verificationResponse> LePrAtos.GameManagerService.GameManager.email_verificationAsync(LePrAtos.GameManagerService.email_verificationRequest request) {
-            return base.Channel.email_verificationAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.email_verificationResponse> email_verificationAsync(string email) {
-            LePrAtos.GameManagerService.email_verificationRequest inValue = new LePrAtos.GameManagerService.email_verificationRequest();
-            inValue.email = email;
-            return ((LePrAtos.GameManagerService.GameManager)(this)).email_verificationAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LePrAtos.GameManagerService.setGameLobbyPasswordResponse LePrAtos.GameManagerService.GameManager.setGameLobbyPassword(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request) {
-            return base.Channel.setGameLobbyPassword(request);
-        }
-        
-        public void setGameLobbyPassword(string playerID, string GameLobbyID, string gameLobbyPassword) {
-            LePrAtos.GameManagerService.setGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.setGameLobbyPasswordRequest();
-            inValue.playerID = playerID;
-            inValue.GameLobbyID = GameLobbyID;
-            inValue.gameLobbyPassword = gameLobbyPassword;
-            LePrAtos.GameManagerService.setGameLobbyPasswordResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).setGameLobbyPassword(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> LePrAtos.GameManagerService.GameManager.setGameLobbyPasswordAsync(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request) {
-            return base.Channel.setGameLobbyPasswordAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> setGameLobbyPasswordAsync(string playerID, string GameLobbyID, string gameLobbyPassword) {
-            LePrAtos.GameManagerService.setGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.setGameLobbyPasswordRequest();
-            inValue.playerID = playerID;
-            inValue.GameLobbyID = GameLobbyID;
-            inValue.gameLobbyPassword = gameLobbyPassword;
-            return ((LePrAtos.GameManagerService.GameManager)(this)).setGameLobbyPasswordAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        LePrAtos.GameManagerService.resetGameLobbyPasswordResponse LePrAtos.GameManagerService.GameManager.resetGameLobbyPassword(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request) {
-            return base.Channel.resetGameLobbyPassword(request);
-        }
-        
-        public void resetGameLobbyPassword(string playerID, string GameLobbyID) {
-            LePrAtos.GameManagerService.resetGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.resetGameLobbyPasswordRequest();
-            inValue.playerID = playerID;
-            inValue.GameLobbyID = GameLobbyID;
-            LePrAtos.GameManagerService.resetGameLobbyPasswordResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).resetGameLobbyPassword(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> LePrAtos.GameManagerService.GameManager.resetGameLobbyPasswordAsync(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request) {
-            return base.Channel.resetGameLobbyPasswordAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> resetGameLobbyPasswordAsync(string playerID, string GameLobbyID) {
-            LePrAtos.GameManagerService.resetGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.resetGameLobbyPasswordRequest();
-            inValue.playerID = playerID;
-            inValue.GameLobbyID = GameLobbyID;
-            return ((LePrAtos.GameManagerService.GameManager)(this)).resetGameLobbyPasswordAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         LePrAtos.GameManagerService.registrationResponse LePrAtos.GameManagerService.GameManager.registration(LePrAtos.GameManagerService.registrationRequest request) {
             return base.Channel.registration(request);
         }
@@ -1270,6 +1309,128 @@ namespace LePrAtos.GameManagerService {
             inValue.playerID = playerID;
             inValue.gameLobbyName = gameLobbyName;
             return ((LePrAtos.GameManagerService.GameManager)(this)).createGameLobbyAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LePrAtos.GameManagerService.email_verificationResponse LePrAtos.GameManagerService.GameManager.email_verification(LePrAtos.GameManagerService.email_verificationRequest request) {
+            return base.Channel.email_verification(request);
+        }
+        
+        public bool email_verification(string email) {
+            LePrAtos.GameManagerService.email_verificationRequest inValue = new LePrAtos.GameManagerService.email_verificationRequest();
+            inValue.email = email;
+            LePrAtos.GameManagerService.email_verificationResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).email_verification(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.email_verificationResponse> LePrAtos.GameManagerService.GameManager.email_verificationAsync(LePrAtos.GameManagerService.email_verificationRequest request) {
+            return base.Channel.email_verificationAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.email_verificationResponse> email_verificationAsync(string email) {
+            LePrAtos.GameManagerService.email_verificationRequest inValue = new LePrAtos.GameManagerService.email_verificationRequest();
+            inValue.email = email;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).email_verificationAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LePrAtos.GameManagerService.setGameLobbyPasswordResponse LePrAtos.GameManagerService.GameManager.setGameLobbyPassword(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request) {
+            return base.Channel.setGameLobbyPassword(request);
+        }
+        
+        public void setGameLobbyPassword(string playerID, string GameLobbyID, string gameLobbyPassword) {
+            LePrAtos.GameManagerService.setGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.setGameLobbyPasswordRequest();
+            inValue.playerID = playerID;
+            inValue.GameLobbyID = GameLobbyID;
+            inValue.gameLobbyPassword = gameLobbyPassword;
+            LePrAtos.GameManagerService.setGameLobbyPasswordResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).setGameLobbyPassword(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> LePrAtos.GameManagerService.GameManager.setGameLobbyPasswordAsync(LePrAtos.GameManagerService.setGameLobbyPasswordRequest request) {
+            return base.Channel.setGameLobbyPasswordAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.setGameLobbyPasswordResponse> setGameLobbyPasswordAsync(string playerID, string GameLobbyID, string gameLobbyPassword) {
+            LePrAtos.GameManagerService.setGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.setGameLobbyPasswordRequest();
+            inValue.playerID = playerID;
+            inValue.GameLobbyID = GameLobbyID;
+            inValue.gameLobbyPassword = gameLobbyPassword;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).setGameLobbyPasswordAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LePrAtos.GameManagerService.resetGameLobbyPasswordResponse LePrAtos.GameManagerService.GameManager.resetGameLobbyPassword(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request) {
+            return base.Channel.resetGameLobbyPassword(request);
+        }
+        
+        public void resetGameLobbyPassword(string playerID, string GameLobbyID) {
+            LePrAtos.GameManagerService.resetGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.resetGameLobbyPasswordRequest();
+            inValue.playerID = playerID;
+            inValue.GameLobbyID = GameLobbyID;
+            LePrAtos.GameManagerService.resetGameLobbyPasswordResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).resetGameLobbyPassword(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> LePrAtos.GameManagerService.GameManager.resetGameLobbyPasswordAsync(LePrAtos.GameManagerService.resetGameLobbyPasswordRequest request) {
+            return base.Channel.resetGameLobbyPasswordAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.resetGameLobbyPasswordResponse> resetGameLobbyPasswordAsync(string playerID, string GameLobbyID) {
+            LePrAtos.GameManagerService.resetGameLobbyPasswordRequest inValue = new LePrAtos.GameManagerService.resetGameLobbyPasswordRequest();
+            inValue.playerID = playerID;
+            inValue.GameLobbyID = GameLobbyID;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).resetGameLobbyPasswordAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LePrAtos.GameManagerService.requestPasswordResetResponse LePrAtos.GameManagerService.GameManager.requestPasswordReset(LePrAtos.GameManagerService.requestPasswordResetRequest request) {
+            return base.Channel.requestPasswordReset(request);
+        }
+        
+        public string requestPasswordReset(string mail) {
+            LePrAtos.GameManagerService.requestPasswordResetRequest inValue = new LePrAtos.GameManagerService.requestPasswordResetRequest();
+            inValue.mail = mail;
+            LePrAtos.GameManagerService.requestPasswordResetResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).requestPasswordReset(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.requestPasswordResetResponse> LePrAtos.GameManagerService.GameManager.requestPasswordResetAsync(LePrAtos.GameManagerService.requestPasswordResetRequest request) {
+            return base.Channel.requestPasswordResetAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.requestPasswordResetResponse> requestPasswordResetAsync(string mail) {
+            LePrAtos.GameManagerService.requestPasswordResetRequest inValue = new LePrAtos.GameManagerService.requestPasswordResetRequest();
+            inValue.mail = mail;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).requestPasswordResetAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        LePrAtos.GameManagerService.setPasswordFromResetResponse LePrAtos.GameManagerService.GameManager.setPasswordFromReset(LePrAtos.GameManagerService.setPasswordFromResetRequest request) {
+            return base.Channel.setPasswordFromReset(request);
+        }
+        
+        public void setPasswordFromReset(string mail, string currentPassword, string newPassword) {
+            LePrAtos.GameManagerService.setPasswordFromResetRequest inValue = new LePrAtos.GameManagerService.setPasswordFromResetRequest();
+            inValue.mail = mail;
+            inValue.currentPassword = currentPassword;
+            inValue.newPassword = newPassword;
+            LePrAtos.GameManagerService.setPasswordFromResetResponse retVal = ((LePrAtos.GameManagerService.GameManager)(this)).setPasswordFromReset(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPasswordFromResetResponse> LePrAtos.GameManagerService.GameManager.setPasswordFromResetAsync(LePrAtos.GameManagerService.setPasswordFromResetRequest request) {
+            return base.Channel.setPasswordFromResetAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<LePrAtos.GameManagerService.setPasswordFromResetResponse> setPasswordFromResetAsync(string mail, string currentPassword, string newPassword) {
+            LePrAtos.GameManagerService.setPasswordFromResetRequest inValue = new LePrAtos.GameManagerService.setPasswordFromResetRequest();
+            inValue.mail = mail;
+            inValue.currentPassword = currentPassword;
+            inValue.newPassword = newPassword;
+            return ((LePrAtos.GameManagerService.GameManager)(this)).setPasswordFromResetAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

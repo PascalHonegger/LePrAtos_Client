@@ -11,32 +11,14 @@
   <message name="username_availabilityResponse">
     <part name="parameters" element="tns:username_availabilityResponse" />
   </message>
-  <message name="email_verification">
-    <part name="parameters" element="tns:email_verification" />
-  </message>
-  <message name="email_verificationResponse">
-    <part name="parameters" element="tns:email_verificationResponse" />
-  </message>
-  <message name="setGameLobbyPassword">
-    <part name="parameters" element="tns:setGameLobbyPassword" />
-  </message>
-  <message name="setGameLobbyPasswordResponse">
-    <part name="parameters" element="tns:setGameLobbyPasswordResponse" />
-  </message>
-  <message name="MyExceptions">
-    <part name="fault" element="tns:MyExceptions" />
-  </message>
-  <message name="resetGameLobbyPassword">
-    <part name="parameters" element="tns:resetGameLobbyPassword" />
-  </message>
-  <message name="resetGameLobbyPasswordResponse">
-    <part name="parameters" element="tns:resetGameLobbyPasswordResponse" />
-  </message>
   <message name="registration">
     <part name="parameters" element="tns:registration" />
   </message>
   <message name="registrationResponse">
     <part name="parameters" element="tns:registrationResponse" />
+  </message>
+  <message name="MyExceptions">
+    <part name="fault" element="tns:MyExceptions" />
   </message>
   <message name="login">
     <part name="parameters" element="tns:login" />
@@ -58,6 +40,36 @@
   </message>
   <message name="Exception">
     <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="email_verification">
+    <part name="parameters" element="tns:email_verification" />
+  </message>
+  <message name="email_verificationResponse">
+    <part name="parameters" element="tns:email_verificationResponse" />
+  </message>
+  <message name="setGameLobbyPassword">
+    <part name="parameters" element="tns:setGameLobbyPassword" />
+  </message>
+  <message name="setGameLobbyPasswordResponse">
+    <part name="parameters" element="tns:setGameLobbyPasswordResponse" />
+  </message>
+  <message name="resetGameLobbyPassword">
+    <part name="parameters" element="tns:resetGameLobbyPassword" />
+  </message>
+  <message name="resetGameLobbyPasswordResponse">
+    <part name="parameters" element="tns:resetGameLobbyPasswordResponse" />
+  </message>
+  <message name="requestPasswordReset">
+    <part name="parameters" element="tns:requestPasswordReset" />
+  </message>
+  <message name="requestPasswordResetResponse">
+    <part name="parameters" element="tns:requestPasswordResetResponse" />
+  </message>
+  <message name="setPasswordFromReset">
+    <part name="parameters" element="tns:setPasswordFromReset" />
+  </message>
+  <message name="setPasswordFromResetResponse">
+    <part name="parameters" element="tns:setPasswordFromResetResponse" />
   </message>
   <message name="setGameLobbyName">
     <part name="parameters" element="tns:setGameLobbyName" />
@@ -118,20 +130,6 @@
       <input wsam:Action="http://webservices.org/GameManager/username_availabilityRequest" message="tns:username_availability" />
       <output wsam:Action="http://webservices.org/GameManager/username_availabilityResponse" message="tns:username_availabilityResponse" />
     </operation>
-    <operation name="email_verification">
-      <input wsam:Action="http://webservices.org/GameManager/email_verificationRequest" message="tns:email_verification" />
-      <output wsam:Action="http://webservices.org/GameManager/email_verificationResponse" message="tns:email_verificationResponse" />
-    </operation>
-    <operation name="setGameLobbyPassword">
-      <input wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest" message="tns:setGameLobbyPassword" />
-      <output wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordResponse" message="tns:setGameLobbyPasswordResponse" />
-      <fault wsam:Action="http://webservices.org/GameManager/setGameLobbyPassword/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
-    </operation>
-    <operation name="resetGameLobbyPassword">
-      <input wsam:Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest" message="tns:resetGameLobbyPassword" />
-      <output wsam:Action="http://webservices.org/GameManager/resetGameLobbyPasswordResponse" message="tns:resetGameLobbyPasswordResponse" />
-      <fault wsam:Action="http://webservices.org/GameManager/resetGameLobbyPassword/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
-    </operation>
     <operation name="registration">
       <input wsam:Action="http://webservices.org/GameManager/registrationRequest" message="tns:registration" />
       <output wsam:Action="http://webservices.org/GameManager/registrationResponse" message="tns:registrationResponse" />
@@ -151,6 +149,30 @@
       <input wsam:Action="http://webservices.org/GameManager/createGameLobbyRequest" message="tns:createGameLobby" />
       <output wsam:Action="http://webservices.org/GameManager/createGameLobbyResponse" message="tns:createGameLobbyResponse" />
       <fault wsam:Action="http://webservices.org/GameManager/createGameLobby/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="email_verification">
+      <input wsam:Action="http://webservices.org/GameManager/email_verificationRequest" message="tns:email_verification" />
+      <output wsam:Action="http://webservices.org/GameManager/email_verificationResponse" message="tns:email_verificationResponse" />
+    </operation>
+    <operation name="setGameLobbyPassword">
+      <input wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordRequest" message="tns:setGameLobbyPassword" />
+      <output wsam:Action="http://webservices.org/GameManager/setGameLobbyPasswordResponse" message="tns:setGameLobbyPasswordResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/setGameLobbyPassword/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
+    </operation>
+    <operation name="resetGameLobbyPassword">
+      <input wsam:Action="http://webservices.org/GameManager/resetGameLobbyPasswordRequest" message="tns:resetGameLobbyPassword" />
+      <output wsam:Action="http://webservices.org/GameManager/resetGameLobbyPasswordResponse" message="tns:resetGameLobbyPasswordResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/resetGameLobbyPassword/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
+    </operation>
+    <operation name="requestPasswordReset">
+      <input wsam:Action="http://webservices.org/GameManager/requestPasswordResetRequest" message="tns:requestPasswordReset" />
+      <output wsam:Action="http://webservices.org/GameManager/requestPasswordResetResponse" message="tns:requestPasswordResetResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/requestPasswordReset/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
+    </operation>
+    <operation name="setPasswordFromReset">
+      <input wsam:Action="http://webservices.org/GameManager/setPasswordFromResetRequest" message="tns:setPasswordFromReset" />
+      <output wsam:Action="http://webservices.org/GameManager/setPasswordFromResetResponse" message="tns:setPasswordFromResetResponse" />
+      <fault wsam:Action="http://webservices.org/GameManager/setPasswordFromReset/Fault/MyExceptions" name="MyExceptions" message="tns:MyExceptions" />
     </operation>
     <operation name="setGameLobbyName">
       <input wsam:Action="http://webservices.org/GameManager/setGameLobbyNameRequest" message="tns:setGameLobbyName" />
@@ -208,39 +230,6 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="email_verification">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="setGameLobbyPassword">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="MyExceptions">
-        <soap:fault use="literal" name="MyExceptions" namespace="" />
-      </fault>
-    </operation>
-    <operation name="resetGameLobbyPassword">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="MyExceptions">
-        <soap:fault use="literal" name="MyExceptions" namespace="" />
-      </fault>
-    </operation>
     <operation name="registration">
       <soap:operation soapAction="" />
       <input>
@@ -287,6 +276,63 @@
       </output>
       <fault name="Exception">
         <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="email_verification">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="setGameLobbyPassword">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
+    </operation>
+    <operation name="resetGameLobbyPassword">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
+    </operation>
+    <operation name="requestPasswordReset">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
+      </fault>
+    </operation>
+    <operation name="setPasswordFromReset">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="MyExceptions">
+        <soap:fault use="literal" name="MyExceptions" namespace="" />
       </fault>
     </operation>
     <operation name="setGameLobbyName">

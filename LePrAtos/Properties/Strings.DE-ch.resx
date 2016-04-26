@@ -291,4 +291,22 @@
   <data name="Back" xml:space="preserve">
     <value>Zrugg</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Passwort zruggsetze</value>
+  </data>
+  <data name="ResetPassword_Code" xml:space="preserve">
+    <value>Erhaltene Code</value>
+  </data>
+  <data name="ResetPassword_NewPassword" xml:space="preserve">
+    <value>Neues Passwort</value>
+  </data>
+  <data name="ResetPassword_PasswordChanged" xml:space="preserve">
+    <value>Passwort gändered</value>
+  </data>
+  <data name="ResetPassword_RequestReset" xml:space="preserve">
+    <value>Passwort Reset aafordere</value>
+  </data>
+  <data name="ResetPassword_SetPassword" xml:space="preserve">
+    <value>Neues Passwort setze</value>
+  </data>
 </root>
