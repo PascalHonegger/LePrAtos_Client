@@ -56,7 +56,7 @@ namespace LePrAtos.Startup.Login
 				{
 					var result = await CurrentSession.Client.requestPasswordResetAsync(MailToReset);
 					IsFirstStage = false;
-					NewPassword = MailToReset = string.Empty;
+					NewPassword = ResetCode = string.Empty;
 
 					//Remove once Mail is active
 					ResetCode = result.@return;
